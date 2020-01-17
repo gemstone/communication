@@ -1,5 +1,5 @@
 <img align="right" src="img/gemstone-wide-600.png" alt="gemstone logo">
-<br/><br/><br/><br/>
+<br/><br/><br/><br/><br/><br/>
 
 # Communication
 ### GPA Gemstone Library
