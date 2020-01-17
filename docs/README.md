@@ -3,7 +3,7 @@
 # Communication
 ### GPA Gemstone Library
 
-The Gemstone Communication Library organizes all Gemstone functionality related to communication.
+The Gemstone Communication Library organizes all Gemstone functionality related to communication, e.g., sockets and serial ports.
 
 [![GitHub license](https://img.shields.io/github/license/gemstone/communication?color=4CC61E)](https://github.com/gemstone/communication/blob/master/LICENSE)
 [![Build status](https://ci.appveyor.com/api/projects/status/ury75mtaq7tj1sp0?svg=true)](https://ci.appveyor.com/project/ritchiecarroll/communication)
