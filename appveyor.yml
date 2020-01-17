@@ -12,6 +12,7 @@ before_build:
 - cmd: >-
     choco install sandcastle
 
-    nuget restore src\gemstone.communication.sln
+    nuget restore src\Gemstone.Communication.sln
 build:
+  parallel: true
   verbosity: minimal
