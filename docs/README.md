@@ -1,19 +1,19 @@
 <img align="right" src="img/gemstone-wide-600.png" alt="gemstone logo">
 
-# GemTem
+# Communication
 ### GPA Gemstone Library
 
-The Gemstone GemTem Library organizes all Gemstone functionality related to gemtem.
+The Gemstone Communication Library organizes all Gemstone functionality related to communication.
 
-[![GitHub license](https://img.shields.io/github/license/gemstone/gemtem?color=4CC61E)](https://github.com/gemstone/gemtem/blob/master/LICENSE)
-[![Build status](https://ci.appveyor.com/api/projects/status/ury75mtaq7tj1sp0?svg=true)](https://ci.appveyor.com/project/ritchiecarroll/gemtem)
+[![GitHub license](https://img.shields.io/github/license/gemstone/communication?color=4CC61E)](https://github.com/gemstone/communication/blob/master/LICENSE)
+[![Build status](https://ci.appveyor.com/api/projects/status/ury75mtaq7tj1sp0?svg=true)](https://ci.appveyor.com/project/ritchiecarroll/communication)
 
-This library includes helpful gemtem classes like the following:
+This library includes helpful communication classes like the following:
 
-* [Class](https://gemstone.github.io/gemtem/help/html/T_gemstone_gemtem_Class.htm):
-  * Represents a gemtem class for handling gemtem operations.
+* [Class](https://gemstone.github.io/communication/help/html/T_gemstone_communication_Class.htm):
+  * Represents a communication class for handling communication operations.
 
 Among others.
 
 ### Documentation
-[Full Library Documentation](https://gemstone.github.io/gemtem/help)
+[Full Library Documentation](https://gemstone.github.io/communication/help)

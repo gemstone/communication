@@ -1,5 +1,5 @@
 ﻿//******************************************************************************************************
-//  Class.cs - Gbtc
+//  NamespaceDoc.cs - Gbtc
 //
 //  Copyright © 2019, Grid Protection Alliance.  All Rights Reserved.
 //
@@ -16,17 +16,22 @@
 //
 //  Code Modification History:
 //  ----------------------------------------------------------------------------------------------------
-//  11/04/2019 - J. Ritchie Carroll
+//  10/16/2019 - J. Ritchie Carroll
 //       Generated original version of source code.
 //
 //******************************************************************************************************
 
-namespace Gemstone.GemTem
+using System.Runtime.CompilerServices;
+
+namespace Gemstone.Communication
 {
     /// <summary>
-    /// Sample class for new GemTem library.
+    /// The <see cref="Gemstone.Communication"/> namespace organizes all Gemstone library functionality
+    /// related to communication. The root communication namespace also includes common communication classes,
+    /// e.g., <see cref="Class"/>.
     /// </summary>
-    public class Class
+    [CompilerGenerated]
+    class NamespaceDoc
     {
     }
 }

@@ -18,7 +18,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Gemstone.GemTem\Gemstone.GemTem.csproj" />
+    <ProjectReference Include="..\Gemstone.Communication\Gemstone.Communication.csproj" />
   </ItemGroup>
 
 </Project>
