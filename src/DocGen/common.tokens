@@ -28,7 +28,7 @@
           </ddue:externalLink>.
         </ddue:para>
         <ddue:para>
-          These packages represent a focused re-envisioning of the best libraries, i.e., the "gems", from the
+          These libraries represent a focused re-envisioning of the best code, i.e., the "gems", from the
           <ddue:externalLink>
             <ddue:linkText>Grid Solutions Framework</ddue:linkText>
             <ddue:linkAlternateText>Grid Solutions Framework</ddue:linkAlternateText>
@@ -53,6 +53,19 @@
                 </ddue:externalLink>               
               </ddue:legacyBold>
               organizes all Gemstone functionality for most any .NET coding.
+            </ddue:para>
+          </ddue:listItem>
+          <ddue:listItem>
+            <ddue:para>
+              <ddue:legacyBold>
+                <ddue:externalLink>
+                  <ddue:linkText>Gemstone.Communication</ddue:linkText>
+                  <ddue:linkAlternateText>Gemstone.Communication</ddue:linkAlternateText>
+                  <ddue:linkUri>https://gemstone.github.io/communication/</ddue:linkUri>
+                  <ddue:linkTarget>_blank</ddue:linkTarget>
+                </ddue:externalLink>               
+              </ddue:legacyBold>
+              organizes all Gemstone functionality related to communication functionality, e.g., sockets and serial ports.
             </ddue:para>
           </ddue:listItem>
           <ddue:listItem>
