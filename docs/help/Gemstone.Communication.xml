@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<doc>
+  <assembly>
+    <name>Gemstone.Communication</name>
+  </assembly>
+  <members>
+    <member name="T:Gemstone.Communication.Class">
+      <summary>
+            Sample class for new Communication library.
+            </summary>
+    </member>
+    <member name="M:Gemstone.Communication.Class.#ctor">
+      <summary>
+        <markup>
+          <include item="SMCAutoDocConstructor">
+            <parameter>Gemstone.Communication.Class</parameter>
+          </include>
+        </markup>
+      </summary>
+    </member>
+  </members>
+</doc>
