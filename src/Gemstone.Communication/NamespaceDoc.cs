@@ -27,8 +27,9 @@ namespace Gemstone.Communication
 {
     /// <summary>
     /// The <see cref="Gemstone.Communication"/> namespace organizes all Gemstone library functionality
-    /// related to communication. The root communication namespace also includes common communication classes,
-    /// e.g., <see cref="Class"/>.
+    /// related to any data communications including sockets, serial and file based transports used to
+    /// simplify and standardize data access. The root communication namespace also includes common
+    /// communication classes, e.g., <see cref="TcpClient"/>.
     /// </summary>
     [CompilerGenerated]
     class NamespaceDoc
