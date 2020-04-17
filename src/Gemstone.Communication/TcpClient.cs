@@ -42,7 +42,7 @@
 //  02/11/2011 - Pinal C. Patel
 //       Added IntegratedSecurity property to enable integrated windows authentication.
 //  02/13/2011 - Pinal C. Patel
-//       Modified ConnectAsync() to handle loopback address resolution failure on IPv6 enabled OSes.
+//       Modified ConnectAsync() to handle loop-back address resolution failure on IPv6 enabled OSes.
 //  09/21/2011 - J. Ritchie Carroll
 //       Added Mono implementation exception regions.
 //  07/23/2012 - Stephen C. Wills
@@ -165,7 +165,7 @@ namespace Gemstone.Communication
             public int ConnectionAttempts;
 
             public readonly CancellationToken Token = new CancellationToken();
-            public Func<bool>? CancelTimeout;
+            public Func<bool> CancelTimeout = () => false;
 
             public void Dispose()
             {
@@ -232,7 +232,7 @@ namespace Gemstone.Communication
             public byte[]? Data;
             public int Offset;
             public int Length;
-            public ManualResetEvent? WaitHandle;
+            public ManualResetEventSlim WaitHandle = new ManualResetEventSlim();
         }
 
         private class CancellationToken
@@ -288,11 +288,11 @@ namespace Gemstone.Communication
         private readonly ShortSynchronizedOperation m_dumpPayloadsOperation;
         private string[]? m_serverList;
         private int m_serverIndex;
-        private Dictionary<string, string> m_connectData;
-        private ManualResetEvent m_connectWaitHandle;
-        private ConnectState m_connectState;
-        private ReceiveState m_receiveState;
-        private SendState m_sendState;
+        private Dictionary<string, string> m_connectData = DefaultConnectionString.ParseKeyValuePairs();
+        private ManualResetEvent? m_connectWaitHandle;
+        private ConnectState? m_connectState;
+        private ReceiveState? m_receiveState;
+        private SendState? m_sendState;
         private bool m_disposed;
 
         #endregion
@@ -403,7 +403,7 @@ namespace Gemstone.Communication
         /// Gets or sets network credential that is used when
         /// <see cref="IntegratedSecurity"/> is set to <c>true</c>.
         /// </summary>
-        public NetworkCredential NetworkCredential { get; set; }
+        public NetworkCredential? NetworkCredential { get; set; }
 
         /// <summary>
         /// Determines whether the base class should track statistics.
@@ -421,7 +421,7 @@ namespace Gemstone.Communication
                 if (m_connectData?.ContainsKey("server") ?? false)
                     m_serverList = m_connectData["server"].Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries).Select(server => server.Trim()).ToArray();
 
-                return m_serverList == null ? Array.Empty<string>() : m_serverList;
+                return m_serverList ?? Array.Empty<string>();
             }
         }
 
@@ -432,14 +432,11 @@ namespace Gemstone.Communication
         {
             get
             {
-                SendState sendState = m_sendState;
+                SendState? sendState = m_sendState;
                 StringBuilder statusBuilder = new StringBuilder(base.Status);
 
                 if (sendState != null)
-                {
-                    statusBuilder.AppendFormat("           Queued payloads: {0}", sendState.SendQueue.Count);
-                    statusBuilder.AppendLine();
-                }
+                    statusBuilder.AppendLine($"           Queued payloads: {sendState.SendQueue.Count:N0}");
 
                 return statusBuilder.ToString();
             }
@@ -454,7 +451,7 @@ namespace Gemstone.Communication
         /// </summary>
         /// <exception cref="InvalidOperationException">Attempt is made to connect the <see cref="TcpClient"/> when it is not disconnected.</exception>
         /// <returns><see cref="WaitHandle"/> for the asynchronous operation.</returns>
-        public override WaitHandle ConnectAsync()
+        public override WaitHandle? ConnectAsync()
         {
             ConnectState? connectState = null;
 
@@ -466,7 +463,7 @@ namespace Gemstone.Communication
                 // If we do not already have a wait handle to use
                 // for connections, get one from the base class
                 if (m_connectWaitHandle == null)
-                    m_connectWaitHandle = (ManualResetEvent)base.ConnectAsync();
+                    m_connectWaitHandle = (ManualResetEvent?)base.ConnectAsync();
 
                 // Create state object for the asynchronous connection loop
                 connectState = new ConnectState();
@@ -479,7 +476,7 @@ namespace Gemstone.Communication
                 }
 
                 OnConnectionAttempt();
-                m_connectWaitHandle.Reset();
+                m_connectWaitHandle?.Reset();
 
                 // Overwrite config file if integrated security exists in connection string
                 if (m_connectData.TryGetValue("integratedSecurity", out string integratedSecuritySetting))
@@ -542,7 +539,7 @@ namespace Gemstone.Communication
             if (connectState.Token.Cancelled)
                 return;
 
-            if (!connectState.Socket.ConnectAsync(connectState.ConnectArgs))
+            if (!(connectState.Socket?.ConnectAsync(connectState.ConnectArgs) ?? false))
                 ThreadPool.QueueUserWorkItem(state => ProcessConnect(connectState));
         }
 
@@ -587,6 +584,9 @@ namespace Gemstone.Communication
                 // Check the SocketAsyncEventArgs for errors during the asynchronous connection attempt
                 if (connectState.ConnectArgs.SocketError != SocketError.Success)
                     throw new SocketException((int)connectState.ConnectArgs.SocketError);
+
+                if (connectState.Socket == null)
+                    throw new InvalidOperationException("No socket available while attempting to process connection.");
 
                 // Set the size of the buffer used by the socket to store incoming data from the server
                 connectState.Socket.ReceiveBufferSize = ReceiveBufferSize;
@@ -661,7 +661,7 @@ namespace Gemstone.Communication
                         return;
 
                     // Notify of established connection
-                    m_connectWaitHandle.Set();
+                    m_connectWaitHandle?.Set();
                     OnConnectionEstablished();
 
                     // Initialize state object for the asynchronous receive loop
@@ -734,10 +734,10 @@ namespace Gemstone.Communication
                 if (connectState != null && connectState.Token.Cancelled)
                     connectState.Dispose();
 
-                if (receiveState != null && receiveState.Token.Cancelled)
+                if (receiveState != null && receiveState.Token != null && receiveState.Token.Cancelled)
                     receiveState.Dispose();
 
-                if (sendState != null && sendState.Token.Cancelled)
+                if (sendState != null && sendState.Token != null && sendState.Token.Cancelled)
                     sendState.Dispose();
             }
         }
@@ -753,6 +753,9 @@ namespace Gemstone.Communication
                 // Get the connect state from the async result
                 connectState = (ConnectState)asyncResult.AsyncState;
 
+                if (connectState == null)
+                    throw new InvalidOperationException("Connect state null while attempting to process integrated security authentication.");
+
                 // Attempt to cancel the timeout operation
                 if (!connectState.CancelTimeout())
                     return;
@@ -764,7 +767,7 @@ namespace Gemstone.Communication
                 try
                 {
                     // Complete the operation to authenticate with the server
-                    connectState.NegotiateStream.EndAuthenticateAsClient(asyncResult);
+                    connectState.NegotiateStream?.EndAuthenticateAsClient(asyncResult);
                 }
                 catch (InvalidCredentialException)
                 {
@@ -811,7 +814,7 @@ namespace Gemstone.Communication
 
                 // Notify of established connection
                 // and begin receiving data.
-                m_connectWaitHandle.Set();
+                m_connectWaitHandle?.Set();
                 OnConnectionEstablished();
 
                 // Initialize state object for the asynchronous receive loop
@@ -895,15 +898,15 @@ namespace Gemstone.Communication
                     }
                     else
                     {
-                        connectState.NetworkStream.Dispose();
-                        connectState.NegotiateStream.Dispose();
+                        connectState.NetworkStream?.Dispose();
+                        connectState.NegotiateStream?.Dispose();
                     }
                 }
 
-                if (receiveState != null && receiveState.Token.Cancelled)
+                if (receiveState != null && receiveState.Token != null && receiveState.Token.Cancelled)
                     receiveState.Dispose();
 
-                if (sendState != null && sendState.Token.Cancelled)
+                if (sendState != null && sendState.Token != null && sendState.Token.Cancelled)
                     sendState.Dispose();
             }
         }
@@ -913,7 +916,8 @@ namespace Gemstone.Communication
         /// </summary>
         private void ReceivePayloadAwareAsync(ReceiveState receiveState)
         {
-            if (receiveState.Token.Cancelled)
+            // Quit if this receive loop has been canceled
+            if (receiveState.Token == null || receiveState.Token.Cancelled || receiveState.ReceiveArgs == null)
                 return;
 
             int length;
@@ -928,7 +932,7 @@ namespace Gemstone.Communication
             else
                 receiveState.ReceiveArgs.SetBuffer(receiveState.Offset, length - receiveState.Offset);
 
-            if (!receiveState.Socket.ReceiveAsync(receiveState.ReceiveArgs))
+            if (!(receiveState.Socket?.ReceiveAsync(receiveState.ReceiveArgs) ?? false))
                 ThreadPool.QueueUserWorkItem(state => ProcessReceivePayloadAware(receiveState));
         }
 
@@ -937,12 +941,12 @@ namespace Gemstone.Communication
         /// </summary>
         private void ProcessReceivePayloadAware(ReceiveState receiveState)
         {
+            // Quit if this receive loop has been canceled
+            if (receiveState.Token == null || receiveState.Token.Cancelled || receiveState.ReceiveArgs == null)
+                return;
+
             try
             {
-                // Quit if this receive loop has been canceled
-                if (receiveState.Token.Cancelled)
-                    return;
-
                 // Determine if the server disconnected gracefully
                 if (receiveState.ReceiveArgs.SocketError != SocketError.Success)
                     throw new SocketException((int)receiveState.ReceiveArgs.SocketError);
@@ -954,7 +958,7 @@ namespace Gemstone.Communication
                 UpdateBytesReceived(receiveState.ReceiveArgs.BytesTransferred);
                 receiveState.Offset += receiveState.ReceiveArgs.BytesTransferred;
 
-                if (receiveState.PayloadLength < 0)
+                if (receiveState.PayloadLength < 0 && receiveState.Buffer != null)
                 {
                     // If we haven't parsed the length of the payload yet, attempt to parse it
                     receiveState.PayloadLength = Payload.ExtractLength(receiveState.Buffer, receiveState.Offset, m_payloadMarker, m_payloadEndianOrder);
@@ -1021,13 +1025,13 @@ namespace Gemstone.Communication
         /// </summary>
         private void ReceivePayloadUnawareAsync(ReceiveState receiveState)
         {
-            if (!receiveState.Token.Cancelled)
-            {
-                receiveState.ReceiveArgs.SetBuffer(0, ReceiveBufferSize);
+            if (receiveState.Token == null || receiveState.Token.Cancelled || receiveState.ReceiveArgs == null)
+                return;
 
-                if (!receiveState.Socket.ReceiveAsync(receiveState.ReceiveArgs))
-                    ThreadPool.QueueUserWorkItem(state => ProcessReceivePayloadUnaware(receiveState));
-            }
+            receiveState.ReceiveArgs.SetBuffer(0, ReceiveBufferSize);
+
+            if (!(receiveState.Socket?.ReceiveAsync(receiveState.ReceiveArgs) ?? false))
+                ThreadPool.QueueUserWorkItem(state => ProcessReceivePayloadUnaware(receiveState));
         }
 
         /// <summary>
@@ -1035,12 +1039,11 @@ namespace Gemstone.Communication
         /// </summary>
         private void ProcessReceivePayloadUnaware(ReceiveState receiveState)
         {
+            if (receiveState.Token == null || receiveState.Token.Cancelled || receiveState.ReceiveArgs == null)
+                return;
+
             try
             {
-                // Quit if this receive loop has been canceled
-                if (receiveState.Token.Cancelled)
-                    return;
-
                 if (receiveState.ReceiveArgs.SocketError != SocketError.Success)
                     throw new SocketException((int)receiveState.ReceiveArgs.SocketError);
 
@@ -1103,9 +1106,9 @@ namespace Gemstone.Communication
         /// </exception>
         public override int Read(byte[] buffer, int startIndex, int length)
         {
-            ReceiveState receiveState = m_receiveState;
+            ReceiveState? receiveState = m_receiveState;
 
-            if (receiveState == null || receiveState.Token.Cancelled)
+            if (receiveState == null || receiveState.Token == null || receiveState.Token.Cancelled)
                 return 0;
 
             buffer.ValidateParameters(startIndex, length);
@@ -1143,7 +1146,7 @@ namespace Gemstone.Communication
                 sendState = m_sendState;
 
                 // Quit if this send loop has been canceled
-                if (sendState.Token.Cancelled)
+                if (sendState == null || sendState.Token == null || sendState.Token.Cancelled)
                     return null;
 
                 // Prepare for payload-aware transmission.
@@ -1151,13 +1154,12 @@ namespace Gemstone.Communication
                     Payload.AddHeader(ref data, ref offset, ref length, m_payloadMarker, m_payloadEndianOrder);
 
                 // Create payload and wait handle.
-                TcpClientPayload payload = new TcpClientPayload();
-                ManualResetEvent handle = new ManualResetEvent(false);
-
-                payload.Data = data;
-                payload.Offset = offset;
-                payload.Length = length;
-                payload.WaitHandle = handle;
+                TcpClientPayload payload = new TcpClientPayload
+                {
+                    Data = data,
+                    Offset = offset,
+                    Length = length
+                };
 
                 // Execute operation to take action if the client
                 // has reached the maximum send queue size
@@ -1176,7 +1178,7 @@ namespace Gemstone.Communication
                     OnSendDataStart();
 
                     // Return the async handle that can be used to wait for the async operation to complete
-                    return handle;
+                    return payload.WaitHandle.WaitHandle;
                 }
             }
             catch (Exception ex)
@@ -1188,7 +1190,7 @@ namespace Gemstone.Communication
             {
                 // If the operation was canceled during execution,
                 // make sure to dispose of allocated resources
-                if (sendState != null && sendState.Token.Cancelled)
+                if (sendState != null && sendState.Token != null && sendState.Token.Cancelled)
                     sendState.Dispose();
             }
 
@@ -1206,7 +1208,7 @@ namespace Gemstone.Communication
             try
             {
                 // Quit if this send loop has been canceled
-                if (sendState.Token.Cancelled)
+                if (sendState.Token == null || sendState.Token.Cancelled || sendState.SendArgs == null)
                     return;
 
                 if (sendState.SendQueue.TryDequeue(out TcpClientPayload payload))
@@ -1225,7 +1227,7 @@ namespace Gemstone.Communication
                     Buffer.BlockCopy(payload.Data, payload.Offset, sendState.SendArgs.Buffer, 0, payload.Length);
 
                     // Send payload to the client asynchronously
-                    if (!sendState.Socket.SendAsync(sendState.SendArgs))
+                    if (!(sendState.Socket?.SendAsync(sendState.SendArgs) ?? false))
                         ThreadPool.QueueUserWorkItem(state => ProcessSend((SendState)state), sendState);
                 }
                 else
@@ -1250,7 +1252,7 @@ namespace Gemstone.Communication
             {
                 // If the operation was canceled during execution,
                 // make sure to dispose of allocated resources
-                if (sendState.Token.Cancelled)
+                if (sendState.Token != null && sendState.Token.Cancelled)
                     sendState.Dispose();
             }
         }
@@ -1260,10 +1262,14 @@ namespace Gemstone.Communication
         /// </summary>
         private void ProcessSend(SendState sendState)
         {
-            ManualResetEvent? handle = null;
+            ManualResetEventSlim? handle = null;
+
+            if (sendState == null || sendState.Token == null || sendState.Payload == null || sendState.SendArgs == null)
+                return;
 
             try
             {
+
                 // Get the payload and its wait handle.
                 TcpClientPayload payload = sendState.Payload;
                 handle = payload.WaitHandle;
@@ -1273,7 +1279,7 @@ namespace Gemstone.Communication
                     return;
 
                 // Determine if the server disconnected gracefully
-                if (!sendState.Socket.Connected)
+                if (!(sendState.Socket?.Connected ?? false))
                     throw new SocketException((int)SocketError.Disconnecting);
 
                 // Check for errors during send operation
@@ -1348,14 +1354,14 @@ namespace Gemstone.Communication
                 if (CurrentState == ClientState.Disconnected)
                     return;
 
-                ConnectState connectState = m_connectState;
-                ReceiveState receiveState = m_receiveState;
-                SendState sendState = m_sendState;
+                ConnectState? connectState = m_connectState;
+                ReceiveState? receiveState = m_receiveState;
+                SendState? sendState = m_sendState;
 
                 if (connectState != null)
                 {
                     TerminateConnection(connectState.Token);
-                    connectState.Socket.Disconnect(false);
+                    connectState.Socket?.Disconnect(false);
                     connectState.Dispose();
                 }
 
@@ -1489,10 +1495,10 @@ namespace Gemstone.Communication
         /// </summary>
         private void DumpPayloads()
         {
-            SendState sendState = m_sendState;
+            SendState? sendState = m_sendState;
 
             // Quit if this send loop has been canceled
-            if (sendState == null || sendState.Token.Cancelled)
+            if (sendState == null || sendState.Token == null || sendState.Token.Cancelled)
                 return;
 
             // Check to see if the client has reached the maximum send queue size.

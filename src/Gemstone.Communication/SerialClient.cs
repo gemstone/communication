@@ -277,9 +277,9 @@ namespace Gemstone.Communication
         /// </summary>
         /// <exception cref="InvalidOperationException">Attempt is made to connect the <see cref="SerialClient"/> when it is connected.</exception>
         /// <returns><see cref="WaitHandle"/> for the asynchronous operation.</returns>
-        public override WaitHandle ConnectAsync()
+        public override WaitHandle? ConnectAsync()
         {
-            m_connectionHandle = (ManualResetEvent)base.ConnectAsync();
+            m_connectionHandle = (ManualResetEvent?)base.ConnectAsync();
 
             m_serialClient.SetReceiveBuffer(ReceiveBufferSize);
 
@@ -446,7 +446,7 @@ namespace Gemstone.Communication
 
                 // Retrieve data from the port.
                 while (bytesRead < m_serialClient.Provider.BytesToRead)
-                    bytesRead += m_serialClient.Provider.Read(m_serialClient.ReceiveBuffer, bytesRead, m_serialClient.ReceiveBuffer.Length - bytesRead);
+                    bytesRead += m_serialClient.Provider.Read(m_serialClient.ReceiveBuffer, bytesRead, (m_serialClient.ReceiveBuffer?.Length ?? 0) - bytesRead);
 
                 m_serialClient.BytesReceived = bytesRead;
                 m_serialClient.Statistics.UpdateBytesReceived(bytesRead);

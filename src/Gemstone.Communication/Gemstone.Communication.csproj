@@ -49,8 +49,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <!--  TODO: This is only for dynamic - remove later -->
-    <PackageReference Include="Microsoft.CSharp" Version="4.7.0" />
     <PackageReference Include="System.IO.Ports" Version="4.7.0" />
     
     <ProjectReference Include="..\..\..\common\src\Gemstone\Gemstone.Common.csproj" Condition="'$(Configuration)'=='Development'" />

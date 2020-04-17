@@ -119,7 +119,7 @@ namespace Gemstone.Communication
         /// <param name="port">The port number to be associated with the address.</param>
         /// <param name="stack">Desired IP stack to use.</param>
         /// <returns>An <see cref="IPEndPoint"/> object.</returns>
-        public static IPEndPoint CreateEndPoint(string hostNameOrAddress, int port, IPStack stack)
+        public static IPEndPoint CreateEndPoint(string? hostNameOrAddress, int port, IPStack stack)
         {
             // Determine system's default IP stack if the default stack was requested
             if (stack == IPStack.Default)
@@ -127,10 +127,10 @@ namespace Gemstone.Communication
 
             // Make sure system can support specified stack
             if (stack == IPStack.IPv6 && !Socket.OSSupportsIPv6)
-                throw new NotSupportedException($"IPv6 stack is not available for socket creation on {hostNameOrAddress.ToNonNullNorWhiteSpace("localhost")}:{port}");
+                throw new NotSupportedException($"IPv6 stack is not available for socket creation on {hostNameOrAddress!.ToNonNullNorWhiteSpace("localhost")}:{port}");
 
             if (stack == IPStack.IPv4 && !Socket.OSSupportsIPv4)
-                throw new NotSupportedException($"IPv4 stack is not available for socket creation on {hostNameOrAddress.ToNonNullNorWhiteSpace("localhost")}:{port}");
+                throw new NotSupportedException($"IPv4 stack is not available for socket creation on {hostNameOrAddress!.ToNonNullNorWhiteSpace("localhost")}:{port}");
 
             // No host name or IP address was specified, use local IPs
             if (string.IsNullOrWhiteSpace(hostNameOrAddress))
@@ -377,8 +377,11 @@ namespace Gemstone.Communication
                 // if the endpoint doesn't exist then we'll receive a ConnectionReset socket exception
                 EndPoint targetEndPoint = targetIPEndPoint;
 
-                using Socket targetChecker = new Socket(targetIPEndPoint.AddressFamily, SocketType.Dgram, ProtocolType.Udp);
-                targetChecker.ReceiveTimeout = 1;
+                using Socket targetChecker = new Socket(targetIPEndPoint.AddressFamily, SocketType.Dgram, ProtocolType.Udp)
+                {
+                    ReceiveTimeout = 1
+                };
+
                 targetChecker.SendTo(Array.Empty<byte>(), targetEndPoint);
                 targetChecker.ReceiveFrom(Array.Empty<byte>(), ref targetEndPoint);
 

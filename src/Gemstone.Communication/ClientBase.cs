@@ -506,7 +506,7 @@ namespace Gemstone.Communication
         /// Derived classes are expected to override this method with protocol specific connection operations. Call the base class
         /// method to obtain an operational wait handle if protocol connection operation doesn't provide one already.
         /// </remarks>
-        public virtual WaitHandle ConnectAsync()
+        public virtual WaitHandle? ConnectAsync()
         {
             if (CurrentState != ClientState.Disconnected)
                 throw new InvalidOperationException("Client is currently not disconnected");
@@ -538,7 +538,7 @@ namespace Gemstone.Communication
         /// <param name="data">The buffer that contains the binary data to be sent.</param>
         /// <param name="offset">The zero-based position in the <paramref name="data"/> at which to begin sending data.</param>
         /// <param name="length">The number of bytes to be sent from <paramref name="data"/> starting at the <paramref name="offset"/>.</param>
-        public virtual void Send(byte[] data, int offset, int length) => SendAsync(data, offset, length).WaitOne();
+        public virtual void Send(byte[] data, int offset, int length) => SendAsync(data, offset, length)?.WaitOne();
 
         /// <summary>
         /// Sends data to the server asynchronously.
@@ -694,8 +694,11 @@ namespace Gemstone.Communication
         /// </summary>
         /// <param name="data">Data received from the client.</param>
         /// <param name="size">Number of bytes received from the client.</param>
-        protected virtual void OnReceiveDataComplete(byte[] data, int size)
+        protected virtual void OnReceiveDataComplete(byte[]? data, int size)
         {
+            if (data == null)
+                return;
+
             // Update transport statistics
             m_updateBytesReceived(size);
 
@@ -771,26 +774,15 @@ namespace Gemstone.Communication
                 }
 
                 // Create a client instance for the specified protocol.
-                switch (protocol.Trim().ToLower())
+                client = (protocol.Trim().ToLowerInvariant()) switch
                 {
-                    case "tls":
-                        client = new TlsClient(protocolSettings.ToString());
-                        break;
-                    case "tcp":
-                        client = new TcpClient(protocolSettings.ToString());
-                        break;
-                    case "udp":
-                        client = new UdpClient(protocolSettings.ToString());
-                        break;
-                    case "file":
-                        client = new FileClient(protocolSettings.ToString());
-                        break;
-                    case "serial":
-                        client = new SerialClient(protocolSettings.ToString());
-                        break;
-                    default:
-                        throw new ArgumentException($"{protocol} is not a supported client transport protocol");
-                }
+                    "tls" => new TlsClient(protocolSettings.ToString()),
+                    "tcp" => new TcpClient(protocolSettings.ToString()),
+                    "udp" => new UdpClient(protocolSettings.ToString()),
+                    "file" => new FileClient(protocolSettings.ToString()),
+                    "serial" => new SerialClient(protocolSettings.ToString()),
+                    _ => throw new ArgumentException($"{protocol} is not a supported client transport protocol"),
+                };
 
                 // Apply client settings from the connection string to the client.
                 foreach (KeyValuePair<string, string> setting in settings)

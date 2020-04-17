@@ -429,17 +429,13 @@ namespace Gemstone.Communication
         /// </summary>
         /// <exception cref="InvalidOperationException">Attempt is made to connect the <see cref="FileClient"/> when it is not disconnected.</exception>
         /// <returns><see cref="WaitHandle"/> for the asynchronous operation.</returns>
-        public override WaitHandle ConnectAsync()
+        public override WaitHandle? ConnectAsync()
         {
-            m_connectionHandle = (ManualResetEvent)base.ConnectAsync();
+            m_connectionHandle = (ManualResetEvent?)base.ConnectAsync();
 
             m_fileClient.SetReceiveBuffer(ReceiveBufferSize);
 
-            m_connectionThread = new Thread(OpenFile)
-            {
-                IsBackground = true
-            };
-
+            m_connectionThread = new Thread(OpenFile) { IsBackground = true };
             m_connectionThread.Start();
 
             return m_connectionHandle;

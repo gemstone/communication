@@ -155,7 +155,7 @@ namespace Gemstone.Communication
             public SocketAsyncEventArgs SendArgs = new SocketAsyncEventArgs();
             public object SendLock = new object();
             public ConcurrentQueue<TcpServerPayload> SendQueue = new ConcurrentQueue<TcpServerPayload>();
-            public ShortSynchronizedOperation? DumpPayloadsOperation;
+            public ShortSynchronizedOperation DumpPayloadsOperation = default!;
             public int Sending;
             public WindowsPrincipal? ClientPrincipal;
         }
@@ -441,7 +441,7 @@ namespace Gemstone.Communication
             if (m_configData.TryGetValue("integratedSecurity", out string integratedSecuritySetting))
                 IntegratedSecurity = integratedSecuritySetting.ParseBoolean();
 
-            // TODO: This option may still not exist on Linux deployments, revisit
+            // TODO: Check if this works on Linux
             //// Force integrated security to be False under Mono since it's not supported
             //m_integratedSecurity = false;
 
@@ -565,7 +565,7 @@ namespace Gemstone.Communication
             ConcurrentQueue<TcpServerPayload> sendQueue = clientInfo.SendQueue;
 
             // Execute operation to see if the client has reached the maximum send queue size.
-            clientInfo.DumpPayloadsOperation?.TryRun();
+            clientInfo.DumpPayloadsOperation.TryRun();
 
             // Prepare for payload-aware transmission.
             if (PayloadAware)
@@ -802,7 +802,6 @@ namespace Gemstone.Communication
         {
             TcpClientInfo? clientInfo = null;
             TransportProvider<Socket>? client = null;
-            //ManualResetEventSlim handle;
 
             try
             {
@@ -817,7 +816,6 @@ namespace Gemstone.Communication
                 client = clientInfo.Client;
                 SocketAsyncEventArgs args = clientInfo.SendArgs;
                 args.UserToken = payload;
-                //handle = payload.WaitHandle;
 
                 // Copy payload into send buffer.
                 int copyLength = Math.Min(payload.Length, client.SendBufferSize);
@@ -974,6 +972,9 @@ namespace Gemstone.Communication
         /// </summary>
         private void ReceivePayloadAwareAsync(TransportProvider<Socket> client, SocketAsyncEventArgs args)
         {
+            if (client.ReceiveBuffer == null)
+                throw new InvalidOperationException("No received data buffer has been defined to read.");
+
             byte[] buffer = client.ReceiveBuffer;
             int offset = client.BytesReceived;
             int length = client.ReceiveBufferSize - offset;
@@ -994,6 +995,9 @@ namespace Gemstone.Communication
 
             try
             {
+                if (client.ReceiveBuffer == null)
+                    throw new InvalidOperationException("No received data buffer has been defined to read.");
+
                 if (args.SocketError != SocketError.Success)
                     throw new SocketException((int)args.SocketError);
 
@@ -1073,6 +1077,9 @@ namespace Gemstone.Communication
         /// </summary>
         private void ReceivePayloadUnawareAsync(TransportProvider<Socket> client, SocketAsyncEventArgs args)
         {
+            if (client.ReceiveBuffer == null)
+                throw new InvalidOperationException("No received data buffer has been defined to read.");
+
             byte[] buffer = client.ReceiveBuffer;
             int length = client.ReceiveBufferSize;
 
@@ -1091,6 +1098,9 @@ namespace Gemstone.Communication
 
             try
             {
+                if (client.ReceiveBuffer == null)
+                    throw new InvalidOperationException("No received data buffer has been defined to read.");
+
                 if (args.SocketError != SocketError.Success)
                     throw new SocketException((int)args.SocketError);
 

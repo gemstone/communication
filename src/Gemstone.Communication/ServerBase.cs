@@ -820,20 +820,13 @@ namespace Gemstone.Communication
                 }
 
                 // Create a server instance for the specified protocol.
-                switch (protocol.Trim().ToLower())
+                server = (protocol.Trim().ToLowerInvariant()) switch
                 {
-                    case "tls":
-                        server = new TlsServer(protocolSettings.ToString());
-                        break;
-                    case "tcp":
-                        server = new TcpServer(protocolSettings.ToString());
-                        break;
-                    case "udp":
-                        server = new UdpServer(protocolSettings.ToString());
-                        break;
-                    default:
-                        throw new ArgumentException($"{protocol} is not a supported server transport protocol");
-                }
+                    "tls" => new TlsServer(protocolSettings.ToString()),
+                    "tcp" => new TcpServer(protocolSettings.ToString()),
+                    "udp" => new UdpServer(protocolSettings.ToString()),
+                    _ => throw new ArgumentException($"{protocol} is not a supported server transport protocol"),
+                };
 
                 // Apply server settings from the connection string to the client.
                 foreach (KeyValuePair<string, string> setting in settings)

@@ -41,7 +41,7 @@ namespace Gemstone.Communication
         /// <param name="serialError">The <see cref="System.IO.Ports.SerialError"/> associated with the exception.</param>
         /// <param name="message">The error message that explains the reason for the exception, or <see langword="null"/> to use the default message associated with <paramref name="serialError"/>.</param>
         /// <param name="innerException">The exception that is the cause of the current exception, or <see langword="null"/> if no inner exception is specified.</param>
-        public SerialException(SerialError serialError, string message = null, Exception innerException = null) : base(message ?? GetMessage(serialError), innerException)
+        public SerialException(SerialError serialError, string? message = null, Exception? innerException = null) : base(message ?? GetMessage(serialError), innerException)
         {
             SerialError = serialError;
         }
@@ -92,21 +92,15 @@ namespace Gemstone.Communication
         // Static Methods
         private static string GetMessage(SerialError serialError)
         {
-            switch (serialError)
+            return serialError switch
             {
-                case SerialError.Frame:
-                    return "The hardware detected a framing error.";
-                case SerialError.Overrun:
-                    return "A character-buffer overrun has occurred. The next character is lost.";
-                case SerialError.RXOver:
-                    return "An input buffer overflow has occurred. There is either no room in the input buffer, or a character was received after the end-of-file (EOF) character.";
-                case SerialError.RXParity:
-                    return "The hardware detected a parity error.";
-                case SerialError.TXFull:
-                    return "The application tried to transmit a character, but the output buffer was full.";
-                default:
-                    throw new ArgumentOutOfRangeException(nameof(serialError), serialError, $"Unexpected serial error encountered: {serialError}");
-            }
+                SerialError.Frame => "The hardware detected a framing error.",
+                SerialError.Overrun => "A character-buffer overrun has occurred. The next character is lost.",
+                SerialError.RXOver => "An input buffer overflow has occurred. There is either no room in the input buffer, or a character was received after the end-of-file (EOF) character.",
+                SerialError.RXParity => "The hardware detected a parity error.",
+                SerialError.TXFull => "The application tried to transmit a character, but the output buffer was full.",
+                _ => throw new ArgumentOutOfRangeException(nameof(serialError), serialError, $"Unexpected serial error encountered: {serialError}"),
+            };
         }
 
         #endregion

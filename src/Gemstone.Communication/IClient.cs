@@ -216,7 +216,7 @@ namespace Gemstone.Communication
         /// Connects client to the server asynchronously.
         /// </summary>
         /// <returns><see cref="WaitHandle"/> for the asynchronous operation.</returns>
-        WaitHandle ConnectAsync();
+        WaitHandle? ConnectAsync();
 
         /// <summary>
         /// Disconnects client from the server synchronously.
