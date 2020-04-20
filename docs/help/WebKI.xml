@@ -1,13 +1,1463 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <HelpKI>
-  <HelpKINode Title="Class class">
-    <HelpKINode Title="Class Class" Url="html/T_Gemstone_Communication_Class.htm" />
-    <HelpKINode Title="constructor" Url="html/M_Gemstone_Communication_Class__ctor.htm" />
-    <HelpKINode Title="methods" Url="html/Methods_T_Gemstone_Communication_Class.htm" />
+  <HelpKINode Title="AccessAccept enumeration member" Url="html/T_Gemstone_Communication_Radius_PacketType.htm" />
+  <HelpKINode Title="AccessChallenge enumeration member" Url="html/T_Gemstone_Communication_Radius_PacketType.htm" />
+  <HelpKINode Title="AccessReject enumeration member" Url="html/T_Gemstone_Communication_Radius_PacketType.htm" />
+  <HelpKINode Title="AccessRequest enumeration member" Url="html/T_Gemstone_Communication_Radius_PacketType.htm" />
+  <HelpKINode Title="AccountingMessage enumeration member" Url="html/T_Gemstone_Communication_Radius_PacketType.htm" />
+  <HelpKINode Title="AccountingRequest enumeration member" Url="html/T_Gemstone_Communication_Radius_PacketType.htm" />
+  <HelpKINode Title="AccountingResponse enumeration member" Url="html/T_Gemstone_Communication_Radius_PacketType.htm" />
+  <HelpKINode Title="AccountingStatus enumeration member" Url="html/T_Gemstone_Communication_Radius_PacketType.htm" />
+  <HelpKINode Title="AddHeader method" Url="html/M_Gemstone_Communication_Payload_AddHeader.htm" />
+  <HelpKINode Title="AddMulticastMembership method" Url="html/M_Gemstone_Communication_UdpClient_AddMulticastMembership.htm" />
+  <HelpKINode Title="AllowDualStackSocket property">
+    <HelpKINode Title="TcpClient.AllowDualStackSocket Property " Url="html/P_Gemstone_Communication_TcpClient_AllowDualStackSocket.htm" />
+    <HelpKINode Title="TcpServer.AllowDualStackSocket Property " Url="html/P_Gemstone_Communication_TcpServer_AllowDualStackSocket.htm" />
+    <HelpKINode Title="TlsClient.AllowDualStackSocket Property " Url="html/P_Gemstone_Communication_TlsClient_AllowDualStackSocket.htm" />
+    <HelpKINode Title="TlsServer.AllowDualStackSocket Property " Url="html/P_Gemstone_Communication_TlsServer_AllowDualStackSocket.htm" />
+    <HelpKINode Title="UdpClient.AllowDualStackSocket Property " Url="html/P_Gemstone_Communication_UdpClient_AllowDualStackSocket.htm" />
+    <HelpKINode Title="UdpServer.AllowDualStackSocket Property " Url="html/P_Gemstone_Communication_UdpServer_AllowDualStackSocket.htm" />
   </HelpKINode>
-  <HelpKINode Title="Class.Class constructor" Url="html/M_Gemstone_Communication_Class__ctor.htm" />
+  <HelpKINode Title="Attributes property" Url="html/P_Gemstone_Communication_Radius_RadiusPacket_Attributes.htm" />
+  <HelpKINode Title="AttributeType enumeration" Url="html/T_Gemstone_Communication_Radius_AttributeType.htm" />
+  <HelpKINode Title="Authenticate method" Url="html/Overload_Gemstone_Communication_Radius_RadiusClient_Authenticate.htm" />
+  <HelpKINode Title="Authenticator property" Url="html/P_Gemstone_Communication_Radius_RadiusPacket_Authenticator.htm" />
+  <HelpKINode Title="AutoRepeat property" Url="html/P_Gemstone_Communication_FileClient_AutoRepeat.htm" />
+  <HelpKINode Title="BinaryLength property">
+    <HelpKINode Title="RadiusPacket.BinaryLength Property " Url="html/P_Gemstone_Communication_Radius_RadiusPacket_BinaryLength.htm" />
+    <HelpKINode Title="RadiusPacketAttribute.BinaryLength Property " Url="html/P_Gemstone_Communication_Radius_RadiusPacketAttribute_BinaryLength.htm" />
+  </HelpKINode>
+  <HelpKINode Title="BytesReceived field" Url="html/F_Gemstone_Communication_TransportProvider_1_BytesReceived.htm" />
+  <HelpKINode Title="CallbackId enumeration member" Url="html/T_Gemstone_Communication_Radius_AttributeType.htm" />
+  <HelpKINode Title="CallbackNumber enumeration member" Url="html/T_Gemstone_Communication_Radius_AttributeType.htm" />
+  <HelpKINode Title="CallerStationId enumeration member" Url="html/T_Gemstone_Communication_Radius_AttributeType.htm" />
+  <HelpKINode Title="CallingStationId enumeration member" Url="html/T_Gemstone_Communication_Radius_AttributeType.htm" />
+  <HelpKINode Title="Certificate property">
+    <HelpKINode Title="TlsClient.Certificate Property " Url="html/P_Gemstone_Communication_TlsClient_Certificate.htm" />
+    <HelpKINode Title="TlsServer.Certificate Property " Url="html/P_Gemstone_Communication_TlsServer_Certificate.htm" />
+  </HelpKINode>
+  <HelpKINode Title="CertificateChecker property">
+    <HelpKINode Title="TlsClient.CertificateChecker Property " Url="html/P_Gemstone_Communication_TlsClient_CertificateChecker.htm" />
+    <HelpKINode Title="TlsServer.CertificateChecker Property " Url="html/P_Gemstone_Communication_TlsServer_CertificateChecker.htm" />
+  </HelpKINode>
+  <HelpKINode Title="CertificateFile property">
+    <HelpKINode Title="TlsClient.CertificateFile Property " Url="html/P_Gemstone_Communication_TlsClient_CertificateFile.htm" />
+    <HelpKINode Title="TlsServer.CertificateFile Property " Url="html/P_Gemstone_Communication_TlsServer_CertificateFile.htm" />
+  </HelpKINode>
+  <HelpKINode Title="ChapChallenge enumeration member" Url="html/T_Gemstone_Communication_Radius_AttributeType.htm" />
+  <HelpKINode Title="ChapPassword enumeration member" Url="html/T_Gemstone_Communication_Radius_AttributeType.htm" />
+  <HelpKINode Title="CheckCertificateRevocation property">
+    <HelpKINode Title="TlsClient.CheckCertificateRevocation Property " Url="html/P_Gemstone_Communication_TlsClient_CheckCertificateRevocation.htm" />
+    <HelpKINode Title="TlsServer.CheckCertificateRevocation Property " Url="html/P_Gemstone_Communication_TlsServer_CheckCertificateRevocation.htm" />
+  </HelpKINode>
+  <HelpKINode Title="CheckDisposed method" Url="html/M_Gemstone_Communication_Radius_RadiusClient_CheckDisposed.htm" />
+  <HelpKINode Title="Class enumeration member" Url="html/T_Gemstone_Communication_Radius_AttributeType.htm" />
+  <HelpKINode Title="Client property">
+    <HelpKINode Title="FileClient.Client Property " Url="html/P_Gemstone_Communication_FileClient_Client.htm" />
+    <HelpKINode Title="SerialClient.Client Property " Url="html/P_Gemstone_Communication_SerialClient_Client.htm" />
+    <HelpKINode Title="TcpClient.Client Property " Url="html/P_Gemstone_Communication_TcpClient_Client.htm" />
+    <HelpKINode Title="TlsClient.Client Property " Url="html/P_Gemstone_Communication_TlsClient_Client.htm" />
+    <HelpKINode Title="UdpClient.Client Property " Url="html/P_Gemstone_Communication_UdpClient_Client.htm" />
+  </HelpKINode>
+  <HelpKINode Title="ClientBase class">
+    <HelpKINode Title="ClientBase Class" Url="html/T_Gemstone_Communication_ClientBase.htm" />
+    <HelpKINode Title="constructor" Url="html/Overload_Gemstone_Communication_ClientBase__ctor.htm" />
+    <HelpKINode Title="events" Url="html/Events_T_Gemstone_Communication_ClientBase.htm" />
+    <HelpKINode Title="fields" Url="html/Fields_T_Gemstone_Communication_ClientBase.htm" />
+    <HelpKINode Title="methods" Url="html/Methods_T_Gemstone_Communication_ClientBase.htm" />
+    <HelpKINode Title="properties" Url="html/Properties_T_Gemstone_Communication_ClientBase.htm" />
+  </HelpKINode>
+  <HelpKINode Title="ClientBase.ClientBase constructor" Url="html/Overload_Gemstone_Communication_ClientBase__ctor.htm" />
+  <HelpKINode Title="ClientBase.Connect method" Url="html/M_Gemstone_Communication_ClientBase_Connect.htm" />
+  <HelpKINode Title="ClientBase.ConnectAsync method" Url="html/M_Gemstone_Communication_ClientBase_ConnectAsync.htm" />
+  <HelpKINode Title="ClientBase.ConnectionAttempt event" Url="html/E_Gemstone_Communication_ClientBase_ConnectionAttempt.htm" />
+  <HelpKINode Title="ClientBase.ConnectionEstablished event" Url="html/E_Gemstone_Communication_ClientBase_ConnectionEstablished.htm" />
+  <HelpKINode Title="ClientBase.ConnectionException event" Url="html/E_Gemstone_Communication_ClientBase_ConnectionException.htm" />
+  <HelpKINode Title="ClientBase.ConnectionString property" Url="html/P_Gemstone_Communication_ClientBase_ConnectionString.htm" />
+  <HelpKINode Title="ClientBase.ConnectionTerminated event" Url="html/E_Gemstone_Communication_ClientBase_ConnectionTerminated.htm" />
+  <HelpKINode Title="ClientBase.ConnectionTime property" Url="html/P_Gemstone_Communication_ClientBase_ConnectionTime.htm" />
+  <HelpKINode Title="ClientBase.Create method" Url="html/M_Gemstone_Communication_ClientBase_Create.htm" />
+  <HelpKINode Title="ClientBase.CurrentState property" Url="html/P_Gemstone_Communication_ClientBase_CurrentState.htm" />
+  <HelpKINode Title="ClientBase.DefaultMaxConnectionAttempts field" Url="html/F_Gemstone_Communication_ClientBase_DefaultMaxConnectionAttempts.htm" />
+  <HelpKINode Title="ClientBase.DefaultReceiveBufferSize field" Url="html/F_Gemstone_Communication_ClientBase_DefaultReceiveBufferSize.htm" />
+  <HelpKINode Title="ClientBase.DefaultSendBufferSize field" Url="html/F_Gemstone_Communication_ClientBase_DefaultSendBufferSize.htm" />
+  <HelpKINode Title="ClientBase.Disconnect method" Url="html/M_Gemstone_Communication_ClientBase_Disconnect.htm" />
+  <HelpKINode Title="ClientBase.Dispose method" Url="html/Overload_Gemstone_Communication_ClientBase_Dispose.htm" />
+  <HelpKINode Title="ClientBase.Disposed event" Url="html/E_Gemstone_Communication_ClientBase_Disposed.htm" />
+  <HelpKINode Title="ClientBase.Enabled property" Url="html/P_Gemstone_Communication_ClientBase_Enabled.htm" />
+  <HelpKINode Title="ClientBase.Initialize method" Url="html/M_Gemstone_Communication_ClientBase_Initialize.htm" />
+  <HelpKINode Title="ClientBase.IsDisposed property" Url="html/P_Gemstone_Communication_ClientBase_IsDisposed.htm" />
+  <HelpKINode Title="ClientBase.MaxConnectionAttempts property" Url="html/P_Gemstone_Communication_ClientBase_MaxConnectionAttempts.htm" />
+  <HelpKINode Title="ClientBase.Name property" Url="html/P_Gemstone_Communication_ClientBase_Name.htm" />
+  <HelpKINode Title="ClientBase.OnConnectionAttempt method" Url="html/M_Gemstone_Communication_ClientBase_OnConnectionAttempt.htm" />
+  <HelpKINode Title="ClientBase.OnConnectionEstablished method" Url="html/M_Gemstone_Communication_ClientBase_OnConnectionEstablished.htm" />
+  <HelpKINode Title="ClientBase.OnConnectionException method" Url="html/M_Gemstone_Communication_ClientBase_OnConnectionException.htm" />
+  <HelpKINode Title="ClientBase.OnConnectionTerminated method" Url="html/M_Gemstone_Communication_ClientBase_OnConnectionTerminated.htm" />
+  <HelpKINode Title="ClientBase.OnReceiveData method" Url="html/M_Gemstone_Communication_ClientBase_OnReceiveData.htm" />
+  <HelpKINode Title="ClientBase.OnReceiveDataComplete method" Url="html/M_Gemstone_Communication_ClientBase_OnReceiveDataComplete.htm" />
+  <HelpKINode Title="ClientBase.OnReceiveDataException method" Url="html/M_Gemstone_Communication_ClientBase_OnReceiveDataException.htm" />
+  <HelpKINode Title="ClientBase.OnSendDataComplete method" Url="html/M_Gemstone_Communication_ClientBase_OnSendDataComplete.htm" />
+  <HelpKINode Title="ClientBase.OnSendDataException method" Url="html/M_Gemstone_Communication_ClientBase_OnSendDataException.htm" />
+  <HelpKINode Title="ClientBase.OnSendDataStart method" Url="html/M_Gemstone_Communication_ClientBase_OnSendDataStart.htm" />
+  <HelpKINode Title="ClientBase.Read method" Url="html/M_Gemstone_Communication_ClientBase_Read.htm" />
+  <HelpKINode Title="ClientBase.ReadIndex property" Url="html/P_Gemstone_Communication_ClientBase_ReadIndex.htm" />
+  <HelpKINode Title="ClientBase.ReceiveBufferSize property" Url="html/P_Gemstone_Communication_ClientBase_ReceiveBufferSize.htm" />
+  <HelpKINode Title="ClientBase.ReceiveData event" Url="html/E_Gemstone_Communication_ClientBase_ReceiveData.htm" />
+  <HelpKINode Title="ClientBase.ReceiveDataComplete event" Url="html/E_Gemstone_Communication_ClientBase_ReceiveDataComplete.htm" />
+  <HelpKINode Title="ClientBase.ReceiveDataException event" Url="html/E_Gemstone_Communication_ClientBase_ReceiveDataException.htm" />
+  <HelpKINode Title="ClientBase.Send method" Url="html/Overload_Gemstone_Communication_ClientBase_Send.htm" />
+  <HelpKINode Title="ClientBase.SendAsync method" Url="html/Overload_Gemstone_Communication_ClientBase_SendAsync.htm" />
+  <HelpKINode Title="ClientBase.SendBufferSize property" Url="html/P_Gemstone_Communication_ClientBase_SendBufferSize.htm" />
+  <HelpKINode Title="ClientBase.SendDataAsync method" Url="html/M_Gemstone_Communication_ClientBase_SendDataAsync.htm" />
+  <HelpKINode Title="ClientBase.SendDataComplete event" Url="html/E_Gemstone_Communication_ClientBase_SendDataComplete.htm" />
+  <HelpKINode Title="ClientBase.SendDataException event" Url="html/E_Gemstone_Communication_ClientBase_SendDataException.htm" />
+  <HelpKINode Title="ClientBase.SendDataStart event" Url="html/E_Gemstone_Communication_ClientBase_SendDataStart.htm" />
+  <HelpKINode Title="ClientBase.ServerUri property" Url="html/P_Gemstone_Communication_ClientBase_ServerUri.htm" />
+  <HelpKINode Title="ClientBase.Statistics property" Url="html/P_Gemstone_Communication_ClientBase_Statistics.htm" />
+  <HelpKINode Title="ClientBase.Status property" Url="html/P_Gemstone_Communication_ClientBase_Status.htm" />
+  <HelpKINode Title="ClientBase.TextEncoding property" Url="html/P_Gemstone_Communication_ClientBase_TextEncoding.htm" />
+  <HelpKINode Title="ClientBase.TrackStatistics property" Url="html/P_Gemstone_Communication_ClientBase_TrackStatistics.htm" />
+  <HelpKINode Title="ClientBase.TransportProtocol property" Url="html/P_Gemstone_Communication_ClientBase_TransportProtocol.htm" />
+  <HelpKINode Title="ClientBase.UpdateBytesReceived method" Url="html/M_Gemstone_Communication_ClientBase_UpdateBytesReceived.htm" />
+  <HelpKINode Title="ClientBase.UpdateBytesSent method" Url="html/M_Gemstone_Communication_ClientBase_UpdateBytesSent.htm" />
+  <HelpKINode Title="ClientBase.ValidateConnectionString method" Url="html/M_Gemstone_Communication_ClientBase_ValidateConnectionString.htm" />
+  <HelpKINode Title="ClientCertificates property" Url="html/P_Gemstone_Communication_TlsClient_ClientCertificates.htm" />
+  <HelpKINode Title="ClientConnected event">
+    <HelpKINode Title="IServer.ClientConnected Event" Url="html/E_Gemstone_Communication_IServer_ClientConnected.htm" />
+    <HelpKINode Title="ServerBase.ClientConnected Event" Url="html/E_Gemstone_Communication_ServerBase_ClientConnected.htm" />
+  </HelpKINode>
+  <HelpKINode Title="ClientConnectingException event">
+    <HelpKINode Title="IServer.ClientConnectingException Event" Url="html/E_Gemstone_Communication_IServer_ClientConnectingException.htm" />
+    <HelpKINode Title="ServerBase.ClientConnectingException Event" Url="html/E_Gemstone_Communication_ServerBase_ClientConnectingException.htm" />
+  </HelpKINode>
+  <HelpKINode Title="ClientDisconnected event">
+    <HelpKINode Title="IServer.ClientDisconnected Event" Url="html/E_Gemstone_Communication_IServer_ClientDisconnected.htm" />
+    <HelpKINode Title="ServerBase.ClientDisconnected Event" Url="html/E_Gemstone_Communication_ServerBase_ClientDisconnected.htm" />
+  </HelpKINode>
+  <HelpKINode Title="ClientIdentificationMode enumeration" Url="html/T_Gemstone_Communication_ClientIdentificationMode.htm" />
+  <HelpKINode Title="ClientIdentificationMode property" Url="html/P_Gemstone_Communication_UdpServer_ClientIdentificationMode.htm" />
+  <HelpKINode Title="ClientIDs property">
+    <HelpKINode Title="IServer.ClientIDs Property " Url="html/P_Gemstone_Communication_IServer_ClientIDs.htm" />
+    <HelpKINode Title="ServerBase.ClientIDs Property " Url="html/P_Gemstone_Communication_ServerBase_ClientIDs.htm" />
+  </HelpKINode>
+  <HelpKINode Title="ClientState enumeration" Url="html/T_Gemstone_Communication_ClientState.htm" />
+  <HelpKINode Title="ConfigurationString property">
+    <HelpKINode Title="IServer.ConfigurationString Property " Url="html/P_Gemstone_Communication_IServer_ConfigurationString.htm" />
+    <HelpKINode Title="ServerBase.ConfigurationString Property " Url="html/P_Gemstone_Communication_ServerBase_ConfigurationString.htm" />
+  </HelpKINode>
+  <HelpKINode Title="Connect method">
+    <HelpKINode Title="ClientBase.Connect Method " Url="html/M_Gemstone_Communication_ClientBase_Connect.htm" />
+    <HelpKINode Title="IClient.Connect Method " Url="html/M_Gemstone_Communication_IClient_Connect.htm" />
+  </HelpKINode>
+  <HelpKINode Title="ConnectAsync method">
+    <HelpKINode Title="ClientBase.ConnectAsync Method " Url="html/M_Gemstone_Communication_ClientBase_ConnectAsync.htm" />
+    <HelpKINode Title="FileClient.ConnectAsync Method " Url="html/M_Gemstone_Communication_FileClient_ConnectAsync.htm" />
+    <HelpKINode Title="IClient.ConnectAsync Method " Url="html/M_Gemstone_Communication_IClient_ConnectAsync.htm" />
+    <HelpKINode Title="SerialClient.ConnectAsync Method " Url="html/M_Gemstone_Communication_SerialClient_ConnectAsync.htm" />
+    <HelpKINode Title="TcpClient.ConnectAsync Method " Url="html/M_Gemstone_Communication_TcpClient_ConnectAsync.htm" />
+    <HelpKINode Title="TlsClient.ConnectAsync Method " Url="html/M_Gemstone_Communication_TlsClient_ConnectAsync.htm" />
+    <HelpKINode Title="UdpClient.ConnectAsync Method " Url="html/M_Gemstone_Communication_UdpClient_ConnectAsync.htm" />
+  </HelpKINode>
+  <HelpKINode Title="Connected enumeration member" Url="html/T_Gemstone_Communication_ClientState.htm" />
+  <HelpKINode Title="Connecting enumeration member" Url="html/T_Gemstone_Communication_ClientState.htm" />
+  <HelpKINode Title="ConnectionAttempt event">
+    <HelpKINode Title="ClientBase.ConnectionAttempt Event" Url="html/E_Gemstone_Communication_ClientBase_ConnectionAttempt.htm" />
+    <HelpKINode Title="IClient.ConnectionAttempt Event" Url="html/E_Gemstone_Communication_IClient_ConnectionAttempt.htm" />
+  </HelpKINode>
+  <HelpKINode Title="ConnectionEstablished event">
+    <HelpKINode Title="ClientBase.ConnectionEstablished Event" Url="html/E_Gemstone_Communication_ClientBase_ConnectionEstablished.htm" />
+    <HelpKINode Title="IClient.ConnectionEstablished Event" Url="html/E_Gemstone_Communication_IClient_ConnectionEstablished.htm" />
+  </HelpKINode>
+  <HelpKINode Title="ConnectionException event">
+    <HelpKINode Title="ClientBase.ConnectionException Event" Url="html/E_Gemstone_Communication_ClientBase_ConnectionException.htm" />
+    <HelpKINode Title="IClient.ConnectionException Event" Url="html/E_Gemstone_Communication_IClient_ConnectionException.htm" />
+  </HelpKINode>
+  <HelpKINode Title="ConnectionString property">
+    <HelpKINode Title="ClientBase.ConnectionString Property " Url="html/P_Gemstone_Communication_ClientBase_ConnectionString.htm" />
+    <HelpKINode Title="IClient.ConnectionString Property " Url="html/P_Gemstone_Communication_IClient_ConnectionString.htm" />
+  </HelpKINode>
+  <HelpKINode Title="ConnectionTerminated event">
+    <HelpKINode Title="ClientBase.ConnectionTerminated Event" Url="html/E_Gemstone_Communication_ClientBase_ConnectionTerminated.htm" />
+    <HelpKINode Title="IClient.ConnectionTerminated Event" Url="html/E_Gemstone_Communication_IClient_ConnectionTerminated.htm" />
+  </HelpKINode>
+  <HelpKINode Title="ConnectionTime property">
+    <HelpKINode Title="ClientBase.ConnectionTime Property " Url="html/P_Gemstone_Communication_ClientBase_ConnectionTime.htm" />
+    <HelpKINode Title="IClient.ConnectionTime Property " Url="html/P_Gemstone_Communication_IClient_ConnectionTime.htm" />
+  </HelpKINode>
+  <HelpKINode Title="Create method">
+    <HelpKINode Title="ClientBase.Create Method " Url="html/M_Gemstone_Communication_ClientBase_Create.htm" />
+    <HelpKINode Title="ServerBase.Create Method " Url="html/M_Gemstone_Communication_ServerBase_Create.htm" />
+  </HelpKINode>
+  <HelpKINode Title="CreateEndPoint method" Url="html/M_Gemstone_Communication_Transport_CreateEndPoint.htm" />
+  <HelpKINode Title="CreateNewPin method" Url="html/M_Gemstone_Communication_Radius_RadiusClient_CreateNewPin.htm" />
+  <HelpKINode Title="CreateRequestAuthenticator method" Url="html/M_Gemstone_Communication_Radius_RadiusPacket_CreateRequestAuthenticator.htm" />
+  <HelpKINode Title="CreateResponseAuthenticator method" Url="html/M_Gemstone_Communication_Radius_RadiusPacket_CreateResponseAuthenticator.htm" />
+  <HelpKINode Title="CreateSocket method" Url="html/M_Gemstone_Communication_Transport_CreateSocket.htm" />
+  <HelpKINode Title="CurrentState property">
+    <HelpKINode Title="ClientBase.CurrentState Property " Url="html/P_Gemstone_Communication_ClientBase_CurrentState.htm" />
+    <HelpKINode Title="IClient.CurrentState Property " Url="html/P_Gemstone_Communication_IClient_CurrentState.htm" />
+    <HelpKINode Title="IServer.CurrentState Property " Url="html/P_Gemstone_Communication_IServer_CurrentState.htm" />
+    <HelpKINode Title="ServerBase.CurrentState Property " Url="html/P_Gemstone_Communication_ServerBase_CurrentState.htm" />
+  </HelpKINode>
+  <HelpKINode Title="Default enumeration member" Url="html/T_Gemstone_Communication_IPStack.htm" />
+  <HelpKINode Title="DefaultAllowDualStackSocket field">
+    <HelpKINode Title="TcpClient.DefaultAllowDualStackSocket Field" Url="html/F_Gemstone_Communication_TcpClient_DefaultAllowDualStackSocket.htm" />
+    <HelpKINode Title="TcpServer.DefaultAllowDualStackSocket Field" Url="html/F_Gemstone_Communication_TcpServer_DefaultAllowDualStackSocket.htm" />
+    <HelpKINode Title="TlsClient.DefaultAllowDualStackSocket Field" Url="html/F_Gemstone_Communication_TlsClient_DefaultAllowDualStackSocket.htm" />
+    <HelpKINode Title="TlsServer.DefaultAllowDualStackSocket Field" Url="html/F_Gemstone_Communication_TlsServer_DefaultAllowDualStackSocket.htm" />
+    <HelpKINode Title="UdpClient.DefaultAllowDualStackSocket Field" Url="html/F_Gemstone_Communication_UdpClient_DefaultAllowDualStackSocket.htm" />
+    <HelpKINode Title="UdpServer.DefaultAllowDualStackSocket Field" Url="html/F_Gemstone_Communication_UdpServer_DefaultAllowDualStackSocket.htm" />
+  </HelpKINode>
+  <HelpKINode Title="DefaultAutoRepeat field" Url="html/F_Gemstone_Communication_FileClient_DefaultAutoRepeat.htm" />
+  <HelpKINode Title="DefaultClientIdentificationMode field" Url="html/F_Gemstone_Communication_UdpServer_DefaultClientIdentificationMode.htm" />
+  <HelpKINode Title="DefaultConfigurationString field">
+    <HelpKINode Title="TcpServer.DefaultConfigurationString Field" Url="html/F_Gemstone_Communication_TcpServer_DefaultConfigurationString.htm" />
+    <HelpKINode Title="TlsServer.DefaultConfigurationString Field" Url="html/F_Gemstone_Communication_TlsServer_DefaultConfigurationString.htm" />
+    <HelpKINode Title="UdpServer.DefaultConfigurationString Field" Url="html/F_Gemstone_Communication_UdpServer_DefaultConfigurationString.htm" />
+  </HelpKINode>
+  <HelpKINode Title="DefaultConnectionString field">
+    <HelpKINode Title="FileClient.DefaultConnectionString Field" Url="html/F_Gemstone_Communication_FileClient_DefaultConnectionString.htm" />
+    <HelpKINode Title="SerialClient.DefaultConnectionString Field" Url="html/F_Gemstone_Communication_SerialClient_DefaultConnectionString.htm" />
+    <HelpKINode Title="TcpClient.DefaultConnectionString Field" Url="html/F_Gemstone_Communication_TcpClient_DefaultConnectionString.htm" />
+    <HelpKINode Title="TlsClient.DefaultConnectionString Field" Url="html/F_Gemstone_Communication_TlsClient_DefaultConnectionString.htm" />
+    <HelpKINode Title="UdpClient.DefaultConnectionString Field" Url="html/F_Gemstone_Communication_UdpClient_DefaultConnectionString.htm" />
+  </HelpKINode>
+  <HelpKINode Title="DefaultDynamicClientEndPoints field" Url="html/F_Gemstone_Communication_UdpServer_DefaultDynamicClientEndPoints.htm" />
+  <HelpKINode Title="DefaultFileAccessMode field" Url="html/F_Gemstone_Communication_FileClient_DefaultFileAccessMode.htm" />
+  <HelpKINode Title="DefaultFileOpenMode field" Url="html/F_Gemstone_Communication_FileClient_DefaultFileOpenMode.htm" />
+  <HelpKINode Title="DefaultFileShareMode field" Url="html/F_Gemstone_Communication_FileClient_DefaultFileShareMode.htm" />
+  <HelpKINode Title="DefaultIgnoreInvalidCredentials field">
+    <HelpKINode Title="TcpClient.DefaultIgnoreInvalidCredentials Field" Url="html/F_Gemstone_Communication_TcpClient_DefaultIgnoreInvalidCredentials.htm" />
+    <HelpKINode Title="TcpServer.DefaultIgnoreInvalidCredentials Field" Url="html/F_Gemstone_Communication_TcpServer_DefaultIgnoreInvalidCredentials.htm" />
+    <HelpKINode Title="TlsClient.DefaultIgnoreInvalidCredentials Field" Url="html/F_Gemstone_Communication_TlsClient_DefaultIgnoreInvalidCredentials.htm" />
+    <HelpKINode Title="TlsServer.DefaultIgnoreInvalidCredentials Field" Url="html/F_Gemstone_Communication_TlsServer_DefaultIgnoreInvalidCredentials.htm" />
+  </HelpKINode>
+  <HelpKINode Title="DefaultIntegratedSecurity field">
+    <HelpKINode Title="TcpClient.DefaultIntegratedSecurity Field" Url="html/F_Gemstone_Communication_TcpClient_DefaultIntegratedSecurity.htm" />
+    <HelpKINode Title="TcpServer.DefaultIntegratedSecurity Field" Url="html/F_Gemstone_Communication_TcpServer_DefaultIntegratedSecurity.htm" />
+    <HelpKINode Title="TlsClient.DefaultIntegratedSecurity Field" Url="html/F_Gemstone_Communication_TlsClient_DefaultIntegratedSecurity.htm" />
+    <HelpKINode Title="TlsServer.DefaultIntegratedSecurity Field" Url="html/F_Gemstone_Communication_TlsServer_DefaultIntegratedSecurity.htm" />
+  </HelpKINode>
+  <HelpKINode Title="DefaultMarker field" Url="html/F_Gemstone_Communication_Payload_DefaultMarker.htm" />
+  <HelpKINode Title="DefaultMaxClientConnections field" Url="html/F_Gemstone_Communication_ServerBase_DefaultMaxClientConnections.htm" />
+  <HelpKINode Title="DefaultMaxConnectionAttempts field" Url="html/F_Gemstone_Communication_ClientBase_DefaultMaxConnectionAttempts.htm" />
+  <HelpKINode Title="DefaultMaxPacketSize field" Url="html/F_Gemstone_Communication_UdpClient_DefaultMaxPacketSize.htm" />
+  <HelpKINode Title="DefaultMaxSendQueueSize field">
+    <HelpKINode Title="TcpClient.DefaultMaxSendQueueSize Field" Url="html/F_Gemstone_Communication_TcpClient_DefaultMaxSendQueueSize.htm" />
+    <HelpKINode Title="TcpServer.DefaultMaxSendQueueSize Field" Url="html/F_Gemstone_Communication_TcpServer_DefaultMaxSendQueueSize.htm" />
+    <HelpKINode Title="TlsClient.DefaultMaxSendQueueSize Field" Url="html/F_Gemstone_Communication_TlsClient_DefaultMaxSendQueueSize.htm" />
+    <HelpKINode Title="TlsServer.DefaultMaxSendQueueSize Field" Url="html/F_Gemstone_Communication_TlsServer_DefaultMaxSendQueueSize.htm" />
+    <HelpKINode Title="UdpClient.DefaultMaxSendQueueSize Field" Url="html/F_Gemstone_Communication_UdpClient_DefaultMaxSendQueueSize.htm" />
+    <HelpKINode Title="UdpServer.DefaultMaxSendQueueSize Field" Url="html/F_Gemstone_Communication_UdpServer_DefaultMaxSendQueueSize.htm" />
+  </HelpKINode>
+  <HelpKINode Title="DefaultNewPinModeMessage1 field" Url="html/F_Gemstone_Communication_Radius_RadiusClient_DefaultNewPinModeMessage1.htm" />
+  <HelpKINode Title="DefaultNewPinModeMessage2 field" Url="html/F_Gemstone_Communication_Radius_RadiusClient_DefaultNewPinModeMessage2.htm" />
+  <HelpKINode Title="DefaultNewPinModeMessage3 field" Url="html/F_Gemstone_Communication_Radius_RadiusClient_DefaultNewPinModeMessage3.htm" />
+  <HelpKINode Title="DefaultNextTokenModeMessage field" Url="html/F_Gemstone_Communication_Radius_RadiusClient_DefaultNextTokenModeMessage.htm" />
+  <HelpKINode Title="DefaultNoDelay field">
+    <HelpKINode Title="TcpClient.DefaultNoDelay Field" Url="html/F_Gemstone_Communication_TcpClient_DefaultNoDelay.htm" />
+    <HelpKINode Title="TcpServer.DefaultNoDelay Field" Url="html/F_Gemstone_Communication_TcpServer_DefaultNoDelay.htm" />
+    <HelpKINode Title="TlsClient.DefaultNoDelay Field" Url="html/F_Gemstone_Communication_TlsClient_DefaultNoDelay.htm" />
+    <HelpKINode Title="TlsServer.DefaultNoDelay Field" Url="html/F_Gemstone_Communication_TlsServer_DefaultNoDelay.htm" />
+  </HelpKINode>
+  <HelpKINode Title="DefaultPayloadAware field">
+    <HelpKINode Title="TcpClient.DefaultPayloadAware Field" Url="html/F_Gemstone_Communication_TcpClient_DefaultPayloadAware.htm" />
+    <HelpKINode Title="TcpServer.DefaultPayloadAware Field" Url="html/F_Gemstone_Communication_TcpServer_DefaultPayloadAware.htm" />
+    <HelpKINode Title="TlsClient.DefaultPayloadAware Field" Url="html/F_Gemstone_Communication_TlsClient_DefaultPayloadAware.htm" />
+    <HelpKINode Title="TlsServer.DefaultPayloadAware Field" Url="html/F_Gemstone_Communication_TlsServer_DefaultPayloadAware.htm" />
+  </HelpKINode>
+  <HelpKINode Title="DefaultReceiveBufferSize field">
+    <HelpKINode Title="ClientBase.DefaultReceiveBufferSize Field" Url="html/F_Gemstone_Communication_ClientBase_DefaultReceiveBufferSize.htm" />
+    <HelpKINode Title="ServerBase.DefaultReceiveBufferSize Field" Url="html/F_Gemstone_Communication_ServerBase_DefaultReceiveBufferSize.htm" />
+    <HelpKINode Title="UdpClient.DefaultReceiveBufferSize Field" Url="html/F_Gemstone_Communication_UdpClient_DefaultReceiveBufferSize.htm" />
+  </HelpKINode>
+  <HelpKINode Title="DefaultReceivedBytesThreshold field" Url="html/F_Gemstone_Communication_SerialClient_DefaultReceivedBytesThreshold.htm" />
+  <HelpKINode Title="DefaultReceiveInterval field" Url="html/F_Gemstone_Communication_FileClient_DefaultReceiveInterval.htm" />
+  <HelpKINode Title="DefaultReceiveOnDemand field" Url="html/F_Gemstone_Communication_FileClient_DefaultReceiveOnDemand.htm" />
+  <HelpKINode Title="DefaultSendBufferSize field">
+    <HelpKINode Title="ClientBase.DefaultSendBufferSize Field" Url="html/F_Gemstone_Communication_ClientBase_DefaultSendBufferSize.htm" />
+    <HelpKINode Title="ServerBase.DefaultSendBufferSize Field" Url="html/F_Gemstone_Communication_ServerBase_DefaultSendBufferSize.htm" />
+  </HelpKINode>
+  <HelpKINode Title="DefaultServerPort field" Url="html/F_Gemstone_Communication_Radius_RadiusClient_DefaultServerPort.htm" />
+  <HelpKINode Title="DefaultStartingOffset field" Url="html/F_Gemstone_Communication_FileClient_DefaultStartingOffset.htm" />
+  <HelpKINode Title="DefaultTrustedCertificatesPath field">
+    <HelpKINode Title="TlsClient.DefaultTrustedCertificatesPath Field" Url="html/F_Gemstone_Communication_TlsClient_DefaultTrustedCertificatesPath.htm" />
+    <HelpKINode Title="TlsServer.DefaultTrustedCertificatesPath Field" Url="html/F_Gemstone_Communication_TlsServer_DefaultTrustedCertificatesPath.htm" />
+  </HelpKINode>
+  <HelpKINode Title="Disconnect method">
+    <HelpKINode Title="ClientBase.Disconnect Method " Url="html/M_Gemstone_Communication_ClientBase_Disconnect.htm" />
+    <HelpKINode Title="FileClient.Disconnect Method " Url="html/M_Gemstone_Communication_FileClient_Disconnect.htm" />
+    <HelpKINode Title="IClient.Disconnect Method " Url="html/M_Gemstone_Communication_IClient_Disconnect.htm" />
+    <HelpKINode Title="SerialClient.Disconnect Method " Url="html/M_Gemstone_Communication_SerialClient_Disconnect.htm" />
+    <HelpKINode Title="TcpClient.Disconnect Method " Url="html/M_Gemstone_Communication_TcpClient_Disconnect.htm" />
+    <HelpKINode Title="TlsClient.Disconnect Method " Url="html/M_Gemstone_Communication_TlsClient_Disconnect.htm" />
+    <HelpKINode Title="UdpClient.Disconnect Method " Url="html/M_Gemstone_Communication_UdpClient_Disconnect.htm" />
+  </HelpKINode>
+  <HelpKINode Title="DisconnectAll method">
+    <HelpKINode Title="IServer.DisconnectAll Method " Url="html/M_Gemstone_Communication_IServer_DisconnectAll.htm" />
+    <HelpKINode Title="ServerBase.DisconnectAll Method " Url="html/M_Gemstone_Communication_ServerBase_DisconnectAll.htm" />
+  </HelpKINode>
+  <HelpKINode Title="Disconnected enumeration member" Url="html/T_Gemstone_Communication_ClientState.htm" />
+  <HelpKINode Title="DisconnectOne method">
+    <HelpKINode Title="IServer.DisconnectOne Method " Url="html/M_Gemstone_Communication_IServer_DisconnectOne.htm" />
+    <HelpKINode Title="ServerBase.DisconnectOne Method " Url="html/M_Gemstone_Communication_ServerBase_DisconnectOne.htm" />
+    <HelpKINode Title="TcpServer.DisconnectOne Method " Url="html/M_Gemstone_Communication_TcpServer_DisconnectOne.htm" />
+    <HelpKINode Title="TlsServer.DisconnectOne Method " Url="html/M_Gemstone_Communication_TlsServer_DisconnectOne.htm" />
+    <HelpKINode Title="UdpServer.DisconnectOne Method " Url="html/M_Gemstone_Communication_UdpServer_DisconnectOne.htm" />
+  </HelpKINode>
+  <HelpKINode Title="Dispose method">
+    <HelpKINode Title="ClientBase.Dispose Method " Url="html/Overload_Gemstone_Communication_ClientBase_Dispose.htm" />
+    <HelpKINode Title="FileClient.Dispose Method " Url="html/Overload_Gemstone_Communication_FileClient_Dispose.htm" />
+    <HelpKINode Title="RadiusClient.Dispose Method " Url="html/Overload_Gemstone_Communication_Radius_RadiusClient_Dispose.htm" />
+    <HelpKINode Title="SerialClient.Dispose Method " Url="html/Overload_Gemstone_Communication_SerialClient_Dispose.htm" />
+    <HelpKINode Title="ServerBase.Dispose Method " Url="html/Overload_Gemstone_Communication_ServerBase_Dispose.htm" />
+    <HelpKINode Title="TcpClient.Dispose Method " Url="html/Overload_Gemstone_Communication_TcpClient_Dispose.htm" />
+    <HelpKINode Title="TlsClient.Dispose Method " Url="html/Overload_Gemstone_Communication_TlsClient_Dispose.htm" />
+    <HelpKINode Title="TlsServer.TlsSocket.Dispose Method " Url="html/M_Gemstone_Communication_TlsServer_TlsSocket_Dispose.htm" />
+    <HelpKINode Title="UdpClient.Dispose Method " Url="html/Overload_Gemstone_Communication_UdpClient_Dispose.htm" />
+  </HelpKINode>
+  <HelpKINode Title="Disposed event">
+    <HelpKINode Title="ClientBase.Disposed Event" Url="html/E_Gemstone_Communication_ClientBase_Disposed.htm" />
+    <HelpKINode Title="ServerBase.Disposed Event" Url="html/E_Gemstone_Communication_ServerBase_Disposed.htm" />
+  </HelpKINode>
+  <HelpKINode Title="DropMulticastMembership method" Url="html/M_Gemstone_Communication_UdpClient_DropMulticastMembership.htm" />
+  <HelpKINode Title="DynamicClientEndPoints property" Url="html/P_Gemstone_Communication_UdpServer_DynamicClientEndPoints.htm" />
+  <HelpKINode Title="Enabled property">
+    <HelpKINode Title="ClientBase.Enabled Property " Url="html/P_Gemstone_Communication_ClientBase_Enabled.htm" />
+    <HelpKINode Title="ServerBase.Enabled Property " Url="html/P_Gemstone_Communication_ServerBase_Enabled.htm" />
+  </HelpKINode>
+  <HelpKINode Title="EnabledSslProtocols property">
+    <HelpKINode Title="TlsClient.EnabledSslProtocols Property " Url="html/P_Gemstone_Communication_TlsClient_EnabledSslProtocols.htm" />
+    <HelpKINode Title="TlsServer.EnabledSslProtocols Property " Url="html/P_Gemstone_Communication_TlsServer_EnabledSslProtocols.htm" />
+  </HelpKINode>
+  <HelpKINode Title="Encoding field" Url="html/F_Gemstone_Communication_Radius_RadiusPacket_Encoding.htm" />
+  <HelpKINode Title="EncryptPassword method" Url="html/M_Gemstone_Communication_Radius_RadiusPacket_EncryptPassword.htm" />
+  <HelpKINode Title="EndianOrder field" Url="html/F_Gemstone_Communication_Radius_RadiusPacket_EndianOrder.htm" />
+  <HelpKINode Title="EndPoint enumeration member" Url="html/T_Gemstone_Communication_ClientIdentificationMode.htm" />
+  <HelpKINode Title="EndpointFormatRegex field" Url="html/F_Gemstone_Communication_Transport_EndpointFormatRegex.htm" />
+  <HelpKINode Title="ExtractLength method" Url="html/M_Gemstone_Communication_Payload_ExtractLength.htm" />
+  <HelpKINode Title="File enumeration member" Url="html/T_Gemstone_Communication_TransportProtocol.htm" />
+  <HelpKINode Title="FileAccessMode property" Url="html/P_Gemstone_Communication_FileClient_FileAccessMode.htm" />
+  <HelpKINode Title="FileClient class">
+    <HelpKINode Title="FileClient Class" Url="html/T_Gemstone_Communication_FileClient.htm" />
+    <HelpKINode Title="constructor" Url="html/Overload_Gemstone_Communication_FileClient__ctor.htm" />
+    <HelpKINode Title="events" Url="html/Events_T_Gemstone_Communication_FileClient.htm" />
+    <HelpKINode Title="fields" Url="html/Fields_T_Gemstone_Communication_FileClient.htm" />
+    <HelpKINode Title="methods" Url="html/Methods_T_Gemstone_Communication_FileClient.htm" />
+    <HelpKINode Title="properties" Url="html/Properties_T_Gemstone_Communication_FileClient.htm" />
+  </HelpKINode>
+  <HelpKINode Title="FileClient.AutoRepeat property" Url="html/P_Gemstone_Communication_FileClient_AutoRepeat.htm" />
+  <HelpKINode Title="FileClient.Client property" Url="html/P_Gemstone_Communication_FileClient_Client.htm" />
+  <HelpKINode Title="FileClient.ConnectAsync method" Url="html/M_Gemstone_Communication_FileClient_ConnectAsync.htm" />
+  <HelpKINode Title="FileClient.DefaultAutoRepeat field" Url="html/F_Gemstone_Communication_FileClient_DefaultAutoRepeat.htm" />
+  <HelpKINode Title="FileClient.DefaultConnectionString field" Url="html/F_Gemstone_Communication_FileClient_DefaultConnectionString.htm" />
+  <HelpKINode Title="FileClient.DefaultFileAccessMode field" Url="html/F_Gemstone_Communication_FileClient_DefaultFileAccessMode.htm" />
+  <HelpKINode Title="FileClient.DefaultFileOpenMode field" Url="html/F_Gemstone_Communication_FileClient_DefaultFileOpenMode.htm" />
+  <HelpKINode Title="FileClient.DefaultFileShareMode field" Url="html/F_Gemstone_Communication_FileClient_DefaultFileShareMode.htm" />
+  <HelpKINode Title="FileClient.DefaultReceiveInterval field" Url="html/F_Gemstone_Communication_FileClient_DefaultReceiveInterval.htm" />
+  <HelpKINode Title="FileClient.DefaultReceiveOnDemand field" Url="html/F_Gemstone_Communication_FileClient_DefaultReceiveOnDemand.htm" />
+  <HelpKINode Title="FileClient.DefaultStartingOffset field" Url="html/F_Gemstone_Communication_FileClient_DefaultStartingOffset.htm" />
+  <HelpKINode Title="FileClient.Disconnect method" Url="html/M_Gemstone_Communication_FileClient_Disconnect.htm" />
+  <HelpKINode Title="FileClient.Dispose method" Url="html/Overload_Gemstone_Communication_FileClient_Dispose.htm" />
+  <HelpKINode Title="FileClient.FileAccessMode property" Url="html/P_Gemstone_Communication_FileClient_FileAccessMode.htm" />
+  <HelpKINode Title="FileClient.FileClient constructor" Url="html/Overload_Gemstone_Communication_FileClient__ctor.htm" />
+  <HelpKINode Title="FileClient.FileOpenMode property" Url="html/P_Gemstone_Communication_FileClient_FileOpenMode.htm" />
+  <HelpKINode Title="FileClient.FileShareMode property" Url="html/P_Gemstone_Communication_FileClient_FileShareMode.htm" />
+  <HelpKINode Title="FileClient.OnConnectionException method" Url="html/M_Gemstone_Communication_FileClient_OnConnectionException.htm" />
+  <HelpKINode Title="FileClient.Read method" Url="html/M_Gemstone_Communication_FileClient_Read.htm" />
+  <HelpKINode Title="FileClient.ReadNextBuffer method" Url="html/M_Gemstone_Communication_FileClient_ReadNextBuffer.htm" />
+  <HelpKINode Title="FileClient.ReceiveInterval property" Url="html/P_Gemstone_Communication_FileClient_ReceiveInterval.htm" />
+  <HelpKINode Title="FileClient.ReceiveOnDemand property" Url="html/P_Gemstone_Communication_FileClient_ReceiveOnDemand.htm" />
+  <HelpKINode Title="FileClient.SendDataAsync method" Url="html/M_Gemstone_Communication_FileClient_SendDataAsync.htm" />
+  <HelpKINode Title="FileClient.ServerUri property" Url="html/P_Gemstone_Communication_FileClient_ServerUri.htm" />
+  <HelpKINode Title="FileClient.StartingOffset property" Url="html/P_Gemstone_Communication_FileClient_StartingOffset.htm" />
+  <HelpKINode Title="FileClient.ValidateConnectionString method" Url="html/M_Gemstone_Communication_FileClient_ValidateConnectionString.htm" />
+  <HelpKINode Title="FileOpenMode property" Url="html/P_Gemstone_Communication_FileClient_FileOpenMode.htm" />
+  <HelpKINode Title="FileShareMode property" Url="html/P_Gemstone_Communication_FileClient_FileShareMode.htm" />
+  <HelpKINode Title="FilterId enumeration member" Url="html/T_Gemstone_Communication_Radius_AttributeType.htm" />
+  <HelpKINode Title="FramedAppleTalkLink enumeration member" Url="html/T_Gemstone_Communication_Radius_AttributeType.htm" />
+  <HelpKINode Title="FramedAppleTalkNetwork enumeration member" Url="html/T_Gemstone_Communication_Radius_AttributeType.htm" />
+  <HelpKINode Title="FramedAppleTalkZone enumeration member" Url="html/T_Gemstone_Communication_Radius_AttributeType.htm" />
+  <HelpKINode Title="FramedCompression enumeration member" Url="html/T_Gemstone_Communication_Radius_AttributeType.htm" />
+  <HelpKINode Title="FramedIpAddress enumeration member" Url="html/T_Gemstone_Communication_Radius_AttributeType.htm" />
+  <HelpKINode Title="FramedIpNetmask enumeration member" Url="html/T_Gemstone_Communication_Radius_AttributeType.htm" />
+  <HelpKINode Title="FramedIpxNetwork enumeration member" Url="html/T_Gemstone_Communication_Radius_AttributeType.htm" />
+  <HelpKINode Title="FramedMtu enumeration member" Url="html/T_Gemstone_Communication_Radius_AttributeType.htm" />
+  <HelpKINode Title="FramedProtocol enumeration member" Url="html/T_Gemstone_Communication_Radius_AttributeType.htm" />
+  <HelpKINode Title="FramedRoute enumeration member" Url="html/T_Gemstone_Communication_Radius_AttributeType.htm" />
+  <HelpKINode Title="FramedRouting enumeration member" Url="html/T_Gemstone_Communication_Radius_AttributeType.htm" />
   <HelpKINode Title="Gemstone.Communication namespace" Url="html/N_Gemstone_Communication.htm" />
-  <HelpKINode Title="Gemstone.Communication.Class class" Url="html/T_Gemstone_Communication_Class.htm" />
+  <HelpKINode Title="Gemstone.Communication.ClientBase class" Url="html/T_Gemstone_Communication_ClientBase.htm" />
+  <HelpKINode Title="Gemstone.Communication.ClientIdentificationMode enumeration" Url="html/T_Gemstone_Communication_ClientIdentificationMode.htm" />
+  <HelpKINode Title="Gemstone.Communication.ClientState enumeration" Url="html/T_Gemstone_Communication_ClientState.htm" />
+  <HelpKINode Title="Gemstone.Communication.FileClient class" Url="html/T_Gemstone_Communication_FileClient.htm" />
+  <HelpKINode Title="Gemstone.Communication.IClient interface" Url="html/T_Gemstone_Communication_IClient.htm" />
+  <HelpKINode Title="Gemstone.Communication.IPStack enumeration" Url="html/T_Gemstone_Communication_IPStack.htm" />
+  <HelpKINode Title="Gemstone.Communication.IServer interface" Url="html/T_Gemstone_Communication_IServer.htm" />
+  <HelpKINode Title="Gemstone.Communication.Payload class" Url="html/T_Gemstone_Communication_Payload.htm" />
+  <HelpKINode Title="Gemstone.Communication.Radius namespace" Url="html/N_Gemstone_Communication_Radius.htm" />
+  <HelpKINode Title="Gemstone.Communication.Radius.AttributeType enumeration" Url="html/T_Gemstone_Communication_Radius_AttributeType.htm" />
+  <HelpKINode Title="Gemstone.Communication.Radius.PacketType enumeration" Url="html/T_Gemstone_Communication_Radius_PacketType.htm" />
+  <HelpKINode Title="Gemstone.Communication.Radius.RadiusClient class" Url="html/T_Gemstone_Communication_Radius_RadiusClient.htm" />
+  <HelpKINode Title="Gemstone.Communication.Radius.RadiusPacket class" Url="html/T_Gemstone_Communication_Radius_RadiusPacket.htm" />
+  <HelpKINode Title="Gemstone.Communication.Radius.RadiusPacketAttribute class" Url="html/T_Gemstone_Communication_Radius_RadiusPacketAttribute.htm" />
+  <HelpKINode Title="Gemstone.Communication.SerialClient class" Url="html/T_Gemstone_Communication_SerialClient.htm" />
+  <HelpKINode Title="Gemstone.Communication.SerialException class" Url="html/T_Gemstone_Communication_SerialException.htm" />
+  <HelpKINode Title="Gemstone.Communication.ServerBase class" Url="html/T_Gemstone_Communication_ServerBase.htm" />
+  <HelpKINode Title="Gemstone.Communication.ServerState enumeration" Url="html/T_Gemstone_Communication_ServerState.htm" />
+  <HelpKINode Title="Gemstone.Communication.TcpClient class" Url="html/T_Gemstone_Communication_TcpClient.htm" />
+  <HelpKINode Title="Gemstone.Communication.TcpServer class" Url="html/T_Gemstone_Communication_TcpServer.htm" />
+  <HelpKINode Title="Gemstone.Communication.TlsClient class" Url="html/T_Gemstone_Communication_TlsClient.htm" />
+  <HelpKINode Title="Gemstone.Communication.TlsServer class" Url="html/T_Gemstone_Communication_TlsServer.htm" />
+  <HelpKINode Title="Gemstone.Communication.TlsServer.TlsSocket class" Url="html/T_Gemstone_Communication_TlsServer_TlsSocket.htm" />
+  <HelpKINode Title="Gemstone.Communication.Transport class" Url="html/T_Gemstone_Communication_Transport.htm" />
+  <HelpKINode Title="Gemstone.Communication.TransportProtocol enumeration" Url="html/T_Gemstone_Communication_TransportProtocol.htm" />
+  <HelpKINode Title="Gemstone.Communication.TransportProvider(Of T) class" Url="html/T_Gemstone_Communication_TransportProvider_1.htm" />
+  <HelpKINode Title="Gemstone.Communication.TransportProvider&lt;T&gt; class" Url="html/T_Gemstone_Communication_TransportProvider_1.htm" />
+  <HelpKINode Title="Gemstone.Communication.TransportStatistics class" Url="html/T_Gemstone_Communication_TransportStatistics.htm" />
+  <HelpKINode Title="Gemstone.Communication.UdpClient class" Url="html/T_Gemstone_Communication_UdpClient.htm" />
+  <HelpKINode Title="Gemstone.Communication.UdpServer class" Url="html/T_Gemstone_Communication_UdpServer.htm" />
+  <HelpKINode Title="GenerateBinaryImage method">
+    <HelpKINode Title="RadiusPacket.GenerateBinaryImage Method " Url="html/M_Gemstone_Communication_Radius_RadiusPacket_GenerateBinaryImage.htm" />
+    <HelpKINode Title="RadiusPacketAttribute.GenerateBinaryImage Method " Url="html/M_Gemstone_Communication_Radius_RadiusPacketAttribute_GenerateBinaryImage.htm" />
+  </HelpKINode>
+  <HelpKINode Title="GetAttributeValue method" Url="html/M_Gemstone_Communication_Radius_RadiusPacket_GetAttributeValue.htm" />
+  <HelpKINode Title="GetDefaultIPStack method" Url="html/M_Gemstone_Communication_Transport_GetDefaultIPStack.htm" />
+  <HelpKINode Title="GetInterfaceIPStack method" Url="html/M_Gemstone_Communication_Transport_GetInterfaceIPStack.htm" />
+  <HelpKINode Title="GetObjectData method" Url="html/M_Gemstone_Communication_SerialException_GetObjectData.htm" />
+  <HelpKINode Title="HasHeader method" Url="html/M_Gemstone_Communication_Payload_HasHeader.htm" />
+  <HelpKINode Title="IClient interface">
+    <HelpKINode Title="IClient Interface" Url="html/T_Gemstone_Communication_IClient.htm" />
+    <HelpKINode Title="events" Url="html/Events_T_Gemstone_Communication_IClient.htm" />
+    <HelpKINode Title="methods" Url="html/Methods_T_Gemstone_Communication_IClient.htm" />
+    <HelpKINode Title="properties" Url="html/Properties_T_Gemstone_Communication_IClient.htm" />
+  </HelpKINode>
+  <HelpKINode Title="IClient.Connect method" Url="html/M_Gemstone_Communication_IClient_Connect.htm" />
+  <HelpKINode Title="IClient.ConnectAsync method" Url="html/M_Gemstone_Communication_IClient_ConnectAsync.htm" />
+  <HelpKINode Title="IClient.ConnectionAttempt event" Url="html/E_Gemstone_Communication_IClient_ConnectionAttempt.htm" />
+  <HelpKINode Title="IClient.ConnectionEstablished event" Url="html/E_Gemstone_Communication_IClient_ConnectionEstablished.htm" />
+  <HelpKINode Title="IClient.ConnectionException event" Url="html/E_Gemstone_Communication_IClient_ConnectionException.htm" />
+  <HelpKINode Title="IClient.ConnectionString property" Url="html/P_Gemstone_Communication_IClient_ConnectionString.htm" />
+  <HelpKINode Title="IClient.ConnectionTerminated event" Url="html/E_Gemstone_Communication_IClient_ConnectionTerminated.htm" />
+  <HelpKINode Title="IClient.ConnectionTime property" Url="html/P_Gemstone_Communication_IClient_ConnectionTime.htm" />
+  <HelpKINode Title="IClient.CurrentState property" Url="html/P_Gemstone_Communication_IClient_CurrentState.htm" />
+  <HelpKINode Title="IClient.Disconnect method" Url="html/M_Gemstone_Communication_IClient_Disconnect.htm" />
+  <HelpKINode Title="IClient.MaxConnectionAttempts property" Url="html/P_Gemstone_Communication_IClient_MaxConnectionAttempts.htm" />
+  <HelpKINode Title="IClient.Read method" Url="html/M_Gemstone_Communication_IClient_Read.htm" />
+  <HelpKINode Title="IClient.ReceiveBufferSize property" Url="html/P_Gemstone_Communication_IClient_ReceiveBufferSize.htm" />
+  <HelpKINode Title="IClient.ReceiveData event" Url="html/E_Gemstone_Communication_IClient_ReceiveData.htm" />
+  <HelpKINode Title="IClient.ReceiveDataComplete event" Url="html/E_Gemstone_Communication_IClient_ReceiveDataComplete.htm" />
+  <HelpKINode Title="IClient.ReceiveDataException event" Url="html/E_Gemstone_Communication_IClient_ReceiveDataException.htm" />
+  <HelpKINode Title="IClient.Send method" Url="html/M_Gemstone_Communication_IClient_Send.htm" />
+  <HelpKINode Title="IClient.SendAsync method" Url="html/M_Gemstone_Communication_IClient_SendAsync.htm" />
+  <HelpKINode Title="IClient.SendBufferSize property" Url="html/P_Gemstone_Communication_IClient_SendBufferSize.htm" />
+  <HelpKINode Title="IClient.SendDataComplete event" Url="html/E_Gemstone_Communication_IClient_SendDataComplete.htm" />
+  <HelpKINode Title="IClient.SendDataException event" Url="html/E_Gemstone_Communication_IClient_SendDataException.htm" />
+  <HelpKINode Title="IClient.SendDataStart event" Url="html/E_Gemstone_Communication_IClient_SendDataStart.htm" />
+  <HelpKINode Title="IClient.ServerUri property" Url="html/P_Gemstone_Communication_IClient_ServerUri.htm" />
+  <HelpKINode Title="IClient.Statistics property" Url="html/P_Gemstone_Communication_IClient_Statistics.htm" />
+  <HelpKINode Title="IClient.TextEncoding property" Url="html/P_Gemstone_Communication_IClient_TextEncoding.htm" />
+  <HelpKINode Title="IClient.TransportProtocol property" Url="html/P_Gemstone_Communication_IClient_TransportProtocol.htm" />
+  <HelpKINode Title="ID field" Url="html/F_Gemstone_Communication_TransportProvider_1_ID.htm" />
+  <HelpKINode Title="Identifier property" Url="html/P_Gemstone_Communication_Radius_RadiusPacket_Identifier.htm" />
+  <HelpKINode Title="IdleTimeout enumeration member" Url="html/T_Gemstone_Communication_Radius_AttributeType.htm" />
+  <HelpKINode Title="IgnoreInvalidCredentials property">
+    <HelpKINode Title="TcpClient.IgnoreInvalidCredentials Property " Url="html/P_Gemstone_Communication_TcpClient_IgnoreInvalidCredentials.htm" />
+    <HelpKINode Title="TcpServer.IgnoreInvalidCredentials Property " Url="html/P_Gemstone_Communication_TcpServer_IgnoreInvalidCredentials.htm" />
+    <HelpKINode Title="TlsClient.IgnoreInvalidCredentials Property " Url="html/P_Gemstone_Communication_TlsClient_IgnoreInvalidCredentials.htm" />
+    <HelpKINode Title="TlsServer.IgnoreInvalidCredentials Property " Url="html/P_Gemstone_Communication_TlsServer_IgnoreInvalidCredentials.htm" />
+  </HelpKINode>
+  <HelpKINode Title="Initialize method">
+    <HelpKINode Title="ClientBase.Initialize Method " Url="html/M_Gemstone_Communication_ClientBase_Initialize.htm" />
+    <HelpKINode Title="ServerBase.Initialize Method " Url="html/M_Gemstone_Communication_ServerBase_Initialize.htm" />
+  </HelpKINode>
+  <HelpKINode Title="Initialized property" Url="html/P_Gemstone_Communication_ServerBase_Initialized.htm" />
+  <HelpKINode Title="IntegratedSecurity property">
+    <HelpKINode Title="TcpClient.IntegratedSecurity Property " Url="html/P_Gemstone_Communication_TcpClient_IntegratedSecurity.htm" />
+    <HelpKINode Title="TcpServer.IntegratedSecurity Property " Url="html/P_Gemstone_Communication_TcpServer_IntegratedSecurity.htm" />
+    <HelpKINode Title="TlsClient.IntegratedSecurity Property " Url="html/P_Gemstone_Communication_TlsClient_IntegratedSecurity.htm" />
+    <HelpKINode Title="TlsServer.IntegratedSecurity Property " Url="html/P_Gemstone_Communication_TlsServer_IntegratedSecurity.htm" />
+  </HelpKINode>
+  <HelpKINode Title="IP enumeration member" Url="html/T_Gemstone_Communication_ClientIdentificationMode.htm" />
+  <HelpKINode Title="IPStack enumeration" Url="html/T_Gemstone_Communication_IPStack.htm" />
+  <HelpKINode Title="IPv4 enumeration member" Url="html/T_Gemstone_Communication_IPStack.htm" />
+  <HelpKINode Title="IPv6 enumeration member" Url="html/T_Gemstone_Communication_IPStack.htm" />
+  <HelpKINode Title="IsClientConnected method" Url="html/M_Gemstone_Communication_ServerBase_IsClientConnected.htm" />
+  <HelpKINode Title="IsDestinationReachable method" Url="html/M_Gemstone_Communication_Transport_IsDestinationReachable.htm" />
+  <HelpKINode Title="IsDisposed property">
+    <HelpKINode Title="ClientBase.IsDisposed Property " Url="html/P_Gemstone_Communication_ClientBase_IsDisposed.htm" />
+    <HelpKINode Title="ServerBase.IsDisposed Property " Url="html/P_Gemstone_Communication_ServerBase_IsDisposed.htm" />
+  </HelpKINode>
+  <HelpKINode Title="IServer interface">
+    <HelpKINode Title="IServer Interface" Url="html/T_Gemstone_Communication_IServer.htm" />
+    <HelpKINode Title="events" Url="html/Events_T_Gemstone_Communication_IServer.htm" />
+    <HelpKINode Title="methods" Url="html/Methods_T_Gemstone_Communication_IServer.htm" />
+    <HelpKINode Title="properties" Url="html/Properties_T_Gemstone_Communication_IServer.htm" />
+  </HelpKINode>
+  <HelpKINode Title="IServer.ClientConnected event" Url="html/E_Gemstone_Communication_IServer_ClientConnected.htm" />
+  <HelpKINode Title="IServer.ClientConnectingException event" Url="html/E_Gemstone_Communication_IServer_ClientConnectingException.htm" />
+  <HelpKINode Title="IServer.ClientDisconnected event" Url="html/E_Gemstone_Communication_IServer_ClientDisconnected.htm" />
+  <HelpKINode Title="IServer.ClientIDs property" Url="html/P_Gemstone_Communication_IServer_ClientIDs.htm" />
+  <HelpKINode Title="IServer.ConfigurationString property" Url="html/P_Gemstone_Communication_IServer_ConfigurationString.htm" />
+  <HelpKINode Title="IServer.CurrentState property" Url="html/P_Gemstone_Communication_IServer_CurrentState.htm" />
+  <HelpKINode Title="IServer.DisconnectAll method" Url="html/M_Gemstone_Communication_IServer_DisconnectAll.htm" />
+  <HelpKINode Title="IServer.DisconnectOne method" Url="html/M_Gemstone_Communication_IServer_DisconnectOne.htm" />
+  <HelpKINode Title="IServer.MaxClientConnections property" Url="html/P_Gemstone_Communication_IServer_MaxClientConnections.htm" />
+  <HelpKINode Title="IServer.Multicast method" Url="html/M_Gemstone_Communication_IServer_Multicast.htm" />
+  <HelpKINode Title="IServer.MulticastAsync method" Url="html/M_Gemstone_Communication_IServer_MulticastAsync.htm" />
+  <HelpKINode Title="IServer.Read method" Url="html/M_Gemstone_Communication_IServer_Read.htm" />
+  <HelpKINode Title="IServer.ReceiveBufferSize property" Url="html/P_Gemstone_Communication_IServer_ReceiveBufferSize.htm" />
+  <HelpKINode Title="IServer.ReceiveClientData event" Url="html/E_Gemstone_Communication_IServer_ReceiveClientData.htm" />
+  <HelpKINode Title="IServer.ReceiveClientDataComplete event" Url="html/E_Gemstone_Communication_IServer_ReceiveClientDataComplete.htm" />
+  <HelpKINode Title="IServer.ReceiveClientDataException event" Url="html/E_Gemstone_Communication_IServer_ReceiveClientDataException.htm" />
+  <HelpKINode Title="IServer.RunTime property" Url="html/P_Gemstone_Communication_IServer_RunTime.htm" />
+  <HelpKINode Title="IServer.SendBufferSize property" Url="html/P_Gemstone_Communication_IServer_SendBufferSize.htm" />
+  <HelpKINode Title="IServer.SendClientDataComplete event" Url="html/E_Gemstone_Communication_IServer_SendClientDataComplete.htm" />
+  <HelpKINode Title="IServer.SendClientDataException event" Url="html/E_Gemstone_Communication_IServer_SendClientDataException.htm" />
+  <HelpKINode Title="IServer.SendClientDataStart event" Url="html/E_Gemstone_Communication_IServer_SendClientDataStart.htm" />
+  <HelpKINode Title="IServer.SendTo method" Url="html/M_Gemstone_Communication_IServer_SendTo.htm" />
+  <HelpKINode Title="IServer.SendToAsync method" Url="html/M_Gemstone_Communication_IServer_SendToAsync.htm" />
+  <HelpKINode Title="IServer.ServerID property" Url="html/P_Gemstone_Communication_IServer_ServerID.htm" />
+  <HelpKINode Title="IServer.ServerStarted event" Url="html/E_Gemstone_Communication_IServer_ServerStarted.htm" />
+  <HelpKINode Title="IServer.ServerStopped event" Url="html/E_Gemstone_Communication_IServer_ServerStopped.htm" />
+  <HelpKINode Title="IServer.Start method" Url="html/M_Gemstone_Communication_IServer_Start.htm" />
+  <HelpKINode Title="IServer.Stop method" Url="html/M_Gemstone_Communication_IServer_Stop.htm" />
+  <HelpKINode Title="IServer.TextEncoding property" Url="html/P_Gemstone_Communication_IServer_TextEncoding.htm" />
+  <HelpKINode Title="IServer.TransportProtocol property" Url="html/P_Gemstone_Communication_IServer_TransportProtocol.htm" />
+  <HelpKINode Title="IsIPv6IP method" Url="html/M_Gemstone_Communication_Transport_IsIPv6IP.htm" />
+  <HelpKINode Title="IsLocalAddress method" Url="html/M_Gemstone_Communication_Transport_IsLocalAddress.htm" />
+  <HelpKINode Title="IsMulticastIP method" Url="html/M_Gemstone_Communication_Transport_IsMulticastIP.htm" />
+  <HelpKINode Title="IsPortNumberValid method" Url="html/M_Gemstone_Communication_Transport_IsPortNumberValid.htm" />
+  <HelpKINode Title="IsUserInNewPinMode method" Url="html/M_Gemstone_Communication_Radius_RadiusClient_IsUserInNewPinMode.htm" />
+  <HelpKINode Title="IsUserInNextTokenMode method" Url="html/M_Gemstone_Communication_Radius_RadiusClient_IsUserInNextTokenMode.htm" />
+  <HelpKINode Title="LastBytesReceived field" Url="html/F_Gemstone_Communication_TransportStatistics_LastBytesReceived.htm" />
+  <HelpKINode Title="LastBytesSent field" Url="html/F_Gemstone_Communication_TransportStatistics_LastBytesSent.htm" />
+  <HelpKINode Title="LastReceive field" Url="html/F_Gemstone_Communication_TransportStatistics_LastReceive.htm" />
+  <HelpKINode Title="LastSend field" Url="html/F_Gemstone_Communication_TransportStatistics_LastSend.htm" />
+  <HelpKINode Title="LengthSegment field" Url="html/F_Gemstone_Communication_Payload_LengthSegment.htm" />
+  <HelpKINode Title="LocalCertificateSelectionCallback property">
+    <HelpKINode Title="TlsClient.LocalCertificateSelectionCallback Property " Url="html/P_Gemstone_Communication_TlsClient_LocalCertificateSelectionCallback.htm" />
+    <HelpKINode Title="TlsServer.LocalCertificateSelectionCallback Property " Url="html/P_Gemstone_Communication_TlsServer_LocalCertificateSelectionCallback.htm" />
+  </HelpKINode>
+  <HelpKINode Title="LoginIpHost enumeration member" Url="html/T_Gemstone_Communication_Radius_AttributeType.htm" />
+  <HelpKINode Title="LoginLatGroup enumeration member" Url="html/T_Gemstone_Communication_Radius_AttributeType.htm" />
+  <HelpKINode Title="LoginLatNode enumeration member" Url="html/T_Gemstone_Communication_Radius_AttributeType.htm" />
+  <HelpKINode Title="LoginLatPort enumeration member" Url="html/T_Gemstone_Communication_Radius_AttributeType.htm" />
+  <HelpKINode Title="LoginLatService enumeration member" Url="html/T_Gemstone_Communication_Radius_AttributeType.htm" />
+  <HelpKINode Title="LoginService enumeration member" Url="html/T_Gemstone_Communication_Radius_AttributeType.htm" />
+  <HelpKINode Title="LoginTcpPort enumeration member" Url="html/T_Gemstone_Communication_Radius_AttributeType.htm" />
+  <HelpKINode Title="MaxClientConnections property">
+    <HelpKINode Title="IServer.MaxClientConnections Property " Url="html/P_Gemstone_Communication_IServer_MaxClientConnections.htm" />
+    <HelpKINode Title="ServerBase.MaxClientConnections Property " Url="html/P_Gemstone_Communication_ServerBase_MaxClientConnections.htm" />
+  </HelpKINode>
+  <HelpKINode Title="MaxConnectionAttempts property">
+    <HelpKINode Title="ClientBase.MaxConnectionAttempts Property " Url="html/P_Gemstone_Communication_ClientBase_MaxConnectionAttempts.htm" />
+    <HelpKINode Title="IClient.MaxConnectionAttempts Property " Url="html/P_Gemstone_Communication_IClient_MaxConnectionAttempts.htm" />
+  </HelpKINode>
+  <HelpKINode Title="MaxPacketSize property" Url="html/P_Gemstone_Communication_UdpClient_MaxPacketSize.htm" />
+  <HelpKINode Title="MaxSendQueueSize property">
+    <HelpKINode Title="TcpClient.MaxSendQueueSize Property " Url="html/P_Gemstone_Communication_TcpClient_MaxSendQueueSize.htm" />
+    <HelpKINode Title="TcpServer.MaxSendQueueSize Property " Url="html/P_Gemstone_Communication_TcpServer_MaxSendQueueSize.htm" />
+    <HelpKINode Title="TlsClient.MaxSendQueueSize Property " Url="html/P_Gemstone_Communication_TlsClient_MaxSendQueueSize.htm" />
+    <HelpKINode Title="TlsServer.MaxSendQueueSize Property " Url="html/P_Gemstone_Communication_TlsServer_MaxSendQueueSize.htm" />
+    <HelpKINode Title="UdpClient.MaxSendQueueSize Property " Url="html/P_Gemstone_Communication_UdpClient_MaxSendQueueSize.htm" />
+    <HelpKINode Title="UdpServer.MaxSendQueueSize Property " Url="html/P_Gemstone_Communication_UdpServer_MaxSendQueueSize.htm" />
+  </HelpKINode>
+  <HelpKINode Title="Multicast method">
+    <HelpKINode Title="IServer.Multicast Method " Url="html/M_Gemstone_Communication_IServer_Multicast.htm" />
+    <HelpKINode Title="ServerBase.Multicast Method " Url="html/Overload_Gemstone_Communication_ServerBase_Multicast.htm" />
+  </HelpKINode>
+  <HelpKINode Title="MulticastAsync method">
+    <HelpKINode Title="IServer.MulticastAsync Method " Url="html/M_Gemstone_Communication_IServer_MulticastAsync.htm" />
+    <HelpKINode Title="ServerBase.MulticastAsync Method " Url="html/Overload_Gemstone_Communication_ServerBase_MulticastAsync.htm" />
+  </HelpKINode>
+  <HelpKINode Title="MulticastMembershipAddresses field" Url="html/F_Gemstone_Communication_TransportProvider_1_MulticastMembershipAddresses.htm" />
+  <HelpKINode Title="Name property">
+    <HelpKINode Title="ClientBase.Name Property " Url="html/P_Gemstone_Communication_ClientBase_Name.htm" />
+    <HelpKINode Title="ServerBase.Name Property " Url="html/P_Gemstone_Communication_ServerBase_Name.htm" />
+  </HelpKINode>
+  <HelpKINode Title="NasIdentifier enumeration member" Url="html/T_Gemstone_Communication_Radius_AttributeType.htm" />
+  <HelpKINode Title="NasIpAddress enumeration member" Url="html/T_Gemstone_Communication_Radius_AttributeType.htm" />
+  <HelpKINode Title="NasPort enumeration member" Url="html/T_Gemstone_Communication_Radius_AttributeType.htm" />
+  <HelpKINode Title="NasPortType enumeration member" Url="html/T_Gemstone_Communication_Radius_AttributeType.htm" />
+  <HelpKINode Title="NetworkCredential property">
+    <HelpKINode Title="TcpClient.NetworkCredential Property " Url="html/P_Gemstone_Communication_TcpClient_NetworkCredential.htm" />
+    <HelpKINode Title="TlsClient.NetworkCredential Property " Url="html/P_Gemstone_Communication_TlsClient_NetworkCredential.htm" />
+  </HelpKINode>
+  <HelpKINode Title="NewPinModeMessage1 property" Url="html/P_Gemstone_Communication_Radius_RadiusClient_NewPinModeMessage1.htm" />
+  <HelpKINode Title="NewPinModeMessage2 property" Url="html/P_Gemstone_Communication_Radius_RadiusClient_NewPinModeMessage2.htm" />
+  <HelpKINode Title="NewPinModeMessage3 property" Url="html/P_Gemstone_Communication_Radius_RadiusClient_NewPinModeMessage3.htm" />
+  <HelpKINode Title="NextTokenModeMessage property" Url="html/P_Gemstone_Communication_Radius_RadiusClient_NextTokenModeMessage.htm" />
+  <HelpKINode Title="NoDelay property">
+    <HelpKINode Title="TcpClient.NoDelay Property " Url="html/P_Gemstone_Communication_TcpClient_NoDelay.htm" />
+    <HelpKINode Title="TcpServer.NoDelay Property " Url="html/P_Gemstone_Communication_TcpServer_NoDelay.htm" />
+    <HelpKINode Title="TlsClient.NoDelay Property " Url="html/P_Gemstone_Communication_TlsClient_NoDelay.htm" />
+    <HelpKINode Title="TlsServer.NoDelay Property " Url="html/P_Gemstone_Communication_TlsServer_NoDelay.htm" />
+  </HelpKINode>
+  <HelpKINode Title="NotRunning enumeration member" Url="html/T_Gemstone_Communication_ServerState.htm" />
+  <HelpKINode Title="OnClientConnected method" Url="html/M_Gemstone_Communication_ServerBase_OnClientConnected.htm" />
+  <HelpKINode Title="OnClientConnectingException method" Url="html/M_Gemstone_Communication_ServerBase_OnClientConnectingException.htm" />
+  <HelpKINode Title="OnClientDisconnected method" Url="html/M_Gemstone_Communication_ServerBase_OnClientDisconnected.htm" />
+  <HelpKINode Title="OnConnectionAttempt method" Url="html/M_Gemstone_Communication_ClientBase_OnConnectionAttempt.htm" />
+  <HelpKINode Title="OnConnectionEstablished method" Url="html/M_Gemstone_Communication_ClientBase_OnConnectionEstablished.htm" />
+  <HelpKINode Title="OnConnectionException method">
+    <HelpKINode Title="ClientBase.OnConnectionException Method " Url="html/M_Gemstone_Communication_ClientBase_OnConnectionException.htm" />
+    <HelpKINode Title="FileClient.OnConnectionException Method " Url="html/M_Gemstone_Communication_FileClient_OnConnectionException.htm" />
+    <HelpKINode Title="SerialClient.OnConnectionException Method " Url="html/M_Gemstone_Communication_SerialClient_OnConnectionException.htm" />
+    <HelpKINode Title="TcpClient.OnConnectionException Method " Url="html/M_Gemstone_Communication_TcpClient_OnConnectionException.htm" />
+    <HelpKINode Title="TlsClient.OnConnectionException Method " Url="html/M_Gemstone_Communication_TlsClient_OnConnectionException.htm" />
+    <HelpKINode Title="UdpClient.OnConnectionException Method " Url="html/M_Gemstone_Communication_UdpClient_OnConnectionException.htm" />
+  </HelpKINode>
+  <HelpKINode Title="OnConnectionTerminated method">
+    <HelpKINode Title="ClientBase.OnConnectionTerminated Method " Url="html/M_Gemstone_Communication_ClientBase_OnConnectionTerminated.htm" />
+    <HelpKINode Title="UdpClient.OnConnectionTerminated Method " Url="html/M_Gemstone_Communication_UdpClient_OnConnectionTerminated.htm" />
+  </HelpKINode>
+  <HelpKINode Title="OnReceiveClientData method" Url="html/M_Gemstone_Communication_ServerBase_OnReceiveClientData.htm" />
+  <HelpKINode Title="OnReceiveClientDataComplete method" Url="html/M_Gemstone_Communication_ServerBase_OnReceiveClientDataComplete.htm" />
+  <HelpKINode Title="OnReceiveClientDataException method">
+    <HelpKINode Title="ServerBase.OnReceiveClientDataException Method " Url="html/M_Gemstone_Communication_ServerBase_OnReceiveClientDataException.htm" />
+    <HelpKINode Title="TcpServer.OnReceiveClientDataException Method " Url="html/Overload_Gemstone_Communication_TcpServer_OnReceiveClientDataException.htm" />
+    <HelpKINode Title="UdpServer.OnReceiveClientDataException Method " Url="html/M_Gemstone_Communication_UdpServer_OnReceiveClientDataException.htm" />
+  </HelpKINode>
+  <HelpKINode Title="OnReceiveData method" Url="html/M_Gemstone_Communication_ClientBase_OnReceiveData.htm" />
+  <HelpKINode Title="OnReceiveDataComplete method" Url="html/M_Gemstone_Communication_ClientBase_OnReceiveDataComplete.htm" />
+  <HelpKINode Title="OnReceiveDataException method">
+    <HelpKINode Title="ClientBase.OnReceiveDataException Method " Url="html/M_Gemstone_Communication_ClientBase_OnReceiveDataException.htm" />
+    <HelpKINode Title="TcpClient.OnReceiveDataException Method " Url="html/Overload_Gemstone_Communication_TcpClient_OnReceiveDataException.htm" />
+    <HelpKINode Title="TlsClient.OnReceiveDataException Method " Url="html/Overload_Gemstone_Communication_TlsClient_OnReceiveDataException.htm" />
+    <HelpKINode Title="UdpClient.OnReceiveDataException Method " Url="html/M_Gemstone_Communication_UdpClient_OnReceiveDataException.htm" />
+  </HelpKINode>
+  <HelpKINode Title="OnSendClientDataComplete method" Url="html/M_Gemstone_Communication_ServerBase_OnSendClientDataComplete.htm" />
+  <HelpKINode Title="OnSendClientDataException method">
+    <HelpKINode Title="ServerBase.OnSendClientDataException Method " Url="html/M_Gemstone_Communication_ServerBase_OnSendClientDataException.htm" />
+    <HelpKINode Title="TcpServer.OnSendClientDataException Method " Url="html/M_Gemstone_Communication_TcpServer_OnSendClientDataException.htm" />
+    <HelpKINode Title="UdpServer.OnSendClientDataException Method " Url="html/M_Gemstone_Communication_UdpServer_OnSendClientDataException.htm" />
+  </HelpKINode>
+  <HelpKINode Title="OnSendClientDataStart method" Url="html/M_Gemstone_Communication_ServerBase_OnSendClientDataStart.htm" />
+  <HelpKINode Title="OnSendDataComplete method" Url="html/M_Gemstone_Communication_ClientBase_OnSendDataComplete.htm" />
+  <HelpKINode Title="OnSendDataException method">
+    <HelpKINode Title="ClientBase.OnSendDataException Method " Url="html/M_Gemstone_Communication_ClientBase_OnSendDataException.htm" />
+    <HelpKINode Title="TcpClient.OnSendDataException Method " Url="html/M_Gemstone_Communication_TcpClient_OnSendDataException.htm" />
+    <HelpKINode Title="TlsClient.OnSendDataException Method " Url="html/M_Gemstone_Communication_TlsClient_OnSendDataException.htm" />
+    <HelpKINode Title="UdpClient.OnSendDataException Method " Url="html/M_Gemstone_Communication_UdpClient_OnSendDataException.htm" />
+  </HelpKINode>
+  <HelpKINode Title="OnSendDataStart method" Url="html/M_Gemstone_Communication_ClientBase_OnSendDataStart.htm" />
+  <HelpKINode Title="OnServerStarted method" Url="html/M_Gemstone_Communication_ServerBase_OnServerStarted.htm" />
+  <HelpKINode Title="OnServerStopped method" Url="html/M_Gemstone_Communication_ServerBase_OnServerStopped.htm" />
+  <HelpKINode Title="PacketType enumeration" Url="html/T_Gemstone_Communication_Radius_PacketType.htm" />
+  <HelpKINode Title="ParseBinaryImage method">
+    <HelpKINode Title="RadiusPacket.ParseBinaryImage Method " Url="html/M_Gemstone_Communication_Radius_RadiusPacket_ParseBinaryImage.htm" />
+    <HelpKINode Title="RadiusPacketAttribute.ParseBinaryImage Method " Url="html/M_Gemstone_Communication_Radius_RadiusPacketAttribute_ParseBinaryImage.htm" />
+  </HelpKINode>
+  <HelpKINode Title="PasswordAccept enumeration member" Url="html/T_Gemstone_Communication_Radius_PacketType.htm" />
+  <HelpKINode Title="PasswordReject enumeration member" Url="html/T_Gemstone_Communication_Radius_PacketType.htm" />
+  <HelpKINode Title="PasswordRequest enumeration member" Url="html/T_Gemstone_Communication_Radius_PacketType.htm" />
+  <HelpKINode Title="Payload class">
+    <HelpKINode Title="Payload Class" Url="html/T_Gemstone_Communication_Payload.htm" />
+    <HelpKINode Title="fields" Url="html/Fields_T_Gemstone_Communication_Payload.htm" />
+    <HelpKINode Title="methods" Url="html/Methods_T_Gemstone_Communication_Payload.htm" />
+  </HelpKINode>
+  <HelpKINode Title="Payload.AddHeader method" Url="html/M_Gemstone_Communication_Payload_AddHeader.htm" />
+  <HelpKINode Title="Payload.DefaultMarker field" Url="html/F_Gemstone_Communication_Payload_DefaultMarker.htm" />
+  <HelpKINode Title="Payload.ExtractLength method" Url="html/M_Gemstone_Communication_Payload_ExtractLength.htm" />
+  <HelpKINode Title="Payload.HasHeader method" Url="html/M_Gemstone_Communication_Payload_HasHeader.htm" />
+  <HelpKINode Title="Payload.LengthSegment field" Url="html/F_Gemstone_Communication_Payload_LengthSegment.htm" />
+  <HelpKINode Title="PayloadAware property">
+    <HelpKINode Title="TcpClient.PayloadAware Property " Url="html/P_Gemstone_Communication_TcpClient_PayloadAware.htm" />
+    <HelpKINode Title="TcpServer.PayloadAware Property " Url="html/P_Gemstone_Communication_TcpServer_PayloadAware.htm" />
+    <HelpKINode Title="TlsClient.PayloadAware Property " Url="html/P_Gemstone_Communication_TlsClient_PayloadAware.htm" />
+    <HelpKINode Title="TlsServer.PayloadAware Property " Url="html/P_Gemstone_Communication_TlsServer_PayloadAware.htm" />
+  </HelpKINode>
+  <HelpKINode Title="PayloadEndianOrder property">
+    <HelpKINode Title="TcpClient.PayloadEndianOrder Property " Url="html/P_Gemstone_Communication_TcpClient_PayloadEndianOrder.htm" />
+    <HelpKINode Title="TcpServer.PayloadEndianOrder Property " Url="html/P_Gemstone_Communication_TcpServer_PayloadEndianOrder.htm" />
+    <HelpKINode Title="TlsClient.PayloadEndianOrder Property " Url="html/P_Gemstone_Communication_TlsClient_PayloadEndianOrder.htm" />
+    <HelpKINode Title="TlsServer.PayloadEndianOrder Property " Url="html/P_Gemstone_Communication_TlsServer_PayloadEndianOrder.htm" />
+  </HelpKINode>
+  <HelpKINode Title="PayloadMarker property">
+    <HelpKINode Title="TcpClient.PayloadMarker Property " Url="html/P_Gemstone_Communication_TcpClient_PayloadMarker.htm" />
+    <HelpKINode Title="TcpServer.PayloadMarker Property " Url="html/P_Gemstone_Communication_TcpServer_PayloadMarker.htm" />
+    <HelpKINode Title="TlsClient.PayloadMarker Property " Url="html/P_Gemstone_Communication_TlsClient_PayloadMarker.htm" />
+    <HelpKINode Title="TlsServer.PayloadMarker Property " Url="html/P_Gemstone_Communication_TlsServer_PayloadMarker.htm" />
+  </HelpKINode>
+  <HelpKINode Title="Port enumeration member" Url="html/T_Gemstone_Communication_ClientIdentificationMode.htm" />
+  <HelpKINode Title="PortLimit enumeration member" Url="html/T_Gemstone_Communication_Radius_AttributeType.htm" />
+  <HelpKINode Title="PortRangeHigh field" Url="html/F_Gemstone_Communication_Transport_PortRangeHigh.htm" />
+  <HelpKINode Title="PortRangeLow field" Url="html/F_Gemstone_Communication_Transport_PortRangeLow.htm" />
+  <HelpKINode Title="ProcessRequest method" Url="html/M_Gemstone_Communication_Radius_RadiusClient_ProcessRequest.htm" />
+  <HelpKINode Title="Provider field" Url="html/F_Gemstone_Communication_TransportProvider_1_Provider.htm" />
+  <HelpKINode Title="ProxyState enumeration member" Url="html/T_Gemstone_Communication_Radius_AttributeType.htm" />
+  <HelpKINode Title="RadiusClient class">
+    <HelpKINode Title="RadiusClient Class" Url="html/T_Gemstone_Communication_Radius_RadiusClient.htm" />
+    <HelpKINode Title="constructor" Url="html/Overload_Gemstone_Communication_Radius_RadiusClient__ctor.htm" />
+    <HelpKINode Title="fields" Url="html/Fields_T_Gemstone_Communication_Radius_RadiusClient.htm" />
+    <HelpKINode Title="methods" Url="html/Methods_T_Gemstone_Communication_Radius_RadiusClient.htm" />
+    <HelpKINode Title="properties" Url="html/Properties_T_Gemstone_Communication_Radius_RadiusClient.htm" />
+  </HelpKINode>
+  <HelpKINode Title="RadiusClient.Authenticate method" Url="html/Overload_Gemstone_Communication_Radius_RadiusClient_Authenticate.htm" />
+  <HelpKINode Title="RadiusClient.CheckDisposed method" Url="html/M_Gemstone_Communication_Radius_RadiusClient_CheckDisposed.htm" />
+  <HelpKINode Title="RadiusClient.CreateNewPin method" Url="html/M_Gemstone_Communication_Radius_RadiusClient_CreateNewPin.htm" />
+  <HelpKINode Title="RadiusClient.DefaultNewPinModeMessage1 field" Url="html/F_Gemstone_Communication_Radius_RadiusClient_DefaultNewPinModeMessage1.htm" />
+  <HelpKINode Title="RadiusClient.DefaultNewPinModeMessage2 field" Url="html/F_Gemstone_Communication_Radius_RadiusClient_DefaultNewPinModeMessage2.htm" />
+  <HelpKINode Title="RadiusClient.DefaultNewPinModeMessage3 field" Url="html/F_Gemstone_Communication_Radius_RadiusClient_DefaultNewPinModeMessage3.htm" />
+  <HelpKINode Title="RadiusClient.DefaultNextTokenModeMessage field" Url="html/F_Gemstone_Communication_Radius_RadiusClient_DefaultNextTokenModeMessage.htm" />
+  <HelpKINode Title="RadiusClient.DefaultServerPort field" Url="html/F_Gemstone_Communication_Radius_RadiusClient_DefaultServerPort.htm" />
+  <HelpKINode Title="RadiusClient.Dispose method" Url="html/Overload_Gemstone_Communication_Radius_RadiusClient_Dispose.htm" />
+  <HelpKINode Title="RadiusClient.IsUserInNewPinMode method" Url="html/M_Gemstone_Communication_Radius_RadiusClient_IsUserInNewPinMode.htm" />
+  <HelpKINode Title="RadiusClient.IsUserInNextTokenMode method" Url="html/M_Gemstone_Communication_Radius_RadiusClient_IsUserInNextTokenMode.htm" />
+  <HelpKINode Title="RadiusClient.NewPinModeMessage1 property" Url="html/P_Gemstone_Communication_Radius_RadiusClient_NewPinModeMessage1.htm" />
+  <HelpKINode Title="RadiusClient.NewPinModeMessage2 property" Url="html/P_Gemstone_Communication_Radius_RadiusClient_NewPinModeMessage2.htm" />
+  <HelpKINode Title="RadiusClient.NewPinModeMessage3 property" Url="html/P_Gemstone_Communication_Radius_RadiusClient_NewPinModeMessage3.htm" />
+  <HelpKINode Title="RadiusClient.NextTokenModeMessage property" Url="html/P_Gemstone_Communication_Radius_RadiusClient_NextTokenModeMessage.htm" />
+  <HelpKINode Title="RadiusClient.ProcessRequest method" Url="html/M_Gemstone_Communication_Radius_RadiusClient_ProcessRequest.htm" />
+  <HelpKINode Title="RadiusClient.RadiusClient constructor" Url="html/Overload_Gemstone_Communication_Radius_RadiusClient__ctor.htm" />
+  <HelpKINode Title="RadiusClient.ReponseTimeout property" Url="html/P_Gemstone_Communication_Radius_RadiusClient_ReponseTimeout.htm" />
+  <HelpKINode Title="RadiusClient.RequestAttempts property" Url="html/P_Gemstone_Communication_Radius_RadiusClient_RequestAttempts.htm" />
+  <HelpKINode Title="RadiusClient.ServerName property" Url="html/P_Gemstone_Communication_Radius_RadiusClient_ServerName.htm" />
+  <HelpKINode Title="RadiusClient.ServerPort property" Url="html/P_Gemstone_Communication_Radius_RadiusClient_ServerPort.htm" />
+  <HelpKINode Title="RadiusClient.SharedSecret property" Url="html/P_Gemstone_Communication_Radius_RadiusClient_SharedSecret.htm" />
+  <HelpKINode Title="RadiusPacket class">
+    <HelpKINode Title="RadiusPacket Class" Url="html/T_Gemstone_Communication_Radius_RadiusPacket.htm" />
+    <HelpKINode Title="constructor" Url="html/Overload_Gemstone_Communication_Radius_RadiusPacket__ctor.htm" />
+    <HelpKINode Title="fields" Url="html/Fields_T_Gemstone_Communication_Radius_RadiusPacket.htm" />
+    <HelpKINode Title="methods" Url="html/Methods_T_Gemstone_Communication_Radius_RadiusPacket.htm" />
+    <HelpKINode Title="properties" Url="html/Properties_T_Gemstone_Communication_Radius_RadiusPacket.htm" />
+  </HelpKINode>
+  <HelpKINode Title="RadiusPacket.Attributes property" Url="html/P_Gemstone_Communication_Radius_RadiusPacket_Attributes.htm" />
+  <HelpKINode Title="RadiusPacket.Authenticator property" Url="html/P_Gemstone_Communication_Radius_RadiusPacket_Authenticator.htm" />
+  <HelpKINode Title="RadiusPacket.BinaryLength property" Url="html/P_Gemstone_Communication_Radius_RadiusPacket_BinaryLength.htm" />
+  <HelpKINode Title="RadiusPacket.CreateRequestAuthenticator method" Url="html/M_Gemstone_Communication_Radius_RadiusPacket_CreateRequestAuthenticator.htm" />
+  <HelpKINode Title="RadiusPacket.CreateResponseAuthenticator method" Url="html/M_Gemstone_Communication_Radius_RadiusPacket_CreateResponseAuthenticator.htm" />
+  <HelpKINode Title="RadiusPacket.Encoding field" Url="html/F_Gemstone_Communication_Radius_RadiusPacket_Encoding.htm" />
+  <HelpKINode Title="RadiusPacket.EncryptPassword method" Url="html/M_Gemstone_Communication_Radius_RadiusPacket_EncryptPassword.htm" />
+  <HelpKINode Title="RadiusPacket.EndianOrder field" Url="html/F_Gemstone_Communication_Radius_RadiusPacket_EndianOrder.htm" />
+  <HelpKINode Title="RadiusPacket.GenerateBinaryImage method" Url="html/M_Gemstone_Communication_Radius_RadiusPacket_GenerateBinaryImage.htm" />
+  <HelpKINode Title="RadiusPacket.GetAttributeValue method" Url="html/M_Gemstone_Communication_Radius_RadiusPacket_GetAttributeValue.htm" />
+  <HelpKINode Title="RadiusPacket.Identifier property" Url="html/P_Gemstone_Communication_Radius_RadiusPacket_Identifier.htm" />
+  <HelpKINode Title="RadiusPacket.ParseBinaryImage method" Url="html/M_Gemstone_Communication_Radius_RadiusPacket_ParseBinaryImage.htm" />
+  <HelpKINode Title="RadiusPacket.RadiusPacket constructor" Url="html/Overload_Gemstone_Communication_Radius_RadiusPacket__ctor.htm" />
+  <HelpKINode Title="RadiusPacket.Type property" Url="html/P_Gemstone_Communication_Radius_RadiusPacket_Type.htm" />
+  <HelpKINode Title="RadiusPacketAttribute class">
+    <HelpKINode Title="RadiusPacketAttribute Class" Url="html/T_Gemstone_Communication_Radius_RadiusPacketAttribute.htm" />
+    <HelpKINode Title="constructor" Url="html/Overload_Gemstone_Communication_Radius_RadiusPacketAttribute__ctor.htm" />
+    <HelpKINode Title="methods" Url="html/Methods_T_Gemstone_Communication_Radius_RadiusPacketAttribute.htm" />
+    <HelpKINode Title="properties" Url="html/Properties_T_Gemstone_Communication_Radius_RadiusPacketAttribute.htm" />
+  </HelpKINode>
+  <HelpKINode Title="RadiusPacketAttribute.BinaryLength property" Url="html/P_Gemstone_Communication_Radius_RadiusPacketAttribute_BinaryLength.htm" />
+  <HelpKINode Title="RadiusPacketAttribute.GenerateBinaryImage method" Url="html/M_Gemstone_Communication_Radius_RadiusPacketAttribute_GenerateBinaryImage.htm" />
+  <HelpKINode Title="RadiusPacketAttribute.ParseBinaryImage method" Url="html/M_Gemstone_Communication_Radius_RadiusPacketAttribute_ParseBinaryImage.htm" />
+  <HelpKINode Title="RadiusPacketAttribute.RadiusPacketAttribute constructor" Url="html/Overload_Gemstone_Communication_Radius_RadiusPacketAttribute__ctor.htm" />
+  <HelpKINode Title="RadiusPacketAttribute.Type property" Url="html/P_Gemstone_Communication_Radius_RadiusPacketAttribute_Type.htm" />
+  <HelpKINode Title="RadiusPacketAttribute.Value property" Url="html/P_Gemstone_Communication_Radius_RadiusPacketAttribute_Value.htm" />
+  <HelpKINode Title="Read method">
+    <HelpKINode Title="ClientBase.Read Method " Url="html/M_Gemstone_Communication_ClientBase_Read.htm" />
+    <HelpKINode Title="FileClient.Read Method " Url="html/M_Gemstone_Communication_FileClient_Read.htm" />
+    <HelpKINode Title="IClient.Read Method " Url="html/M_Gemstone_Communication_IClient_Read.htm" />
+    <HelpKINode Title="IServer.Read Method " Url="html/M_Gemstone_Communication_IServer_Read.htm" />
+    <HelpKINode Title="SerialClient.Read Method " Url="html/M_Gemstone_Communication_SerialClient_Read.htm" />
+    <HelpKINode Title="ServerBase.Read Method " Url="html/M_Gemstone_Communication_ServerBase_Read.htm" />
+    <HelpKINode Title="TcpClient.Read Method " Url="html/M_Gemstone_Communication_TcpClient_Read.htm" />
+    <HelpKINode Title="TcpServer.Read Method " Url="html/M_Gemstone_Communication_TcpServer_Read.htm" />
+    <HelpKINode Title="TlsClient.Read Method " Url="html/M_Gemstone_Communication_TlsClient_Read.htm" />
+    <HelpKINode Title="TlsServer.Read Method " Url="html/M_Gemstone_Communication_TlsServer_Read.htm" />
+    <HelpKINode Title="UdpClient.Read Method " Url="html/M_Gemstone_Communication_UdpClient_Read.htm" />
+    <HelpKINode Title="UdpServer.Read Method " Url="html/M_Gemstone_Communication_UdpServer_Read.htm" />
+  </HelpKINode>
+  <HelpKINode Title="ReadIndex property" Url="html/P_Gemstone_Communication_ClientBase_ReadIndex.htm" />
+  <HelpKINode Title="ReadIndicies property" Url="html/P_Gemstone_Communication_ServerBase_ReadIndicies.htm" />
+  <HelpKINode Title="ReadNextBuffer method" Url="html/M_Gemstone_Communication_FileClient_ReadNextBuffer.htm" />
+  <HelpKINode Title="ReceiveBuffer property" Url="html/P_Gemstone_Communication_TransportProvider_1_ReceiveBuffer.htm" />
+  <HelpKINode Title="ReceiveBufferSize property">
+    <HelpKINode Title="ClientBase.ReceiveBufferSize Property " Url="html/P_Gemstone_Communication_ClientBase_ReceiveBufferSize.htm" />
+    <HelpKINode Title="IClient.ReceiveBufferSize Property " Url="html/P_Gemstone_Communication_IClient_ReceiveBufferSize.htm" />
+    <HelpKINode Title="IServer.ReceiveBufferSize Property " Url="html/P_Gemstone_Communication_IServer_ReceiveBufferSize.htm" />
+    <HelpKINode Title="ServerBase.ReceiveBufferSize Property " Url="html/P_Gemstone_Communication_ServerBase_ReceiveBufferSize.htm" />
+    <HelpKINode Title="TransportProvider(T).ReceiveBufferSize Property " Url="html/P_Gemstone_Communication_TransportProvider_1_ReceiveBufferSize.htm" />
+    <HelpKINode Title="UdpClient.ReceiveBufferSize Property " Url="html/P_Gemstone_Communication_UdpClient_ReceiveBufferSize.htm" />
+  </HelpKINode>
+  <HelpKINode Title="ReceiveClientData event">
+    <HelpKINode Title="IServer.ReceiveClientData Event" Url="html/E_Gemstone_Communication_IServer_ReceiveClientData.htm" />
+    <HelpKINode Title="ServerBase.ReceiveClientData Event" Url="html/E_Gemstone_Communication_ServerBase_ReceiveClientData.htm" />
+  </HelpKINode>
+  <HelpKINode Title="ReceiveClientDataComplete event">
+    <HelpKINode Title="IServer.ReceiveClientDataComplete Event" Url="html/E_Gemstone_Communication_IServer_ReceiveClientDataComplete.htm" />
+    <HelpKINode Title="ServerBase.ReceiveClientDataComplete Event" Url="html/E_Gemstone_Communication_ServerBase_ReceiveClientDataComplete.htm" />
+  </HelpKINode>
+  <HelpKINode Title="ReceiveClientDataException event">
+    <HelpKINode Title="IServer.ReceiveClientDataException Event" Url="html/E_Gemstone_Communication_IServer_ReceiveClientDataException.htm" />
+    <HelpKINode Title="ServerBase.ReceiveClientDataException Event" Url="html/E_Gemstone_Communication_ServerBase_ReceiveClientDataException.htm" />
+  </HelpKINode>
+  <HelpKINode Title="ReceiveData event">
+    <HelpKINode Title="ClientBase.ReceiveData Event" Url="html/E_Gemstone_Communication_ClientBase_ReceiveData.htm" />
+    <HelpKINode Title="IClient.ReceiveData Event" Url="html/E_Gemstone_Communication_IClient_ReceiveData.htm" />
+  </HelpKINode>
+  <HelpKINode Title="ReceiveDataComplete event">
+    <HelpKINode Title="ClientBase.ReceiveDataComplete Event" Url="html/E_Gemstone_Communication_ClientBase_ReceiveDataComplete.htm" />
+    <HelpKINode Title="IClient.ReceiveDataComplete Event" Url="html/E_Gemstone_Communication_IClient_ReceiveDataComplete.htm" />
+  </HelpKINode>
+  <HelpKINode Title="ReceiveDataException event">
+    <HelpKINode Title="ClientBase.ReceiveDataException Event" Url="html/E_Gemstone_Communication_ClientBase_ReceiveDataException.htm" />
+    <HelpKINode Title="IClient.ReceiveDataException Event" Url="html/E_Gemstone_Communication_IClient_ReceiveDataException.htm" />
+  </HelpKINode>
+  <HelpKINode Title="ReceiveDataFrom event" Url="html/E_Gemstone_Communication_UdpClient_ReceiveDataFrom.htm" />
+  <HelpKINode Title="ReceiveDataFromComplete event" Url="html/E_Gemstone_Communication_UdpClient_ReceiveDataFromComplete.htm" />
+  <HelpKINode Title="ReceivedBytesThreshold property" Url="html/P_Gemstone_Communication_SerialClient_ReceivedBytesThreshold.htm" />
+  <HelpKINode Title="ReceiveInterval property" Url="html/P_Gemstone_Communication_FileClient_ReceiveInterval.htm" />
+  <HelpKINode Title="ReceiveOnDemand property" Url="html/P_Gemstone_Communication_FileClient_ReceiveOnDemand.htm" />
+  <HelpKINode Title="ReceivePacketInfo property" Url="html/P_Gemstone_Communication_UdpClient_ReceivePacketInfo.htm" />
+  <HelpKINode Title="RemoteCertificateValidationCallback property">
+    <HelpKINode Title="TlsClient.RemoteCertificateValidationCallback Property " Url="html/P_Gemstone_Communication_TlsClient_RemoteCertificateValidationCallback.htm" />
+    <HelpKINode Title="TlsServer.RemoteCertificateValidationCallback Property " Url="html/P_Gemstone_Communication_TlsServer_RemoteCertificateValidationCallback.htm" />
+  </HelpKINode>
+  <HelpKINode Title="RemoteEndPoint field" Url="html/F_Gemstone_Communication_TlsServer_TlsSocket_RemoteEndPoint.htm" />
+  <HelpKINode Title="ReplyMessage enumeration member" Url="html/T_Gemstone_Communication_Radius_AttributeType.htm" />
+  <HelpKINode Title="ReponseTimeout property" Url="html/P_Gemstone_Communication_Radius_RadiusClient_ReponseTimeout.htm" />
+  <HelpKINode Title="RequestAttempts property" Url="html/P_Gemstone_Communication_Radius_RadiusClient_RequestAttempts.htm" />
+  <HelpKINode Title="RequireClientCertificate property" Url="html/P_Gemstone_Communication_TlsServer_RequireClientCertificate.htm" />
+  <HelpKINode Title="Reset method">
+    <HelpKINode Title="TransportProvider(T).Reset Method " Url="html/M_Gemstone_Communication_TransportProvider_1_Reset.htm" />
+    <HelpKINode Title="TransportStatistics.Reset Method " Url="html/M_Gemstone_Communication_TransportStatistics_Reset.htm" />
+  </HelpKINode>
+  <HelpKINode Title="ReStart method" Url="html/M_Gemstone_Communication_ServerBase_ReStart.htm" />
+  <HelpKINode Title="Running enumeration member" Url="html/T_Gemstone_Communication_ServerState.htm" />
+  <HelpKINode Title="RunTime property">
+    <HelpKINode Title="IServer.RunTime Property " Url="html/P_Gemstone_Communication_IServer_RunTime.htm" />
+    <HelpKINode Title="ServerBase.RunTime Property " Url="html/P_Gemstone_Communication_ServerBase_RunTime.htm" />
+  </HelpKINode>
+  <HelpKINode Title="Send method">
+    <HelpKINode Title="ClientBase.Send Method " Url="html/Overload_Gemstone_Communication_ClientBase_Send.htm" />
+    <HelpKINode Title="IClient.Send Method " Url="html/M_Gemstone_Communication_IClient_Send.htm" />
+  </HelpKINode>
+  <HelpKINode Title="SendAsync method">
+    <HelpKINode Title="ClientBase.SendAsync Method " Url="html/Overload_Gemstone_Communication_ClientBase_SendAsync.htm" />
+    <HelpKINode Title="IClient.SendAsync Method " Url="html/M_Gemstone_Communication_IClient_SendAsync.htm" />
+  </HelpKINode>
+  <HelpKINode Title="SendBuffer property" Url="html/P_Gemstone_Communication_TransportProvider_1_SendBuffer.htm" />
+  <HelpKINode Title="SendBufferSize property">
+    <HelpKINode Title="ClientBase.SendBufferSize Property " Url="html/P_Gemstone_Communication_ClientBase_SendBufferSize.htm" />
+    <HelpKINode Title="IClient.SendBufferSize Property " Url="html/P_Gemstone_Communication_IClient_SendBufferSize.htm" />
+    <HelpKINode Title="IServer.SendBufferSize Property " Url="html/P_Gemstone_Communication_IServer_SendBufferSize.htm" />
+    <HelpKINode Title="ServerBase.SendBufferSize Property " Url="html/P_Gemstone_Communication_ServerBase_SendBufferSize.htm" />
+    <HelpKINode Title="TransportProvider(T).SendBufferSize Property " Url="html/P_Gemstone_Communication_TransportProvider_1_SendBufferSize.htm" />
+  </HelpKINode>
+  <HelpKINode Title="SendClientDataComplete event">
+    <HelpKINode Title="IServer.SendClientDataComplete Event" Url="html/E_Gemstone_Communication_IServer_SendClientDataComplete.htm" />
+    <HelpKINode Title="ServerBase.SendClientDataComplete Event" Url="html/E_Gemstone_Communication_ServerBase_SendClientDataComplete.htm" />
+  </HelpKINode>
+  <HelpKINode Title="SendClientDataException event">
+    <HelpKINode Title="IServer.SendClientDataException Event" Url="html/E_Gemstone_Communication_IServer_SendClientDataException.htm" />
+    <HelpKINode Title="ServerBase.SendClientDataException Event" Url="html/E_Gemstone_Communication_ServerBase_SendClientDataException.htm" />
+  </HelpKINode>
+  <HelpKINode Title="SendClientDataStart event">
+    <HelpKINode Title="IServer.SendClientDataStart Event" Url="html/E_Gemstone_Communication_IServer_SendClientDataStart.htm" />
+    <HelpKINode Title="ServerBase.SendClientDataStart Event" Url="html/E_Gemstone_Communication_ServerBase_SendClientDataStart.htm" />
+  </HelpKINode>
+  <HelpKINode Title="SendDataAsync method">
+    <HelpKINode Title="ClientBase.SendDataAsync Method " Url="html/M_Gemstone_Communication_ClientBase_SendDataAsync.htm" />
+    <HelpKINode Title="FileClient.SendDataAsync Method " Url="html/M_Gemstone_Communication_FileClient_SendDataAsync.htm" />
+    <HelpKINode Title="SerialClient.SendDataAsync Method " Url="html/M_Gemstone_Communication_SerialClient_SendDataAsync.htm" />
+    <HelpKINode Title="TcpClient.SendDataAsync Method " Url="html/M_Gemstone_Communication_TcpClient_SendDataAsync.htm" />
+    <HelpKINode Title="TlsClient.SendDataAsync Method " Url="html/M_Gemstone_Communication_TlsClient_SendDataAsync.htm" />
+    <HelpKINode Title="UdpClient.SendDataAsync Method " Url="html/M_Gemstone_Communication_UdpClient_SendDataAsync.htm" />
+  </HelpKINode>
+  <HelpKINode Title="SendDataComplete event">
+    <HelpKINode Title="ClientBase.SendDataComplete Event" Url="html/E_Gemstone_Communication_ClientBase_SendDataComplete.htm" />
+    <HelpKINode Title="IClient.SendDataComplete Event" Url="html/E_Gemstone_Communication_IClient_SendDataComplete.htm" />
+  </HelpKINode>
+  <HelpKINode Title="SendDataException event">
+    <HelpKINode Title="ClientBase.SendDataException Event" Url="html/E_Gemstone_Communication_ClientBase_SendDataException.htm" />
+    <HelpKINode Title="IClient.SendDataException Event" Url="html/E_Gemstone_Communication_IClient_SendDataException.htm" />
+  </HelpKINode>
+  <HelpKINode Title="SendDataStart event">
+    <HelpKINode Title="ClientBase.SendDataStart Event" Url="html/E_Gemstone_Communication_ClientBase_SendDataStart.htm" />
+    <HelpKINode Title="IClient.SendDataStart Event" Url="html/E_Gemstone_Communication_IClient_SendDataStart.htm" />
+  </HelpKINode>
+  <HelpKINode Title="SendDataToAsync method">
+    <HelpKINode Title="ServerBase.SendDataToAsync Method " Url="html/M_Gemstone_Communication_ServerBase_SendDataToAsync.htm" />
+    <HelpKINode Title="TcpServer.SendDataToAsync Method " Url="html/M_Gemstone_Communication_TcpServer_SendDataToAsync.htm" />
+    <HelpKINode Title="TlsServer.SendDataToAsync Method " Url="html/M_Gemstone_Communication_TlsServer_SendDataToAsync.htm" />
+    <HelpKINode Title="UdpClient.SendDataToAsync Method " Url="html/M_Gemstone_Communication_UdpClient_SendDataToAsync.htm" />
+    <HelpKINode Title="UdpServer.SendDataToAsync Method " Url="html/M_Gemstone_Communication_UdpServer_SendDataToAsync.htm" />
+  </HelpKINode>
+  <HelpKINode Title="SendTo method">
+    <HelpKINode Title="IServer.SendTo Method " Url="html/M_Gemstone_Communication_IServer_SendTo.htm" />
+    <HelpKINode Title="ServerBase.SendTo Method " Url="html/Overload_Gemstone_Communication_ServerBase_SendTo.htm" />
+  </HelpKINode>
+  <HelpKINode Title="SendToAsync method">
+    <HelpKINode Title="IServer.SendToAsync Method " Url="html/M_Gemstone_Communication_IServer_SendToAsync.htm" />
+    <HelpKINode Title="ServerBase.SendToAsync Method " Url="html/Overload_Gemstone_Communication_ServerBase_SendToAsync.htm" />
+  </HelpKINode>
+  <HelpKINode Title="Serial enumeration member" Url="html/T_Gemstone_Communication_TransportProtocol.htm" />
+  <HelpKINode Title="SerialClient class">
+    <HelpKINode Title="SerialClient Class" Url="html/T_Gemstone_Communication_SerialClient.htm" />
+    <HelpKINode Title="constructor" Url="html/Overload_Gemstone_Communication_SerialClient__ctor.htm" />
+    <HelpKINode Title="events" Url="html/Events_T_Gemstone_Communication_SerialClient.htm" />
+    <HelpKINode Title="fields" Url="html/Fields_T_Gemstone_Communication_SerialClient.htm" />
+    <HelpKINode Title="methods" Url="html/Methods_T_Gemstone_Communication_SerialClient.htm" />
+    <HelpKINode Title="properties" Url="html/Properties_T_Gemstone_Communication_SerialClient.htm" />
+  </HelpKINode>
+  <HelpKINode Title="SerialClient.Client property" Url="html/P_Gemstone_Communication_SerialClient_Client.htm" />
+  <HelpKINode Title="SerialClient.ConnectAsync method" Url="html/M_Gemstone_Communication_SerialClient_ConnectAsync.htm" />
+  <HelpKINode Title="SerialClient.DefaultConnectionString field" Url="html/F_Gemstone_Communication_SerialClient_DefaultConnectionString.htm" />
+  <HelpKINode Title="SerialClient.DefaultReceivedBytesThreshold field" Url="html/F_Gemstone_Communication_SerialClient_DefaultReceivedBytesThreshold.htm" />
+  <HelpKINode Title="SerialClient.Disconnect method" Url="html/M_Gemstone_Communication_SerialClient_Disconnect.htm" />
+  <HelpKINode Title="SerialClient.Dispose method" Url="html/Overload_Gemstone_Communication_SerialClient_Dispose.htm" />
+  <HelpKINode Title="SerialClient.OnConnectionException method" Url="html/M_Gemstone_Communication_SerialClient_OnConnectionException.htm" />
+  <HelpKINode Title="SerialClient.Read method" Url="html/M_Gemstone_Communication_SerialClient_Read.htm" />
+  <HelpKINode Title="SerialClient.ReceivedBytesThreshold property" Url="html/P_Gemstone_Communication_SerialClient_ReceivedBytesThreshold.htm" />
+  <HelpKINode Title="SerialClient.SendDataAsync method" Url="html/M_Gemstone_Communication_SerialClient_SendDataAsync.htm" />
+  <HelpKINode Title="SerialClient.SerialClient constructor" Url="html/Overload_Gemstone_Communication_SerialClient__ctor.htm" />
+  <HelpKINode Title="SerialClient.ServerUri property" Url="html/P_Gemstone_Communication_SerialClient_ServerUri.htm" />
+  <HelpKINode Title="SerialClient.Status property" Url="html/P_Gemstone_Communication_SerialClient_Status.htm" />
+  <HelpKINode Title="SerialClient.ValidateConnectionString method" Url="html/M_Gemstone_Communication_SerialClient_ValidateConnectionString.htm" />
+  <HelpKINode Title="SerialError property" Url="html/P_Gemstone_Communication_SerialException_SerialError.htm" />
+  <HelpKINode Title="SerialException class">
+    <HelpKINode Title="SerialException Class" Url="html/T_Gemstone_Communication_SerialException.htm" />
+    <HelpKINode Title="constructor" Url="html/Overload_Gemstone_Communication_SerialException__ctor.htm" />
+    <HelpKINode Title="events" Url="html/Events_T_Gemstone_Communication_SerialException.htm" />
+    <HelpKINode Title="methods" Url="html/Methods_T_Gemstone_Communication_SerialException.htm" />
+    <HelpKINode Title="properties" Url="html/Properties_T_Gemstone_Communication_SerialException.htm" />
+  </HelpKINode>
+  <HelpKINode Title="SerialException.GetObjectData method" Url="html/M_Gemstone_Communication_SerialException_GetObjectData.htm" />
+  <HelpKINode Title="SerialException.SerialError property" Url="html/P_Gemstone_Communication_SerialException_SerialError.htm" />
+  <HelpKINode Title="SerialException.SerialException constructor" Url="html/Overload_Gemstone_Communication_SerialException__ctor.htm" />
+  <HelpKINode Title="Server property">
+    <HelpKINode Title="TcpServer.Server Property " Url="html/P_Gemstone_Communication_TcpServer_Server.htm" />
+    <HelpKINode Title="TlsServer.Server Property " Url="html/P_Gemstone_Communication_TlsServer_Server.htm" />
+    <HelpKINode Title="UdpServer.Server Property " Url="html/P_Gemstone_Communication_UdpServer_Server.htm" />
+  </HelpKINode>
+  <HelpKINode Title="ServerBase class">
+    <HelpKINode Title="ServerBase Class" Url="html/T_Gemstone_Communication_ServerBase.htm" />
+    <HelpKINode Title="constructor" Url="html/Overload_Gemstone_Communication_ServerBase__ctor.htm" />
+    <HelpKINode Title="events" Url="html/Events_T_Gemstone_Communication_ServerBase.htm" />
+    <HelpKINode Title="fields" Url="html/Fields_T_Gemstone_Communication_ServerBase.htm" />
+    <HelpKINode Title="methods" Url="html/Methods_T_Gemstone_Communication_ServerBase.htm" />
+    <HelpKINode Title="properties" Url="html/Properties_T_Gemstone_Communication_ServerBase.htm" />
+  </HelpKINode>
+  <HelpKINode Title="ServerBase.ClientConnected event" Url="html/E_Gemstone_Communication_ServerBase_ClientConnected.htm" />
+  <HelpKINode Title="ServerBase.ClientConnectingException event" Url="html/E_Gemstone_Communication_ServerBase_ClientConnectingException.htm" />
+  <HelpKINode Title="ServerBase.ClientDisconnected event" Url="html/E_Gemstone_Communication_ServerBase_ClientDisconnected.htm" />
+  <HelpKINode Title="ServerBase.ClientIDs property" Url="html/P_Gemstone_Communication_ServerBase_ClientIDs.htm" />
+  <HelpKINode Title="ServerBase.ConfigurationString property" Url="html/P_Gemstone_Communication_ServerBase_ConfigurationString.htm" />
+  <HelpKINode Title="ServerBase.Create method" Url="html/M_Gemstone_Communication_ServerBase_Create.htm" />
+  <HelpKINode Title="ServerBase.CurrentState property" Url="html/P_Gemstone_Communication_ServerBase_CurrentState.htm" />
+  <HelpKINode Title="ServerBase.DefaultMaxClientConnections field" Url="html/F_Gemstone_Communication_ServerBase_DefaultMaxClientConnections.htm" />
+  <HelpKINode Title="ServerBase.DefaultReceiveBufferSize field" Url="html/F_Gemstone_Communication_ServerBase_DefaultReceiveBufferSize.htm" />
+  <HelpKINode Title="ServerBase.DefaultSendBufferSize field" Url="html/F_Gemstone_Communication_ServerBase_DefaultSendBufferSize.htm" />
+  <HelpKINode Title="ServerBase.DisconnectAll method" Url="html/M_Gemstone_Communication_ServerBase_DisconnectAll.htm" />
+  <HelpKINode Title="ServerBase.DisconnectOne method" Url="html/M_Gemstone_Communication_ServerBase_DisconnectOne.htm" />
+  <HelpKINode Title="ServerBase.Dispose method" Url="html/Overload_Gemstone_Communication_ServerBase_Dispose.htm" />
+  <HelpKINode Title="ServerBase.Disposed event" Url="html/E_Gemstone_Communication_ServerBase_Disposed.htm" />
+  <HelpKINode Title="ServerBase.Enabled property" Url="html/P_Gemstone_Communication_ServerBase_Enabled.htm" />
+  <HelpKINode Title="ServerBase.Initialize method" Url="html/M_Gemstone_Communication_ServerBase_Initialize.htm" />
+  <HelpKINode Title="ServerBase.Initialized property" Url="html/P_Gemstone_Communication_ServerBase_Initialized.htm" />
+  <HelpKINode Title="ServerBase.IsClientConnected method" Url="html/M_Gemstone_Communication_ServerBase_IsClientConnected.htm" />
+  <HelpKINode Title="ServerBase.IsDisposed property" Url="html/P_Gemstone_Communication_ServerBase_IsDisposed.htm" />
+  <HelpKINode Title="ServerBase.MaxClientConnections property" Url="html/P_Gemstone_Communication_ServerBase_MaxClientConnections.htm" />
+  <HelpKINode Title="ServerBase.Multicast method" Url="html/Overload_Gemstone_Communication_ServerBase_Multicast.htm" />
+  <HelpKINode Title="ServerBase.MulticastAsync method" Url="html/Overload_Gemstone_Communication_ServerBase_MulticastAsync.htm" />
+  <HelpKINode Title="ServerBase.Name property" Url="html/P_Gemstone_Communication_ServerBase_Name.htm" />
+  <HelpKINode Title="ServerBase.OnClientConnected method" Url="html/M_Gemstone_Communication_ServerBase_OnClientConnected.htm" />
+  <HelpKINode Title="ServerBase.OnClientConnectingException method" Url="html/M_Gemstone_Communication_ServerBase_OnClientConnectingException.htm" />
+  <HelpKINode Title="ServerBase.OnClientDisconnected method" Url="html/M_Gemstone_Communication_ServerBase_OnClientDisconnected.htm" />
+  <HelpKINode Title="ServerBase.OnReceiveClientData method" Url="html/M_Gemstone_Communication_ServerBase_OnReceiveClientData.htm" />
+  <HelpKINode Title="ServerBase.OnReceiveClientDataComplete method" Url="html/M_Gemstone_Communication_ServerBase_OnReceiveClientDataComplete.htm" />
+  <HelpKINode Title="ServerBase.OnReceiveClientDataException method" Url="html/M_Gemstone_Communication_ServerBase_OnReceiveClientDataException.htm" />
+  <HelpKINode Title="ServerBase.OnSendClientDataComplete method" Url="html/M_Gemstone_Communication_ServerBase_OnSendClientDataComplete.htm" />
+  <HelpKINode Title="ServerBase.OnSendClientDataException method" Url="html/M_Gemstone_Communication_ServerBase_OnSendClientDataException.htm" />
+  <HelpKINode Title="ServerBase.OnSendClientDataStart method" Url="html/M_Gemstone_Communication_ServerBase_OnSendClientDataStart.htm" />
+  <HelpKINode Title="ServerBase.OnServerStarted method" Url="html/M_Gemstone_Communication_ServerBase_OnServerStarted.htm" />
+  <HelpKINode Title="ServerBase.OnServerStopped method" Url="html/M_Gemstone_Communication_ServerBase_OnServerStopped.htm" />
+  <HelpKINode Title="ServerBase.Read method" Url="html/M_Gemstone_Communication_ServerBase_Read.htm" />
+  <HelpKINode Title="ServerBase.ReadIndicies property" Url="html/P_Gemstone_Communication_ServerBase_ReadIndicies.htm" />
+  <HelpKINode Title="ServerBase.ReceiveBufferSize property" Url="html/P_Gemstone_Communication_ServerBase_ReceiveBufferSize.htm" />
+  <HelpKINode Title="ServerBase.ReceiveClientData event" Url="html/E_Gemstone_Communication_ServerBase_ReceiveClientData.htm" />
+  <HelpKINode Title="ServerBase.ReceiveClientDataComplete event" Url="html/E_Gemstone_Communication_ServerBase_ReceiveClientDataComplete.htm" />
+  <HelpKINode Title="ServerBase.ReceiveClientDataException event" Url="html/E_Gemstone_Communication_ServerBase_ReceiveClientDataException.htm" />
+  <HelpKINode Title="ServerBase.ReStart method" Url="html/M_Gemstone_Communication_ServerBase_ReStart.htm" />
+  <HelpKINode Title="ServerBase.RunTime property" Url="html/P_Gemstone_Communication_ServerBase_RunTime.htm" />
+  <HelpKINode Title="ServerBase.SendBufferSize property" Url="html/P_Gemstone_Communication_ServerBase_SendBufferSize.htm" />
+  <HelpKINode Title="ServerBase.SendClientDataComplete event" Url="html/E_Gemstone_Communication_ServerBase_SendClientDataComplete.htm" />
+  <HelpKINode Title="ServerBase.SendClientDataException event" Url="html/E_Gemstone_Communication_ServerBase_SendClientDataException.htm" />
+  <HelpKINode Title="ServerBase.SendClientDataStart event" Url="html/E_Gemstone_Communication_ServerBase_SendClientDataStart.htm" />
+  <HelpKINode Title="ServerBase.SendDataToAsync method" Url="html/M_Gemstone_Communication_ServerBase_SendDataToAsync.htm" />
+  <HelpKINode Title="ServerBase.SendTo method" Url="html/Overload_Gemstone_Communication_ServerBase_SendTo.htm" />
+  <HelpKINode Title="ServerBase.SendToAsync method" Url="html/Overload_Gemstone_Communication_ServerBase_SendToAsync.htm" />
+  <HelpKINode Title="ServerBase.ServerBase constructor" Url="html/Overload_Gemstone_Communication_ServerBase__ctor.htm" />
+  <HelpKINode Title="ServerBase.ServerID property" Url="html/P_Gemstone_Communication_ServerBase_ServerID.htm" />
+  <HelpKINode Title="ServerBase.ServerStarted event" Url="html/E_Gemstone_Communication_ServerBase_ServerStarted.htm" />
+  <HelpKINode Title="ServerBase.ServerStopped event" Url="html/E_Gemstone_Communication_ServerBase_ServerStopped.htm" />
+  <HelpKINode Title="ServerBase.Start method" Url="html/M_Gemstone_Communication_ServerBase_Start.htm" />
+  <HelpKINode Title="ServerBase.Status property" Url="html/P_Gemstone_Communication_ServerBase_Status.htm" />
+  <HelpKINode Title="ServerBase.Stop method" Url="html/M_Gemstone_Communication_ServerBase_Stop.htm" />
+  <HelpKINode Title="ServerBase.TextEncoding property" Url="html/P_Gemstone_Communication_ServerBase_TextEncoding.htm" />
+  <HelpKINode Title="ServerBase.TransportProtocol property" Url="html/P_Gemstone_Communication_ServerBase_TransportProtocol.htm" />
+  <HelpKINode Title="ServerBase.ValidateConfigurationString method" Url="html/M_Gemstone_Communication_ServerBase_ValidateConfigurationString.htm" />
+  <HelpKINode Title="ServerID property">
+    <HelpKINode Title="IServer.ServerID Property " Url="html/P_Gemstone_Communication_IServer_ServerID.htm" />
+    <HelpKINode Title="ServerBase.ServerID Property " Url="html/P_Gemstone_Communication_ServerBase_ServerID.htm" />
+  </HelpKINode>
+  <HelpKINode Title="ServerName property" Url="html/P_Gemstone_Communication_Radius_RadiusClient_ServerName.htm" />
+  <HelpKINode Title="ServerPort property" Url="html/P_Gemstone_Communication_Radius_RadiusClient_ServerPort.htm" />
+  <HelpKINode Title="ServerStarted event">
+    <HelpKINode Title="IServer.ServerStarted Event" Url="html/E_Gemstone_Communication_IServer_ServerStarted.htm" />
+    <HelpKINode Title="ServerBase.ServerStarted Event" Url="html/E_Gemstone_Communication_ServerBase_ServerStarted.htm" />
+  </HelpKINode>
+  <HelpKINode Title="ServerState enumeration" Url="html/T_Gemstone_Communication_ServerState.htm" />
+  <HelpKINode Title="ServerStopped event">
+    <HelpKINode Title="IServer.ServerStopped Event" Url="html/E_Gemstone_Communication_IServer_ServerStopped.htm" />
+    <HelpKINode Title="ServerBase.ServerStopped Event" Url="html/E_Gemstone_Communication_ServerBase_ServerStopped.htm" />
+  </HelpKINode>
+  <HelpKINode Title="ServerUri property">
+    <HelpKINode Title="ClientBase.ServerUri Property " Url="html/P_Gemstone_Communication_ClientBase_ServerUri.htm" />
+    <HelpKINode Title="FileClient.ServerUri Property " Url="html/P_Gemstone_Communication_FileClient_ServerUri.htm" />
+    <HelpKINode Title="IClient.ServerUri Property " Url="html/P_Gemstone_Communication_IClient_ServerUri.htm" />
+    <HelpKINode Title="SerialClient.ServerUri Property " Url="html/P_Gemstone_Communication_SerialClient_ServerUri.htm" />
+    <HelpKINode Title="TcpClient.ServerUri Property " Url="html/P_Gemstone_Communication_TcpClient_ServerUri.htm" />
+    <HelpKINode Title="TlsClient.ServerUri Property " Url="html/P_Gemstone_Communication_TlsClient_ServerUri.htm" />
+    <HelpKINode Title="UdpClient.ServerUri Property " Url="html/P_Gemstone_Communication_UdpClient_ServerUri.htm" />
+  </HelpKINode>
+  <HelpKINode Title="ServiceType enumeration member" Url="html/T_Gemstone_Communication_Radius_AttributeType.htm" />
+  <HelpKINode Title="SessionTimeout enumeration member" Url="html/T_Gemstone_Communication_Radius_AttributeType.htm" />
+  <HelpKINode Title="SetReceiveBuffer method" Url="html/M_Gemstone_Communication_TransportProvider_1_SetReceiveBuffer.htm" />
+  <HelpKINode Title="SetSendBuffer method" Url="html/M_Gemstone_Communication_TransportProvider_1_SetSendBuffer.htm" />
+  <HelpKINode Title="SharedSecret property" Url="html/P_Gemstone_Communication_Radius_RadiusClient_SharedSecret.htm" />
+  <HelpKINode Title="Socket field" Url="html/F_Gemstone_Communication_TlsServer_TlsSocket_Socket.htm" />
+  <HelpKINode Title="SslStream field" Url="html/F_Gemstone_Communication_TlsServer_TlsSocket_SslStream.htm" />
+  <HelpKINode Title="SslStream property" Url="html/P_Gemstone_Communication_TlsClient_SslStream.htm" />
+  <HelpKINode Title="Start method">
+    <HelpKINode Title="IServer.Start Method " Url="html/M_Gemstone_Communication_IServer_Start.htm" />
+    <HelpKINode Title="ServerBase.Start Method " Url="html/M_Gemstone_Communication_ServerBase_Start.htm" />
+    <HelpKINode Title="TcpServer.Start Method " Url="html/M_Gemstone_Communication_TcpServer_Start.htm" />
+    <HelpKINode Title="TlsServer.Start Method " Url="html/M_Gemstone_Communication_TlsServer_Start.htm" />
+    <HelpKINode Title="UdpServer.Start Method " Url="html/M_Gemstone_Communication_UdpServer_Start.htm" />
+  </HelpKINode>
+  <HelpKINode Title="StartingOffset property" Url="html/P_Gemstone_Communication_FileClient_StartingOffset.htm" />
+  <HelpKINode Title="State enumeration member" Url="html/T_Gemstone_Communication_Radius_AttributeType.htm" />
+  <HelpKINode Title="Statistics field" Url="html/F_Gemstone_Communication_TransportProvider_1_Statistics.htm" />
+  <HelpKINode Title="Statistics property">
+    <HelpKINode Title="ClientBase.Statistics Property " Url="html/P_Gemstone_Communication_ClientBase_Statistics.htm" />
+    <HelpKINode Title="IClient.Statistics Property " Url="html/P_Gemstone_Communication_IClient_Statistics.htm" />
+  </HelpKINode>
+  <HelpKINode Title="Status property">
+    <HelpKINode Title="ClientBase.Status Property " Url="html/P_Gemstone_Communication_ClientBase_Status.htm" />
+    <HelpKINode Title="SerialClient.Status Property " Url="html/P_Gemstone_Communication_SerialClient_Status.htm" />
+    <HelpKINode Title="ServerBase.Status Property " Url="html/P_Gemstone_Communication_ServerBase_Status.htm" />
+    <HelpKINode Title="TcpClient.Status Property " Url="html/P_Gemstone_Communication_TcpClient_Status.htm" />
+    <HelpKINode Title="TcpServer.Status Property " Url="html/P_Gemstone_Communication_TcpServer_Status.htm" />
+    <HelpKINode Title="TlsClient.Status Property " Url="html/P_Gemstone_Communication_TlsClient_Status.htm" />
+    <HelpKINode Title="TlsServer.Status Property " Url="html/P_Gemstone_Communication_TlsServer_Status.htm" />
+    <HelpKINode Title="UdpClient.Status Property " Url="html/P_Gemstone_Communication_UdpClient_Status.htm" />
+    <HelpKINode Title="UdpServer.Status Property " Url="html/P_Gemstone_Communication_UdpServer_Status.htm" />
+  </HelpKINode>
+  <HelpKINode Title="StatusClient enumeration member" Url="html/T_Gemstone_Communication_Radius_PacketType.htm" />
+  <HelpKINode Title="StatuServer enumeration member" Url="html/T_Gemstone_Communication_Radius_PacketType.htm" />
+  <HelpKINode Title="Stop method">
+    <HelpKINode Title="IServer.Stop Method " Url="html/M_Gemstone_Communication_IServer_Stop.htm" />
+    <HelpKINode Title="ServerBase.Stop Method " Url="html/M_Gemstone_Communication_ServerBase_Stop.htm" />
+    <HelpKINode Title="TcpServer.Stop Method " Url="html/M_Gemstone_Communication_TcpServer_Stop.htm" />
+    <HelpKINode Title="TlsServer.Stop Method " Url="html/M_Gemstone_Communication_TlsServer_Stop.htm" />
+    <HelpKINode Title="UdpServer.Stop Method " Url="html/M_Gemstone_Communication_UdpServer_Stop.htm" />
+  </HelpKINode>
+  <HelpKINode Title="Tcp enumeration member" Url="html/T_Gemstone_Communication_TransportProtocol.htm" />
+  <HelpKINode Title="TcpClient class">
+    <HelpKINode Title="TcpClient Class" Url="html/T_Gemstone_Communication_TcpClient.htm" />
+    <HelpKINode Title="constructor" Url="html/Overload_Gemstone_Communication_TcpClient__ctor.htm" />
+    <HelpKINode Title="events" Url="html/Events_T_Gemstone_Communication_TcpClient.htm" />
+    <HelpKINode Title="fields" Url="html/Fields_T_Gemstone_Communication_TcpClient.htm" />
+    <HelpKINode Title="methods" Url="html/Methods_T_Gemstone_Communication_TcpClient.htm" />
+    <HelpKINode Title="properties" Url="html/Properties_T_Gemstone_Communication_TcpClient.htm" />
+  </HelpKINode>
+  <HelpKINode Title="TcpClient.AllowDualStackSocket property" Url="html/P_Gemstone_Communication_TcpClient_AllowDualStackSocket.htm" />
+  <HelpKINode Title="TcpClient.Client property" Url="html/P_Gemstone_Communication_TcpClient_Client.htm" />
+  <HelpKINode Title="TcpClient.ConnectAsync method" Url="html/M_Gemstone_Communication_TcpClient_ConnectAsync.htm" />
+  <HelpKINode Title="TcpClient.DefaultAllowDualStackSocket field" Url="html/F_Gemstone_Communication_TcpClient_DefaultAllowDualStackSocket.htm" />
+  <HelpKINode Title="TcpClient.DefaultConnectionString field" Url="html/F_Gemstone_Communication_TcpClient_DefaultConnectionString.htm" />
+  <HelpKINode Title="TcpClient.DefaultIgnoreInvalidCredentials field" Url="html/F_Gemstone_Communication_TcpClient_DefaultIgnoreInvalidCredentials.htm" />
+  <HelpKINode Title="TcpClient.DefaultIntegratedSecurity field" Url="html/F_Gemstone_Communication_TcpClient_DefaultIntegratedSecurity.htm" />
+  <HelpKINode Title="TcpClient.DefaultMaxSendQueueSize field" Url="html/F_Gemstone_Communication_TcpClient_DefaultMaxSendQueueSize.htm" />
+  <HelpKINode Title="TcpClient.DefaultNoDelay field" Url="html/F_Gemstone_Communication_TcpClient_DefaultNoDelay.htm" />
+  <HelpKINode Title="TcpClient.DefaultPayloadAware field" Url="html/F_Gemstone_Communication_TcpClient_DefaultPayloadAware.htm" />
+  <HelpKINode Title="TcpClient.Disconnect method" Url="html/M_Gemstone_Communication_TcpClient_Disconnect.htm" />
+  <HelpKINode Title="TcpClient.Dispose method" Url="html/Overload_Gemstone_Communication_TcpClient_Dispose.htm" />
+  <HelpKINode Title="TcpClient.IgnoreInvalidCredentials property" Url="html/P_Gemstone_Communication_TcpClient_IgnoreInvalidCredentials.htm" />
+  <HelpKINode Title="TcpClient.IntegratedSecurity property" Url="html/P_Gemstone_Communication_TcpClient_IntegratedSecurity.htm" />
+  <HelpKINode Title="TcpClient.MaxSendQueueSize property" Url="html/P_Gemstone_Communication_TcpClient_MaxSendQueueSize.htm" />
+  <HelpKINode Title="TcpClient.NetworkCredential property" Url="html/P_Gemstone_Communication_TcpClient_NetworkCredential.htm" />
+  <HelpKINode Title="TcpClient.NoDelay property" Url="html/P_Gemstone_Communication_TcpClient_NoDelay.htm" />
+  <HelpKINode Title="TcpClient.OnConnectionException method" Url="html/M_Gemstone_Communication_TcpClient_OnConnectionException.htm" />
+  <HelpKINode Title="TcpClient.OnReceiveDataException method" Url="html/Overload_Gemstone_Communication_TcpClient_OnReceiveDataException.htm" />
+  <HelpKINode Title="TcpClient.OnSendDataException method" Url="html/M_Gemstone_Communication_TcpClient_OnSendDataException.htm" />
+  <HelpKINode Title="TcpClient.PayloadAware property" Url="html/P_Gemstone_Communication_TcpClient_PayloadAware.htm" />
+  <HelpKINode Title="TcpClient.PayloadEndianOrder property" Url="html/P_Gemstone_Communication_TcpClient_PayloadEndianOrder.htm" />
+  <HelpKINode Title="TcpClient.PayloadMarker property" Url="html/P_Gemstone_Communication_TcpClient_PayloadMarker.htm" />
+  <HelpKINode Title="TcpClient.Read method" Url="html/M_Gemstone_Communication_TcpClient_Read.htm" />
+  <HelpKINode Title="TcpClient.SendDataAsync method" Url="html/M_Gemstone_Communication_TcpClient_SendDataAsync.htm" />
+  <HelpKINode Title="TcpClient.ServerUri property" Url="html/P_Gemstone_Communication_TcpClient_ServerUri.htm" />
+  <HelpKINode Title="TcpClient.Status property" Url="html/P_Gemstone_Communication_TcpClient_Status.htm" />
+  <HelpKINode Title="TcpClient.TcpClient constructor" Url="html/Overload_Gemstone_Communication_TcpClient__ctor.htm" />
+  <HelpKINode Title="TcpClient.TrackStatistics property" Url="html/P_Gemstone_Communication_TcpClient_TrackStatistics.htm" />
+  <HelpKINode Title="TcpClient.ValidateConnectionString method" Url="html/M_Gemstone_Communication_TcpClient_ValidateConnectionString.htm" />
+  <HelpKINode Title="TcpServer class">
+    <HelpKINode Title="TcpServer Class" Url="html/T_Gemstone_Communication_TcpServer.htm" />
+    <HelpKINode Title="constructor" Url="html/Overload_Gemstone_Communication_TcpServer__ctor.htm" />
+    <HelpKINode Title="events" Url="html/Events_T_Gemstone_Communication_TcpServer.htm" />
+    <HelpKINode Title="fields" Url="html/Fields_T_Gemstone_Communication_TcpServer.htm" />
+    <HelpKINode Title="methods" Url="html/Methods_T_Gemstone_Communication_TcpServer.htm" />
+    <HelpKINode Title="properties" Url="html/Properties_T_Gemstone_Communication_TcpServer.htm" />
+  </HelpKINode>
+  <HelpKINode Title="TcpServer.AllowDualStackSocket property" Url="html/P_Gemstone_Communication_TcpServer_AllowDualStackSocket.htm" />
+  <HelpKINode Title="TcpServer.DefaultAllowDualStackSocket field" Url="html/F_Gemstone_Communication_TcpServer_DefaultAllowDualStackSocket.htm" />
+  <HelpKINode Title="TcpServer.DefaultConfigurationString field" Url="html/F_Gemstone_Communication_TcpServer_DefaultConfigurationString.htm" />
+  <HelpKINode Title="TcpServer.DefaultIgnoreInvalidCredentials field" Url="html/F_Gemstone_Communication_TcpServer_DefaultIgnoreInvalidCredentials.htm" />
+  <HelpKINode Title="TcpServer.DefaultIntegratedSecurity field" Url="html/F_Gemstone_Communication_TcpServer_DefaultIntegratedSecurity.htm" />
+  <HelpKINode Title="TcpServer.DefaultMaxSendQueueSize field" Url="html/F_Gemstone_Communication_TcpServer_DefaultMaxSendQueueSize.htm" />
+  <HelpKINode Title="TcpServer.DefaultNoDelay field" Url="html/F_Gemstone_Communication_TcpServer_DefaultNoDelay.htm" />
+  <HelpKINode Title="TcpServer.DefaultPayloadAware field" Url="html/F_Gemstone_Communication_TcpServer_DefaultPayloadAware.htm" />
+  <HelpKINode Title="TcpServer.DisconnectOne method" Url="html/M_Gemstone_Communication_TcpServer_DisconnectOne.htm" />
+  <HelpKINode Title="TcpServer.IgnoreInvalidCredentials property" Url="html/P_Gemstone_Communication_TcpServer_IgnoreInvalidCredentials.htm" />
+  <HelpKINode Title="TcpServer.IntegratedSecurity property" Url="html/P_Gemstone_Communication_TcpServer_IntegratedSecurity.htm" />
+  <HelpKINode Title="TcpServer.MaxSendQueueSize property" Url="html/P_Gemstone_Communication_TcpServer_MaxSendQueueSize.htm" />
+  <HelpKINode Title="TcpServer.NoDelay property" Url="html/P_Gemstone_Communication_TcpServer_NoDelay.htm" />
+  <HelpKINode Title="TcpServer.OnReceiveClientDataException method" Url="html/Overload_Gemstone_Communication_TcpServer_OnReceiveClientDataException.htm" />
+  <HelpKINode Title="TcpServer.OnSendClientDataException method" Url="html/M_Gemstone_Communication_TcpServer_OnSendClientDataException.htm" />
+  <HelpKINode Title="TcpServer.PayloadAware property" Url="html/P_Gemstone_Communication_TcpServer_PayloadAware.htm" />
+  <HelpKINode Title="TcpServer.PayloadEndianOrder property" Url="html/P_Gemstone_Communication_TcpServer_PayloadEndianOrder.htm" />
+  <HelpKINode Title="TcpServer.PayloadMarker property" Url="html/P_Gemstone_Communication_TcpServer_PayloadMarker.htm" />
+  <HelpKINode Title="TcpServer.Read method" Url="html/M_Gemstone_Communication_TcpServer_Read.htm" />
+  <HelpKINode Title="TcpServer.SendDataToAsync method" Url="html/M_Gemstone_Communication_TcpServer_SendDataToAsync.htm" />
+  <HelpKINode Title="TcpServer.Server property" Url="html/P_Gemstone_Communication_TcpServer_Server.htm" />
+  <HelpKINode Title="TcpServer.Start method" Url="html/M_Gemstone_Communication_TcpServer_Start.htm" />
+  <HelpKINode Title="TcpServer.Status property" Url="html/P_Gemstone_Communication_TcpServer_Status.htm" />
+  <HelpKINode Title="TcpServer.Stop method" Url="html/M_Gemstone_Communication_TcpServer_Stop.htm" />
+  <HelpKINode Title="TcpServer.TcpServer constructor" Url="html/Overload_Gemstone_Communication_TcpServer__ctor.htm" />
+  <HelpKINode Title="TcpServer.TryGetClient method" Url="html/M_Gemstone_Communication_TcpServer_TryGetClient.htm" />
+  <HelpKINode Title="TcpServer.TryGetClientPrincipal method" Url="html/M_Gemstone_Communication_TcpServer_TryGetClientPrincipal.htm" />
+  <HelpKINode Title="TcpServer.ValidateConfigurationString method" Url="html/M_Gemstone_Communication_TcpServer_ValidateConfigurationString.htm" />
+  <HelpKINode Title="TerminationAction enumeration member" Url="html/T_Gemstone_Communication_Radius_AttributeType.htm" />
+  <HelpKINode Title="TextEncoding property">
+    <HelpKINode Title="ClientBase.TextEncoding Property " Url="html/P_Gemstone_Communication_ClientBase_TextEncoding.htm" />
+    <HelpKINode Title="IClient.TextEncoding Property " Url="html/P_Gemstone_Communication_IClient_TextEncoding.htm" />
+    <HelpKINode Title="IServer.TextEncoding Property " Url="html/P_Gemstone_Communication_IServer_TextEncoding.htm" />
+    <HelpKINode Title="ServerBase.TextEncoding Property " Url="html/P_Gemstone_Communication_ServerBase_TextEncoding.htm" />
+  </HelpKINode>
+  <HelpKINode Title="TlsClient class">
+    <HelpKINode Title="TlsClient Class" Url="html/T_Gemstone_Communication_TlsClient.htm" />
+    <HelpKINode Title="constructor" Url="html/Overload_Gemstone_Communication_TlsClient__ctor.htm" />
+    <HelpKINode Title="events" Url="html/Events_T_Gemstone_Communication_TlsClient.htm" />
+    <HelpKINode Title="fields" Url="html/Fields_T_Gemstone_Communication_TlsClient.htm" />
+    <HelpKINode Title="methods" Url="html/Methods_T_Gemstone_Communication_TlsClient.htm" />
+    <HelpKINode Title="properties" Url="html/Properties_T_Gemstone_Communication_TlsClient.htm" />
+  </HelpKINode>
+  <HelpKINode Title="TlsClient.AllowDualStackSocket property" Url="html/P_Gemstone_Communication_TlsClient_AllowDualStackSocket.htm" />
+  <HelpKINode Title="TlsClient.Certificate property" Url="html/P_Gemstone_Communication_TlsClient_Certificate.htm" />
+  <HelpKINode Title="TlsClient.CertificateChecker property" Url="html/P_Gemstone_Communication_TlsClient_CertificateChecker.htm" />
+  <HelpKINode Title="TlsClient.CertificateFile property" Url="html/P_Gemstone_Communication_TlsClient_CertificateFile.htm" />
+  <HelpKINode Title="TlsClient.CheckCertificateRevocation property" Url="html/P_Gemstone_Communication_TlsClient_CheckCertificateRevocation.htm" />
+  <HelpKINode Title="TlsClient.Client property" Url="html/P_Gemstone_Communication_TlsClient_Client.htm" />
+  <HelpKINode Title="TlsClient.ClientCertificates property" Url="html/P_Gemstone_Communication_TlsClient_ClientCertificates.htm" />
+  <HelpKINode Title="TlsClient.ConnectAsync method" Url="html/M_Gemstone_Communication_TlsClient_ConnectAsync.htm" />
+  <HelpKINode Title="TlsClient.DefaultAllowDualStackSocket field" Url="html/F_Gemstone_Communication_TlsClient_DefaultAllowDualStackSocket.htm" />
+  <HelpKINode Title="TlsClient.DefaultConnectionString field" Url="html/F_Gemstone_Communication_TlsClient_DefaultConnectionString.htm" />
+  <HelpKINode Title="TlsClient.DefaultIgnoreInvalidCredentials field" Url="html/F_Gemstone_Communication_TlsClient_DefaultIgnoreInvalidCredentials.htm" />
+  <HelpKINode Title="TlsClient.DefaultIntegratedSecurity field" Url="html/F_Gemstone_Communication_TlsClient_DefaultIntegratedSecurity.htm" />
+  <HelpKINode Title="TlsClient.DefaultMaxSendQueueSize field" Url="html/F_Gemstone_Communication_TlsClient_DefaultMaxSendQueueSize.htm" />
+  <HelpKINode Title="TlsClient.DefaultNoDelay field" Url="html/F_Gemstone_Communication_TlsClient_DefaultNoDelay.htm" />
+  <HelpKINode Title="TlsClient.DefaultPayloadAware field" Url="html/F_Gemstone_Communication_TlsClient_DefaultPayloadAware.htm" />
+  <HelpKINode Title="TlsClient.DefaultTrustedCertificatesPath field" Url="html/F_Gemstone_Communication_TlsClient_DefaultTrustedCertificatesPath.htm" />
+  <HelpKINode Title="TlsClient.Disconnect method" Url="html/M_Gemstone_Communication_TlsClient_Disconnect.htm" />
+  <HelpKINode Title="TlsClient.Dispose method" Url="html/Overload_Gemstone_Communication_TlsClient_Dispose.htm" />
+  <HelpKINode Title="TlsClient.EnabledSslProtocols property" Url="html/P_Gemstone_Communication_TlsClient_EnabledSslProtocols.htm" />
+  <HelpKINode Title="TlsClient.IgnoreInvalidCredentials property" Url="html/P_Gemstone_Communication_TlsClient_IgnoreInvalidCredentials.htm" />
+  <HelpKINode Title="TlsClient.IntegratedSecurity property" Url="html/P_Gemstone_Communication_TlsClient_IntegratedSecurity.htm" />
+  <HelpKINode Title="TlsClient.LocalCertificateSelectionCallback property" Url="html/P_Gemstone_Communication_TlsClient_LocalCertificateSelectionCallback.htm" />
+  <HelpKINode Title="TlsClient.MaxSendQueueSize property" Url="html/P_Gemstone_Communication_TlsClient_MaxSendQueueSize.htm" />
+  <HelpKINode Title="TlsClient.NetworkCredential property" Url="html/P_Gemstone_Communication_TlsClient_NetworkCredential.htm" />
+  <HelpKINode Title="TlsClient.NoDelay property" Url="html/P_Gemstone_Communication_TlsClient_NoDelay.htm" />
+  <HelpKINode Title="TlsClient.OnConnectionException method" Url="html/M_Gemstone_Communication_TlsClient_OnConnectionException.htm" />
+  <HelpKINode Title="TlsClient.OnReceiveDataException method" Url="html/Overload_Gemstone_Communication_TlsClient_OnReceiveDataException.htm" />
+  <HelpKINode Title="TlsClient.OnSendDataException method" Url="html/M_Gemstone_Communication_TlsClient_OnSendDataException.htm" />
+  <HelpKINode Title="TlsClient.PayloadAware property" Url="html/P_Gemstone_Communication_TlsClient_PayloadAware.htm" />
+  <HelpKINode Title="TlsClient.PayloadEndianOrder property" Url="html/P_Gemstone_Communication_TlsClient_PayloadEndianOrder.htm" />
+  <HelpKINode Title="TlsClient.PayloadMarker property" Url="html/P_Gemstone_Communication_TlsClient_PayloadMarker.htm" />
+  <HelpKINode Title="TlsClient.Read method" Url="html/M_Gemstone_Communication_TlsClient_Read.htm" />
+  <HelpKINode Title="TlsClient.RemoteCertificateValidationCallback property" Url="html/P_Gemstone_Communication_TlsClient_RemoteCertificateValidationCallback.htm" />
+  <HelpKINode Title="TlsClient.SendDataAsync method" Url="html/M_Gemstone_Communication_TlsClient_SendDataAsync.htm" />
+  <HelpKINode Title="TlsClient.ServerUri property" Url="html/P_Gemstone_Communication_TlsClient_ServerUri.htm" />
+  <HelpKINode Title="TlsClient.SslStream property" Url="html/P_Gemstone_Communication_TlsClient_SslStream.htm" />
+  <HelpKINode Title="TlsClient.Status property" Url="html/P_Gemstone_Communication_TlsClient_Status.htm" />
+  <HelpKINode Title="TlsClient.TlsClient constructor" Url="html/Overload_Gemstone_Communication_TlsClient__ctor.htm" />
+  <HelpKINode Title="TlsClient.TrackStatistics property" Url="html/P_Gemstone_Communication_TlsClient_TrackStatistics.htm" />
+  <HelpKINode Title="TlsClient.TrustedCertificatesPath property" Url="html/P_Gemstone_Communication_TlsClient_TrustedCertificatesPath.htm" />
+  <HelpKINode Title="TlsClient.ValidateConnectionString method" Url="html/M_Gemstone_Communication_TlsClient_ValidateConnectionString.htm" />
+  <HelpKINode Title="TlsClient.ValidChainFlags property" Url="html/P_Gemstone_Communication_TlsClient_ValidChainFlags.htm" />
+  <HelpKINode Title="TlsClient.ValidPolicyErrors property" Url="html/P_Gemstone_Communication_TlsClient_ValidPolicyErrors.htm" />
+  <HelpKINode Title="TlsServer class">
+    <HelpKINode Title="TlsServer Class" Url="html/T_Gemstone_Communication_TlsServer.htm" />
+    <HelpKINode Title="constructor" Url="html/Overload_Gemstone_Communication_TlsServer__ctor.htm" />
+    <HelpKINode Title="events" Url="html/Events_T_Gemstone_Communication_TlsServer.htm" />
+    <HelpKINode Title="fields" Url="html/Fields_T_Gemstone_Communication_TlsServer.htm" />
+    <HelpKINode Title="methods" Url="html/Methods_T_Gemstone_Communication_TlsServer.htm" />
+    <HelpKINode Title="properties" Url="html/Properties_T_Gemstone_Communication_TlsServer.htm" />
+  </HelpKINode>
+  <HelpKINode Title="TlsServer.AllowDualStackSocket property" Url="html/P_Gemstone_Communication_TlsServer_AllowDualStackSocket.htm" />
+  <HelpKINode Title="TlsServer.Certificate property" Url="html/P_Gemstone_Communication_TlsServer_Certificate.htm" />
+  <HelpKINode Title="TlsServer.CertificateChecker property" Url="html/P_Gemstone_Communication_TlsServer_CertificateChecker.htm" />
+  <HelpKINode Title="TlsServer.CertificateFile property" Url="html/P_Gemstone_Communication_TlsServer_CertificateFile.htm" />
+  <HelpKINode Title="TlsServer.CheckCertificateRevocation property" Url="html/P_Gemstone_Communication_TlsServer_CheckCertificateRevocation.htm" />
+  <HelpKINode Title="TlsServer.DefaultAllowDualStackSocket field" Url="html/F_Gemstone_Communication_TlsServer_DefaultAllowDualStackSocket.htm" />
+  <HelpKINode Title="TlsServer.DefaultConfigurationString field" Url="html/F_Gemstone_Communication_TlsServer_DefaultConfigurationString.htm" />
+  <HelpKINode Title="TlsServer.DefaultIgnoreInvalidCredentials field" Url="html/F_Gemstone_Communication_TlsServer_DefaultIgnoreInvalidCredentials.htm" />
+  <HelpKINode Title="TlsServer.DefaultIntegratedSecurity field" Url="html/F_Gemstone_Communication_TlsServer_DefaultIntegratedSecurity.htm" />
+  <HelpKINode Title="TlsServer.DefaultMaxSendQueueSize field" Url="html/F_Gemstone_Communication_TlsServer_DefaultMaxSendQueueSize.htm" />
+  <HelpKINode Title="TlsServer.DefaultNoDelay field" Url="html/F_Gemstone_Communication_TlsServer_DefaultNoDelay.htm" />
+  <HelpKINode Title="TlsServer.DefaultPayloadAware field" Url="html/F_Gemstone_Communication_TlsServer_DefaultPayloadAware.htm" />
+  <HelpKINode Title="TlsServer.DefaultTrustedCertificatesPath field" Url="html/F_Gemstone_Communication_TlsServer_DefaultTrustedCertificatesPath.htm" />
+  <HelpKINode Title="TlsServer.DisconnectOne method" Url="html/M_Gemstone_Communication_TlsServer_DisconnectOne.htm" />
+  <HelpKINode Title="TlsServer.EnabledSslProtocols property" Url="html/P_Gemstone_Communication_TlsServer_EnabledSslProtocols.htm" />
+  <HelpKINode Title="TlsServer.IgnoreInvalidCredentials property" Url="html/P_Gemstone_Communication_TlsServer_IgnoreInvalidCredentials.htm" />
+  <HelpKINode Title="TlsServer.IntegratedSecurity property" Url="html/P_Gemstone_Communication_TlsServer_IntegratedSecurity.htm" />
+  <HelpKINode Title="TlsServer.LocalCertificateSelectionCallback property" Url="html/P_Gemstone_Communication_TlsServer_LocalCertificateSelectionCallback.htm" />
+  <HelpKINode Title="TlsServer.MaxSendQueueSize property" Url="html/P_Gemstone_Communication_TlsServer_MaxSendQueueSize.htm" />
+  <HelpKINode Title="TlsServer.NoDelay property" Url="html/P_Gemstone_Communication_TlsServer_NoDelay.htm" />
+  <HelpKINode Title="TlsServer.PayloadAware property" Url="html/P_Gemstone_Communication_TlsServer_PayloadAware.htm" />
+  <HelpKINode Title="TlsServer.PayloadEndianOrder property" Url="html/P_Gemstone_Communication_TlsServer_PayloadEndianOrder.htm" />
+  <HelpKINode Title="TlsServer.PayloadMarker property" Url="html/P_Gemstone_Communication_TlsServer_PayloadMarker.htm" />
+  <HelpKINode Title="TlsServer.Read method" Url="html/M_Gemstone_Communication_TlsServer_Read.htm" />
+  <HelpKINode Title="TlsServer.RemoteCertificateValidationCallback property" Url="html/P_Gemstone_Communication_TlsServer_RemoteCertificateValidationCallback.htm" />
+  <HelpKINode Title="TlsServer.RequireClientCertificate property" Url="html/P_Gemstone_Communication_TlsServer_RequireClientCertificate.htm" />
+  <HelpKINode Title="TlsServer.SendDataToAsync method" Url="html/M_Gemstone_Communication_TlsServer_SendDataToAsync.htm" />
+  <HelpKINode Title="TlsServer.Server property" Url="html/P_Gemstone_Communication_TlsServer_Server.htm" />
+  <HelpKINode Title="TlsServer.Start method" Url="html/M_Gemstone_Communication_TlsServer_Start.htm" />
+  <HelpKINode Title="TlsServer.Status property" Url="html/P_Gemstone_Communication_TlsServer_Status.htm" />
+  <HelpKINode Title="TlsServer.Stop method" Url="html/M_Gemstone_Communication_TlsServer_Stop.htm" />
+  <HelpKINode Title="TlsServer.TlsServer constructor" Url="html/Overload_Gemstone_Communication_TlsServer__ctor.htm" />
+  <HelpKINode Title="TlsServer.TlsSocket class">
+    <HelpKINode Title="TlsServer.TlsSocket Class" Url="html/T_Gemstone_Communication_TlsServer_TlsSocket.htm" />
+    <HelpKINode Title="constructor" Url="html/M_Gemstone_Communication_TlsServer_TlsSocket__ctor.htm" />
+  </HelpKINode>
+  <HelpKINode Title="TlsServer.TlsSocket.Dispose method" Url="html/M_Gemstone_Communication_TlsServer_TlsSocket_Dispose.htm" />
+  <HelpKINode Title="TlsServer.TlsSocket.RemoteEndPoint field" Url="html/F_Gemstone_Communication_TlsServer_TlsSocket_RemoteEndPoint.htm" />
+  <HelpKINode Title="TlsServer.TlsSocket.Socket field" Url="html/F_Gemstone_Communication_TlsServer_TlsSocket_Socket.htm" />
+  <HelpKINode Title="TlsServer.TlsSocket.SslStream field" Url="html/F_Gemstone_Communication_TlsServer_TlsSocket_SslStream.htm" />
+  <HelpKINode Title="TlsServer.TlsSocket.TlsSocket constructor" Url="html/M_Gemstone_Communication_TlsServer_TlsSocket__ctor.htm" />
+  <HelpKINode Title="TlsServer.TrustedCertificatesPath property" Url="html/P_Gemstone_Communication_TlsServer_TrustedCertificatesPath.htm" />
+  <HelpKINode Title="TlsServer.TryGetClient method" Url="html/M_Gemstone_Communication_TlsServer_TryGetClient.htm" />
+  <HelpKINode Title="TlsServer.TryGetClientPrincipal method" Url="html/M_Gemstone_Communication_TlsServer_TryGetClientPrincipal.htm" />
+  <HelpKINode Title="TlsServer.ValidateConfigurationString method" Url="html/M_Gemstone_Communication_TlsServer_ValidateConfigurationString.htm" />
+  <HelpKINode Title="TlsServer.ValidChainFlags property" Url="html/P_Gemstone_Communication_TlsServer_ValidChainFlags.htm" />
+  <HelpKINode Title="TlsServer.ValidPolicyErrors property" Url="html/P_Gemstone_Communication_TlsServer_ValidPolicyErrors.htm" />
+  <HelpKINode Title="TlsSocket class">
+    <HelpKINode Title="fields" Url="html/Fields_T_Gemstone_Communication_TlsServer_TlsSocket.htm" />
+    <HelpKINode Title="methods" Url="html/Methods_T_Gemstone_Communication_TlsServer_TlsSocket.htm" />
+  </HelpKINode>
+  <HelpKINode Title="TotalBytesReceived field" Url="html/F_Gemstone_Communication_TransportStatistics_TotalBytesReceived.htm" />
+  <HelpKINode Title="TotalBytesSent field" Url="html/F_Gemstone_Communication_TransportStatistics_TotalBytesSent.htm" />
+  <HelpKINode Title="TrackStatistics property">
+    <HelpKINode Title="ClientBase.TrackStatistics Property " Url="html/P_Gemstone_Communication_ClientBase_TrackStatistics.htm" />
+    <HelpKINode Title="TcpClient.TrackStatistics Property " Url="html/P_Gemstone_Communication_TcpClient_TrackStatistics.htm" />
+    <HelpKINode Title="TlsClient.TrackStatistics Property " Url="html/P_Gemstone_Communication_TlsClient_TrackStatistics.htm" />
+    <HelpKINode Title="UdpClient.TrackStatistics Property " Url="html/P_Gemstone_Communication_UdpClient_TrackStatistics.htm" />
+  </HelpKINode>
+  <HelpKINode Title="Transport class">
+    <HelpKINode Title="Transport Class" Url="html/T_Gemstone_Communication_Transport.htm" />
+    <HelpKINode Title="fields" Url="html/Fields_T_Gemstone_Communication_Transport.htm" />
+    <HelpKINode Title="methods" Url="html/Methods_T_Gemstone_Communication_Transport.htm" />
+  </HelpKINode>
+  <HelpKINode Title="Transport.CreateEndPoint method" Url="html/M_Gemstone_Communication_Transport_CreateEndPoint.htm" />
+  <HelpKINode Title="Transport.CreateSocket method" Url="html/M_Gemstone_Communication_Transport_CreateSocket.htm" />
+  <HelpKINode Title="Transport.EndpointFormatRegex field" Url="html/F_Gemstone_Communication_Transport_EndpointFormatRegex.htm" />
+  <HelpKINode Title="Transport.GetDefaultIPStack method" Url="html/M_Gemstone_Communication_Transport_GetDefaultIPStack.htm" />
+  <HelpKINode Title="Transport.GetInterfaceIPStack method" Url="html/M_Gemstone_Communication_Transport_GetInterfaceIPStack.htm" />
+  <HelpKINode Title="Transport.IsDestinationReachable method" Url="html/M_Gemstone_Communication_Transport_IsDestinationReachable.htm" />
+  <HelpKINode Title="Transport.IsIPv6IP method" Url="html/M_Gemstone_Communication_Transport_IsIPv6IP.htm" />
+  <HelpKINode Title="Transport.IsLocalAddress method" Url="html/M_Gemstone_Communication_Transport_IsLocalAddress.htm" />
+  <HelpKINode Title="Transport.IsMulticastIP method" Url="html/M_Gemstone_Communication_Transport_IsMulticastIP.htm" />
+  <HelpKINode Title="Transport.IsPortNumberValid method" Url="html/M_Gemstone_Communication_Transport_IsPortNumberValid.htm" />
+  <HelpKINode Title="Transport.PortRangeHigh field" Url="html/F_Gemstone_Communication_Transport_PortRangeHigh.htm" />
+  <HelpKINode Title="Transport.PortRangeLow field" Url="html/F_Gemstone_Communication_Transport_PortRangeLow.htm" />
+  <HelpKINode Title="TransportProtocol enumeration" Url="html/T_Gemstone_Communication_TransportProtocol.htm" />
+  <HelpKINode Title="TransportProtocol property">
+    <HelpKINode Title="ClientBase.TransportProtocol Property " Url="html/P_Gemstone_Communication_ClientBase_TransportProtocol.htm" />
+    <HelpKINode Title="IClient.TransportProtocol Property " Url="html/P_Gemstone_Communication_IClient_TransportProtocol.htm" />
+    <HelpKINode Title="IServer.TransportProtocol Property " Url="html/P_Gemstone_Communication_IServer_TransportProtocol.htm" />
+    <HelpKINode Title="ServerBase.TransportProtocol Property " Url="html/P_Gemstone_Communication_ServerBase_TransportProtocol.htm" />
+  </HelpKINode>
+  <HelpKINode Title="TransportProvider(Of T) class">
+    <HelpKINode Title="TransportProvider(T) Class" Url="html/T_Gemstone_Communication_TransportProvider_1.htm" />
+    <HelpKINode Title="constructor" Url="html/M_Gemstone_Communication_TransportProvider_1__ctor.htm" />
+    <HelpKINode Title="fields" Url="html/Fields_T_Gemstone_Communication_TransportProvider_1.htm" />
+    <HelpKINode Title="methods" Url="html/Methods_T_Gemstone_Communication_TransportProvider_1.htm" />
+    <HelpKINode Title="properties" Url="html/Properties_T_Gemstone_Communication_TransportProvider_1.htm" />
+  </HelpKINode>
+  <HelpKINode Title="TransportProvider(Of T).BytesReceived field" Url="html/F_Gemstone_Communication_TransportProvider_1_BytesReceived.htm" />
+  <HelpKINode Title="TransportProvider(Of T).ID field" Url="html/F_Gemstone_Communication_TransportProvider_1_ID.htm" />
+  <HelpKINode Title="TransportProvider(Of T).MulticastMembershipAddresses field" Url="html/F_Gemstone_Communication_TransportProvider_1_MulticastMembershipAddresses.htm" />
+  <HelpKINode Title="TransportProvider(Of T).Provider field" Url="html/F_Gemstone_Communication_TransportProvider_1_Provider.htm" />
+  <HelpKINode Title="TransportProvider(Of T).ReceiveBuffer property" Url="html/P_Gemstone_Communication_TransportProvider_1_ReceiveBuffer.htm" />
+  <HelpKINode Title="TransportProvider(Of T).ReceiveBufferSize property" Url="html/P_Gemstone_Communication_TransportProvider_1_ReceiveBufferSize.htm" />
+  <HelpKINode Title="TransportProvider(Of T).Reset method" Url="html/M_Gemstone_Communication_TransportProvider_1_Reset.htm" />
+  <HelpKINode Title="TransportProvider(Of T).SendBuffer property" Url="html/P_Gemstone_Communication_TransportProvider_1_SendBuffer.htm" />
+  <HelpKINode Title="TransportProvider(Of T).SendBufferSize property" Url="html/P_Gemstone_Communication_TransportProvider_1_SendBufferSize.htm" />
+  <HelpKINode Title="TransportProvider(Of T).SetReceiveBuffer method" Url="html/M_Gemstone_Communication_TransportProvider_1_SetReceiveBuffer.htm" />
+  <HelpKINode Title="TransportProvider(Of T).SetSendBuffer method" Url="html/M_Gemstone_Communication_TransportProvider_1_SetSendBuffer.htm" />
+  <HelpKINode Title="TransportProvider(Of T).Statistics field" Url="html/F_Gemstone_Communication_TransportProvider_1_Statistics.htm" />
+  <HelpKINode Title="TransportProvider(Of T).TransportProvider constructor" Url="html/M_Gemstone_Communication_TransportProvider_1__ctor.htm" />
+  <HelpKINode Title="TransportProvider&lt;T&gt; class">
+    <HelpKINode Title="TransportProvider(T) Class" Url="html/T_Gemstone_Communication_TransportProvider_1.htm" />
+    <HelpKINode Title="constructor" Url="html/M_Gemstone_Communication_TransportProvider_1__ctor.htm" />
+    <HelpKINode Title="fields" Url="html/Fields_T_Gemstone_Communication_TransportProvider_1.htm" />
+    <HelpKINode Title="methods" Url="html/Methods_T_Gemstone_Communication_TransportProvider_1.htm" />
+    <HelpKINode Title="properties" Url="html/Properties_T_Gemstone_Communication_TransportProvider_1.htm" />
+  </HelpKINode>
+  <HelpKINode Title="TransportProvider&lt;T&gt;.BytesReceived field" Url="html/F_Gemstone_Communication_TransportProvider_1_BytesReceived.htm" />
+  <HelpKINode Title="TransportProvider&lt;T&gt;.ID field" Url="html/F_Gemstone_Communication_TransportProvider_1_ID.htm" />
+  <HelpKINode Title="TransportProvider&lt;T&gt;.MulticastMembershipAddresses field" Url="html/F_Gemstone_Communication_TransportProvider_1_MulticastMembershipAddresses.htm" />
+  <HelpKINode Title="TransportProvider&lt;T&gt;.Provider field" Url="html/F_Gemstone_Communication_TransportProvider_1_Provider.htm" />
+  <HelpKINode Title="TransportProvider&lt;T&gt;.ReceiveBuffer property" Url="html/P_Gemstone_Communication_TransportProvider_1_ReceiveBuffer.htm" />
+  <HelpKINode Title="TransportProvider&lt;T&gt;.ReceiveBufferSize property" Url="html/P_Gemstone_Communication_TransportProvider_1_ReceiveBufferSize.htm" />
+  <HelpKINode Title="TransportProvider&lt;T&gt;.Reset method" Url="html/M_Gemstone_Communication_TransportProvider_1_Reset.htm" />
+  <HelpKINode Title="TransportProvider&lt;T&gt;.SendBuffer property" Url="html/P_Gemstone_Communication_TransportProvider_1_SendBuffer.htm" />
+  <HelpKINode Title="TransportProvider&lt;T&gt;.SendBufferSize property" Url="html/P_Gemstone_Communication_TransportProvider_1_SendBufferSize.htm" />
+  <HelpKINode Title="TransportProvider&lt;T&gt;.SetReceiveBuffer method" Url="html/M_Gemstone_Communication_TransportProvider_1_SetReceiveBuffer.htm" />
+  <HelpKINode Title="TransportProvider&lt;T&gt;.SetSendBuffer method" Url="html/M_Gemstone_Communication_TransportProvider_1_SetSendBuffer.htm" />
+  <HelpKINode Title="TransportProvider&lt;T&gt;.Statistics field" Url="html/F_Gemstone_Communication_TransportProvider_1_Statistics.htm" />
+  <HelpKINode Title="TransportProvider&lt;T&gt;.TransportProvider constructor" Url="html/M_Gemstone_Communication_TransportProvider_1__ctor.htm" />
+  <HelpKINode Title="TransportStatistics class">
+    <HelpKINode Title="TransportStatistics Class" Url="html/T_Gemstone_Communication_TransportStatistics.htm" />
+    <HelpKINode Title="constructor" Url="html/M_Gemstone_Communication_TransportStatistics__ctor.htm" />
+    <HelpKINode Title="fields" Url="html/Fields_T_Gemstone_Communication_TransportStatistics.htm" />
+    <HelpKINode Title="methods" Url="html/Methods_T_Gemstone_Communication_TransportStatistics.htm" />
+  </HelpKINode>
+  <HelpKINode Title="TransportStatistics.LastBytesReceived field" Url="html/F_Gemstone_Communication_TransportStatistics_LastBytesReceived.htm" />
+  <HelpKINode Title="TransportStatistics.LastBytesSent field" Url="html/F_Gemstone_Communication_TransportStatistics_LastBytesSent.htm" />
+  <HelpKINode Title="TransportStatistics.LastReceive field" Url="html/F_Gemstone_Communication_TransportStatistics_LastReceive.htm" />
+  <HelpKINode Title="TransportStatistics.LastSend field" Url="html/F_Gemstone_Communication_TransportStatistics_LastSend.htm" />
+  <HelpKINode Title="TransportStatistics.Reset method" Url="html/M_Gemstone_Communication_TransportStatistics_Reset.htm" />
+  <HelpKINode Title="TransportStatistics.TotalBytesReceived field" Url="html/F_Gemstone_Communication_TransportStatistics_TotalBytesReceived.htm" />
+  <HelpKINode Title="TransportStatistics.TotalBytesSent field" Url="html/F_Gemstone_Communication_TransportStatistics_TotalBytesSent.htm" />
+  <HelpKINode Title="TransportStatistics.TransportStatistics constructor" Url="html/M_Gemstone_Communication_TransportStatistics__ctor.htm" />
+  <HelpKINode Title="TransportStatistics.UpdateBytesReceived method" Url="html/M_Gemstone_Communication_TransportStatistics_UpdateBytesReceived.htm" />
+  <HelpKINode Title="TransportStatistics.UpdateBytesSent method" Url="html/M_Gemstone_Communication_TransportStatistics_UpdateBytesSent.htm" />
+  <HelpKINode Title="TrustedCertificatesPath property">
+    <HelpKINode Title="TlsClient.TrustedCertificatesPath Property " Url="html/P_Gemstone_Communication_TlsClient_TrustedCertificatesPath.htm" />
+    <HelpKINode Title="TlsServer.TrustedCertificatesPath Property " Url="html/P_Gemstone_Communication_TlsServer_TrustedCertificatesPath.htm" />
+  </HelpKINode>
+  <HelpKINode Title="TryGetClient method">
+    <HelpKINode Title="TcpServer.TryGetClient Method " Url="html/M_Gemstone_Communication_TcpServer_TryGetClient.htm" />
+    <HelpKINode Title="TlsServer.TryGetClient Method " Url="html/M_Gemstone_Communication_TlsServer_TryGetClient.htm" />
+    <HelpKINode Title="UdpServer.TryGetClient Method " Url="html/M_Gemstone_Communication_UdpServer_TryGetClient.htm" />
+  </HelpKINode>
+  <HelpKINode Title="TryGetClientPrincipal method">
+    <HelpKINode Title="TcpServer.TryGetClientPrincipal Method " Url="html/M_Gemstone_Communication_TcpServer_TryGetClientPrincipal.htm" />
+    <HelpKINode Title="TlsServer.TryGetClientPrincipal Method " Url="html/M_Gemstone_Communication_TlsServer_TryGetClientPrincipal.htm" />
+  </HelpKINode>
+  <HelpKINode Title="Type property">
+    <HelpKINode Title="RadiusPacket.Type Property " Url="html/P_Gemstone_Communication_Radius_RadiusPacket_Type.htm" />
+    <HelpKINode Title="RadiusPacketAttribute.Type Property " Url="html/P_Gemstone_Communication_Radius_RadiusPacketAttribute_Type.htm" />
+  </HelpKINode>
+  <HelpKINode Title="Udp enumeration member" Url="html/T_Gemstone_Communication_TransportProtocol.htm" />
+  <HelpKINode Title="UdpClient class">
+    <HelpKINode Title="UdpClient Class" Url="html/T_Gemstone_Communication_UdpClient.htm" />
+    <HelpKINode Title="constructor" Url="html/Overload_Gemstone_Communication_UdpClient__ctor.htm" />
+    <HelpKINode Title="events" Url="html/Events_T_Gemstone_Communication_UdpClient.htm" />
+    <HelpKINode Title="fields" Url="html/Fields_T_Gemstone_Communication_UdpClient.htm" />
+    <HelpKINode Title="methods" Url="html/Methods_T_Gemstone_Communication_UdpClient.htm" />
+    <HelpKINode Title="properties" Url="html/Properties_T_Gemstone_Communication_UdpClient.htm" />
+  </HelpKINode>
+  <HelpKINode Title="UdpClient.AddMulticastMembership method" Url="html/M_Gemstone_Communication_UdpClient_AddMulticastMembership.htm" />
+  <HelpKINode Title="UdpClient.AllowDualStackSocket property" Url="html/P_Gemstone_Communication_UdpClient_AllowDualStackSocket.htm" />
+  <HelpKINode Title="UdpClient.Client property" Url="html/P_Gemstone_Communication_UdpClient_Client.htm" />
+  <HelpKINode Title="UdpClient.ConnectAsync method" Url="html/M_Gemstone_Communication_UdpClient_ConnectAsync.htm" />
+  <HelpKINode Title="UdpClient.DefaultAllowDualStackSocket field" Url="html/F_Gemstone_Communication_UdpClient_DefaultAllowDualStackSocket.htm" />
+  <HelpKINode Title="UdpClient.DefaultConnectionString field" Url="html/F_Gemstone_Communication_UdpClient_DefaultConnectionString.htm" />
+  <HelpKINode Title="UdpClient.DefaultMaxPacketSize field" Url="html/F_Gemstone_Communication_UdpClient_DefaultMaxPacketSize.htm" />
+  <HelpKINode Title="UdpClient.DefaultMaxSendQueueSize field" Url="html/F_Gemstone_Communication_UdpClient_DefaultMaxSendQueueSize.htm" />
+  <HelpKINode Title="UdpClient.DefaultReceiveBufferSize field" Url="html/F_Gemstone_Communication_UdpClient_DefaultReceiveBufferSize.htm" />
+  <HelpKINode Title="UdpClient.Disconnect method" Url="html/M_Gemstone_Communication_UdpClient_Disconnect.htm" />
+  <HelpKINode Title="UdpClient.Dispose method" Url="html/Overload_Gemstone_Communication_UdpClient_Dispose.htm" />
+  <HelpKINode Title="UdpClient.DropMulticastMembership method" Url="html/M_Gemstone_Communication_UdpClient_DropMulticastMembership.htm" />
+  <HelpKINode Title="UdpClient.MaxPacketSize property" Url="html/P_Gemstone_Communication_UdpClient_MaxPacketSize.htm" />
+  <HelpKINode Title="UdpClient.MaxSendQueueSize property" Url="html/P_Gemstone_Communication_UdpClient_MaxSendQueueSize.htm" />
+  <HelpKINode Title="UdpClient.OnConnectionException method" Url="html/M_Gemstone_Communication_UdpClient_OnConnectionException.htm" />
+  <HelpKINode Title="UdpClient.OnConnectionTerminated method" Url="html/M_Gemstone_Communication_UdpClient_OnConnectionTerminated.htm" />
+  <HelpKINode Title="UdpClient.OnReceiveDataException method" Url="html/M_Gemstone_Communication_UdpClient_OnReceiveDataException.htm" />
+  <HelpKINode Title="UdpClient.OnSendDataException method" Url="html/M_Gemstone_Communication_UdpClient_OnSendDataException.htm" />
+  <HelpKINode Title="UdpClient.Read method" Url="html/M_Gemstone_Communication_UdpClient_Read.htm" />
+  <HelpKINode Title="UdpClient.ReceiveBufferSize property" Url="html/P_Gemstone_Communication_UdpClient_ReceiveBufferSize.htm" />
+  <HelpKINode Title="UdpClient.ReceiveDataFrom event" Url="html/E_Gemstone_Communication_UdpClient_ReceiveDataFrom.htm" />
+  <HelpKINode Title="UdpClient.ReceiveDataFromComplete event" Url="html/E_Gemstone_Communication_UdpClient_ReceiveDataFromComplete.htm" />
+  <HelpKINode Title="UdpClient.ReceivePacketInfo property" Url="html/P_Gemstone_Communication_UdpClient_ReceivePacketInfo.htm" />
+  <HelpKINode Title="UdpClient.SendDataAsync method" Url="html/M_Gemstone_Communication_UdpClient_SendDataAsync.htm" />
+  <HelpKINode Title="UdpClient.SendDataToAsync method" Url="html/M_Gemstone_Communication_UdpClient_SendDataToAsync.htm" />
+  <HelpKINode Title="UdpClient.ServerUri property" Url="html/P_Gemstone_Communication_UdpClient_ServerUri.htm" />
+  <HelpKINode Title="UdpClient.Status property" Url="html/P_Gemstone_Communication_UdpClient_Status.htm" />
+  <HelpKINode Title="UdpClient.TrackStatistics property" Url="html/P_Gemstone_Communication_UdpClient_TrackStatistics.htm" />
+  <HelpKINode Title="UdpClient.UdpClient constructor" Url="html/Overload_Gemstone_Communication_UdpClient__ctor.htm" />
+  <HelpKINode Title="UdpClient.ValidateConnectionString method" Url="html/M_Gemstone_Communication_UdpClient_ValidateConnectionString.htm" />
+  <HelpKINode Title="UdpServer class">
+    <HelpKINode Title="UdpServer Class" Url="html/T_Gemstone_Communication_UdpServer.htm" />
+    <HelpKINode Title="constructor" Url="html/Overload_Gemstone_Communication_UdpServer__ctor.htm" />
+    <HelpKINode Title="events" Url="html/Events_T_Gemstone_Communication_UdpServer.htm" />
+    <HelpKINode Title="fields" Url="html/Fields_T_Gemstone_Communication_UdpServer.htm" />
+    <HelpKINode Title="methods" Url="html/Methods_T_Gemstone_Communication_UdpServer.htm" />
+    <HelpKINode Title="properties" Url="html/Properties_T_Gemstone_Communication_UdpServer.htm" />
+  </HelpKINode>
+  <HelpKINode Title="UdpServer.AllowDualStackSocket property" Url="html/P_Gemstone_Communication_UdpServer_AllowDualStackSocket.htm" />
+  <HelpKINode Title="UdpServer.ClientIdentificationMode property" Url="html/P_Gemstone_Communication_UdpServer_ClientIdentificationMode.htm" />
+  <HelpKINode Title="UdpServer.DefaultAllowDualStackSocket field" Url="html/F_Gemstone_Communication_UdpServer_DefaultAllowDualStackSocket.htm" />
+  <HelpKINode Title="UdpServer.DefaultClientIdentificationMode field" Url="html/F_Gemstone_Communication_UdpServer_DefaultClientIdentificationMode.htm" />
+  <HelpKINode Title="UdpServer.DefaultConfigurationString field" Url="html/F_Gemstone_Communication_UdpServer_DefaultConfigurationString.htm" />
+  <HelpKINode Title="UdpServer.DefaultDynamicClientEndPoints field" Url="html/F_Gemstone_Communication_UdpServer_DefaultDynamicClientEndPoints.htm" />
+  <HelpKINode Title="UdpServer.DefaultMaxSendQueueSize field" Url="html/F_Gemstone_Communication_UdpServer_DefaultMaxSendQueueSize.htm" />
+  <HelpKINode Title="UdpServer.DisconnectOne method" Url="html/M_Gemstone_Communication_UdpServer_DisconnectOne.htm" />
+  <HelpKINode Title="UdpServer.DynamicClientEndPoints property" Url="html/P_Gemstone_Communication_UdpServer_DynamicClientEndPoints.htm" />
+  <HelpKINode Title="UdpServer.MaxSendQueueSize property" Url="html/P_Gemstone_Communication_UdpServer_MaxSendQueueSize.htm" />
+  <HelpKINode Title="UdpServer.OnReceiveClientDataException method" Url="html/M_Gemstone_Communication_UdpServer_OnReceiveClientDataException.htm" />
+  <HelpKINode Title="UdpServer.OnSendClientDataException method" Url="html/M_Gemstone_Communication_UdpServer_OnSendClientDataException.htm" />
+  <HelpKINode Title="UdpServer.Read method" Url="html/M_Gemstone_Communication_UdpServer_Read.htm" />
+  <HelpKINode Title="UdpServer.SendDataToAsync method" Url="html/M_Gemstone_Communication_UdpServer_SendDataToAsync.htm" />
+  <HelpKINode Title="UdpServer.Server property" Url="html/P_Gemstone_Communication_UdpServer_Server.htm" />
+  <HelpKINode Title="UdpServer.Start method" Url="html/M_Gemstone_Communication_UdpServer_Start.htm" />
+  <HelpKINode Title="UdpServer.Status property" Url="html/P_Gemstone_Communication_UdpServer_Status.htm" />
+  <HelpKINode Title="UdpServer.Stop method" Url="html/M_Gemstone_Communication_UdpServer_Stop.htm" />
+  <HelpKINode Title="UdpServer.TryGetClient method" Url="html/M_Gemstone_Communication_UdpServer_TryGetClient.htm" />
+  <HelpKINode Title="UdpServer.UdpServer constructor" Url="html/Overload_Gemstone_Communication_UdpServer__ctor.htm" />
+  <HelpKINode Title="UdpServer.ValidateConfigurationString method" Url="html/M_Gemstone_Communication_UdpServer_ValidateConfigurationString.htm" />
+  <HelpKINode Title="UpdateBytesReceived method">
+    <HelpKINode Title="ClientBase.UpdateBytesReceived Method " Url="html/M_Gemstone_Communication_ClientBase_UpdateBytesReceived.htm" />
+    <HelpKINode Title="TransportStatistics.UpdateBytesReceived Method " Url="html/M_Gemstone_Communication_TransportStatistics_UpdateBytesReceived.htm" />
+  </HelpKINode>
+  <HelpKINode Title="UpdateBytesSent method">
+    <HelpKINode Title="ClientBase.UpdateBytesSent Method " Url="html/M_Gemstone_Communication_ClientBase_UpdateBytesSent.htm" />
+    <HelpKINode Title="TransportStatistics.UpdateBytesSent Method " Url="html/M_Gemstone_Communication_TransportStatistics_UpdateBytesSent.htm" />
+  </HelpKINode>
+  <HelpKINode Title="UserName enumeration member" Url="html/T_Gemstone_Communication_Radius_AttributeType.htm" />
+  <HelpKINode Title="UserPassword enumeration member" Url="html/T_Gemstone_Communication_Radius_AttributeType.htm" />
+  <HelpKINode Title="ValidateConfigurationString method">
+    <HelpKINode Title="ServerBase.ValidateConfigurationString Method " Url="html/M_Gemstone_Communication_ServerBase_ValidateConfigurationString.htm" />
+    <HelpKINode Title="TcpServer.ValidateConfigurationString Method " Url="html/M_Gemstone_Communication_TcpServer_ValidateConfigurationString.htm" />
+    <HelpKINode Title="TlsServer.ValidateConfigurationString Method " Url="html/M_Gemstone_Communication_TlsServer_ValidateConfigurationString.htm" />
+    <HelpKINode Title="UdpServer.ValidateConfigurationString Method " Url="html/M_Gemstone_Communication_UdpServer_ValidateConfigurationString.htm" />
+  </HelpKINode>
+  <HelpKINode Title="ValidateConnectionString method">
+    <HelpKINode Title="ClientBase.ValidateConnectionString Method " Url="html/M_Gemstone_Communication_ClientBase_ValidateConnectionString.htm" />
+    <HelpKINode Title="FileClient.ValidateConnectionString Method " Url="html/M_Gemstone_Communication_FileClient_ValidateConnectionString.htm" />
+    <HelpKINode Title="SerialClient.ValidateConnectionString Method " Url="html/M_Gemstone_Communication_SerialClient_ValidateConnectionString.htm" />
+    <HelpKINode Title="TcpClient.ValidateConnectionString Method " Url="html/M_Gemstone_Communication_TcpClient_ValidateConnectionString.htm" />
+    <HelpKINode Title="TlsClient.ValidateConnectionString Method " Url="html/M_Gemstone_Communication_TlsClient_ValidateConnectionString.htm" />
+    <HelpKINode Title="UdpClient.ValidateConnectionString Method " Url="html/M_Gemstone_Communication_UdpClient_ValidateConnectionString.htm" />
+  </HelpKINode>
+  <HelpKINode Title="ValidChainFlags property">
+    <HelpKINode Title="TlsClient.ValidChainFlags Property " Url="html/P_Gemstone_Communication_TlsClient_ValidChainFlags.htm" />
+    <HelpKINode Title="TlsServer.ValidChainFlags Property " Url="html/P_Gemstone_Communication_TlsServer_ValidChainFlags.htm" />
+  </HelpKINode>
+  <HelpKINode Title="ValidPolicyErrors property">
+    <HelpKINode Title="TlsClient.ValidPolicyErrors Property " Url="html/P_Gemstone_Communication_TlsClient_ValidPolicyErrors.htm" />
+    <HelpKINode Title="TlsServer.ValidPolicyErrors Property " Url="html/P_Gemstone_Communication_TlsServer_ValidPolicyErrors.htm" />
+  </HelpKINode>
+  <HelpKINode Title="Value property" Url="html/P_Gemstone_Communication_Radius_RadiusPacketAttribute_Value.htm" />
+  <HelpKINode Title="VendorSpecific enumeration member" Url="html/T_Gemstone_Communication_Radius_AttributeType.htm" />
   <HelpKINode Title="welcome">
     <HelpKINode Title="getting started, root, gemstone" Url="html/About.htm" />
   </HelpKINode>
