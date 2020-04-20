@@ -76,7 +76,7 @@ namespace Gemstone.Communication
     ///         string input;
     ///         while (string.Compare(input = Console.ReadLine(), "Exit", true) != 0)
     ///         {
-    ///             s_client.Send(input + "\r\n");
+    ///             s_client.Send(input + Environment.NewLine);
     ///         }
     /// 
     ///         // Disconnect the client on shutdown.
