@@ -53,16 +53,16 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Net;
+using System.Net.Security;
 using System.Net.Sockets;
+using System.Security.Authentication;
 using System.Security.Principal;
 using System.Text;
 using System.Threading;
-using System.Net.Security;
-using System.Security.Authentication;
-using Gemstone.ArrayExtensions;
-using Gemstone.Threading.SynchronizedOperations;
-using Gemstone.StringExtensions;
 using Gemstone.ActionExtensions;
+using Gemstone.ArrayExtensions;
+using Gemstone.StringExtensions;
+using Gemstone.Threading.SynchronizedOperations;
 
 namespace Gemstone.Communication
 {
@@ -152,9 +152,9 @@ namespace Gemstone.Communication
         private class TcpClientInfo
         {
             public TransportProvider<Socket> Client = new TransportProvider<Socket>();
-            public SocketAsyncEventArgs SendArgs = new SocketAsyncEventArgs();
-            public object SendLock = new object();
-            public ConcurrentQueue<TcpServerPayload> SendQueue = new ConcurrentQueue<TcpServerPayload>();
+            public readonly SocketAsyncEventArgs SendArgs = new SocketAsyncEventArgs();
+            public readonly object SendLock = new object();
+            public readonly ConcurrentQueue<TcpServerPayload> SendQueue = new ConcurrentQueue<TcpServerPayload>();
             public ShortSynchronizedOperation DumpPayloadsOperation = default!;
             public int Sending;
             public WindowsPrincipal? ClientPrincipal;
@@ -708,8 +708,8 @@ namespace Gemstone.Communication
                         if (!cancelTimeout())
                             throw new SocketException((int)SocketError.TimedOut);
 
-                        if (authenticationStream.RemoteIdentity is WindowsIdentity)
-                            clientPrincipal = new WindowsPrincipal((WindowsIdentity)authenticationStream.RemoteIdentity);
+                        if (authenticationStream.RemoteIdentity is WindowsIdentity identity)
+                            clientPrincipal = new WindowsPrincipal(identity);
                     }
                     catch (InvalidCredentialException)
                     {

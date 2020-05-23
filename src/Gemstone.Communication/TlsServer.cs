@@ -94,8 +94,8 @@ namespace Gemstone.Communication
             public Func<bool> CancelTimeout = () => false;
 
             public int Sending;
-            public object SendLock = new object();
-            public ConcurrentQueue<TlsServerPayload> SendQueue = new ConcurrentQueue<TlsServerPayload>();
+            public readonly object SendLock = new object();
+            public readonly ConcurrentQueue<TlsServerPayload> SendQueue = new ConcurrentQueue<TlsServerPayload>();
             public ShortSynchronizedOperation DumpPayloadsOperation = default!;
 
             public NegotiateStream? NegotiateStream;
@@ -522,7 +522,7 @@ namespace Gemstone.Communication
 
             try
             {
-                if (tlsClient.Provider != null && (tlsClient.Provider.Socket?.Connected ?? false))
+                if (tlsClient.Provider?.Socket != null && tlsClient.Provider.Socket.Connected)
                     tlsClient.Provider.Socket.Disconnect(false);
 
                 OnClientDisconnected(clientID);

@@ -384,7 +384,8 @@ namespace Gemstone.Communication
         /// <summary>
         /// Gets current read indices for received data buffers incremented at each <see cref="Read"/> call.
         /// </summary>
-        protected ConcurrentDictionary<Guid, int> ReadIndicies { get; private set; }
+        protected ConcurrentDictionary<Guid, int> ReadIndicies { get;
+        }
 
         /// <summary>
         /// Gets or sets the unique identifier of the server.

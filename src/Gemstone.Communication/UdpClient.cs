@@ -201,9 +201,8 @@ namespace Gemstone.Communication
         /// </summary>
         public const string DefaultConnectionString = "Server=localhost:8888; Port=8989";
 
-        /// <summary>
-        /// Specifies the constant to be used for disabling <see cref="SocketError.ConnectionReset"/> when endpoint is not listening.
-        /// </summary>
+        // Specifies the constant to be used for disabling <see cref="SocketError.ConnectionReset"/> when endpoint is not listening.
+        // ReSharper disable once InconsistentNaming
         private const int SIO_UDP_CONNRESET = -1744830452;
 
         // Events
@@ -410,7 +409,7 @@ namespace Gemstone.Communication
         {
             buffer.ValidateParameters(startIndex, length);
 
-            if (m_udpClient == null || m_udpClient.ReceiveBuffer == null)
+            if (m_udpClient?.ReceiveBuffer == null)
                 throw new InvalidOperationException("No received data buffer has been defined to read.");
 
             int sourceLength = m_udpClient.BytesReceived - ReadIndex;
@@ -438,7 +437,7 @@ namespace Gemstone.Communication
             {
                 base.Disconnect();
 
-                if (m_udpServer != null && m_udpClient != null && m_udpClient.Provider != null)
+                if (m_udpServer != null && m_udpClient?.Provider != null)
                 {
                     // If the IP specified for the server is a multicast IP, unsubscribe from the specified multicast group.
                     IPEndPoint serverEndpoint = m_udpServer;
@@ -786,7 +785,7 @@ namespace Gemstone.Communication
         /// </summary>
         private void SendPayload(UdpClientPayload payload)
         {
-            if (payload == null || m_udpClient == null || m_udpClient.SendBuffer == null || m_sendArgs == null)
+            if (payload == null || m_udpClient?.SendBuffer == null || m_sendArgs == null)
                 return;
 
             try
@@ -902,7 +901,7 @@ namespace Gemstone.Communication
         /// </summary>
         private void ReceivePayloadAsync()
         {
-            if (m_udpClient == null || m_udpClient.ReceiveBuffer == null || m_receiveArgs == null)
+            if (m_udpClient?.ReceiveBuffer == null || m_receiveArgs == null)
                 return;
 
             // Set up event args for receive operation.
@@ -930,7 +929,7 @@ namespace Gemstone.Communication
         /// </summary>
         private void ProcessReceive()
         {
-            if (m_udpClient == null || m_udpClient.ReceiveBuffer == null || m_receiveArgs == null)
+            if (m_udpClient?.ReceiveBuffer == null || m_receiveArgs == null)
                 return;
 
             try
@@ -989,7 +988,7 @@ namespace Gemstone.Communication
         {
             multicastMembershipAddresses = null;
 
-            if (m_udpClient == null || m_udpClient.Provider == null)
+            if (m_udpClient?.Provider == null)
                 return;
 
             try
@@ -1043,7 +1042,7 @@ namespace Gemstone.Communication
 
         private void DropMulticastMembership(IPAddress serverAddress, IPAddress? sourceAddress, byte[]? multicastMembershipAddresses)
         {
-            if (m_udpClient == null || m_udpClient.Provider == null)
+            if (m_udpClient?.Provider == null)
                 return;
 
             try

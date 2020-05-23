@@ -372,53 +372,43 @@ namespace Gemstone.Communication.Radius
             if (password.Length > 128)
                 throw new ArgumentException("Password can be a maximum of 128 characters in length.");
 
-            byte[] result;
             byte[]? xorBytes = null;
             byte[] passwordBytes = Encoding.GetBytes(password);
             byte[] sharedSecretBytes = Encoding.GetBytes(sharedSecret);
             byte[] md5HashInputBytes = new byte[sharedSecretBytes.Length + 16];
 
-            using (MD5CryptoServiceProvider md5Provider = new MD5CryptoServiceProvider())
+            using MD5CryptoServiceProvider md5Provider = new MD5CryptoServiceProvider();
+
+            // If length of password is not a multiple of 16, take the multiple of 16 that's next
+            // closest to the password's length and leave the empty space at the end as padding.
+            byte[] result = passwordBytes.Length % 16 == 0 ? new byte[passwordBytes.Length] : new byte[passwordBytes.Length / 16 * 16 + 16];
+
+            // Copy the password to the result buffer where it'll be XORed.
+            Buffer.BlockCopy(passwordBytes, 0, result, 0, passwordBytes.Length);
+
+            // For the first 16-byte segment of the password, password characters are to be XORed with the
+            // MD5 hash value that's computed as follows:
+            //   MD5(Shared secret key + Request authenticator)
+            Buffer.BlockCopy(sharedSecretBytes, 0, md5HashInputBytes, 0, sharedSecretBytes.Length);
+            Buffer.BlockCopy(requestAuthenticator, 0, md5HashInputBytes, sharedSecretBytes.Length, requestAuthenticator.Length);
+
+            for (int i = 0; i <= result.Length - 1; i += 16)
             {
-                if (passwordBytes.Length % 16 == 0)
+                // Perform XOR-based encryption of the password in 16-byte segments.
+                if (i > 0 && xorBytes != null)
                 {
-                    // Length of password is a multiple of 16.
-                    result = new byte[passwordBytes.Length];
-                }
-                else
-                {
-                    // Length of password is not a multiple of 16, so we'll take the multiple of 16 that's next
-                    // closest to the password's length and leave the empty space at the end as padding.
-                    result = new byte[passwordBytes.Length / 16 * 16 + 16];
+                    // For passwords that are more than 16 characters in length, each consecutive 16-byte
+                    // segment of the password is XORed with MD5 hash value that's computed as follows:
+                    //   MD5(Shared secret key + XOR bytes used in the previous segment)
+                    // ReSharper disable once PossibleNullReferenceException
+                    Buffer.BlockCopy(xorBytes, 0, md5HashInputBytes, sharedSecretBytes.Length, xorBytes.Length);
                 }
 
-                // Copy the password to the result buffer where it'll be XORed.
-                Buffer.BlockCopy(passwordBytes, 0, result, 0, passwordBytes.Length);
+                xorBytes = md5Provider.ComputeHash(md5HashInputBytes);
 
-                // For the first 16-byte segment of the password, password characters are to be XORed with the
-                // MD5 hash value that's computed as follows:
-                //   MD5(Shared secret key + Request authenticator)
-                Buffer.BlockCopy(sharedSecretBytes, 0, md5HashInputBytes, 0, sharedSecretBytes.Length);
-                Buffer.BlockCopy(requestAuthenticator, 0, md5HashInputBytes, sharedSecretBytes.Length, requestAuthenticator.Length);
-
-                for (int i = 0; i <= result.Length - 1; i += 16)
-                {
-                    // Perform XOR-based encryption of the password in 16-byte segments.
-                    if (i > 0 && xorBytes != null)
-                    {
-                        // For passwords that are more than 16 characters in length, each consecutive 16-byte
-                        // segment of the password is XORed with MD5 hash value that's computed as follows:
-                        //   MD5(Shared secret key + XOR bytes used in the previous segment)
-                        // ReSharper disable once PossibleNullReferenceException
-                        Buffer.BlockCopy(xorBytes, 0, md5HashInputBytes, sharedSecretBytes.Length, xorBytes.Length);
-                    }
-
-                    xorBytes = md5Provider.ComputeHash(md5HashInputBytes);
-
-                    // XOR the password bytes in the current segment with the XOR bytes.
-                    for (int j = i; j <= i + 16 - 1; j++)
-                        result[j] = (byte)(result[j] ^ xorBytes[j]);
-                }
+                // XOR the password bytes in the current segment with the XOR bytes.
+                for (int j = i; j <= i + 16 - 1; j++)
+                    result[j] = (byte)(result[j] ^ xorBytes[j]);
             }
 
             return result;

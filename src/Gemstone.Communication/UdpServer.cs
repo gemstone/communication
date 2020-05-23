@@ -186,9 +186,9 @@ namespace Gemstone.Communication
         private class UdpClientInfo
         {
             public TransportProvider<EndPoint> Client = new TransportProvider<EndPoint>();
-            public SocketAsyncEventArgs SendArgs = new SocketAsyncEventArgs();
-            public object SendLock = new object();
-            public ConcurrentQueue<UdpServerPayload> SendQueue = new ConcurrentQueue<UdpServerPayload>();
+            public readonly SocketAsyncEventArgs SendArgs = new SocketAsyncEventArgs();
+            public readonly object SendLock = new object();
+            public readonly ConcurrentQueue<UdpServerPayload> SendQueue = new ConcurrentQueue<UdpServerPayload>();
             public ShortSynchronizedOperation DumpPayloadsOperation = default!;
             public int Sending;
         }
@@ -235,6 +235,7 @@ namespace Gemstone.Communication
         /// <summary>
         /// Specifies the constant to be used for disabling <see cref="SocketError.ConnectionReset"/> when endpoint is not listening.
         /// </summary>
+        // ReSharper disable once InconsistentNaming
         private const int SIO_UDP_CONNRESET = -1744830452;
 
         // Fields

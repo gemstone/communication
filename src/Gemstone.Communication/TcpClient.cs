@@ -59,16 +59,16 @@ using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
+using System.Net.Security;
 using System.Net.Sockets;
+using System.Security.Authentication;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading;
-using System.Net.Security;
-using System.Security.Authentication;
-using Gemstone.Threading.SynchronizedOperations;
-using Gemstone.StringExtensions;
 using Gemstone.ActionExtensions;
 using Gemstone.ArrayExtensions;
+using Gemstone.StringExtensions;
+using Gemstone.Threading.SynchronizedOperations;
 
 // ReSharper disable AccessToDisposedClosure
 namespace Gemstone.Communication
@@ -232,7 +232,7 @@ namespace Gemstone.Communication
             public byte[]? Data;
             public int Offset;
             public int Length;
-            public ManualResetEventSlim WaitHandle = new ManualResetEventSlim();
+            public readonly ManualResetEventSlim WaitHandle = new ManualResetEventSlim();
         }
 
         private class CancellationToken
@@ -418,7 +418,7 @@ namespace Gemstone.Communication
                 if (m_serverList != null)
                     return m_serverList;
 
-                if (m_connectData?.ContainsKey("server") ?? false)
+                if (m_connectData != null && m_connectData.ContainsKey("server"))
                     m_serverList = m_connectData["server"].Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries).Select(server => server.Trim()).ToArray();
 
                 return m_serverList ?? Array.Empty<string>();
@@ -734,10 +734,10 @@ namespace Gemstone.Communication
                 if (connectState != null && connectState.Token.Cancelled)
                     connectState.Dispose();
 
-                if (receiveState != null && receiveState.Token != null && receiveState.Token.Cancelled)
+                if (receiveState?.Token != null && receiveState.Token.Cancelled)
                     receiveState.Dispose();
 
-                if (sendState != null && sendState.Token != null && sendState.Token.Cancelled)
+                if (sendState?.Token != null && sendState.Token.Cancelled)
                     sendState.Dispose();
             }
         }
@@ -903,10 +903,10 @@ namespace Gemstone.Communication
                     }
                 }
 
-                if (receiveState != null && receiveState.Token != null && receiveState.Token.Cancelled)
+                if (receiveState?.Token != null && receiveState.Token.Cancelled)
                     receiveState.Dispose();
 
-                if (sendState != null && sendState.Token != null && sendState.Token.Cancelled)
+                if (sendState?.Token != null && sendState.Token.Cancelled)
                     sendState.Dispose();
             }
         }
@@ -1108,7 +1108,7 @@ namespace Gemstone.Communication
         {
             ReceiveState? receiveState = m_receiveState;
 
-            if (receiveState == null || receiveState.Token == null || receiveState.Token.Cancelled)
+            if (receiveState?.Token == null || receiveState.Token.Cancelled)
                 return 0;
 
             buffer.ValidateParameters(startIndex, length);
@@ -1146,7 +1146,7 @@ namespace Gemstone.Communication
                 sendState = m_sendState;
 
                 // Quit if this send loop has been canceled
-                if (sendState == null || sendState.Token == null || sendState.Token.Cancelled)
+                if (sendState?.Token == null || sendState.Token.Cancelled)
                     return null;
 
                 // Prepare for payload-aware transmission.
@@ -1190,7 +1190,7 @@ namespace Gemstone.Communication
             {
                 // If the operation was canceled during execution,
                 // make sure to dispose of allocated resources
-                if (sendState != null && sendState.Token != null && sendState.Token.Cancelled)
+                if (sendState?.Token != null && sendState.Token.Cancelled)
                     sendState.Dispose();
             }
 
@@ -1264,7 +1264,7 @@ namespace Gemstone.Communication
         {
             ManualResetEventSlim? handle = null;
 
-            if (sendState == null || sendState.Token == null || sendState.Payload == null || sendState.SendArgs == null)
+            if (sendState?.Token == null || sendState.Payload == null || sendState.SendArgs == null)
                 return;
 
             try
@@ -1498,7 +1498,7 @@ namespace Gemstone.Communication
             SendState? sendState = m_sendState;
 
             // Quit if this send loop has been canceled
-            if (sendState == null || sendState.Token == null || sendState.Token.Cancelled)
+            if (sendState?.Token == null || sendState.Token.Cancelled)
                 return;
 
             // Check to see if the client has reached the maximum send queue size.

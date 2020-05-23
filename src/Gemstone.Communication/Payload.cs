@@ -23,11 +23,11 @@
 //  09/14/2009 - Stephen C. Wills
 //       Added new header and license agreement.
 //  09/21/2009 - Pinal C. Patel
-//       Fixed a bug in AddHeader() that was putting the length of the provided buffer in the header 
+//       Fixed a issue in AddHeader() that was putting the length of the provided buffer in the header 
 //       instead of the length specified in the method parameter.
 //  01/30/2011 - Pinal C. Patel
-//       Fixed a bug in AddHeader() that created an insufficient return buffer when the specified offset 
-//       was non-zero resulting in "out of bounds" exception.
+//       Fixed a issue in AddHeader() that created an insufficient return buffer when the specified
+//       offset was non-zero resulting in "out of bounds" exception.
 //  08/18/2011 - J. Ritchie Carroll
 //       Added processing overloads to be able to use socket asynchronous event arguments and performed
 //       minor code clean up and code review.
