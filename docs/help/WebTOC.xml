@@ -2,13 +2,13 @@
 <HelpTOC>
 
   <HelpTOCNode Title="About" Url="html/About.htm" />
-  <HelpTOCNode Id="ac18001f-c1f6-42e5-98bb-38c26ca01e9c" Title="Gemstone.Communication" Url="html/N_Gemstone_Communication.htm">
-    <HelpTOCNode Id="11447619-cb25-42f3-9343-ff819860f3b3" Title="ClientBase Class" Url="html/T_Gemstone_Communication_ClientBase.htm">
-      <HelpTOCNode Id="0ae14666-2666-443f-b132-76d8df5f7097" Title="ClientBase Constructor " Url="html/Overload_Gemstone_Communication_ClientBase__ctor.htm">
+  <HelpTOCNode Id="b95172c8-826e-425e-b118-4d18342089f4" Title="Gemstone.Communication" Url="html/N_Gemstone_Communication.htm">
+    <HelpTOCNode Id="624d1b3b-7455-44e1-98d2-64eb1c032561" Title="ClientBase Class" Url="html/T_Gemstone_Communication_ClientBase.htm">
+      <HelpTOCNode Id="8ff140f4-cbe9-49f9-b074-562b0fe82555" Title="ClientBase Constructor " Url="html/Overload_Gemstone_Communication_ClientBase__ctor.htm">
         <HelpTOCNode Title="ClientBase Constructor " Url="html/M_Gemstone_Communication_ClientBase__ctor.htm" />
         <HelpTOCNode Title="ClientBase Constructor (TransportProtocol, String)" Url="html/M_Gemstone_Communication_ClientBase__ctor_1.htm" />
       </HelpTOCNode>
-      <HelpTOCNode Id="99df4c08-f9f1-488d-a038-39eef4ff6cce" Title="ClientBase Properties" Url="html/Properties_T_Gemstone_Communication_ClientBase.htm">
+      <HelpTOCNode Id="516ed797-dc42-4d1e-94a5-3c49e85456e4" Title="ClientBase Properties" Url="html/Properties_T_Gemstone_Communication_ClientBase.htm">
         <HelpTOCNode Title="ConnectionString Property " Url="html/P_Gemstone_Communication_ClientBase_ConnectionString.htm" />
         <HelpTOCNode Title="ConnectionTime Property " Url="html/P_Gemstone_Communication_ClientBase_ConnectionTime.htm" />
         <HelpTOCNode Title="CurrentState Property " Url="html/P_Gemstone_Communication_ClientBase_CurrentState.htm" />
@@ -26,12 +26,12 @@
         <HelpTOCNode Title="TrackStatistics Property " Url="html/P_Gemstone_Communication_ClientBase_TrackStatistics.htm" />
         <HelpTOCNode Title="TransportProtocol Property " Url="html/P_Gemstone_Communication_ClientBase_TransportProtocol.htm" />
       </HelpTOCNode>
-      <HelpTOCNode Id="ad3054a1-6cd1-4c64-82c3-a761d793b129" Title="ClientBase Methods" Url="html/Methods_T_Gemstone_Communication_ClientBase.htm">
+      <HelpTOCNode Id="cc552045-99bb-4a63-a9e4-806b60d0bfc7" Title="ClientBase Methods" Url="html/Methods_T_Gemstone_Communication_ClientBase.htm">
         <HelpTOCNode Title="Connect Method " Url="html/M_Gemstone_Communication_ClientBase_Connect.htm" />
         <HelpTOCNode Title="ConnectAsync Method " Url="html/M_Gemstone_Communication_ClientBase_ConnectAsync.htm" />
         <HelpTOCNode Title="Create Method " Url="html/M_Gemstone_Communication_ClientBase_Create.htm" />
         <HelpTOCNode Title="Disconnect Method " Url="html/M_Gemstone_Communication_ClientBase_Disconnect.htm" />
-        <HelpTOCNode Id="fb34b026-c8af-4109-b7a5-2261ca734ba6" Title="Dispose Method " Url="html/Overload_Gemstone_Communication_ClientBase_Dispose.htm">
+        <HelpTOCNode Id="838c5410-25c1-4f6b-b49d-e6a0b9978821" Title="Dispose Method " Url="html/Overload_Gemstone_Communication_ClientBase_Dispose.htm">
           <HelpTOCNode Title="Dispose Method " Url="html/M_Gemstone_Communication_ClientBase_Dispose.htm" />
           <HelpTOCNode Title="Dispose Method (Boolean)" Url="html/M_Gemstone_Communication_ClientBase_Dispose_1.htm" />
         </HelpTOCNode>
@@ -47,12 +47,12 @@
         <HelpTOCNode Title="OnSendDataException Method " Url="html/M_Gemstone_Communication_ClientBase_OnSendDataException.htm" />
         <HelpTOCNode Title="OnSendDataStart Method " Url="html/M_Gemstone_Communication_ClientBase_OnSendDataStart.htm" />
         <HelpTOCNode Title="Read Method " Url="html/M_Gemstone_Communication_ClientBase_Read.htm" />
-        <HelpTOCNode Id="e5366dfd-5bb0-4ed3-88cf-a6ae9c4845e7" Title="Send Method " Url="html/Overload_Gemstone_Communication_ClientBase_Send.htm">
+        <HelpTOCNode Id="fc0324a6-206e-472d-8fd1-94fb7241b430" Title="Send Method " Url="html/Overload_Gemstone_Communication_ClientBase_Send.htm">
           <HelpTOCNode Title="Send Method (Byte[])" Url="html/M_Gemstone_Communication_ClientBase_Send.htm" />
           <HelpTOCNode Title="Send Method (String)" Url="html/M_Gemstone_Communication_ClientBase_Send_2.htm" />
           <HelpTOCNode Title="Send Method (Byte[], Int32, Int32)" Url="html/M_Gemstone_Communication_ClientBase_Send_1.htm" />
         </HelpTOCNode>
-        <HelpTOCNode Id="a0a83eb0-857b-4da8-8f17-299f1fe7c3a3" Title="SendAsync Method " Url="html/Overload_Gemstone_Communication_ClientBase_SendAsync.htm">
+        <HelpTOCNode Id="02d061e6-84dd-4668-a743-f250dd536620" Title="SendAsync Method " Url="html/Overload_Gemstone_Communication_ClientBase_SendAsync.htm">
           <HelpTOCNode Title="SendAsync Method (Byte[])" Url="html/M_Gemstone_Communication_ClientBase_SendAsync.htm" />
           <HelpTOCNode Title="SendAsync Method (String)" Url="html/M_Gemstone_Communication_ClientBase_SendAsync_2.htm" />
           <HelpTOCNode Title="SendAsync Method (Byte[], Int32, Int32)" Url="html/M_Gemstone_Communication_ClientBase_SendAsync_1.htm" />
@@ -62,7 +62,7 @@
         <HelpTOCNode Title="UpdateBytesSent Method " Url="html/M_Gemstone_Communication_ClientBase_UpdateBytesSent.htm" />
         <HelpTOCNode Title="ValidateConnectionString Method " Url="html/M_Gemstone_Communication_ClientBase_ValidateConnectionString.htm" />
       </HelpTOCNode>
-      <HelpTOCNode Id="61545e51-2536-4ddf-a0be-e775b32eb91b" Title="ClientBase Events" Url="html/Events_T_Gemstone_Communication_ClientBase.htm">
+      <HelpTOCNode Id="1d0a0f58-492c-4346-ac48-913a3e64c6cf" Title="ClientBase Events" Url="html/Events_T_Gemstone_Communication_ClientBase.htm">
         <HelpTOCNode Title="ConnectionAttempt Event" Url="html/E_Gemstone_Communication_ClientBase_ConnectionAttempt.htm" />
         <HelpTOCNode Title="ConnectionEstablished Event" Url="html/E_Gemstone_Communication_ClientBase_ConnectionEstablished.htm" />
         <HelpTOCNode Title="ConnectionException Event" Url="html/E_Gemstone_Communication_ClientBase_ConnectionException.htm" />
@@ -75,7 +75,7 @@
         <HelpTOCNode Title="SendDataException Event" Url="html/E_Gemstone_Communication_ClientBase_SendDataException.htm" />
         <HelpTOCNode Title="SendDataStart Event" Url="html/E_Gemstone_Communication_ClientBase_SendDataStart.htm" />
       </HelpTOCNode>
-      <HelpTOCNode Id="7f12eac3-8d8e-4939-8b9a-c7c2b0c9c203" Title="ClientBase Fields" Url="html/Fields_T_Gemstone_Communication_ClientBase.htm">
+      <HelpTOCNode Id="0f6ceef9-3172-4df7-88da-14c7d131b692" Title="ClientBase Fields" Url="html/Fields_T_Gemstone_Communication_ClientBase.htm">
         <HelpTOCNode Title="DefaultMaxConnectionAttempts Field" Url="html/F_Gemstone_Communication_ClientBase_DefaultMaxConnectionAttempts.htm" />
         <HelpTOCNode Title="DefaultReceiveBufferSize Field" Url="html/F_Gemstone_Communication_ClientBase_DefaultReceiveBufferSize.htm" />
         <HelpTOCNode Title="DefaultSendBufferSize Field" Url="html/F_Gemstone_Communication_ClientBase_DefaultSendBufferSize.htm" />
@@ -83,12 +83,12 @@
     </HelpTOCNode>
     <HelpTOCNode Title="ClientIdentificationMode Enumeration" Url="html/T_Gemstone_Communication_ClientIdentificationMode.htm" />
     <HelpTOCNode Title="ClientState Enumeration" Url="html/T_Gemstone_Communication_ClientState.htm" />
-    <HelpTOCNode Id="1b6e0d32-e8b3-47a1-874f-6b0815802555" Title="FileClient Class" Url="html/T_Gemstone_Communication_FileClient.htm">
-      <HelpTOCNode Id="bff1cf63-8829-43bf-8b25-63f7871bed87" Title="FileClient Constructor " Url="html/Overload_Gemstone_Communication_FileClient__ctor.htm">
+    <HelpTOCNode Id="ed9a5bee-649d-48a4-854d-57e42b766c7f" Title="FileClient Class" Url="html/T_Gemstone_Communication_FileClient.htm">
+      <HelpTOCNode Id="45053cde-e9fc-4e14-ae30-4df4971f3eac" Title="FileClient Constructor " Url="html/Overload_Gemstone_Communication_FileClient__ctor.htm">
         <HelpTOCNode Title="FileClient Constructor " Url="html/M_Gemstone_Communication_FileClient__ctor.htm" />
         <HelpTOCNode Title="FileClient Constructor (String)" Url="html/M_Gemstone_Communication_FileClient__ctor_1.htm" />
       </HelpTOCNode>
-      <HelpTOCNode Id="7b428681-6f40-46f7-8cbb-a6544fcf513b" Title="FileClient Properties" Url="html/Properties_T_Gemstone_Communication_FileClient.htm">
+      <HelpTOCNode Id="52919bb4-42bd-489f-9f4d-e26953b1a8e0" Title="FileClient Properties" Url="html/Properties_T_Gemstone_Communication_FileClient.htm">
         <HelpTOCNode Title="AutoRepeat Property " Url="html/P_Gemstone_Communication_FileClient_AutoRepeat.htm" />
         <HelpTOCNode Title="Client Property " Url="html/P_Gemstone_Communication_FileClient_Client.htm" />
         <HelpTOCNode Title="FileAccessMode Property " Url="html/P_Gemstone_Communication_FileClient_FileAccessMode.htm" />
@@ -99,10 +99,10 @@
         <HelpTOCNode Title="ServerUri Property " Url="html/P_Gemstone_Communication_FileClient_ServerUri.htm" />
         <HelpTOCNode Title="StartingOffset Property " Url="html/P_Gemstone_Communication_FileClient_StartingOffset.htm" />
       </HelpTOCNode>
-      <HelpTOCNode Id="bcb42add-95b0-4017-9e42-4b4b3f3cada7" Title="FileClient Methods" Url="html/Methods_T_Gemstone_Communication_FileClient.htm">
+      <HelpTOCNode Id="f77a2d6f-21dd-45e2-ac68-41414cec3585" Title="FileClient Methods" Url="html/Methods_T_Gemstone_Communication_FileClient.htm">
         <HelpTOCNode Title="ConnectAsync Method " Url="html/M_Gemstone_Communication_FileClient_ConnectAsync.htm" />
         <HelpTOCNode Title="Disconnect Method " Url="html/M_Gemstone_Communication_FileClient_Disconnect.htm" />
-        <HelpTOCNode Id="c803a82f-8857-4b85-b71a-335a188a4c3c" Title="Dispose Method " Url="html/Overload_Gemstone_Communication_FileClient_Dispose.htm">
+        <HelpTOCNode Id="957fc730-3450-4c8d-8d95-3e8546022309" Title="Dispose Method " Url="html/Overload_Gemstone_Communication_FileClient_Dispose.htm">
           <HelpTOCNode Title="Dispose Method (Boolean)" Url="html/M_Gemstone_Communication_FileClient_Dispose.htm" />
         </HelpTOCNode>
         <HelpTOCNode Title="OnConnectionException Method " Url="html/M_Gemstone_Communication_FileClient_OnConnectionException.htm" />
@@ -112,7 +112,7 @@
         <HelpTOCNode Title="ValidateConnectionString Method " Url="html/M_Gemstone_Communication_FileClient_ValidateConnectionString.htm" />
       </HelpTOCNode>
       <HelpTOCNode Title="FileClient Events" Url="html/Events_T_Gemstone_Communication_FileClient.htm" />
-      <HelpTOCNode Id="618d779e-f662-40a4-acb1-fed77299d5b7" Title="FileClient Fields" Url="html/Fields_T_Gemstone_Communication_FileClient.htm">
+      <HelpTOCNode Id="14c31f2a-fe9c-4e06-b798-a1cb930ae969" Title="FileClient Fields" Url="html/Fields_T_Gemstone_Communication_FileClient.htm">
         <HelpTOCNode Title="DefaultAutoRepeat Field" Url="html/F_Gemstone_Communication_FileClient_DefaultAutoRepeat.htm" />
         <HelpTOCNode Title="DefaultConnectionString Field" Url="html/F_Gemstone_Communication_FileClient_DefaultConnectionString.htm" />
         <HelpTOCNode Title="DefaultFileAccessMode Field" Url="html/F_Gemstone_Communication_FileClient_DefaultFileAccessMode.htm" />
@@ -123,8 +123,8 @@
         <HelpTOCNode Title="DefaultStartingOffset Field" Url="html/F_Gemstone_Communication_FileClient_DefaultStartingOffset.htm" />
       </HelpTOCNode>
     </HelpTOCNode>
-    <HelpTOCNode Id="7add4177-bcd4-4905-9488-bb63704d8784" Title="IClient Interface" Url="html/T_Gemstone_Communication_IClient.htm">
-      <HelpTOCNode Id="952cf9db-a42a-460e-9a1b-3b78e545c4a5" Title="IClient Properties" Url="html/Properties_T_Gemstone_Communication_IClient.htm">
+    <HelpTOCNode Id="86551926-8fa1-4c65-8bee-14934fe72072" Title="IClient Interface" Url="html/T_Gemstone_Communication_IClient.htm">
+      <HelpTOCNode Id="4056ccae-15b2-4aab-947b-5bf76f18708f" Title="IClient Properties" Url="html/Properties_T_Gemstone_Communication_IClient.htm">
         <HelpTOCNode Title="ConnectionString Property " Url="html/P_Gemstone_Communication_IClient_ConnectionString.htm" />
         <HelpTOCNode Title="ConnectionTime Property " Url="html/P_Gemstone_Communication_IClient_ConnectionTime.htm" />
         <HelpTOCNode Title="CurrentState Property " Url="html/P_Gemstone_Communication_IClient_CurrentState.htm" />
@@ -136,7 +136,7 @@
         <HelpTOCNode Title="TextEncoding Property " Url="html/P_Gemstone_Communication_IClient_TextEncoding.htm" />
         <HelpTOCNode Title="TransportProtocol Property " Url="html/P_Gemstone_Communication_IClient_TransportProtocol.htm" />
       </HelpTOCNode>
-      <HelpTOCNode Id="8482882b-3914-4dcd-84f0-90005c7c94c8" Title="IClient Methods" Url="html/Methods_T_Gemstone_Communication_IClient.htm">
+      <HelpTOCNode Id="e29d0c83-dab0-44d3-bd55-f2279f145ec8" Title="IClient Methods" Url="html/Methods_T_Gemstone_Communication_IClient.htm">
         <HelpTOCNode Title="Connect Method " Url="html/M_Gemstone_Communication_IClient_Connect.htm" />
         <HelpTOCNode Title="ConnectAsync Method " Url="html/M_Gemstone_Communication_IClient_ConnectAsync.htm" />
         <HelpTOCNode Title="Disconnect Method " Url="html/M_Gemstone_Communication_IClient_Disconnect.htm" />
@@ -144,7 +144,7 @@
         <HelpTOCNode Title="Send Method " Url="html/M_Gemstone_Communication_IClient_Send.htm" />
         <HelpTOCNode Title="SendAsync Method " Url="html/M_Gemstone_Communication_IClient_SendAsync.htm" />
       </HelpTOCNode>
-      <HelpTOCNode Id="a3e3b6be-e989-44cc-99e8-620ba04e862a" Title="IClient Events" Url="html/Events_T_Gemstone_Communication_IClient.htm">
+      <HelpTOCNode Id="9aca0558-93ea-46a9-9c95-14250d4b67d7" Title="IClient Events" Url="html/Events_T_Gemstone_Communication_IClient.htm">
         <HelpTOCNode Title="ConnectionAttempt Event" Url="html/E_Gemstone_Communication_IClient_ConnectionAttempt.htm" />
         <HelpTOCNode Title="ConnectionEstablished Event" Url="html/E_Gemstone_Communication_IClient_ConnectionEstablished.htm" />
         <HelpTOCNode Title="ConnectionException Event" Url="html/E_Gemstone_Communication_IClient_ConnectionException.htm" />
@@ -158,8 +158,8 @@
       </HelpTOCNode>
     </HelpTOCNode>
     <HelpTOCNode Title="IPStack Enumeration" Url="html/T_Gemstone_Communication_IPStack.htm" />
-    <HelpTOCNode Id="42284984-ba2f-4d7b-af6f-d54543f0b307" Title="IServer Interface" Url="html/T_Gemstone_Communication_IServer.htm">
-      <HelpTOCNode Id="aa0c5c99-4321-43bc-8e78-a76de6562458" Title="IServer Properties" Url="html/Properties_T_Gemstone_Communication_IServer.htm">
+    <HelpTOCNode Id="3f3a9fdd-eb90-407e-95e9-c13f19fbf507" Title="IServer Interface" Url="html/T_Gemstone_Communication_IServer.htm">
+      <HelpTOCNode Id="34cf5260-6ab3-4533-b155-b5baf299d100" Title="IServer Properties" Url="html/Properties_T_Gemstone_Communication_IServer.htm">
         <HelpTOCNode Title="ClientIDs Property " Url="html/P_Gemstone_Communication_IServer_ClientIDs.htm" />
         <HelpTOCNode Title="ConfigurationString Property " Url="html/P_Gemstone_Communication_IServer_ConfigurationString.htm" />
         <HelpTOCNode Title="CurrentState Property " Url="html/P_Gemstone_Communication_IServer_CurrentState.htm" />
@@ -171,7 +171,7 @@
         <HelpTOCNode Title="TextEncoding Property " Url="html/P_Gemstone_Communication_IServer_TextEncoding.htm" />
         <HelpTOCNode Title="TransportProtocol Property " Url="html/P_Gemstone_Communication_IServer_TransportProtocol.htm" />
       </HelpTOCNode>
-      <HelpTOCNode Id="44c01d03-5c07-47d3-9688-95c733ce4d52" Title="IServer Methods" Url="html/Methods_T_Gemstone_Communication_IServer.htm">
+      <HelpTOCNode Id="3b0a5b4f-4f02-4f3b-8b4e-84680a789d70" Title="IServer Methods" Url="html/Methods_T_Gemstone_Communication_IServer.htm">
         <HelpTOCNode Title="DisconnectAll Method " Url="html/M_Gemstone_Communication_IServer_DisconnectAll.htm" />
         <HelpTOCNode Title="DisconnectOne Method " Url="html/M_Gemstone_Communication_IServer_DisconnectOne.htm" />
         <HelpTOCNode Title="Multicast Method " Url="html/M_Gemstone_Communication_IServer_Multicast.htm" />
@@ -182,7 +182,7 @@
         <HelpTOCNode Title="Start Method " Url="html/M_Gemstone_Communication_IServer_Start.htm" />
         <HelpTOCNode Title="Stop Method " Url="html/M_Gemstone_Communication_IServer_Stop.htm" />
       </HelpTOCNode>
-      <HelpTOCNode Id="a7d02bf2-41b3-4725-b972-6abfde0b7d3a" Title="IServer Events" Url="html/Events_T_Gemstone_Communication_IServer.htm">
+      <HelpTOCNode Id="c5521692-9141-4ab0-bf76-75046a3844dd" Title="IServer Events" Url="html/Events_T_Gemstone_Communication_IServer.htm">
         <HelpTOCNode Title="ClientConnected Event" Url="html/E_Gemstone_Communication_IServer_ClientConnected.htm" />
         <HelpTOCNode Title="ClientConnectingException Event" Url="html/E_Gemstone_Communication_IServer_ClientConnectingException.htm" />
         <HelpTOCNode Title="ClientDisconnected Event" Url="html/E_Gemstone_Communication_IServer_ClientDisconnected.htm" />
@@ -196,32 +196,32 @@
         <HelpTOCNode Title="ServerStopped Event" Url="html/E_Gemstone_Communication_IServer_ServerStopped.htm" />
       </HelpTOCNode>
     </HelpTOCNode>
-    <HelpTOCNode Id="861b8733-4367-4fdf-be84-a087fef776c3" Title="Payload Class" Url="html/T_Gemstone_Communication_Payload.htm">
-      <HelpTOCNode Id="e1a476d2-e8e1-4bca-9fe5-d3fd157059e5" Title="Payload Methods" Url="html/Methods_T_Gemstone_Communication_Payload.htm">
+    <HelpTOCNode Id="646ec6b1-1edc-4bdf-bddb-b983b3b6847a" Title="Payload Class" Url="html/T_Gemstone_Communication_Payload.htm">
+      <HelpTOCNode Id="9475f567-b22c-45b6-8875-aa209cc47c0f" Title="Payload Methods" Url="html/Methods_T_Gemstone_Communication_Payload.htm">
         <HelpTOCNode Title="AddHeader Method " Url="html/M_Gemstone_Communication_Payload_AddHeader.htm" />
         <HelpTOCNode Title="ExtractLength Method " Url="html/M_Gemstone_Communication_Payload_ExtractLength.htm" />
         <HelpTOCNode Title="HasHeader Method " Url="html/M_Gemstone_Communication_Payload_HasHeader.htm" />
       </HelpTOCNode>
-      <HelpTOCNode Id="18e7c2a1-6f2e-48f4-9245-a6e443b51ba2" Title="Payload Fields" Url="html/Fields_T_Gemstone_Communication_Payload.htm">
+      <HelpTOCNode Id="8ea1b7e4-e617-4c0c-81b0-e251944f06dc" Title="Payload Fields" Url="html/Fields_T_Gemstone_Communication_Payload.htm">
         <HelpTOCNode Title="DefaultMarker Field" Url="html/F_Gemstone_Communication_Payload_DefaultMarker.htm" />
         <HelpTOCNode Title="LengthSegment Field" Url="html/F_Gemstone_Communication_Payload_LengthSegment.htm" />
       </HelpTOCNode>
     </HelpTOCNode>
-    <HelpTOCNode Id="68a3ce87-5643-4c85-98ee-7cec8e5fc407" Title="SerialClient Class" Url="html/T_Gemstone_Communication_SerialClient.htm">
-      <HelpTOCNode Id="4876c842-fef8-4841-9fdd-db8046950d3f" Title="SerialClient Constructor " Url="html/Overload_Gemstone_Communication_SerialClient__ctor.htm">
+    <HelpTOCNode Id="c7053e25-9aef-4194-884a-ebe9ea73f40f" Title="SerialClient Class" Url="html/T_Gemstone_Communication_SerialClient.htm">
+      <HelpTOCNode Id="07f568a5-7a8d-47b2-80be-050f0d26e423" Title="SerialClient Constructor " Url="html/Overload_Gemstone_Communication_SerialClient__ctor.htm">
         <HelpTOCNode Title="SerialClient Constructor " Url="html/M_Gemstone_Communication_SerialClient__ctor.htm" />
         <HelpTOCNode Title="SerialClient Constructor (String)" Url="html/M_Gemstone_Communication_SerialClient__ctor_1.htm" />
       </HelpTOCNode>
-      <HelpTOCNode Id="fc7ffb67-85f7-4b16-9d08-0eae25d6dd36" Title="SerialClient Properties" Url="html/Properties_T_Gemstone_Communication_SerialClient.htm">
+      <HelpTOCNode Id="eedd8dee-bd08-4849-9e4e-20c1893bf7e5" Title="SerialClient Properties" Url="html/Properties_T_Gemstone_Communication_SerialClient.htm">
         <HelpTOCNode Title="Client Property " Url="html/P_Gemstone_Communication_SerialClient_Client.htm" />
         <HelpTOCNode Title="ReceivedBytesThreshold Property " Url="html/P_Gemstone_Communication_SerialClient_ReceivedBytesThreshold.htm" />
         <HelpTOCNode Title="ServerUri Property " Url="html/P_Gemstone_Communication_SerialClient_ServerUri.htm" />
         <HelpTOCNode Title="Status Property " Url="html/P_Gemstone_Communication_SerialClient_Status.htm" />
       </HelpTOCNode>
-      <HelpTOCNode Id="1fdb66d6-92cd-4cb1-a023-bc689d67fad4" Title="SerialClient Methods" Url="html/Methods_T_Gemstone_Communication_SerialClient.htm">
+      <HelpTOCNode Id="bd8e2a93-7b6d-45dd-959f-d03f1f3fee1c" Title="SerialClient Methods" Url="html/Methods_T_Gemstone_Communication_SerialClient.htm">
         <HelpTOCNode Title="ConnectAsync Method " Url="html/M_Gemstone_Communication_SerialClient_ConnectAsync.htm" />
         <HelpTOCNode Title="Disconnect Method " Url="html/M_Gemstone_Communication_SerialClient_Disconnect.htm" />
-        <HelpTOCNode Id="cc18966d-d04c-4c36-a534-736dd73ca09e" Title="Dispose Method " Url="html/Overload_Gemstone_Communication_SerialClient_Dispose.htm">
+        <HelpTOCNode Id="a71d3a0b-a2ea-44bd-9892-68d745c74ede" Title="Dispose Method " Url="html/Overload_Gemstone_Communication_SerialClient_Dispose.htm">
           <HelpTOCNode Title="Dispose Method (Boolean)" Url="html/M_Gemstone_Communication_SerialClient_Dispose.htm" />
         </HelpTOCNode>
         <HelpTOCNode Title="OnConnectionException Method " Url="html/M_Gemstone_Communication_SerialClient_OnConnectionException.htm" />
@@ -230,30 +230,30 @@
         <HelpTOCNode Title="ValidateConnectionString Method " Url="html/M_Gemstone_Communication_SerialClient_ValidateConnectionString.htm" />
       </HelpTOCNode>
       <HelpTOCNode Title="SerialClient Events" Url="html/Events_T_Gemstone_Communication_SerialClient.htm" />
-      <HelpTOCNode Id="5135ceec-f5e0-4dbe-9592-0f3e4329f331" Title="SerialClient Fields" Url="html/Fields_T_Gemstone_Communication_SerialClient.htm">
+      <HelpTOCNode Id="06184149-eedb-4686-ad47-b74b64abbe53" Title="SerialClient Fields" Url="html/Fields_T_Gemstone_Communication_SerialClient.htm">
         <HelpTOCNode Title="DefaultConnectionString Field" Url="html/F_Gemstone_Communication_SerialClient_DefaultConnectionString.htm" />
         <HelpTOCNode Title="DefaultReceivedBytesThreshold Field" Url="html/F_Gemstone_Communication_SerialClient_DefaultReceivedBytesThreshold.htm" />
       </HelpTOCNode>
     </HelpTOCNode>
-    <HelpTOCNode Id="537d04bf-5d21-4f73-8ed9-af1e22e74dbf" Title="SerialException Class" Url="html/T_Gemstone_Communication_SerialException.htm">
-      <HelpTOCNode Id="794c3ed8-461f-4fc3-8f8b-fa81061aa9d7" Title="SerialException Constructor " Url="html/Overload_Gemstone_Communication_SerialException__ctor.htm">
+    <HelpTOCNode Id="c39aa470-3cd2-4085-82ce-3400b6174a4e" Title="SerialException Class" Url="html/T_Gemstone_Communication_SerialException.htm">
+      <HelpTOCNode Id="563883eb-9344-4c70-b0fc-f8e0041e41b8" Title="SerialException Constructor " Url="html/Overload_Gemstone_Communication_SerialException__ctor.htm">
         <HelpTOCNode Title="SerialException Constructor (SerializationInfo, StreamingContext)" Url="html/M_Gemstone_Communication_SerialException__ctor_1.htm" />
         <HelpTOCNode Title="SerialException Constructor (SerialError, String, Exception)" Url="html/M_Gemstone_Communication_SerialException__ctor.htm" />
       </HelpTOCNode>
-      <HelpTOCNode Id="ba8bfb1f-3178-45a3-9fb5-3f70888b2c93" Title="SerialException Properties" Url="html/Properties_T_Gemstone_Communication_SerialException.htm">
+      <HelpTOCNode Id="40f85f70-ccfb-47bc-86d9-28f17a670a4d" Title="SerialException Properties" Url="html/Properties_T_Gemstone_Communication_SerialException.htm">
         <HelpTOCNode Title="SerialError Property " Url="html/P_Gemstone_Communication_SerialException_SerialError.htm" />
       </HelpTOCNode>
-      <HelpTOCNode Id="b9a6a98a-87b0-413f-8856-61f545e02b93" Title="SerialException Methods" Url="html/Methods_T_Gemstone_Communication_SerialException.htm">
+      <HelpTOCNode Id="379aa3d7-c0cb-4ee7-bfb8-832aeb5dc502" Title="SerialException Methods" Url="html/Methods_T_Gemstone_Communication_SerialException.htm">
         <HelpTOCNode Title="GetObjectData Method " Url="html/M_Gemstone_Communication_SerialException_GetObjectData.htm" />
       </HelpTOCNode>
       <HelpTOCNode Title="SerialException Events" Url="html/Events_T_Gemstone_Communication_SerialException.htm" />
     </HelpTOCNode>
-    <HelpTOCNode Id="24c81c44-715a-4408-9143-19c7ad5f921f" Title="ServerBase Class" Url="html/T_Gemstone_Communication_ServerBase.htm">
-      <HelpTOCNode Id="3cbf4f66-12e8-4913-88a3-904fa0b7b799" Title="ServerBase Constructor " Url="html/Overload_Gemstone_Communication_ServerBase__ctor.htm">
+    <HelpTOCNode Id="cbde3ff4-2b7e-4821-92b2-d27f8acfd576" Title="ServerBase Class" Url="html/T_Gemstone_Communication_ServerBase.htm">
+      <HelpTOCNode Id="f88f1f76-4cf5-4008-abc9-789211bb45e6" Title="ServerBase Constructor " Url="html/Overload_Gemstone_Communication_ServerBase__ctor.htm">
         <HelpTOCNode Title="ServerBase Constructor " Url="html/M_Gemstone_Communication_ServerBase__ctor.htm" />
         <HelpTOCNode Title="ServerBase Constructor (TransportProtocol, String)" Url="html/M_Gemstone_Communication_ServerBase__ctor_1.htm" />
       </HelpTOCNode>
-      <HelpTOCNode Id="cb1da5e8-ec43-4009-8881-ae22de3bffa3" Title="ServerBase Properties" Url="html/Properties_T_Gemstone_Communication_ServerBase.htm">
+      <HelpTOCNode Id="ec10ec2f-bea1-4230-aaf2-25d24fe00ea4" Title="ServerBase Properties" Url="html/Properties_T_Gemstone_Communication_ServerBase.htm">
         <HelpTOCNode Title="ClientIDs Property " Url="html/P_Gemstone_Communication_ServerBase_ClientIDs.htm" />
         <HelpTOCNode Title="ConfigurationString Property " Url="html/P_Gemstone_Communication_ServerBase_ConfigurationString.htm" />
         <HelpTOCNode Title="CurrentState Property " Url="html/P_Gemstone_Communication_ServerBase_CurrentState.htm" />
@@ -271,22 +271,22 @@
         <HelpTOCNode Title="TextEncoding Property " Url="html/P_Gemstone_Communication_ServerBase_TextEncoding.htm" />
         <HelpTOCNode Title="TransportProtocol Property " Url="html/P_Gemstone_Communication_ServerBase_TransportProtocol.htm" />
       </HelpTOCNode>
-      <HelpTOCNode Id="b51c4a3b-f0d6-41e7-9fc8-d91173d2db9e" Title="ServerBase Methods" Url="html/Methods_T_Gemstone_Communication_ServerBase.htm">
+      <HelpTOCNode Id="f4de0d2b-d115-4bf2-a809-87b619693d05" Title="ServerBase Methods" Url="html/Methods_T_Gemstone_Communication_ServerBase.htm">
         <HelpTOCNode Title="Create Method " Url="html/M_Gemstone_Communication_ServerBase_Create.htm" />
         <HelpTOCNode Title="DisconnectAll Method " Url="html/M_Gemstone_Communication_ServerBase_DisconnectAll.htm" />
         <HelpTOCNode Title="DisconnectOne Method " Url="html/M_Gemstone_Communication_ServerBase_DisconnectOne.htm" />
-        <HelpTOCNode Id="ca67d8a7-05b6-480b-9438-41e30b84b441" Title="Dispose Method " Url="html/Overload_Gemstone_Communication_ServerBase_Dispose.htm">
+        <HelpTOCNode Id="505886c7-d415-4f4f-8620-3c5019bfc50a" Title="Dispose Method " Url="html/Overload_Gemstone_Communication_ServerBase_Dispose.htm">
           <HelpTOCNode Title="Dispose Method " Url="html/M_Gemstone_Communication_ServerBase_Dispose.htm" />
           <HelpTOCNode Title="Dispose Method (Boolean)" Url="html/M_Gemstone_Communication_ServerBase_Dispose_1.htm" />
         </HelpTOCNode>
         <HelpTOCNode Title="Initialize Method " Url="html/M_Gemstone_Communication_ServerBase_Initialize.htm" />
         <HelpTOCNode Title="IsClientConnected Method " Url="html/M_Gemstone_Communication_ServerBase_IsClientConnected.htm" />
-        <HelpTOCNode Id="06bb6541-61b6-420f-aa2a-2a9d7dafb1d9" Title="Multicast Method " Url="html/Overload_Gemstone_Communication_ServerBase_Multicast.htm">
+        <HelpTOCNode Id="db94f734-136f-424a-813c-3c7acf4be765" Title="Multicast Method " Url="html/Overload_Gemstone_Communication_ServerBase_Multicast.htm">
           <HelpTOCNode Title="Multicast Method (Byte[])" Url="html/M_Gemstone_Communication_ServerBase_Multicast.htm" />
           <HelpTOCNode Title="Multicast Method (String)" Url="html/M_Gemstone_Communication_ServerBase_Multicast_2.htm" />
           <HelpTOCNode Title="Multicast Method (Byte[], Int32, Int32)" Url="html/M_Gemstone_Communication_ServerBase_Multicast_1.htm" />
         </HelpTOCNode>
-        <HelpTOCNode Id="652c0f51-0d3a-4f68-8218-9452a8b2e019" Title="MulticastAsync Method " Url="html/Overload_Gemstone_Communication_ServerBase_MulticastAsync.htm">
+        <HelpTOCNode Id="d0478129-8aaf-4627-aa00-5f653d42b842" Title="MulticastAsync Method " Url="html/Overload_Gemstone_Communication_ServerBase_MulticastAsync.htm">
           <HelpTOCNode Title="MulticastAsync Method (Byte[])" Url="html/M_Gemstone_Communication_ServerBase_MulticastAsync.htm" />
           <HelpTOCNode Title="MulticastAsync Method (String)" Url="html/M_Gemstone_Communication_ServerBase_MulticastAsync_2.htm" />
           <HelpTOCNode Title="MulticastAsync Method (Byte[], Int32, Int32)" Url="html/M_Gemstone_Communication_ServerBase_MulticastAsync_1.htm" />
@@ -305,12 +305,12 @@
         <HelpTOCNode Title="Read Method " Url="html/M_Gemstone_Communication_ServerBase_Read.htm" />
         <HelpTOCNode Title="ReStart Method " Url="html/M_Gemstone_Communication_ServerBase_ReStart.htm" />
         <HelpTOCNode Title="SendDataToAsync Method " Url="html/M_Gemstone_Communication_ServerBase_SendDataToAsync.htm" />
-        <HelpTOCNode Id="c4274c64-926f-46bc-90f0-4918465afb25" Title="SendTo Method " Url="html/Overload_Gemstone_Communication_ServerBase_SendTo.htm">
+        <HelpTOCNode Id="10a0da57-cc17-4b2e-91f8-8f8ed7a11940" Title="SendTo Method " Url="html/Overload_Gemstone_Communication_ServerBase_SendTo.htm">
           <HelpTOCNode Title="SendTo Method (Guid, Byte[])" Url="html/M_Gemstone_Communication_ServerBase_SendTo.htm" />
           <HelpTOCNode Title="SendTo Method (Guid, String)" Url="html/M_Gemstone_Communication_ServerBase_SendTo_2.htm" />
           <HelpTOCNode Title="SendTo Method (Guid, Byte[], Int32, Int32)" Url="html/M_Gemstone_Communication_ServerBase_SendTo_1.htm" />
         </HelpTOCNode>
-        <HelpTOCNode Id="23cdfb50-66e8-477e-bf6d-44f01f828f8e" Title="SendToAsync Method " Url="html/Overload_Gemstone_Communication_ServerBase_SendToAsync.htm">
+        <HelpTOCNode Id="84248cc9-63e9-42a2-aff6-4e8c72022136" Title="SendToAsync Method " Url="html/Overload_Gemstone_Communication_ServerBase_SendToAsync.htm">
           <HelpTOCNode Title="SendToAsync Method (Guid, Byte[])" Url="html/M_Gemstone_Communication_ServerBase_SendToAsync.htm" />
           <HelpTOCNode Title="SendToAsync Method (Guid, String)" Url="html/M_Gemstone_Communication_ServerBase_SendToAsync_2.htm" />
           <HelpTOCNode Title="SendToAsync Method (Guid, Byte[], Int32, Int32)" Url="html/M_Gemstone_Communication_ServerBase_SendToAsync_1.htm" />
@@ -319,7 +319,7 @@
         <HelpTOCNode Title="Stop Method " Url="html/M_Gemstone_Communication_ServerBase_Stop.htm" />
         <HelpTOCNode Title="ValidateConfigurationString Method " Url="html/M_Gemstone_Communication_ServerBase_ValidateConfigurationString.htm" />
       </HelpTOCNode>
-      <HelpTOCNode Id="723fa70f-aefd-40a8-838b-feee704dbcbf" Title="ServerBase Events" Url="html/Events_T_Gemstone_Communication_ServerBase.htm">
+      <HelpTOCNode Id="385abd1f-c97e-4267-a0c4-e8cf14379caa" Title="ServerBase Events" Url="html/Events_T_Gemstone_Communication_ServerBase.htm">
         <HelpTOCNode Title="ClientConnected Event" Url="html/E_Gemstone_Communication_ServerBase_ClientConnected.htm" />
         <HelpTOCNode Title="ClientConnectingException Event" Url="html/E_Gemstone_Communication_ServerBase_ClientConnectingException.htm" />
         <HelpTOCNode Title="ClientDisconnected Event" Url="html/E_Gemstone_Communication_ServerBase_ClientDisconnected.htm" />
@@ -333,19 +333,19 @@
         <HelpTOCNode Title="ServerStarted Event" Url="html/E_Gemstone_Communication_ServerBase_ServerStarted.htm" />
         <HelpTOCNode Title="ServerStopped Event" Url="html/E_Gemstone_Communication_ServerBase_ServerStopped.htm" />
       </HelpTOCNode>
-      <HelpTOCNode Id="582f2a8f-528f-4862-8169-5f9a1e1b801f" Title="ServerBase Fields" Url="html/Fields_T_Gemstone_Communication_ServerBase.htm">
+      <HelpTOCNode Id="28c90f48-14fd-4b90-ba17-52564e3ecff5" Title="ServerBase Fields" Url="html/Fields_T_Gemstone_Communication_ServerBase.htm">
         <HelpTOCNode Title="DefaultMaxClientConnections Field" Url="html/F_Gemstone_Communication_ServerBase_DefaultMaxClientConnections.htm" />
         <HelpTOCNode Title="DefaultReceiveBufferSize Field" Url="html/F_Gemstone_Communication_ServerBase_DefaultReceiveBufferSize.htm" />
         <HelpTOCNode Title="DefaultSendBufferSize Field" Url="html/F_Gemstone_Communication_ServerBase_DefaultSendBufferSize.htm" />
       </HelpTOCNode>
     </HelpTOCNode>
     <HelpTOCNode Title="ServerState Enumeration" Url="html/T_Gemstone_Communication_ServerState.htm" />
-    <HelpTOCNode Id="c3a9931b-3f54-45b0-9746-567d974105f1" Title="TcpClient Class" Url="html/T_Gemstone_Communication_TcpClient.htm">
-      <HelpTOCNode Id="2da1bc3c-97ce-447b-bdde-fe1ccfec260e" Title="TcpClient Constructor " Url="html/Overload_Gemstone_Communication_TcpClient__ctor.htm">
+    <HelpTOCNode Id="9354dc43-1e27-4e14-8bcd-be570346013f" Title="TcpClient Class" Url="html/T_Gemstone_Communication_TcpClient.htm">
+      <HelpTOCNode Id="c6545225-b2a7-4642-9384-d288f1496ea1" Title="TcpClient Constructor " Url="html/Overload_Gemstone_Communication_TcpClient__ctor.htm">
         <HelpTOCNode Title="TcpClient Constructor " Url="html/M_Gemstone_Communication_TcpClient__ctor.htm" />
         <HelpTOCNode Title="TcpClient Constructor (String)" Url="html/M_Gemstone_Communication_TcpClient__ctor_1.htm" />
       </HelpTOCNode>
-      <HelpTOCNode Id="561f1c6b-3a5f-4955-a2e1-88ef683269df" Title="TcpClient Properties" Url="html/Properties_T_Gemstone_Communication_TcpClient.htm">
+      <HelpTOCNode Id="bc78b2bf-146b-4e4c-9d40-3026f2168356" Title="TcpClient Properties" Url="html/Properties_T_Gemstone_Communication_TcpClient.htm">
         <HelpTOCNode Title="AllowDualStackSocket Property " Url="html/P_Gemstone_Communication_TcpClient_AllowDualStackSocket.htm" />
         <HelpTOCNode Title="Client Property " Url="html/P_Gemstone_Communication_TcpClient_Client.htm" />
         <HelpTOCNode Title="IgnoreInvalidCredentials Property " Url="html/P_Gemstone_Communication_TcpClient_IgnoreInvalidCredentials.htm" />
@@ -360,14 +360,14 @@
         <HelpTOCNode Title="Status Property " Url="html/P_Gemstone_Communication_TcpClient_Status.htm" />
         <HelpTOCNode Title="TrackStatistics Property " Url="html/P_Gemstone_Communication_TcpClient_TrackStatistics.htm" />
       </HelpTOCNode>
-      <HelpTOCNode Id="3d0e0df6-7b39-470f-ba21-4004be8f66b8" Title="TcpClient Methods" Url="html/Methods_T_Gemstone_Communication_TcpClient.htm">
+      <HelpTOCNode Id="09323035-3e71-4729-958e-76b820f54dbf" Title="TcpClient Methods" Url="html/Methods_T_Gemstone_Communication_TcpClient.htm">
         <HelpTOCNode Title="ConnectAsync Method " Url="html/M_Gemstone_Communication_TcpClient_ConnectAsync.htm" />
         <HelpTOCNode Title="Disconnect Method " Url="html/M_Gemstone_Communication_TcpClient_Disconnect.htm" />
-        <HelpTOCNode Id="04ce45b2-4d9b-48a1-83ab-f3604ea03838" Title="Dispose Method " Url="html/Overload_Gemstone_Communication_TcpClient_Dispose.htm">
+        <HelpTOCNode Id="22814a54-1ebb-4f86-866a-b63e6dcee761" Title="Dispose Method " Url="html/Overload_Gemstone_Communication_TcpClient_Dispose.htm">
           <HelpTOCNode Title="Dispose Method (Boolean)" Url="html/M_Gemstone_Communication_TcpClient_Dispose.htm" />
         </HelpTOCNode>
         <HelpTOCNode Title="OnConnectionException Method " Url="html/M_Gemstone_Communication_TcpClient_OnConnectionException.htm" />
-        <HelpTOCNode Id="a0c61a23-0cfb-4a5f-a3b4-6381e8c43c1b" Title="OnReceiveDataException Method " Url="html/Overload_Gemstone_Communication_TcpClient_OnReceiveDataException.htm">
+        <HelpTOCNode Id="2f85b013-989a-4e95-b079-2516acf014e2" Title="OnReceiveDataException Method " Url="html/Overload_Gemstone_Communication_TcpClient_OnReceiveDataException.htm">
           <HelpTOCNode Title="OnReceiveDataException Method (Exception)" Url="html/M_Gemstone_Communication_TcpClient_OnReceiveDataException.htm" />
           <HelpTOCNode Title="OnReceiveDataException Method (SocketException)" Url="html/M_Gemstone_Communication_TcpClient_OnReceiveDataException_1.htm" />
         </HelpTOCNode>
@@ -377,7 +377,7 @@
         <HelpTOCNode Title="ValidateConnectionString Method " Url="html/M_Gemstone_Communication_TcpClient_ValidateConnectionString.htm" />
       </HelpTOCNode>
       <HelpTOCNode Title="TcpClient Events" Url="html/Events_T_Gemstone_Communication_TcpClient.htm" />
-      <HelpTOCNode Id="06748047-4ef7-4504-8ac5-38ad23844a9c" Title="TcpClient Fields" Url="html/Fields_T_Gemstone_Communication_TcpClient.htm">
+      <HelpTOCNode Id="22c6c0ac-97c7-4394-ae9f-7407f1b3ff80" Title="TcpClient Fields" Url="html/Fields_T_Gemstone_Communication_TcpClient.htm">
         <HelpTOCNode Title="DefaultAllowDualStackSocket Field" Url="html/F_Gemstone_Communication_TcpClient_DefaultAllowDualStackSocket.htm" />
         <HelpTOCNode Title="DefaultConnectionString Field" Url="html/F_Gemstone_Communication_TcpClient_DefaultConnectionString.htm" />
         <HelpTOCNode Title="DefaultIgnoreInvalidCredentials Field" Url="html/F_Gemstone_Communication_TcpClient_DefaultIgnoreInvalidCredentials.htm" />
@@ -387,12 +387,12 @@
         <HelpTOCNode Title="DefaultPayloadAware Field" Url="html/F_Gemstone_Communication_TcpClient_DefaultPayloadAware.htm" />
       </HelpTOCNode>
     </HelpTOCNode>
-    <HelpTOCNode Id="7066e6c1-cded-4660-84f5-e0d1e5aea174" Title="TcpServer Class" Url="html/T_Gemstone_Communication_TcpServer.htm">
-      <HelpTOCNode Id="a56d3b66-bd24-47e0-977b-9da4edf90f68" Title="TcpServer Constructor " Url="html/Overload_Gemstone_Communication_TcpServer__ctor.htm">
+    <HelpTOCNode Id="70fa3281-5117-42cf-8c81-06ada6a8bfd6" Title="TcpServer Class" Url="html/T_Gemstone_Communication_TcpServer.htm">
+      <HelpTOCNode Id="cac8dd76-011b-433f-98a0-5acb28330869" Title="TcpServer Constructor " Url="html/Overload_Gemstone_Communication_TcpServer__ctor.htm">
         <HelpTOCNode Title="TcpServer Constructor " Url="html/M_Gemstone_Communication_TcpServer__ctor.htm" />
         <HelpTOCNode Title="TcpServer Constructor (String)" Url="html/M_Gemstone_Communication_TcpServer__ctor_1.htm" />
       </HelpTOCNode>
-      <HelpTOCNode Id="3e8b1fc6-d810-4ed9-82e4-b3db5b0abc51" Title="TcpServer Properties" Url="html/Properties_T_Gemstone_Communication_TcpServer.htm">
+      <HelpTOCNode Id="cbdacf17-11e0-4542-a4fa-de311030fb82" Title="TcpServer Properties" Url="html/Properties_T_Gemstone_Communication_TcpServer.htm">
         <HelpTOCNode Title="AllowDualStackSocket Property " Url="html/P_Gemstone_Communication_TcpServer_AllowDualStackSocket.htm" />
         <HelpTOCNode Title="IgnoreInvalidCredentials Property " Url="html/P_Gemstone_Communication_TcpServer_IgnoreInvalidCredentials.htm" />
         <HelpTOCNode Title="IntegratedSecurity Property " Url="html/P_Gemstone_Communication_TcpServer_IntegratedSecurity.htm" />
@@ -404,9 +404,9 @@
         <HelpTOCNode Title="Server Property " Url="html/P_Gemstone_Communication_TcpServer_Server.htm" />
         <HelpTOCNode Title="Status Property " Url="html/P_Gemstone_Communication_TcpServer_Status.htm" />
       </HelpTOCNode>
-      <HelpTOCNode Id="81a6647d-0d9c-43f4-a9a8-aa2f2ad3bd8d" Title="TcpServer Methods" Url="html/Methods_T_Gemstone_Communication_TcpServer.htm">
+      <HelpTOCNode Id="42a04860-5982-41d3-87ca-050750148102" Title="TcpServer Methods" Url="html/Methods_T_Gemstone_Communication_TcpServer.htm">
         <HelpTOCNode Title="DisconnectOne Method " Url="html/M_Gemstone_Communication_TcpServer_DisconnectOne.htm" />
-        <HelpTOCNode Id="23567d20-a907-4772-a716-931e35c12fba" Title="OnReceiveClientDataException Method " Url="html/Overload_Gemstone_Communication_TcpServer_OnReceiveClientDataException.htm">
+        <HelpTOCNode Id="161ffd12-67b0-483a-b390-3ec0f3cb5956" Title="OnReceiveClientDataException Method " Url="html/Overload_Gemstone_Communication_TcpServer_OnReceiveClientDataException.htm">
           <HelpTOCNode Title="OnReceiveClientDataException Method (Guid, Exception)" Url="html/M_Gemstone_Communication_TcpServer_OnReceiveClientDataException.htm" />
           <HelpTOCNode Title="OnReceiveClientDataException Method (Guid, SocketException)" Url="html/M_Gemstone_Communication_TcpServer_OnReceiveClientDataException_1.htm" />
         </HelpTOCNode>
@@ -420,7 +420,7 @@
         <HelpTOCNode Title="ValidateConfigurationString Method " Url="html/M_Gemstone_Communication_TcpServer_ValidateConfigurationString.htm" />
       </HelpTOCNode>
       <HelpTOCNode Title="TcpServer Events" Url="html/Events_T_Gemstone_Communication_TcpServer.htm" />
-      <HelpTOCNode Id="07037c67-2dd7-4498-9dbb-716725cc81e0" Title="TcpServer Fields" Url="html/Fields_T_Gemstone_Communication_TcpServer.htm">
+      <HelpTOCNode Id="67fa9e3e-7a36-490c-be9e-a589a0681a4c" Title="TcpServer Fields" Url="html/Fields_T_Gemstone_Communication_TcpServer.htm">
         <HelpTOCNode Title="DefaultAllowDualStackSocket Field" Url="html/F_Gemstone_Communication_TcpServer_DefaultAllowDualStackSocket.htm" />
         <HelpTOCNode Title="DefaultConfigurationString Field" Url="html/F_Gemstone_Communication_TcpServer_DefaultConfigurationString.htm" />
         <HelpTOCNode Title="DefaultIgnoreInvalidCredentials Field" Url="html/F_Gemstone_Communication_TcpServer_DefaultIgnoreInvalidCredentials.htm" />
@@ -430,12 +430,12 @@
         <HelpTOCNode Title="DefaultPayloadAware Field" Url="html/F_Gemstone_Communication_TcpServer_DefaultPayloadAware.htm" />
       </HelpTOCNode>
     </HelpTOCNode>
-    <HelpTOCNode Id="94cbd474-4233-42bc-b259-6044e4f5d13b" Title="TlsClient Class" Url="html/T_Gemstone_Communication_TlsClient.htm">
-      <HelpTOCNode Id="80e5339c-1adb-4ca1-9257-51762bfd54dc" Title="TlsClient Constructor " Url="html/Overload_Gemstone_Communication_TlsClient__ctor.htm">
+    <HelpTOCNode Id="43cba645-d63f-4513-8099-22334fd8e43c" Title="TlsClient Class" Url="html/T_Gemstone_Communication_TlsClient.htm">
+      <HelpTOCNode Id="220523a5-0b1b-40b3-a538-5d6b3e976ec6" Title="TlsClient Constructor " Url="html/Overload_Gemstone_Communication_TlsClient__ctor.htm">
         <HelpTOCNode Title="TlsClient Constructor " Url="html/M_Gemstone_Communication_TlsClient__ctor.htm" />
         <HelpTOCNode Title="TlsClient Constructor (String)" Url="html/M_Gemstone_Communication_TlsClient__ctor_1.htm" />
       </HelpTOCNode>
-      <HelpTOCNode Id="054635a5-6dbb-4db0-907d-254d4a624496" Title="TlsClient Properties" Url="html/Properties_T_Gemstone_Communication_TlsClient.htm">
+      <HelpTOCNode Id="3800e0eb-1371-4276-b385-b1cadcbe96bf" Title="TlsClient Properties" Url="html/Properties_T_Gemstone_Communication_TlsClient.htm">
         <HelpTOCNode Title="AllowDualStackSocket Property " Url="html/P_Gemstone_Communication_TlsClient_AllowDualStackSocket.htm" />
         <HelpTOCNode Title="Certificate Property " Url="html/P_Gemstone_Communication_TlsClient_Certificate.htm" />
         <HelpTOCNode Title="CertificateChecker Property " Url="html/P_Gemstone_Communication_TlsClient_CertificateChecker.htm" />
@@ -462,14 +462,14 @@
         <HelpTOCNode Title="ValidChainFlags Property " Url="html/P_Gemstone_Communication_TlsClient_ValidChainFlags.htm" />
         <HelpTOCNode Title="ValidPolicyErrors Property " Url="html/P_Gemstone_Communication_TlsClient_ValidPolicyErrors.htm" />
       </HelpTOCNode>
-      <HelpTOCNode Id="6d9265e8-9c0e-4203-b2d3-aa33d90fca2f" Title="TlsClient Methods" Url="html/Methods_T_Gemstone_Communication_TlsClient.htm">
+      <HelpTOCNode Id="2c8e18fe-887f-4ced-84b5-dd7157611e9f" Title="TlsClient Methods" Url="html/Methods_T_Gemstone_Communication_TlsClient.htm">
         <HelpTOCNode Title="ConnectAsync Method " Url="html/M_Gemstone_Communication_TlsClient_ConnectAsync.htm" />
         <HelpTOCNode Title="Disconnect Method " Url="html/M_Gemstone_Communication_TlsClient_Disconnect.htm" />
-        <HelpTOCNode Id="d7472c13-ec72-4568-9a69-e7b7d950ebe2" Title="Dispose Method " Url="html/Overload_Gemstone_Communication_TlsClient_Dispose.htm">
+        <HelpTOCNode Id="9a8ea8d4-db77-4a03-aa8c-a583d0ad9ff9" Title="Dispose Method " Url="html/Overload_Gemstone_Communication_TlsClient_Dispose.htm">
           <HelpTOCNode Title="Dispose Method (Boolean)" Url="html/M_Gemstone_Communication_TlsClient_Dispose.htm" />
         </HelpTOCNode>
         <HelpTOCNode Title="OnConnectionException Method " Url="html/M_Gemstone_Communication_TlsClient_OnConnectionException.htm" />
-        <HelpTOCNode Id="2d7895f7-bc65-4812-bd47-7364ed82962a" Title="OnReceiveDataException Method " Url="html/Overload_Gemstone_Communication_TlsClient_OnReceiveDataException.htm">
+        <HelpTOCNode Id="f0ff30ce-b70b-4a42-8b47-5ba2d187f453" Title="OnReceiveDataException Method " Url="html/Overload_Gemstone_Communication_TlsClient_OnReceiveDataException.htm">
           <HelpTOCNode Title="OnReceiveDataException Method (Exception)" Url="html/M_Gemstone_Communication_TlsClient_OnReceiveDataException.htm" />
           <HelpTOCNode Title="OnReceiveDataException Method (SocketException)" Url="html/M_Gemstone_Communication_TlsClient_OnReceiveDataException_1.htm" />
         </HelpTOCNode>
@@ -479,7 +479,7 @@
         <HelpTOCNode Title="ValidateConnectionString Method " Url="html/M_Gemstone_Communication_TlsClient_ValidateConnectionString.htm" />
       </HelpTOCNode>
       <HelpTOCNode Title="TlsClient Events" Url="html/Events_T_Gemstone_Communication_TlsClient.htm" />
-      <HelpTOCNode Id="c373dcf0-2c49-4b0b-b8e7-3912498e37c5" Title="TlsClient Fields" Url="html/Fields_T_Gemstone_Communication_TlsClient.htm">
+      <HelpTOCNode Id="36dcdded-54d9-4141-85eb-2eb497ce1a12" Title="TlsClient Fields" Url="html/Fields_T_Gemstone_Communication_TlsClient.htm">
         <HelpTOCNode Title="DefaultAllowDualStackSocket Field" Url="html/F_Gemstone_Communication_TlsClient_DefaultAllowDualStackSocket.htm" />
         <HelpTOCNode Title="DefaultConnectionString Field" Url="html/F_Gemstone_Communication_TlsClient_DefaultConnectionString.htm" />
         <HelpTOCNode Title="DefaultIgnoreInvalidCredentials Field" Url="html/F_Gemstone_Communication_TlsClient_DefaultIgnoreInvalidCredentials.htm" />
@@ -490,12 +490,12 @@
         <HelpTOCNode Title="DefaultTrustedCertificatesPath Field" Url="html/F_Gemstone_Communication_TlsClient_DefaultTrustedCertificatesPath.htm" />
       </HelpTOCNode>
     </HelpTOCNode>
-    <HelpTOCNode Id="fdff17c0-7af0-4b73-af74-3f628d277be9" Title="TlsServer Class" Url="html/T_Gemstone_Communication_TlsServer.htm">
-      <HelpTOCNode Id="aa506ad1-5f05-4ce7-ba17-052e638a78c5" Title="TlsServer Constructor " Url="html/Overload_Gemstone_Communication_TlsServer__ctor.htm">
+    <HelpTOCNode Id="fefd14a9-d173-43d5-892c-7bbefbf8772d" Title="TlsServer Class" Url="html/T_Gemstone_Communication_TlsServer.htm">
+      <HelpTOCNode Id="0633d8e4-50b2-490a-bb92-c3c8f531404c" Title="TlsServer Constructor " Url="html/Overload_Gemstone_Communication_TlsServer__ctor.htm">
         <HelpTOCNode Title="TlsServer Constructor " Url="html/M_Gemstone_Communication_TlsServer__ctor.htm" />
         <HelpTOCNode Title="TlsServer Constructor (String)" Url="html/M_Gemstone_Communication_TlsServer__ctor_1.htm" />
       </HelpTOCNode>
-      <HelpTOCNode Id="0aea10d2-bdda-4684-a43b-acdf57e5a2c4" Title="TlsServer Properties" Url="html/Properties_T_Gemstone_Communication_TlsServer.htm">
+      <HelpTOCNode Id="bfcf7376-5463-4de0-9b2e-3a4ec697846b" Title="TlsServer Properties" Url="html/Properties_T_Gemstone_Communication_TlsServer.htm">
         <HelpTOCNode Title="AllowDualStackSocket Property " Url="html/P_Gemstone_Communication_TlsServer_AllowDualStackSocket.htm" />
         <HelpTOCNode Title="Certificate Property " Url="html/P_Gemstone_Communication_TlsServer_Certificate.htm" />
         <HelpTOCNode Title="CertificateChecker Property " Url="html/P_Gemstone_Communication_TlsServer_CertificateChecker.htm" />
@@ -518,7 +518,7 @@
         <HelpTOCNode Title="ValidChainFlags Property " Url="html/P_Gemstone_Communication_TlsServer_ValidChainFlags.htm" />
         <HelpTOCNode Title="ValidPolicyErrors Property " Url="html/P_Gemstone_Communication_TlsServer_ValidPolicyErrors.htm" />
       </HelpTOCNode>
-      <HelpTOCNode Id="257d030b-a0e0-4da3-9c7d-462a308560be" Title="TlsServer Methods" Url="html/Methods_T_Gemstone_Communication_TlsServer.htm">
+      <HelpTOCNode Id="8728ed7f-be51-4f9a-aad0-1fc075e67159" Title="TlsServer Methods" Url="html/Methods_T_Gemstone_Communication_TlsServer.htm">
         <HelpTOCNode Title="DisconnectOne Method " Url="html/M_Gemstone_Communication_TlsServer_DisconnectOne.htm" />
         <HelpTOCNode Title="Read Method " Url="html/M_Gemstone_Communication_TlsServer_Read.htm" />
         <HelpTOCNode Title="SendDataToAsync Method " Url="html/M_Gemstone_Communication_TlsServer_SendDataToAsync.htm" />
@@ -529,7 +529,7 @@
         <HelpTOCNode Title="ValidateConfigurationString Method " Url="html/M_Gemstone_Communication_TlsServer_ValidateConfigurationString.htm" />
       </HelpTOCNode>
       <HelpTOCNode Title="TlsServer Events" Url="html/Events_T_Gemstone_Communication_TlsServer.htm" />
-      <HelpTOCNode Id="ee208d2f-9fc2-4370-bead-43316f4be50f" Title="TlsServer Fields" Url="html/Fields_T_Gemstone_Communication_TlsServer.htm">
+      <HelpTOCNode Id="98c855d1-b266-4aef-9383-0c6a36bb65b2" Title="TlsServer Fields" Url="html/Fields_T_Gemstone_Communication_TlsServer.htm">
         <HelpTOCNode Title="DefaultAllowDualStackSocket Field" Url="html/F_Gemstone_Communication_TlsServer_DefaultAllowDualStackSocket.htm" />
         <HelpTOCNode Title="DefaultConfigurationString Field" Url="html/F_Gemstone_Communication_TlsServer_DefaultConfigurationString.htm" />
         <HelpTOCNode Title="DefaultIgnoreInvalidCredentials Field" Url="html/F_Gemstone_Communication_TlsServer_DefaultIgnoreInvalidCredentials.htm" />
@@ -540,19 +540,19 @@
         <HelpTOCNode Title="DefaultTrustedCertificatesPath Field" Url="html/F_Gemstone_Communication_TlsServer_DefaultTrustedCertificatesPath.htm" />
       </HelpTOCNode>
     </HelpTOCNode>
-    <HelpTOCNode Id="37b514de-4200-4249-bf29-121b8442ad1d" Title="TlsServer.TlsSocket Class" Url="html/T_Gemstone_Communication_TlsServer_TlsSocket.htm">
+    <HelpTOCNode Id="bf970abe-f281-4b5a-bff6-f7ed92963ee6" Title="TlsServer.TlsSocket Class" Url="html/T_Gemstone_Communication_TlsServer_TlsSocket.htm">
       <HelpTOCNode Title="TlsServer.TlsSocket Constructor " Url="html/M_Gemstone_Communication_TlsServer_TlsSocket__ctor.htm" />
-      <HelpTOCNode Id="664fe374-6d0d-4015-91ef-dd3090d773fb" Title="TlsSocket Methods" Url="html/Methods_T_Gemstone_Communication_TlsServer_TlsSocket.htm">
+      <HelpTOCNode Id="c3b849c1-399e-4846-9f0f-e7346e7b42cb" Title="TlsSocket Methods" Url="html/Methods_T_Gemstone_Communication_TlsServer_TlsSocket.htm">
         <HelpTOCNode Title="Dispose Method " Url="html/M_Gemstone_Communication_TlsServer_TlsSocket_Dispose.htm" />
       </HelpTOCNode>
-      <HelpTOCNode Id="72908869-e671-493f-b8a2-14dfdab58288" Title="TlsSocket Fields" Url="html/Fields_T_Gemstone_Communication_TlsServer_TlsSocket.htm">
+      <HelpTOCNode Id="c9449523-7783-46d8-b47f-5ce3d20604d3" Title="TlsSocket Fields" Url="html/Fields_T_Gemstone_Communication_TlsServer_TlsSocket.htm">
         <HelpTOCNode Title="RemoteEndPoint Field" Url="html/F_Gemstone_Communication_TlsServer_TlsSocket_RemoteEndPoint.htm" />
         <HelpTOCNode Title="Socket Field" Url="html/F_Gemstone_Communication_TlsServer_TlsSocket_Socket.htm" />
         <HelpTOCNode Title="SslStream Field" Url="html/F_Gemstone_Communication_TlsServer_TlsSocket_SslStream.htm" />
       </HelpTOCNode>
     </HelpTOCNode>
-    <HelpTOCNode Id="3ecccf23-9250-49a9-ac05-e1c20eb2ee4d" Title="Transport Class" Url="html/T_Gemstone_Communication_Transport.htm">
-      <HelpTOCNode Id="7d72b82e-50cf-4b98-af7a-40849905684e" Title="Transport Methods" Url="html/Methods_T_Gemstone_Communication_Transport.htm">
+    <HelpTOCNode Id="ca2b12b5-1f5d-4230-920a-005e5e5a43a9" Title="Transport Class" Url="html/T_Gemstone_Communication_Transport.htm">
+      <HelpTOCNode Id="1c6a73d9-e73d-429f-9c8f-a83f9b1039ca" Title="Transport Methods" Url="html/Methods_T_Gemstone_Communication_Transport.htm">
         <HelpTOCNode Title="CreateEndPoint Method " Url="html/M_Gemstone_Communication_Transport_CreateEndPoint.htm" />
         <HelpTOCNode Title="CreateSocket Method " Url="html/M_Gemstone_Communication_Transport_CreateSocket.htm" />
         <HelpTOCNode Title="GetDefaultIPStack Method " Url="html/M_Gemstone_Communication_Transport_GetDefaultIPStack.htm" />
@@ -563,27 +563,27 @@
         <HelpTOCNode Title="IsMulticastIP Method " Url="html/M_Gemstone_Communication_Transport_IsMulticastIP.htm" />
         <HelpTOCNode Title="IsPortNumberValid Method " Url="html/M_Gemstone_Communication_Transport_IsPortNumberValid.htm" />
       </HelpTOCNode>
-      <HelpTOCNode Id="2dc813c0-aa6c-405a-b52a-10b95b005b4a" Title="Transport Fields" Url="html/Fields_T_Gemstone_Communication_Transport.htm">
+      <HelpTOCNode Id="4cf299b1-0b13-4c69-9e04-a384f16c32f8" Title="Transport Fields" Url="html/Fields_T_Gemstone_Communication_Transport.htm">
         <HelpTOCNode Title="EndpointFormatRegex Field" Url="html/F_Gemstone_Communication_Transport_EndpointFormatRegex.htm" />
         <HelpTOCNode Title="PortRangeHigh Field" Url="html/F_Gemstone_Communication_Transport_PortRangeHigh.htm" />
         <HelpTOCNode Title="PortRangeLow Field" Url="html/F_Gemstone_Communication_Transport_PortRangeLow.htm" />
       </HelpTOCNode>
     </HelpTOCNode>
     <HelpTOCNode Title="TransportProtocol Enumeration" Url="html/T_Gemstone_Communication_TransportProtocol.htm" />
-    <HelpTOCNode Id="2d39c584-5be0-4548-ae17-9b384a7f622d" Title="TransportProvider(T) Class" Url="html/T_Gemstone_Communication_TransportProvider_1.htm">
+    <HelpTOCNode Id="79474f0e-e913-4273-a8e9-f4a0f9f91e08" Title="TransportProvider(T) Class" Url="html/T_Gemstone_Communication_TransportProvider_1.htm">
       <HelpTOCNode Title="TransportProvider(T) Constructor " Url="html/M_Gemstone_Communication_TransportProvider_1__ctor.htm" />
-      <HelpTOCNode Id="2b3aed20-6f5c-4902-938f-80f3223ffb22" Title="TransportProvider(T) Properties" Url="html/Properties_T_Gemstone_Communication_TransportProvider_1.htm">
+      <HelpTOCNode Id="170e3a3a-940b-4065-9e77-e4fef6cc83c1" Title="TransportProvider(T) Properties" Url="html/Properties_T_Gemstone_Communication_TransportProvider_1.htm">
         <HelpTOCNode Title="ReceiveBuffer Property " Url="html/P_Gemstone_Communication_TransportProvider_1_ReceiveBuffer.htm" />
         <HelpTOCNode Title="ReceiveBufferSize Property " Url="html/P_Gemstone_Communication_TransportProvider_1_ReceiveBufferSize.htm" />
         <HelpTOCNode Title="SendBuffer Property " Url="html/P_Gemstone_Communication_TransportProvider_1_SendBuffer.htm" />
         <HelpTOCNode Title="SendBufferSize Property " Url="html/P_Gemstone_Communication_TransportProvider_1_SendBufferSize.htm" />
       </HelpTOCNode>
-      <HelpTOCNode Id="575baf65-3f6f-4cd4-a6bd-97b5bcb1f566" Title="TransportProvider(T) Methods" Url="html/Methods_T_Gemstone_Communication_TransportProvider_1.htm">
+      <HelpTOCNode Id="69c7d569-ce1a-4e61-a8ac-bfbeb6a26ece" Title="TransportProvider(T) Methods" Url="html/Methods_T_Gemstone_Communication_TransportProvider_1.htm">
         <HelpTOCNode Title="Reset Method " Url="html/M_Gemstone_Communication_TransportProvider_1_Reset.htm" />
         <HelpTOCNode Title="SetReceiveBuffer Method " Url="html/M_Gemstone_Communication_TransportProvider_1_SetReceiveBuffer.htm" />
         <HelpTOCNode Title="SetSendBuffer Method " Url="html/M_Gemstone_Communication_TransportProvider_1_SetSendBuffer.htm" />
       </HelpTOCNode>
-      <HelpTOCNode Id="5b2f79c3-81cd-4726-86ac-a08660856e7d" Title="TransportProvider(T) Fields" Url="html/Fields_T_Gemstone_Communication_TransportProvider_1.htm">
+      <HelpTOCNode Id="10d8ccea-c89f-4d31-8d97-cb5c24702048" Title="TransportProvider(T) Fields" Url="html/Fields_T_Gemstone_Communication_TransportProvider_1.htm">
         <HelpTOCNode Title="BytesReceived Field" Url="html/F_Gemstone_Communication_TransportProvider_1_BytesReceived.htm" />
         <HelpTOCNode Title="ID Field" Url="html/F_Gemstone_Communication_TransportProvider_1_ID.htm" />
         <HelpTOCNode Title="MulticastMembershipAddresses Field" Url="html/F_Gemstone_Communication_TransportProvider_1_MulticastMembershipAddresses.htm" />
@@ -591,14 +591,14 @@
         <HelpTOCNode Title="Statistics Field" Url="html/F_Gemstone_Communication_TransportProvider_1_Statistics.htm" />
       </HelpTOCNode>
     </HelpTOCNode>
-    <HelpTOCNode Id="b63a814f-f471-4957-81a5-eb4bc29431d0" Title="TransportStatistics Class" Url="html/T_Gemstone_Communication_TransportStatistics.htm">
+    <HelpTOCNode Id="d293c697-ea84-41d8-bdba-ce43559e66a4" Title="TransportStatistics Class" Url="html/T_Gemstone_Communication_TransportStatistics.htm">
       <HelpTOCNode Title="TransportStatistics Constructor " Url="html/M_Gemstone_Communication_TransportStatistics__ctor.htm" />
-      <HelpTOCNode Id="c6696009-3b97-4b1b-97bc-c405d6d8d253" Title="TransportStatistics Methods" Url="html/Methods_T_Gemstone_Communication_TransportStatistics.htm">
+      <HelpTOCNode Id="72c079ba-143c-48a9-b567-5eb4dabb90a2" Title="TransportStatistics Methods" Url="html/Methods_T_Gemstone_Communication_TransportStatistics.htm">
         <HelpTOCNode Title="Reset Method " Url="html/M_Gemstone_Communication_TransportStatistics_Reset.htm" />
         <HelpTOCNode Title="UpdateBytesReceived Method " Url="html/M_Gemstone_Communication_TransportStatistics_UpdateBytesReceived.htm" />
         <HelpTOCNode Title="UpdateBytesSent Method " Url="html/M_Gemstone_Communication_TransportStatistics_UpdateBytesSent.htm" />
       </HelpTOCNode>
-      <HelpTOCNode Id="dad70d41-2366-45e5-9e65-fb096b25fa45" Title="TransportStatistics Fields" Url="html/Fields_T_Gemstone_Communication_TransportStatistics.htm">
+      <HelpTOCNode Id="ec1c9af7-ac42-4340-8d13-deb88195e007" Title="TransportStatistics Fields" Url="html/Fields_T_Gemstone_Communication_TransportStatistics.htm">
         <HelpTOCNode Title="LastBytesReceived Field" Url="html/F_Gemstone_Communication_TransportStatistics_LastBytesReceived.htm" />
         <HelpTOCNode Title="LastBytesSent Field" Url="html/F_Gemstone_Communication_TransportStatistics_LastBytesSent.htm" />
         <HelpTOCNode Title="LastReceive Field" Url="html/F_Gemstone_Communication_TransportStatistics_LastReceive.htm" />
@@ -607,12 +607,12 @@
         <HelpTOCNode Title="TotalBytesSent Field" Url="html/F_Gemstone_Communication_TransportStatistics_TotalBytesSent.htm" />
       </HelpTOCNode>
     </HelpTOCNode>
-    <HelpTOCNode Id="cfe2ca8e-53df-49d2-8e0a-01e873d2b07a" Title="UdpClient Class" Url="html/T_Gemstone_Communication_UdpClient.htm">
-      <HelpTOCNode Id="2690067a-c59b-44dd-baae-c2b303193d90" Title="UdpClient Constructor " Url="html/Overload_Gemstone_Communication_UdpClient__ctor.htm">
+    <HelpTOCNode Id="e15c3c5d-6fc6-4b06-8b2c-7d4197dadf4b" Title="UdpClient Class" Url="html/T_Gemstone_Communication_UdpClient.htm">
+      <HelpTOCNode Id="5098273c-5a07-4403-a13c-598172b9c2f9" Title="UdpClient Constructor " Url="html/Overload_Gemstone_Communication_UdpClient__ctor.htm">
         <HelpTOCNode Title="UdpClient Constructor " Url="html/M_Gemstone_Communication_UdpClient__ctor.htm" />
         <HelpTOCNode Title="UdpClient Constructor (String)" Url="html/M_Gemstone_Communication_UdpClient__ctor_1.htm" />
       </HelpTOCNode>
-      <HelpTOCNode Id="f2bdfbba-db3e-4b26-8c6d-7b6e7ef3706c" Title="UdpClient Properties" Url="html/Properties_T_Gemstone_Communication_UdpClient.htm">
+      <HelpTOCNode Id="19f7716a-951f-4d12-b06c-7621eb80ce05" Title="UdpClient Properties" Url="html/Properties_T_Gemstone_Communication_UdpClient.htm">
         <HelpTOCNode Title="AllowDualStackSocket Property " Url="html/P_Gemstone_Communication_UdpClient_AllowDualStackSocket.htm" />
         <HelpTOCNode Title="Client Property " Url="html/P_Gemstone_Communication_UdpClient_Client.htm" />
         <HelpTOCNode Title="MaxPacketSize Property " Url="html/P_Gemstone_Communication_UdpClient_MaxPacketSize.htm" />
@@ -623,11 +623,11 @@
         <HelpTOCNode Title="Status Property " Url="html/P_Gemstone_Communication_UdpClient_Status.htm" />
         <HelpTOCNode Title="TrackStatistics Property " Url="html/P_Gemstone_Communication_UdpClient_TrackStatistics.htm" />
       </HelpTOCNode>
-      <HelpTOCNode Id="d2f5019d-c559-4eb0-994d-9638e57ae24e" Title="UdpClient Methods" Url="html/Methods_T_Gemstone_Communication_UdpClient.htm">
+      <HelpTOCNode Id="232adb25-0ead-4802-90c0-fe96bac72326" Title="UdpClient Methods" Url="html/Methods_T_Gemstone_Communication_UdpClient.htm">
         <HelpTOCNode Title="AddMulticastMembership Method " Url="html/M_Gemstone_Communication_UdpClient_AddMulticastMembership.htm" />
         <HelpTOCNode Title="ConnectAsync Method " Url="html/M_Gemstone_Communication_UdpClient_ConnectAsync.htm" />
         <HelpTOCNode Title="Disconnect Method " Url="html/M_Gemstone_Communication_UdpClient_Disconnect.htm" />
-        <HelpTOCNode Id="8fa19535-97ba-4fa1-84da-c550f962240d" Title="Dispose Method " Url="html/Overload_Gemstone_Communication_UdpClient_Dispose.htm">
+        <HelpTOCNode Id="b2304cab-2bdf-4425-a7d8-33fc304b25c5" Title="Dispose Method " Url="html/Overload_Gemstone_Communication_UdpClient_Dispose.htm">
           <HelpTOCNode Title="Dispose Method (Boolean)" Url="html/M_Gemstone_Communication_UdpClient_Dispose.htm" />
         </HelpTOCNode>
         <HelpTOCNode Title="DropMulticastMembership Method " Url="html/M_Gemstone_Communication_UdpClient_DropMulticastMembership.htm" />
@@ -640,11 +640,11 @@
         <HelpTOCNode Title="SendDataToAsync Method " Url="html/M_Gemstone_Communication_UdpClient_SendDataToAsync.htm" />
         <HelpTOCNode Title="ValidateConnectionString Method " Url="html/M_Gemstone_Communication_UdpClient_ValidateConnectionString.htm" />
       </HelpTOCNode>
-      <HelpTOCNode Id="4c37fd8c-dfa2-48e0-97f7-59f98abfdf14" Title="UdpClient Events" Url="html/Events_T_Gemstone_Communication_UdpClient.htm">
+      <HelpTOCNode Id="db1dd4e5-0a5e-4a5b-a18b-22333a15a14b" Title="UdpClient Events" Url="html/Events_T_Gemstone_Communication_UdpClient.htm">
         <HelpTOCNode Title="ReceiveDataFrom Event" Url="html/E_Gemstone_Communication_UdpClient_ReceiveDataFrom.htm" />
         <HelpTOCNode Title="ReceiveDataFromComplete Event" Url="html/E_Gemstone_Communication_UdpClient_ReceiveDataFromComplete.htm" />
       </HelpTOCNode>
-      <HelpTOCNode Id="79be877e-df09-40e3-90fd-7103766a62f3" Title="UdpClient Fields" Url="html/Fields_T_Gemstone_Communication_UdpClient.htm">
+      <HelpTOCNode Id="42557851-b990-4b4f-b3d3-5899acb9f4fc" Title="UdpClient Fields" Url="html/Fields_T_Gemstone_Communication_UdpClient.htm">
         <HelpTOCNode Title="DefaultAllowDualStackSocket Field" Url="html/F_Gemstone_Communication_UdpClient_DefaultAllowDualStackSocket.htm" />
         <HelpTOCNode Title="DefaultConnectionString Field" Url="html/F_Gemstone_Communication_UdpClient_DefaultConnectionString.htm" />
         <HelpTOCNode Title="DefaultMaxPacketSize Field" Url="html/F_Gemstone_Communication_UdpClient_DefaultMaxPacketSize.htm" />
@@ -652,12 +652,12 @@
         <HelpTOCNode Title="DefaultReceiveBufferSize Field" Url="html/F_Gemstone_Communication_UdpClient_DefaultReceiveBufferSize.htm" />
       </HelpTOCNode>
     </HelpTOCNode>
-    <HelpTOCNode Id="4e9e04fd-e808-4c62-bc57-b92fbc1e711e" Title="UdpServer Class" Url="html/T_Gemstone_Communication_UdpServer.htm">
-      <HelpTOCNode Id="633a2e24-3c33-4adc-ac9e-3280b3f2b70d" Title="UdpServer Constructor " Url="html/Overload_Gemstone_Communication_UdpServer__ctor.htm">
+    <HelpTOCNode Id="d3976572-a3bd-436d-9722-a50bbc9cf92d" Title="UdpServer Class" Url="html/T_Gemstone_Communication_UdpServer.htm">
+      <HelpTOCNode Id="be7cf504-39ad-41d8-93d6-155fa53b6769" Title="UdpServer Constructor " Url="html/Overload_Gemstone_Communication_UdpServer__ctor.htm">
         <HelpTOCNode Title="UdpServer Constructor " Url="html/M_Gemstone_Communication_UdpServer__ctor.htm" />
         <HelpTOCNode Title="UdpServer Constructor (String)" Url="html/M_Gemstone_Communication_UdpServer__ctor_1.htm" />
       </HelpTOCNode>
-      <HelpTOCNode Id="5da19c67-bbcb-4014-8402-db87a260b7b4" Title="UdpServer Properties" Url="html/Properties_T_Gemstone_Communication_UdpServer.htm">
+      <HelpTOCNode Id="00f86b9f-b519-4a1f-847c-b02fc9b08bf1" Title="UdpServer Properties" Url="html/Properties_T_Gemstone_Communication_UdpServer.htm">
         <HelpTOCNode Title="AllowDualStackSocket Property " Url="html/P_Gemstone_Communication_UdpServer_AllowDualStackSocket.htm" />
         <HelpTOCNode Title="ClientIdentificationMode Property " Url="html/P_Gemstone_Communication_UdpServer_ClientIdentificationMode.htm" />
         <HelpTOCNode Title="DynamicClientEndPoints Property " Url="html/P_Gemstone_Communication_UdpServer_DynamicClientEndPoints.htm" />
@@ -665,7 +665,7 @@
         <HelpTOCNode Title="Server Property " Url="html/P_Gemstone_Communication_UdpServer_Server.htm" />
         <HelpTOCNode Title="Status Property " Url="html/P_Gemstone_Communication_UdpServer_Status.htm" />
       </HelpTOCNode>
-      <HelpTOCNode Id="b330ecc4-9138-40b9-8a2f-7d323a45c011" Title="UdpServer Methods" Url="html/Methods_T_Gemstone_Communication_UdpServer.htm">
+      <HelpTOCNode Id="323b6ac1-a5d0-43f3-9c85-4dee091cab93" Title="UdpServer Methods" Url="html/Methods_T_Gemstone_Communication_UdpServer.htm">
         <HelpTOCNode Title="DisconnectOne Method " Url="html/M_Gemstone_Communication_UdpServer_DisconnectOne.htm" />
         <HelpTOCNode Title="OnReceiveClientDataException Method " Url="html/M_Gemstone_Communication_UdpServer_OnReceiveClientDataException.htm" />
         <HelpTOCNode Title="OnSendClientDataException Method " Url="html/M_Gemstone_Communication_UdpServer_OnSendClientDataException.htm" />
@@ -677,7 +677,7 @@
         <HelpTOCNode Title="ValidateConfigurationString Method " Url="html/M_Gemstone_Communication_UdpServer_ValidateConfigurationString.htm" />
       </HelpTOCNode>
       <HelpTOCNode Title="UdpServer Events" Url="html/Events_T_Gemstone_Communication_UdpServer.htm" />
-      <HelpTOCNode Id="cf50c4f2-82cc-4119-be49-32fac543ba47" Title="UdpServer Fields" Url="html/Fields_T_Gemstone_Communication_UdpServer.htm">
+      <HelpTOCNode Id="cc4abc7c-5e45-4204-8c7f-849e7496f753" Title="UdpServer Fields" Url="html/Fields_T_Gemstone_Communication_UdpServer.htm">
         <HelpTOCNode Title="DefaultAllowDualStackSocket Field" Url="html/F_Gemstone_Communication_UdpServer_DefaultAllowDualStackSocket.htm" />
         <HelpTOCNode Title="DefaultClientIdentificationMode Field" Url="html/F_Gemstone_Communication_UdpServer_DefaultClientIdentificationMode.htm" />
         <HelpTOCNode Title="DefaultConfigurationString Field" Url="html/F_Gemstone_Communication_UdpServer_DefaultConfigurationString.htm" />
@@ -686,15 +686,15 @@
       </HelpTOCNode>
     </HelpTOCNode>
   </HelpTOCNode>
-  <HelpTOCNode Id="cbe93bdd-8f9b-4608-8cff-b5edf4e9d765" Title="Gemstone.Communication.Radius" Url="html/N_Gemstone_Communication_Radius.htm">
+  <HelpTOCNode Id="a8e25fff-079d-46e7-8ca6-3218bbe54311" Title="Gemstone.Communication.Radius" Url="html/N_Gemstone_Communication_Radius.htm">
     <HelpTOCNode Title="AttributeType Enumeration" Url="html/T_Gemstone_Communication_Radius_AttributeType.htm" />
     <HelpTOCNode Title="PacketType Enumeration" Url="html/T_Gemstone_Communication_Radius_PacketType.htm" />
-    <HelpTOCNode Id="871760de-b89e-4e8a-b624-28f113918831" Title="RadiusClient Class" Url="html/T_Gemstone_Communication_Radius_RadiusClient.htm">
-      <HelpTOCNode Id="516c2767-8df7-413f-8818-ee02744e8db8" Title="RadiusClient Constructor " Url="html/Overload_Gemstone_Communication_Radius_RadiusClient__ctor.htm">
+    <HelpTOCNode Id="f0b23c49-81f6-4d51-9d5f-103cb3ea9fec" Title="RadiusClient Class" Url="html/T_Gemstone_Communication_Radius_RadiusClient.htm">
+      <HelpTOCNode Id="9fe65cc6-3693-4c48-94c7-59ccb9d6b23e" Title="RadiusClient Constructor " Url="html/Overload_Gemstone_Communication_Radius_RadiusClient__ctor.htm">
         <HelpTOCNode Title="RadiusClient Constructor (String, String)" Url="html/M_Gemstone_Communication_Radius_RadiusClient__ctor_1.htm" />
         <HelpTOCNode Title="RadiusClient Constructor (String, Int32, String)" Url="html/M_Gemstone_Communication_Radius_RadiusClient__ctor.htm" />
       </HelpTOCNode>
-      <HelpTOCNode Id="351244d6-d8a9-4472-8a4d-5e258a468e8b" Title="RadiusClient Properties" Url="html/Properties_T_Gemstone_Communication_Radius_RadiusClient.htm">
+      <HelpTOCNode Id="3de9432e-e74b-4eb1-93e1-119654366eb7" Title="RadiusClient Properties" Url="html/Properties_T_Gemstone_Communication_Radius_RadiusClient.htm">
         <HelpTOCNode Title="NewPinModeMessage1 Property " Url="html/P_Gemstone_Communication_Radius_RadiusClient_NewPinModeMessage1.htm" />
         <HelpTOCNode Title="NewPinModeMessage2 Property " Url="html/P_Gemstone_Communication_Radius_RadiusClient_NewPinModeMessage2.htm" />
         <HelpTOCNode Title="NewPinModeMessage3 Property " Url="html/P_Gemstone_Communication_Radius_RadiusClient_NewPinModeMessage3.htm" />
@@ -705,14 +705,14 @@
         <HelpTOCNode Title="ServerPort Property " Url="html/P_Gemstone_Communication_Radius_RadiusClient_ServerPort.htm" />
         <HelpTOCNode Title="SharedSecret Property " Url="html/P_Gemstone_Communication_Radius_RadiusClient_SharedSecret.htm" />
       </HelpTOCNode>
-      <HelpTOCNode Id="7cc2852b-254b-4204-aa81-17e47749a718" Title="RadiusClient Methods" Url="html/Methods_T_Gemstone_Communication_Radius_RadiusClient.htm">
-        <HelpTOCNode Id="17610e3f-ee8d-4145-b4e4-80f1e88c1b51" Title="Authenticate Method " Url="html/Overload_Gemstone_Communication_Radius_RadiusClient_Authenticate.htm">
+      <HelpTOCNode Id="79b63393-866c-4fc2-a9af-d18cd32998fc" Title="RadiusClient Methods" Url="html/Methods_T_Gemstone_Communication_Radius_RadiusClient.htm">
+        <HelpTOCNode Id="6366e610-de01-4e97-87d3-14dd6de50c67" Title="Authenticate Method " Url="html/Overload_Gemstone_Communication_Radius_RadiusClient_Authenticate.htm">
           <HelpTOCNode Title="Authenticate Method (String, String)" Url="html/M_Gemstone_Communication_Radius_RadiusClient_Authenticate.htm" />
           <HelpTOCNode Title="Authenticate Method (String, String, Byte[])" Url="html/M_Gemstone_Communication_Radius_RadiusClient_Authenticate_1.htm" />
         </HelpTOCNode>
         <HelpTOCNode Title="CheckDisposed Method " Url="html/M_Gemstone_Communication_Radius_RadiusClient_CheckDisposed.htm" />
         <HelpTOCNode Title="CreateNewPin Method " Url="html/M_Gemstone_Communication_Radius_RadiusClient_CreateNewPin.htm" />
-        <HelpTOCNode Id="a1a02460-19db-41d1-aa33-f12271636332" Title="Dispose Method " Url="html/Overload_Gemstone_Communication_Radius_RadiusClient_Dispose.htm">
+        <HelpTOCNode Id="08074ff8-e178-4932-9d3b-b75acdd5c215" Title="Dispose Method " Url="html/Overload_Gemstone_Communication_Radius_RadiusClient_Dispose.htm">
           <HelpTOCNode Title="Dispose Method " Url="html/M_Gemstone_Communication_Radius_RadiusClient_Dispose.htm" />
           <HelpTOCNode Title="Dispose Method (Boolean)" Url="html/M_Gemstone_Communication_Radius_RadiusClient_Dispose_1.htm" />
         </HelpTOCNode>
@@ -720,7 +720,7 @@
         <HelpTOCNode Title="IsUserInNextTokenMode Method " Url="html/M_Gemstone_Communication_Radius_RadiusClient_IsUserInNextTokenMode.htm" />
         <HelpTOCNode Title="ProcessRequest Method " Url="html/M_Gemstone_Communication_Radius_RadiusClient_ProcessRequest.htm" />
       </HelpTOCNode>
-      <HelpTOCNode Id="79ff7fb3-61d1-456f-88d0-2f8c37ca19f1" Title="RadiusClient Fields" Url="html/Fields_T_Gemstone_Communication_Radius_RadiusClient.htm">
+      <HelpTOCNode Id="164dfea7-f993-4c6a-8153-7dad6e2a66d9" Title="RadiusClient Fields" Url="html/Fields_T_Gemstone_Communication_Radius_RadiusClient.htm">
         <HelpTOCNode Title="DefaultNewPinModeMessage1 Field" Url="html/F_Gemstone_Communication_Radius_RadiusClient_DefaultNewPinModeMessage1.htm" />
         <HelpTOCNode Title="DefaultNewPinModeMessage2 Field" Url="html/F_Gemstone_Communication_Radius_RadiusClient_DefaultNewPinModeMessage2.htm" />
         <HelpTOCNode Title="DefaultNewPinModeMessage3 Field" Url="html/F_Gemstone_Communication_Radius_RadiusClient_DefaultNewPinModeMessage3.htm" />
@@ -728,20 +728,20 @@
         <HelpTOCNode Title="DefaultServerPort Field" Url="html/F_Gemstone_Communication_Radius_RadiusClient_DefaultServerPort.htm" />
       </HelpTOCNode>
     </HelpTOCNode>
-    <HelpTOCNode Id="788a768c-5aba-4da9-8b79-98040f68d980" Title="RadiusPacket Class" Url="html/T_Gemstone_Communication_Radius_RadiusPacket.htm">
-      <HelpTOCNode Id="bdfa6fc7-08d7-4d74-9f5a-da43691e43d6" Title="RadiusPacket Constructor " Url="html/Overload_Gemstone_Communication_Radius_RadiusPacket__ctor.htm">
+    <HelpTOCNode Id="0a27560e-edc5-41c5-be26-c3dccac223fb" Title="RadiusPacket Class" Url="html/T_Gemstone_Communication_Radius_RadiusPacket.htm">
+      <HelpTOCNode Id="d9bd2434-950c-4422-97c6-7101fe090c70" Title="RadiusPacket Constructor " Url="html/Overload_Gemstone_Communication_Radius_RadiusPacket__ctor.htm">
         <HelpTOCNode Title="RadiusPacket Constructor " Url="html/M_Gemstone_Communication_Radius_RadiusPacket__ctor.htm" />
         <HelpTOCNode Title="RadiusPacket Constructor (PacketType)" Url="html/M_Gemstone_Communication_Radius_RadiusPacket__ctor_1.htm" />
         <HelpTOCNode Title="RadiusPacket Constructor (Byte[], Int32, Int32)" Url="html/M_Gemstone_Communication_Radius_RadiusPacket__ctor_2.htm" />
       </HelpTOCNode>
-      <HelpTOCNode Id="0cb712d3-c821-46b9-8eef-d8803b44025f" Title="RadiusPacket Properties" Url="html/Properties_T_Gemstone_Communication_Radius_RadiusPacket.htm">
+      <HelpTOCNode Id="36f8e927-8192-4dd3-9132-7b4faebac80c" Title="RadiusPacket Properties" Url="html/Properties_T_Gemstone_Communication_Radius_RadiusPacket.htm">
         <HelpTOCNode Title="Attributes Property " Url="html/P_Gemstone_Communication_Radius_RadiusPacket_Attributes.htm" />
         <HelpTOCNode Title="Authenticator Property " Url="html/P_Gemstone_Communication_Radius_RadiusPacket_Authenticator.htm" />
         <HelpTOCNode Title="BinaryLength Property " Url="html/P_Gemstone_Communication_Radius_RadiusPacket_BinaryLength.htm" />
         <HelpTOCNode Title="Identifier Property " Url="html/P_Gemstone_Communication_Radius_RadiusPacket_Identifier.htm" />
         <HelpTOCNode Title="Type Property " Url="html/P_Gemstone_Communication_Radius_RadiusPacket_Type.htm" />
       </HelpTOCNode>
-      <HelpTOCNode Id="79725248-7755-4c35-9f4e-e84b4d2014ed" Title="RadiusPacket Methods" Url="html/Methods_T_Gemstone_Communication_Radius_RadiusPacket.htm">
+      <HelpTOCNode Id="a5af347b-a1c0-4ea9-9da6-930e2cf7f631" Title="RadiusPacket Methods" Url="html/Methods_T_Gemstone_Communication_Radius_RadiusPacket.htm">
         <HelpTOCNode Title="CreateRequestAuthenticator Method " Url="html/M_Gemstone_Communication_Radius_RadiusPacket_CreateRequestAuthenticator.htm" />
         <HelpTOCNode Title="CreateResponseAuthenticator Method " Url="html/M_Gemstone_Communication_Radius_RadiusPacket_CreateResponseAuthenticator.htm" />
         <HelpTOCNode Title="EncryptPassword Method " Url="html/M_Gemstone_Communication_Radius_RadiusPacket_EncryptPassword.htm" />
@@ -749,13 +749,13 @@
         <HelpTOCNode Title="GetAttributeValue Method " Url="html/M_Gemstone_Communication_Radius_RadiusPacket_GetAttributeValue.htm" />
         <HelpTOCNode Title="ParseBinaryImage Method " Url="html/M_Gemstone_Communication_Radius_RadiusPacket_ParseBinaryImage.htm" />
       </HelpTOCNode>
-      <HelpTOCNode Id="5f0f4f14-97e8-4920-abfb-3749fbb670cc" Title="RadiusPacket Fields" Url="html/Fields_T_Gemstone_Communication_Radius_RadiusPacket.htm">
+      <HelpTOCNode Id="da8a5dd5-b697-4bc9-b24e-508311433f8b" Title="RadiusPacket Fields" Url="html/Fields_T_Gemstone_Communication_Radius_RadiusPacket.htm">
         <HelpTOCNode Title="Encoding Field" Url="html/F_Gemstone_Communication_Radius_RadiusPacket_Encoding.htm" />
         <HelpTOCNode Title="EndianOrder Field" Url="html/F_Gemstone_Communication_Radius_RadiusPacket_EndianOrder.htm" />
       </HelpTOCNode>
     </HelpTOCNode>
-    <HelpTOCNode Id="f65ea508-b7e6-4a43-a142-61bd349069db" Title="RadiusPacketAttribute Class" Url="html/T_Gemstone_Communication_Radius_RadiusPacketAttribute.htm">
-      <HelpTOCNode Id="13b3273b-aba4-4f16-a18b-c0b3219ce226" Title="RadiusPacketAttribute Constructor " Url="html/Overload_Gemstone_Communication_Radius_RadiusPacketAttribute__ctor.htm">
+    <HelpTOCNode Id="25fdf870-d18b-4413-810f-84eaf3fbcccd" Title="RadiusPacketAttribute Class" Url="html/T_Gemstone_Communication_Radius_RadiusPacketAttribute.htm">
+      <HelpTOCNode Id="52ceb6a1-9974-4985-816c-683e7b39046e" Title="RadiusPacketAttribute Constructor " Url="html/Overload_Gemstone_Communication_Radius_RadiusPacketAttribute__ctor.htm">
         <HelpTOCNode Title="RadiusPacketAttribute Constructor " Url="html/M_Gemstone_Communication_Radius_RadiusPacketAttribute__ctor.htm" />
         <HelpTOCNode Title="RadiusPacketAttribute Constructor (AttributeType, Byte[])" Url="html/M_Gemstone_Communication_Radius_RadiusPacketAttribute__ctor_1.htm" />
         <HelpTOCNode Title="RadiusPacketAttribute Constructor (AttributeType, IPAddress)" Url="html/M_Gemstone_Communication_Radius_RadiusPacketAttribute__ctor_2.htm" />
@@ -763,12 +763,12 @@
         <HelpTOCNode Title="RadiusPacketAttribute Constructor (AttributeType, UInt32)" Url="html/M_Gemstone_Communication_Radius_RadiusPacketAttribute__ctor_4.htm" />
         <HelpTOCNode Title="RadiusPacketAttribute Constructor (Byte[], Int32, Int32)" Url="html/M_Gemstone_Communication_Radius_RadiusPacketAttribute__ctor_5.htm" />
       </HelpTOCNode>
-      <HelpTOCNode Id="7ef764d4-4db4-47f8-9ab4-3e8db0fde055" Title="RadiusPacketAttribute Properties" Url="html/Properties_T_Gemstone_Communication_Radius_RadiusPacketAttribute.htm">
+      <HelpTOCNode Id="92e2a54a-f6f7-40eb-a75b-4dcd70c086a6" Title="RadiusPacketAttribute Properties" Url="html/Properties_T_Gemstone_Communication_Radius_RadiusPacketAttribute.htm">
         <HelpTOCNode Title="BinaryLength Property " Url="html/P_Gemstone_Communication_Radius_RadiusPacketAttribute_BinaryLength.htm" />
         <HelpTOCNode Title="Type Property " Url="html/P_Gemstone_Communication_Radius_RadiusPacketAttribute_Type.htm" />
         <HelpTOCNode Title="Value Property " Url="html/P_Gemstone_Communication_Radius_RadiusPacketAttribute_Value.htm" />
       </HelpTOCNode>
-      <HelpTOCNode Id="345c6154-705a-4d0e-8469-f17060e52989" Title="RadiusPacketAttribute Methods" Url="html/Methods_T_Gemstone_Communication_Radius_RadiusPacketAttribute.htm">
+      <HelpTOCNode Id="a7c6ffdd-9534-48c9-9e2c-5c7c79641970" Title="RadiusPacketAttribute Methods" Url="html/Methods_T_Gemstone_Communication_Radius_RadiusPacketAttribute.htm">
         <HelpTOCNode Title="GenerateBinaryImage Method " Url="html/M_Gemstone_Communication_Radius_RadiusPacketAttribute_GenerateBinaryImage.htm" />
         <HelpTOCNode Title="ParseBinaryImage Method " Url="html/M_Gemstone_Communication_Radius_RadiusPacketAttribute_ParseBinaryImage.htm" />
       </HelpTOCNode>
