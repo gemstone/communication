@@ -419,7 +419,7 @@ namespace Gemstone.Communication
             m_fileClient.Reset();
             m_receiveDataTimer.Stop();
 
-            m_connectionThread?.Abort();
+            //m_connectionThread?.Abort();
 
             OnConnectionTerminated();
         }
@@ -597,6 +597,7 @@ namespace Gemstone.Communication
                     if (m_autoRepeat && m_fileClient.Provider.Position == m_fileClient.Provider.Length)
                         m_fileClient.Provider.Seek(m_startingOffset, SeekOrigin.Begin);
 
+                    //TODO: Check Disconnect to break loop as well
                     // Stop processing the file if user has either opted to receive data on demand or receive data at a predefined interval.
                     if (m_receiveOnDemand || m_receiveInterval > 0)
                         break;
