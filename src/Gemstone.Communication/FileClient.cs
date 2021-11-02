@@ -197,6 +197,11 @@ namespace Gemstone.Communication
         /// </summary>
         public const FileAccess DefaultFileAccessMode = FileAccess.ReadWrite;
 
+         /// <summary>
+        /// Specifies the default value for the <see cref="DisconnectAtEOF"/> property.
+        /// </summary>
+        public const bool DefaultDisconnectAtEOF = false;
+
         /// <summary>
         /// Specifies the default value for the <see cref="ClientBase.ConnectionString"/> property.
         /// </summary>
@@ -336,6 +341,13 @@ namespace Gemstone.Communication
                 m_fileAccessMode = value;
             }
         }
+
+
+        /// <summary>
+        /// Gets or sets flag that determines if client should disconnect when end of file has been reached.
+        /// </summary>
+        public bool DisconnectAtEOF { get; set; } = DefaultDisconnectAtEOF;
+        
 
         /// <summary>
         /// Gets the <see cref="FileStream"/> object for the <see cref="FileClient"/>.
@@ -594,8 +606,13 @@ namespace Gemstone.Communication
                     OnReceiveDataComplete(m_fileClient.ReceiveBuffer, m_fileClient.BytesReceived);
 
                     // Re-read the file if the user wants to repeat when done reading the file.
-                    if (m_autoRepeat && m_fileClient.Provider.Position == m_fileClient.Provider.Length)
-                        m_fileClient.Provider.Seek(m_startingOffset, SeekOrigin.Begin);
+                     if (m_fileClient.Provider.Position == m_fileClient.Provider.Length)
+                    {
+                        if (m_autoRepeat)
+                            m_fileClient.Provider.Seek(m_startingOffset, SeekOrigin.Begin);
+                        else if (DisconnectAtEOF)
+                            Disconnect();
+                    }
 
                     //TODO: Check Disconnect to break loop as well
                     // Stop processing the file if user has either opted to receive data on demand or receive data at a predefined interval.
