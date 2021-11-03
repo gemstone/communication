@@ -222,6 +222,7 @@
     <HelpKINode Title="TlsClient.DefaultConnectionString Field" Url="html/F_Gemstone_Communication_TlsClient_DefaultConnectionString.htm" />
     <HelpKINode Title="UdpClient.DefaultConnectionString Field" Url="html/F_Gemstone_Communication_UdpClient_DefaultConnectionString.htm" />
   </HelpKINode>
+  <HelpKINode Title="DefaultDisconnectAtEOF field" Url="html/F_Gemstone_Communication_FileClient_DefaultDisconnectAtEOF.htm" />
   <HelpKINode Title="DefaultDynamicClientEndPoints field" Url="html/F_Gemstone_Communication_UdpServer_DefaultDynamicClientEndPoints.htm" />
   <HelpKINode Title="DefaultFileAccessMode field" Url="html/F_Gemstone_Communication_FileClient_DefaultFileAccessMode.htm" />
   <HelpKINode Title="DefaultFileOpenMode field" Url="html/F_Gemstone_Communication_FileClient_DefaultFileOpenMode.htm" />
@@ -297,6 +298,7 @@
     <HelpKINode Title="IServer.DisconnectAll Method " Url="html/M_Gemstone_Communication_IServer_DisconnectAll.htm" />
     <HelpKINode Title="ServerBase.DisconnectAll Method " Url="html/M_Gemstone_Communication_ServerBase_DisconnectAll.htm" />
   </HelpKINode>
+  <HelpKINode Title="DisconnectAtEOF property" Url="html/P_Gemstone_Communication_FileClient_DisconnectAtEOF.htm" />
   <HelpKINode Title="Disconnected enumeration member" Url="html/T_Gemstone_Communication_ClientState.htm" />
   <HelpKINode Title="DisconnectOne method">
     <HelpKINode Title="IServer.DisconnectOne Method " Url="html/M_Gemstone_Communication_IServer_DisconnectOne.htm" />
@@ -351,6 +353,7 @@
   <HelpKINode Title="FileClient.ConnectAsync method" Url="html/M_Gemstone_Communication_FileClient_ConnectAsync.htm" />
   <HelpKINode Title="FileClient.DefaultAutoRepeat field" Url="html/F_Gemstone_Communication_FileClient_DefaultAutoRepeat.htm" />
   <HelpKINode Title="FileClient.DefaultConnectionString field" Url="html/F_Gemstone_Communication_FileClient_DefaultConnectionString.htm" />
+  <HelpKINode Title="FileClient.DefaultDisconnectAtEOF field" Url="html/F_Gemstone_Communication_FileClient_DefaultDisconnectAtEOF.htm" />
   <HelpKINode Title="FileClient.DefaultFileAccessMode field" Url="html/F_Gemstone_Communication_FileClient_DefaultFileAccessMode.htm" />
   <HelpKINode Title="FileClient.DefaultFileOpenMode field" Url="html/F_Gemstone_Communication_FileClient_DefaultFileOpenMode.htm" />
   <HelpKINode Title="FileClient.DefaultFileShareMode field" Url="html/F_Gemstone_Communication_FileClient_DefaultFileShareMode.htm" />
@@ -358,6 +361,7 @@
   <HelpKINode Title="FileClient.DefaultReceiveOnDemand field" Url="html/F_Gemstone_Communication_FileClient_DefaultReceiveOnDemand.htm" />
   <HelpKINode Title="FileClient.DefaultStartingOffset field" Url="html/F_Gemstone_Communication_FileClient_DefaultStartingOffset.htm" />
   <HelpKINode Title="FileClient.Disconnect method" Url="html/M_Gemstone_Communication_FileClient_Disconnect.htm" />
+  <HelpKINode Title="FileClient.DisconnectAtEOF property" Url="html/P_Gemstone_Communication_FileClient_DisconnectAtEOF.htm" />
   <HelpKINode Title="FileClient.Dispose method" Url="html/Overload_Gemstone_Communication_FileClient_Dispose.htm" />
   <HelpKINode Title="FileClient.FileAccessMode property" Url="html/P_Gemstone_Communication_FileClient_FileAccessMode.htm" />
   <HelpKINode Title="FileClient.FileClient constructor" Url="html/Overload_Gemstone_Communication_FileClient__ctor.htm" />

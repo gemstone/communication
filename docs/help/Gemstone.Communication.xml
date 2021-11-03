@@ -440,6 +440,11 @@
             Specifies the default value for the <see cref="P:Gemstone.Communication.ClientBase.ConnectionString" /> property.
             </summary>
     </member>
+    <member name="F:Gemstone.Communication.FileClient.DefaultDisconnectAtEOF">
+      <summary>
+            Specifies the default value for the <see cref="P:Gemstone.Communication.FileClient.DisconnectAtEOF" /> property.
+            </summary>
+    </member>
     <member name="F:Gemstone.Communication.FileClient.DefaultFileAccessMode">
       <summary>
             Specifies the default value for the <see cref="P:Gemstone.Communication.FileClient.FileAccessMode" /> property.
@@ -473,6 +478,11 @@
     <member name="M:Gemstone.Communication.FileClient.Disconnect">
       <summary>
             Disconnects the <see cref="T:Gemstone.Communication.FileClient" /> from the <see cref="T:System.IO.FileStream" />.
+            </summary>
+    </member>
+    <member name="P:Gemstone.Communication.FileClient.DisconnectAtEOF">
+      <summary>
+            Gets or sets flag that determines if client should disconnect when end of file has been reached.
             </summary>
     </member>
     <member name="M:Gemstone.Communication.FileClient.Dispose(System.Boolean)">
