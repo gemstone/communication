@@ -623,7 +623,7 @@ namespace Gemstone.Communication
             catch (Exception ex)
             {
                 // Notify of the exception.
-                if (!(ex is NullReferenceException))
+                if (ex is not NullReferenceException)
                     OnReceiveDataException(ex);
             }
         }

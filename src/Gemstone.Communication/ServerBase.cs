@@ -721,7 +721,7 @@ namespace Gemstone.Communication
         /// <param name="ex">Exception to send to <see cref="SendClientDataException"/> event.</param>
         protected virtual void OnSendClientDataException(Guid clientID, Exception ex)
         {
-            if (!(ex is ObjectDisposedException))
+            if (ex is not ObjectDisposedException)
                 SendClientDataException?.SafeInvoke(this, new EventArgs<Guid, Exception>(clientID, ex));
         }
 
@@ -767,7 +767,7 @@ namespace Gemstone.Communication
         /// <param name="ex">Exception to send to <see cref="ReceiveClientDataException"/> event.</param>
         protected virtual void OnReceiveClientDataException(Guid clientID, Exception ex)
         {
-            if (!(ex is ObjectDisposedException))
+            if (ex is not ObjectDisposedException)
                 ReceiveClientDataException?.SafeInvoke(this, new EventArgs<Guid, Exception>(clientID, ex));
         }
 

@@ -645,7 +645,7 @@ namespace Gemstone.Communication
         /// <param name="ex">Exception to send to <see cref="ConnectionException"/> event.</param>
         protected virtual void OnConnectionException(Exception ex)
         {
-            if (!(ex is ObjectDisposedException))
+            if (ex is not ObjectDisposedException)
                 ConnectionException?.SafeInvoke(this, new EventArgs<Exception>(ex));
         }
 
@@ -671,7 +671,7 @@ namespace Gemstone.Communication
         /// <param name="ex">Exception to send to <see cref="SendDataException"/> event.</param>
         protected virtual void OnSendDataException(Exception ex)
         {
-            if (!(ex is ObjectDisposedException))
+            if (ex is not ObjectDisposedException)
                 SendDataException?.SafeInvoke(this, new EventArgs<Exception>(ex));
         }
 
@@ -720,7 +720,7 @@ namespace Gemstone.Communication
         /// <param name="ex">Exception to send to <see cref="ReceiveDataException"/> event.</param>
         protected virtual void OnReceiveDataException(Exception ex)
         {
-            if (!(ex is ObjectDisposedException))
+            if (ex is not ObjectDisposedException)
                 ReceiveDataException?.SafeInvoke(this, new EventArgs<Exception>(ex));
         }
 
