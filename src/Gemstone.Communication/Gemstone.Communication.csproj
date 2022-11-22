@@ -12,7 +12,7 @@
     <PackageDescription>GPA Gemstone Communication Library</PackageDescription>
     <PackageIcon>gemstone-square-128.png</PackageIcon>
     <Description>GPA Gemstone Communication Library</Description>
-    <Copyright>Copyright © 2020</Copyright>
+    <Copyright>Copyright © 2022</Copyright>
     <PackageProjectUrl>https://github.com/gemstone</PackageProjectUrl>
     <RepositoryUrl>https://github.com/gemstone/communication</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
