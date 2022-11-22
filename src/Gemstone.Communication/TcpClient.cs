@@ -125,22 +125,22 @@ namespace Gemstone.Communication
     ///         s_client.Dispose();
     ///     }
     /// 
-    ///     static void s_client_ConnectionAttempt(object sender, EventArgs e)
+    ///     static void s_client_ConnectionAttempt(object? sender, EventArgs e)
     ///     {
     ///         Console.WriteLine("Client is connecting to server.");
     ///     }
     /// 
-    ///     static void s_client_ConnectionEstablished(object sender, EventArgs e)
+    ///     static void s_client_ConnectionEstablished(object? sender, EventArgs e)
     ///     {
     ///         Console.WriteLine("Client connected to server.");
     ///     }
     /// 
-    ///     static void s_client_ConnectionTerminated(object sender, EventArgs e)
+    ///     static void s_client_ConnectionTerminated(object? sender, EventArgs e)
     ///     {
     ///         Console.WriteLine("Client disconnected from server.");
     ///     }
     /// 
-    ///     static void s_client_ReceiveDataComplete(object sender, EventArgs&lt;byte[], int&gt; e)
+    ///     static void s_client_ReceiveDataComplete(object? sender, EventArgs&lt;byte[], int&gt; e)
     ///     {
     ///         Console.WriteLine(string.Format("Received data - {0}.", s_client.TextEncoding.GetString(e.Argument1, 0, e.Argument2)));
     ///     }
@@ -159,12 +159,12 @@ namespace Gemstone.Communication
             public NetworkStream? NetworkStream;
             public NegotiateStream? NegotiateStream;
 
-            public readonly SocketAsyncEventArgs ConnectArgs = new SocketAsyncEventArgs();
+            public readonly SocketAsyncEventArgs ConnectArgs = new();
             public SocketAsyncEventArgs? ReceiveArgs;
             public SocketAsyncEventArgs? SendArgs;
             public int ConnectionAttempts;
 
-            public readonly CancellationToken Token = new CancellationToken();
+            public readonly CancellationToken Token = new();
             public Func<bool> CancelTimeout = () => false;
 
             public void Dispose()
@@ -206,7 +206,7 @@ namespace Gemstone.Communication
             public SocketAsyncEventArgs? ReceiveArgs;
             public SocketAsyncEventArgs? SendArgs;
 
-            public readonly ConcurrentQueue<TcpClientPayload> SendQueue = new ConcurrentQueue<TcpClientPayload>();
+            public readonly ConcurrentQueue<TcpClientPayload> SendQueue = new();
             public TcpClientPayload? Payload;
             public int Sending;
 
@@ -232,7 +232,7 @@ namespace Gemstone.Communication
             public byte[]? Data;
             public int Offset;
             public int Length;
-            public readonly ManualResetEventSlim WaitHandle = new ManualResetEventSlim();
+            public readonly ManualResetEventSlim WaitHandle = new();
         }
 
         private class CancellationToken
@@ -433,7 +433,7 @@ namespace Gemstone.Communication
             get
             {
                 SendState? sendState = m_sendState;
-                StringBuilder statusBuilder = new StringBuilder(base.Status);
+                StringBuilder statusBuilder = new(base.Status);
 
                 if (sendState != null)
                     statusBuilder.AppendLine($"           Queued payloads: {sendState.SendQueue.Count:N0}");
@@ -605,7 +605,7 @@ namespace Gemstone.Communication
 
                     connectState.CancelTimeout = new Action(() =>
                     {
-                        SocketException ex = new SocketException((int)SocketError.TimedOut);
+                        SocketException ex = new((int)SocketError.TimedOut);
                         OnConnectionException(ex);
                         TerminateConnection(connectState.Token);
                         connectState.Dispose();
@@ -1154,7 +1154,7 @@ namespace Gemstone.Communication
                     Payload.AddHeader(ref data, ref offset, ref length, m_payloadMarker, m_payloadEndianOrder);
 
                 // Create payload and wait handle.
-                TcpClientPayload payload = new TcpClientPayload
+                TcpClientPayload payload = new()
                 {
                     Data = data,
                     Offset = offset,

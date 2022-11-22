@@ -83,22 +83,22 @@ namespace Gemstone.Communication
     ///         s_client.Dispose();
     ///     }
     /// 
-    ///     static void s_client_ConnectionAttempt(object sender, EventArgs e)
+    ///     static void s_client_ConnectionAttempt(object? sender, EventArgs e)
     ///     {
     ///         Console.WriteLine("Client is connecting to file.");
     ///     }
     /// 
-    ///     static void s_client_ConnectionEstablished(object sender, EventArgs e)
+    ///     static void s_client_ConnectionEstablished(object? sender, EventArgs e)
     ///     {
     ///         Console.WriteLine("Client connected to file.");
     ///     }
     /// 
-    ///     static void s_client_ConnectionTerminated(object sender, EventArgs e)
+    ///     static void s_client_ConnectionTerminated(object? sender, EventArgs e)
     ///     {
     ///         Console.WriteLine("Client disconnected from file.");
     ///     }
     /// 
-    ///     static void s_client_SendDataComplete(object sender, EventArgs e)
+    ///     static void s_client_SendDataComplete(object? sender, EventArgs e)
     ///     {
     ///         Console.WriteLine(string.Format("Sent data - {0}", s_client.TextEncoding.GetString(s_client.Client.SendBuffer)));
     ///     }
@@ -134,22 +134,22 @@ namespace Gemstone.Communication
     ///         s_client.Dispose();
     ///     }
     /// 
-    ///     static void s_client_ConnectionAttempt(object sender, EventArgs e)
+    ///     static void s_client_ConnectionAttempt(object? sender, EventArgs e)
     ///     {
     ///         Console.WriteLine("Client is connecting to file.");
     ///     }
     /// 
-    ///     static void s_client_ConnectionEstablished(object sender, EventArgs e)
+    ///     static void s_client_ConnectionEstablished(object? sender, EventArgs e)
     ///     {
     ///         Console.WriteLine("Client connected to file.");
     ///     }
     /// 
-    ///     static void s_client_ConnectionTerminated(object sender, EventArgs e)
+    ///     static void s_client_ConnectionTerminated(object? sender, EventArgs e)
     ///     {
     ///         Console.WriteLine("Client disconnected from file.");
     ///     }
     /// 
-    ///     static void s_client_ReceiveDataComplete(object sender, EventArgs&lt;byte[], int&gt; e)
+    ///     static void s_client_ReceiveDataComplete(object? sender, EventArgs&lt;byte[], int&gt; e)
     ///     {
     ///         Console.WriteLine(string.Format("Received data - {0}", s_client.TextEncoding.GetString(e.Argument1, 0, e.Argument2)));
     ///     }
@@ -628,7 +628,7 @@ namespace Gemstone.Communication
             }
         }
 
-        private void m_receiveDataTimer_Elapsed(object sender, EventArgs<DateTime> e) => ReadData();
+        private void m_receiveDataTimer_Elapsed(object? sender, EventArgs<DateTime> e) => ReadData();
 
         /// <summary>
         /// Raises the <see cref="ClientBase.ConnectionException"/> event.
@@ -647,7 +647,7 @@ namespace Gemstone.Communication
         // Static Fields
 
         // Common use static timer for FileClient instances
-        private static readonly SharedTimerScheduler s_timerScheduler = new SharedTimerScheduler();
+        private static readonly SharedTimerScheduler s_timerScheduler = new();
 
         #endregion
     }

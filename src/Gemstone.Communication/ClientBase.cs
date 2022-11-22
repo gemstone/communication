@@ -386,7 +386,7 @@ namespace Gemstone.Communication
         {
             get
             {
-                StringBuilder status = new StringBuilder();
+                StringBuilder status = new();
 
                 status.AppendLine($"               Client name: {Name}");
                 status.AppendLine($"              Client state: {m_currentState}");
@@ -763,7 +763,7 @@ namespace Gemstone.Communication
             if (settings.TryGetValue("protocol", out string protocol))
             {
                 settings.Remove("protocol");
-                StringBuilder protocolSettings = new StringBuilder();
+                StringBuilder protocolSettings = new();
 
                 foreach (string key in settings.Keys)
                 {

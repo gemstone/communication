@@ -117,27 +117,27 @@ namespace Gemstone.Communication
     ///         m_server.Stop();
     ///     }
     /// 
-    ///     static void m_server_ServerStarted(object sender, EventArgs e)
+    ///     static void m_server_ServerStarted(object? sender, EventArgs e)
     ///     {
     ///         Console.WriteLine("Server has been started!");
     ///     }
     /// 
-    ///     static void m_server_ServerStopped(object sender, EventArgs e)
+    ///     static void m_server_ServerStopped(object? sender, EventArgs e)
     ///     {
     ///         Console.WriteLine("Server has been stopped!");
     ///     }
     /// 
-    ///     static void m_server_ClientConnected(object sender, EventArgs&lt;Guid&gt; e)
+    ///     static void m_server_ClientConnected(object? sender, EventArgs&lt;Guid&gt; e)
     ///     {
     ///         Console.WriteLine(string.Format("Client connected - {0}.", e.Argument));
     ///     }
     /// 
-    ///     static void m_server_ClientDisconnected(object sender, EventArgs&lt;Guid&gt; e)
+    ///     static void m_server_ClientDisconnected(object? sender, EventArgs&lt;Guid&gt; e)
     ///     {
     ///         Console.WriteLine(string.Format("Client disconnected - {0}.", e.Argument));
     ///     }
     /// 
-    ///     static void m_server_ReceiveClientDataComplete(object sender, EventArgs&lt;Guid, byte[], int&gt; e)
+    ///     static void m_server_ReceiveClientDataComplete(object? sender, EventArgs&lt;Guid, byte[], int&gt; e)
     ///     {
     ///         Console.WriteLine(string.Format("Received data from {0} - {1}.", e.Argument1, m_server.TextEncoding.GetString(e.Argument2, 0, e.Argument3)));
     ///     }
@@ -151,10 +151,10 @@ namespace Gemstone.Communication
         // Nested Types
         private class TcpClientInfo
         {
-            public TransportProvider<Socket> Client = new TransportProvider<Socket>();
-            public readonly SocketAsyncEventArgs SendArgs = new SocketAsyncEventArgs();
-            public readonly object SendLock = new object();
-            public readonly ConcurrentQueue<TcpServerPayload> SendQueue = new ConcurrentQueue<TcpServerPayload>();
+            public TransportProvider<Socket> Client = new();
+            public readonly SocketAsyncEventArgs SendArgs = new();
+            public readonly object SendLock = new();
+            public readonly ConcurrentQueue<TcpServerPayload> SendQueue = new();
             public ShortSynchronizedOperation DumpPayloadsOperation = default!;
             public int Sending;
             public WindowsPrincipal? ClientPrincipal;
@@ -166,7 +166,7 @@ namespace Gemstone.Communication
             public byte[]? Data;
             public int Offset;
             public int Length;
-            public ManualResetEventSlim WaitHandle = new ManualResetEventSlim();
+            public ManualResetEventSlim WaitHandle = new();
 
             // Per client state
             public TcpClientInfo? ClientInfo;
@@ -340,7 +340,7 @@ namespace Gemstone.Communication
         {
             get
             {
-                StringBuilder statusBuilder = new StringBuilder(base.Status);
+                StringBuilder statusBuilder = new(base.Status);
                 int count = 0;
 
                 foreach (ConcurrentQueue<TcpServerPayload> sendQueue in m_clientInfoLookup.Values.Select(clientInfo => clientInfo.SendQueue))
@@ -572,8 +572,8 @@ namespace Gemstone.Communication
                 Payload.AddHeader(ref data, ref offset, ref length, m_payloadMarker, m_payloadEndianOrder);
 
             // Create payload and wait handle.
-            TcpServerPayload payload = new TcpServerPayload();
-            ManualResetEventSlim handle = new ManualResetEventSlim();
+            TcpServerPayload payload = new();
+            ManualResetEventSlim handle = new();
 
             payload.Data = data;
             payload.Offset = offset;
@@ -643,7 +643,7 @@ namespace Gemstone.Communication
         [SuppressMessage("Microsoft.Usage", "CA2202:Do not dispose objects multiple times")]
         private void ProcessAccept(SocketAsyncEventArgs acceptArgs)
         {
-            TransportProvider<Socket> client = new TransportProvider<Socket>();
+            TransportProvider<Socket> client = new();
             SocketAsyncEventArgs? receiveArgs = null;
             WindowsPrincipal? clientPrincipal = null;
             IPEndPoint? remoteEndPoint = null;
@@ -772,7 +772,7 @@ namespace Gemstone.Communication
                     }
                     else
                     {
-                        EventArgs<TransportProvider<Socket>, bool> userToken = new EventArgs<TransportProvider<Socket>, bool> { Argument1 = client };
+                        EventArgs<TransportProvider<Socket>, bool> userToken = new() { Argument1 = client };
                         receiveArgs.UserToken = userToken;
                     }
 

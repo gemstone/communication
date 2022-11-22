@@ -151,27 +151,27 @@ namespace Gemstone.Communication
     ///         m_server.Stop();
     ///     }
     /// 
-    ///     static void m_server_ServerStarted(object sender, EventArgs e)
+    ///     static void m_server_ServerStarted(object? sender, EventArgs e)
     ///     {
     ///         Console.WriteLine("Server has been started!");
     ///     }
     /// 
-    ///     static void m_server_ServerStopped(object sender, EventArgs e)
+    ///     static void m_server_ServerStopped(object? sender, EventArgs e)
     ///     {
     ///         Console.WriteLine("Server has been stopped!");
     ///     }
     /// 
-    ///     static void m_server_ClientConnected(object sender, EventArgs&lt;Guid&gt; e)
+    ///     static void m_server_ClientConnected(object? sender, EventArgs&lt;Guid&gt; e)
     ///     {
     ///         Console.WriteLine(string.Format("Client connected - {0}.", e.Argument));
     ///     }
     /// 
-    ///     static void m_server_ClientDisconnected(object sender, EventArgs&lt;Guid&gt; e)
+    ///     static void m_server_ClientDisconnected(object? sender, EventArgs&lt;Guid&gt; e)
     ///     {
     ///         Console.WriteLine(string.Format("Client disconnected - {0}.", e.Argument));
     ///     }
     /// 
-    ///     static void m_server_ReceiveClientDataComplete(object sender, EventArgs&lt;Guid, byte[], int&gt; e)
+    ///     static void m_server_ReceiveClientDataComplete(object? sender, EventArgs&lt;Guid, byte[], int&gt; e)
     ///     {
     ///         Console.WriteLine(string.Format("Received data from {0} - {1}.", e.Argument1, m_server.TextEncoding.GetString(e.Argument2, 0, e.Argument3)));
     ///     }
@@ -185,10 +185,10 @@ namespace Gemstone.Communication
         // Nested Types
         private class UdpClientInfo
         {
-            public TransportProvider<EndPoint> Client = new TransportProvider<EndPoint>();
-            public readonly SocketAsyncEventArgs SendArgs = new SocketAsyncEventArgs();
-            public readonly object SendLock = new object();
-            public readonly ConcurrentQueue<UdpServerPayload> SendQueue = new ConcurrentQueue<UdpServerPayload>();
+            public TransportProvider<EndPoint> Client = new();
+            public readonly SocketAsyncEventArgs SendArgs = new();
+            public readonly object SendLock = new();
+            public readonly ConcurrentQueue<UdpServerPayload> SendQueue = new();
             public ShortSynchronizedOperation DumpPayloadsOperation = default!;
             public int Sending;
         }
@@ -199,7 +199,7 @@ namespace Gemstone.Communication
             public byte[]? Data;
             public int Offset;
             public int Length;
-            public ManualResetEventSlim WaitHandle = new ManualResetEventSlim();
+            public ManualResetEventSlim WaitHandle = new();
 
             // Per client state
             public UdpClientInfo? ClientInfo;
@@ -322,7 +322,7 @@ namespace Gemstone.Communication
         {
             get
             {
-                StringBuilder statusBuilder = new StringBuilder(base.Status);
+                StringBuilder statusBuilder = new(base.Status);
                 int count = 0;
 
                 foreach (ConcurrentQueue<UdpServerPayload> sendQueue in m_clientInfoLookup.Values.Select(clientInfo => clientInfo.SendQueue))
@@ -613,8 +613,8 @@ namespace Gemstone.Communication
             clientInfo.DumpPayloadsOperation.TryRun();
 
             // Create payload and wait handle.
-            UdpServerPayload payload = new UdpServerPayload();
-            ManualResetEventSlim handle = new ManualResetEventSlim();
+            UdpServerPayload payload = new();
+            ManualResetEventSlim handle = new();
 
             payload.Data = data;
             payload.Offset = offset;
@@ -675,7 +675,7 @@ namespace Gemstone.Communication
 
         private TransportProvider<EndPoint> AddUdpClient(EndPoint udpClientEndPoint)
         {
-            TransportProvider<EndPoint> udpClient = new TransportProvider<EndPoint>();
+            TransportProvider<EndPoint> udpClient = new();
             IPEndPoint? udpClientIPEndPoint = udpClientEndPoint as IPEndPoint;
 
             // Set up client
@@ -699,7 +699,7 @@ namespace Gemstone.Communication
                     if (localAddress.AddressFamily != udpClientIPEndPoint.AddressFamily)
                         throw new InvalidOperationException($"Local address \"{localAddress}\" is not in the same IP format as server address \"{udpClientIPEndPoint.Address}\"");
 
-                    using (BlockAllocatedMemoryStream membershipAddresses = new BlockAllocatedMemoryStream())
+                    using (BlockAllocatedMemoryStream membershipAddresses = new())
                     {
                         byte[] serverAddressBytes = udpClientIPEndPoint.Address.GetAddressBytes();
                         byte[] sourceAddressBytes = sourceAddress.GetAddressBytes();
@@ -725,7 +725,7 @@ namespace Gemstone.Communication
             }
 
             // Create client info object
-            UdpClientInfo udpClientInfo = new UdpClientInfo { Client = udpClient };
+            UdpClientInfo udpClientInfo = new() { Client = udpClient };
 
             udpClientInfo.DumpPayloadsOperation = new ShortSynchronizedOperation(() =>
             {

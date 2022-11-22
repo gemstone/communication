@@ -64,10 +64,10 @@ namespace Gemstone.Communication
             public SslStream? SslStream;
             public NegotiateStream? NegotiateStream;
 
-            public readonly SocketAsyncEventArgs ConnectArgs = new SocketAsyncEventArgs();
+            public readonly SocketAsyncEventArgs ConnectArgs = new();
             public int ConnectionAttempts;
 
-            public readonly CancellationToken Token = new CancellationToken();
+            public readonly CancellationToken Token = new();
             public Func<bool> CancelTimeout = () => false;
 
             public void Dispose()
@@ -108,7 +108,7 @@ namespace Gemstone.Communication
             public NetworkStream? NetworkStream;
             public SslStream? SslStream;
 
-            public readonly ConcurrentQueue<TlsClientPayload> SendQueue = new ConcurrentQueue<TlsClientPayload>();
+            public readonly ConcurrentQueue<TlsClientPayload> SendQueue = new();
             public TlsClientPayload? Payload;
             public int Sending;
 
@@ -135,7 +135,7 @@ namespace Gemstone.Communication
             public byte[]? Data;
             public int Offset;
             public int Length;
-            public readonly ManualResetEventSlim WaitHandle = new ManualResetEventSlim();
+            public readonly ManualResetEventSlim WaitHandle = new();
         }
 
         private class CancellationToken
@@ -448,7 +448,7 @@ namespace Gemstone.Communication
             get
             {
                 SendState? sendState = m_sendState;
-                StringBuilder statusBuilder = new StringBuilder(base.Status);
+                StringBuilder statusBuilder = new(base.Status);
 
                 if (sendState != null)
                     statusBuilder.AppendLine($"           Queued payloads: {sendState.SendQueue.Count:N0}");
@@ -614,7 +614,7 @@ namespace Gemstone.Communication
                 {
                     connectState.CancelTimeout = new Action(() =>
                     {
-                        SocketException ex = new SocketException((int)SocketError.TimedOut);
+                        SocketException ex = new((int)SocketError.TimedOut);
                         OnConnectionException(ex);
                         TerminateConnection(connectState.Token);
                         connectState.Dispose();
@@ -723,7 +723,7 @@ namespace Gemstone.Communication
 
                     connectState.CancelTimeout = new Action(() =>
                     {
-                        SocketException ex = new SocketException((int)SocketError.TimedOut);
+                        SocketException ex = new((int)SocketError.TimedOut);
                         OnConnectionException(ex);
                         TerminateConnection(connectState.Token);
                         connectState.Dispose();
@@ -1237,7 +1237,7 @@ namespace Gemstone.Communication
                     Payload.AddHeader(ref data, ref offset, ref length, m_payloadMarker, m_payloadEndianOrder);
 
                 // Create payload and wait handle.
-                TlsClientPayload payload = new TlsClientPayload
+                TlsClientPayload payload = new()
                 {
                     Data = data,
                     Offset = offset,
@@ -1632,7 +1632,7 @@ namespace Gemstone.Communication
         /// <summary>
         /// Returns the certificate set by the user.
         /// </summary>
-        private X509Certificate? DefaultLocalCertificateSelectionCallback(object sender, string targetHost, X509CertificateCollection localCertificates, X509Certificate remoteCertificate, string[] acceptableIssuers)
+        private X509Certificate? DefaultLocalCertificateSelectionCallback(object? sender, string targetHost, X509CertificateCollection localCertificates, X509Certificate remoteCertificate, string[] acceptableIssuers)
         {
             return Certificate;
         }

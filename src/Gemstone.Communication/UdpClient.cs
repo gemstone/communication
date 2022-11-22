@@ -135,22 +135,22 @@ namespace Gemstone.Communication
     ///         s_client.Dispose();
     ///     }
     /// 
-    ///     static void s_client_ConnectionAttempt(object sender, EventArgs e)
+    ///     static void s_client_ConnectionAttempt(object? sender, EventArgs e)
     ///     {
     ///         Console.WriteLine("Client is connecting to server.");
     ///     }
     /// 
-    ///     static void s_client_ConnectionEstablished(object sender, EventArgs e)
+    ///     static void s_client_ConnectionEstablished(object? sender, EventArgs e)
     ///     {
     ///         Console.WriteLine("Client connected to server.");
     ///     }
     /// 
-    ///     static void s_client_ConnectionTerminated(object sender, EventArgs e)
+    ///     static void s_client_ConnectionTerminated(object? sender, EventArgs e)
     ///     {
     ///         Console.WriteLine("Client disconnected from server.");
     ///     }
     /// 
-    ///     static void s_client_ReceiveDataComplete(object sender, EventArgs&lt;byte[], int&gt; e)
+    ///     static void s_client_ReceiveDataComplete(object? sender, EventArgs&lt;byte[], int&gt; e)
     ///     {
     ///         Console.WriteLine(string.Format("Received data - {0}.", s_client.TextEncoding.GetString(e.Argument1, 0, e.Argument2)));
     ///     }
@@ -171,7 +171,7 @@ namespace Gemstone.Communication
             public int Offset;
             public int Length;
 
-            public ManualResetEventSlim WaitHandle = new ManualResetEventSlim();
+            public ManualResetEventSlim WaitHandle = new();
         }
 
         // Constants
@@ -372,7 +372,7 @@ namespace Gemstone.Communication
         {
             get
             {
-                StringBuilder statusBuilder = new StringBuilder(base.Status);
+                StringBuilder statusBuilder = new(base.Status);
 
                 if (m_sendQueue != null)
                 {
@@ -705,8 +705,8 @@ namespace Gemstone.Communication
             m_dumpPayloadsOperation.TryRun();
 
             // Create payload and wait handle.
-            UdpClientPayload payload = new UdpClientPayload();
-            ManualResetEventSlim handle = new ManualResetEventSlim();
+            UdpClientPayload payload = new();
+            ManualResetEventSlim handle = new();
 
             payload.Destination = destination;
             payload.Data = data;
@@ -1014,7 +1014,7 @@ namespace Gemstone.Communication
                     if (localAddress.AddressFamily != serverAddress.AddressFamily)
                         throw new InvalidOperationException($"Local address \"{localAddress}\" is not in the same IP format as server address \"{serverAddress}\"");
 
-                    using (BlockAllocatedMemoryStream membershipAddresses = new BlockAllocatedMemoryStream())
+                    using (BlockAllocatedMemoryStream membershipAddresses = new())
                     {
                         byte[] serverAddressBytes = serverAddress.GetAddressBytes();
                         byte[] sourceAddressBytes = sourceAddress.GetAddressBytes();
@@ -1067,7 +1067,7 @@ namespace Gemstone.Communication
                         if (localAddress.AddressFamily != serverAddress.AddressFamily)
                             throw new InvalidOperationException($"Local address \"{localAddress}\" is not in the same IP format as server address \"{serverAddress}\"");
 
-                        using BlockAllocatedMemoryStream membershipAddresses = new BlockAllocatedMemoryStream();
+                        using BlockAllocatedMemoryStream membershipAddresses = new();
 
                         byte[] serverAddressBytes = serverAddress.GetAddressBytes();
                         byte[] sourceAddressBytes = sourceAddress.GetAddressBytes();

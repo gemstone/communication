@@ -233,7 +233,7 @@ namespace Gemstone.Communication.Radius
 
             while (cursor < size)
             {
-                RadiusPacketAttribute attribute = new RadiusPacketAttribute(buffer, startIndex + cursor, length);
+                RadiusPacketAttribute attribute = new(buffer, startIndex + cursor, length);
                 Attributes.Add(attribute);
                 cursor += attribute.BinaryLength;
             }
@@ -317,7 +317,7 @@ namespace Gemstone.Communication.Radius
             byte[] secretBuffer = Encoding.GetBytes(sharedSecret);
             Random.GetBytes(randomBuffer);
 
-            using MD5CryptoServiceProvider md5Provider = new MD5CryptoServiceProvider();
+            using MD5CryptoServiceProvider md5Provider = new();
             return md5Provider.ComputeHash(randomBuffer.Combine(secretBuffer));
         }
 
@@ -344,7 +344,7 @@ namespace Gemstone.Communication.Radius
             Buffer.BlockCopy(requestPacket.BinaryImage(), 4, buffer, 4, 16);
             Buffer.BlockCopy(sharedSecretBytes, 0, buffer, length, sharedSecretBytes.Length);
 
-            using MD5CryptoServiceProvider md5Provider = new MD5CryptoServiceProvider();
+            using MD5CryptoServiceProvider md5Provider = new();
             return md5Provider.ComputeHash(buffer);
         }
 
@@ -377,7 +377,7 @@ namespace Gemstone.Communication.Radius
             byte[] sharedSecretBytes = Encoding.GetBytes(sharedSecret);
             byte[] md5HashInputBytes = new byte[sharedSecretBytes.Length + 16];
 
-            using MD5CryptoServiceProvider md5Provider = new MD5CryptoServiceProvider();
+            using MD5CryptoServiceProvider md5Provider = new();
 
             // If length of password is not a multiple of 16, take the multiple of 16 that's next
             // closest to the password's length and leave the empty space at the end as padding.

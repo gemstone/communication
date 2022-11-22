@@ -491,7 +491,7 @@ namespace Gemstone.Communication.Radius
             if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(password))
                 throw new ArgumentException("Username and Password cannot be null.");
 
-            RadiusPacket request = new RadiusPacket(PacketType.AccessRequest);
+            RadiusPacket request = new(PacketType.AccessRequest);
             byte[] authenticator = RadiusPacket.CreateRequestAuthenticator(m_sharedSecret);
 
             request.Authenticator = authenticator;
@@ -604,7 +604,7 @@ namespace Gemstone.Communication.Radius
             m_disposed = true;
         }
 
-        private void m_udpClient_ReceivedData(object sender, EventArgs<byte[], int> e) => m_responseBytes = e.Argument1;
+        private void m_udpClient_ReceivedData(object? sender, EventArgs<byte[], int> e) => m_responseBytes = e.Argument1;
 
         #endregion
     }

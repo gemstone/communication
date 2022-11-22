@@ -86,27 +86,27 @@ namespace Gemstone.Communication
     ///         s_client.Dispose();
     ///     }
     /// 
-    ///     static void s_client_ConnectionAttempt(object sender, EventArgs e)
+    ///     static void s_client_ConnectionAttempt(object? sender, EventArgs e)
     ///     {
     ///         Console.WriteLine("Client is connecting to serial port.");
     ///     }
     /// 
-    ///     static void s_client_ConnectionEstablished(object sender, EventArgs e)
+    ///     static void s_client_ConnectionEstablished(object? sender, EventArgs e)
     ///     {
     ///         Console.WriteLine("Client connected to serial port.");
     ///     }
     /// 
-    ///     static void s_client_ConnectionTerminated(object sender, EventArgs e)
+    ///     static void s_client_ConnectionTerminated(object? sender, EventArgs e)
     ///     {
     ///         Console.WriteLine("Client disconnected from serial port.");
     ///     }
     /// 
-    ///     static void s_client_SendDataComplete(object sender, EventArgs e)
+    ///     static void s_client_SendDataComplete(object? sender, EventArgs e)
     ///     {
     ///         Console.WriteLine(string.Format("Sent data - {0}", s_client.TextEncoding.GetString(s_client.Client.SendBuffer)));
     ///     }
     /// 
-    ///     static void s_client_ReceiveDataComplete(object sender, EventArgs&lt;byte[], int&gt; e)
+    ///     static void s_client_ReceiveDataComplete(object? sender, EventArgs&lt;byte[], int&gt; e)
     ///     {
     ///         Console.WriteLine(string.Format("Received data - {0}", s_client.TextEncoding.GetString(e.Argument1, 0, e.Argument2)));
     ///     }
@@ -184,7 +184,7 @@ namespace Gemstone.Communication
                 if (m_connectData == null)
                     return base.Status;
 
-                StringBuilder status = new StringBuilder();
+                StringBuilder status = new();
 
                 status.Append(base.Status);
 
@@ -438,7 +438,7 @@ namespace Gemstone.Communication
         /// <summary>
         /// Receive (read) data from the <see cref="SerialPort"/> (.NET serial port class raises this event when data is available).
         /// </summary>
-        private void SerialPort_DataReceived(object sender, SerialDataReceivedEventArgs e)
+        private void SerialPort_DataReceived(object? sender, SerialDataReceivedEventArgs e)
         {
             try
             {
@@ -465,7 +465,7 @@ namespace Gemstone.Communication
         /// <summary>
         /// Receive (read) error data from the <see cref="SerialPort"/> (.NET serial port class raises this event when error occurs).
         /// </summary>
-        private void SerialPort_ErrorReceived(object sender, SerialErrorReceivedEventArgs e) => OnReceiveDataException(new SerialException(e.EventType));
+        private void SerialPort_ErrorReceived(object? sender, SerialErrorReceivedEventArgs e) => OnReceiveDataException(new SerialException(e.EventType));
 
         /// <summary>
         /// Raises the <see cref="ClientBase.ConnectionException"/> event.

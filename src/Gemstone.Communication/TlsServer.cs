@@ -90,12 +90,12 @@ namespace Gemstone.Communication
 
         private class TlsClientInfo
         {
-            public TransportProvider<TlsSocket> Client = new TransportProvider<TlsSocket>();
+            public TransportProvider<TlsSocket> Client = new();
             public Func<bool> CancelTimeout = () => false;
 
             public int Sending;
-            public readonly object SendLock = new object();
-            public readonly ConcurrentQueue<TlsServerPayload> SendQueue = new ConcurrentQueue<TlsServerPayload>();
+            public readonly object SendLock = new();
+            public readonly ConcurrentQueue<TlsServerPayload> SendQueue = new();
             public ShortSynchronizedOperation DumpPayloadsOperation = default!;
 
             public NegotiateStream? NegotiateStream;
@@ -108,7 +108,7 @@ namespace Gemstone.Communication
             public byte[]? Data;
             public int Offset;
             public int Length;
-            public ManualResetEventSlim WaitHandle = new ManualResetEventSlim();
+            public ManualResetEventSlim WaitHandle = new();
 
             // Per client state
             public TlsClientInfo? ClientInfo;
@@ -372,7 +372,7 @@ namespace Gemstone.Communication
         {
             get
             {
-                StringBuilder statusBuilder = new StringBuilder(base.Status);
+                StringBuilder statusBuilder = new(base.Status);
                 int count = 0;
 
                 foreach (ConcurrentQueue<TlsServerPayload> sendQueue in m_clientInfoLookup.Values.Select(clientInfo => clientInfo.SendQueue))
@@ -608,8 +608,8 @@ namespace Gemstone.Communication
                 Payload.AddHeader(ref data, ref offset, ref length, m_payloadMarker, m_payloadEndianOrder);
 
             // Create payload and wait handle.
-            TlsServerPayload payload = new TlsServerPayload();
-            ManualResetEventSlim handle = new ManualResetEventSlim();
+            TlsServerPayload payload = new();
+            ManualResetEventSlim handle = new();
 
             payload.Data = data;
             payload.Offset = offset;
@@ -645,7 +645,7 @@ namespace Gemstone.Communication
         /// </summary>
         private void ProcessAccept(SocketAsyncEventArgs acceptArgs)
         {
-            TransportProvider<TlsSocket> client = new TransportProvider<TlsSocket>();
+            TransportProvider<TlsSocket> client = new();
             TlsClientInfo? clientInfo = null;
 
             try
@@ -688,7 +688,7 @@ namespace Gemstone.Communication
                     {
                         // Process the newly connected client.
                         LoadTrustedCertificates();
-                        NetworkStream netStream = new NetworkStream(acceptArgs.AcceptSocket, true);
+                        NetworkStream netStream = new(acceptArgs.AcceptSocket, true);
 
                         client.Provider = new TlsSocket
                         {
@@ -829,7 +829,7 @@ namespace Gemstone.Communication
 
                     if (negotiateStream.RemoteIdentity is WindowsIdentity identity)
                     {
-                        WindowsPrincipal clientPrincipal = new WindowsPrincipal(identity);
+                        WindowsPrincipal clientPrincipal = new(identity);
                         clientInfo.ClientPrincipal = clientPrincipal;
                     }
                 }
@@ -1185,7 +1185,7 @@ namespace Gemstone.Communication
         /// <summary>
         /// Returns the certificate set by the user.
         /// </summary>
-        private X509Certificate? DefaultLocalCertificateSelectionCallback(object sender, string targetHost, X509CertificateCollection localCertificates, X509Certificate remoteCertificate, string[] acceptableIssuers)
+        private X509Certificate? DefaultLocalCertificateSelectionCallback(object? sender, string targetHost, X509CertificateCollection localCertificates, X509Certificate remoteCertificate, string[] acceptableIssuers)
         {
             return Certificate;
         }

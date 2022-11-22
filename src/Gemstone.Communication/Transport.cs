@@ -377,7 +377,7 @@ namespace Gemstone.Communication
                 // if the endpoint doesn't exist then we'll receive a ConnectionReset socket exception
                 EndPoint targetEndPoint = targetIPEndPoint;
 
-                using Socket targetChecker = new Socket(targetIPEndPoint.AddressFamily, SocketType.Dgram, ProtocolType.Udp)
+                using Socket targetChecker = new(targetIPEndPoint.AddressFamily, SocketType.Dgram, ProtocolType.Udp)
                 {
                     ReceiveTimeout = 1
                 };
