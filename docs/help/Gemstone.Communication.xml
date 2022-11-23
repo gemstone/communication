@@ -32,6 +32,10 @@
             </summary>
       <returns>
         <see cref="T:System.Threading.WaitHandle" /> for the asynchronous operation.</returns>
+      <remarks>
+            Derived classes are expected to override this method with protocol specific connection operations. Call the base class
+            method to obtain an operational wait handle if protocol connection operation doesn't provide one already.
+            </remarks>
       <exception cref="T:System.FormatException">Server property in <see cref="P:Gemstone.Communication.ClientBase.ConnectionString" /> is invalid.</exception>
       <exception cref="T:System.InvalidOperationException">Attempt is made to connect the client when it is not disconnected.</exception>
     </member>
@@ -71,6 +75,9 @@
             </summary>
       <param name="connectionString">Connection string for the client.</param>
       <returns>A communications client.</returns>
+      <remarks>
+            Note that typical connection string should be prefixed with a "protocol=tcp", "protocol=udp", "protocol=serial" or "protocol=file"
+            </remarks>
     </member>
     <member name="P:Gemstone.Communication.ClientBase.CurrentState">
       <summary>
@@ -117,11 +124,18 @@
       <summary>
             Gets or sets a boolean value that indicates whether the client is currently enabled.
             </summary>
+      <remarks>
+            Setting <see cref="P:Gemstone.Communication.ClientBase.Enabled" /> to true will start connection cycle for the client if it
+            is not connected, setting to false will disconnect the client if it is connected.
+            </remarks>
     </member>
     <member name="M:Gemstone.Communication.ClientBase.Initialize">
       <summary>
             Initializes the client.
             </summary>
+      <remarks>
+        <see cref="M:Gemstone.Communication.ClientBase.Initialize" /> is to be called by user-code directly only if the client is not consumed through the designer surface of the IDE.
+            </remarks>
     </member>
     <member name="P:Gemstone.Communication.ClientBase.IsDisposed">
       <summary>
@@ -132,6 +146,7 @@
       <summary>
             Gets or sets the maximum number of times the client will attempt to connect to the server.
             </summary>
+      <remarks>Set <see cref="P:Gemstone.Communication.ClientBase.MaxConnectionAttempts" /> to -1 for infinite connection attempts.</remarks>
     </member>
     <member name="P:Gemstone.Communication.ClientBase.Name">
       <summary>
@@ -164,6 +179,11 @@
             Raises the <see cref="E:Gemstone.Communication.ClientBase.ReceiveData" /> event.
             </summary>
       <param name="size">Number of bytes received from the client.</param>
+      <remarks>
+            This event is automatically raised by call to <see cref="M:Gemstone.Communication.ClientBase.OnReceiveDataComplete(System.Byte[],System.Int32)" /> so that inheritors
+            never need to worry about raising this event. This method is only included here in case any custom client
+            implementations need to explicitly raise this event.
+            </remarks>
     </member>
     <member name="M:Gemstone.Communication.ClientBase.OnReceiveDataComplete(System.Byte[],System.Int32)">
       <summary>
@@ -202,6 +222,10 @@
       <param name="startIndex">0-based starting index into destination <paramref name="buffer" /> to begin writing data.</param>
       <param name="length">The number of bytes to read from current received data buffer and write into <paramref name="buffer" />.</param>
       <returns>The number of bytes read.</returns>
+      <remarks>
+            This function should only be called from within the <see cref="E:Gemstone.Communication.ClientBase.ReceiveData" /> event handler. Calling this method outside this event
+            will have unexpected results.
+            </remarks>
     </member>
     <member name="P:Gemstone.Communication.ClientBase.ReadIndex">
       <summary>
@@ -218,16 +242,32 @@
       <summary>
             Occurs when unprocessed data has been received from the server.
             </summary>
+      <remarks>
+        <para>
+            This event can be used to receive a notification that server data has arrived. The <see cref="M:Gemstone.Communication.ClientBase.Read(System.Byte[],System.Int32,System.Int32)" /> method can then be used
+            to copy data to an existing buffer. In many cases it will be optimal to use an existing buffer instead of subscribing to the
+            <see cref="E:Gemstone.Communication.ClientBase.ReceiveDataComplete" /> event.
+            </para>
+        <para>
+          <see cref="F:Gemstone.EventArgs`1.Argument" /> is the number of bytes received in the buffer from the server.
+            </para>
+      </remarks>
     </member>
     <member name="E:Gemstone.Communication.ClientBase.ReceiveDataComplete">
       <summary>
             Occurs when data received from the server has been processed and is ready for consumption.
             </summary>
+      <remarks>
+        <see cref="F:Gemstone.EventArgs`2.Argument1" /> is a new buffer containing post-processed data received from the server starting at index zero.<br /><see cref="F:Gemstone.EventArgs`2.Argument2" /> is the number of post-processed bytes received in the buffer from the server.
+            </remarks>
     </member>
     <member name="E:Gemstone.Communication.ClientBase.ReceiveDataException">
       <summary>
             Occurs when an <see cref="T:System.Exception" /> is encountered when receiving data from the server.
             </summary>
+      <remarks>
+        <see cref="F:Gemstone.EventArgs`1.Argument" /> is the <see cref="T:System.Exception" /> encountered when receiving data from the server.
+            </remarks>
     </member>
     <member name="M:Gemstone.Communication.ClientBase.Send(System.Byte[])">
       <summary>
@@ -300,6 +340,9 @@
       <summary>
             Occurs when an <see cref="T:System.Exception" /> is encountered when sending data to the server.
             </summary>
+      <remarks>
+        <see cref="F:Gemstone.EventArgs`1.Argument" /> is the <see cref="T:System.Exception" /> encountered when sending data to the server.
+            </remarks>
     </member>
     <member name="E:Gemstone.Communication.ClientBase.SendDataStart">
       <summary>
@@ -522,6 +565,10 @@
       <param name="startIndex">0-based starting index into destination <paramref name="buffer" /> to begin writing data.</param>
       <param name="length">The number of bytes to read from current received data buffer and write into <paramref name="buffer" />.</param>
       <returns>The number of bytes read.</returns>
+      <remarks>
+            This function should only be called from within the <see cref="E:Gemstone.Communication.ClientBase.ReceiveData" /> event handler. Calling this method outside
+            this event will have unexpected results.
+            </remarks>
       <exception cref="T:System.InvalidOperationException">No received data buffer has been defined to read.</exception>
       <exception cref="T:System.ArgumentNullException">
         <paramref name="buffer" /> is null.</exception>
@@ -543,11 +590,17 @@
       <summary>
             Gets or sets the number of milliseconds to pause before receiving (reading) the next available set of data.
             </summary>
+      <remarks>
+            Set <see cref="P:Gemstone.Communication.FileClient.ReceiveInterval" /> = -1 to receive (read) data continuously without pausing.
+            </remarks>
     </member>
     <member name="P:Gemstone.Communication.FileClient.ReceiveOnDemand">
       <summary>
             Gets or sets a boolean value that indicates whether receiving (reading) of data will be initiated manually by calling <see cref="M:Gemstone.Communication.FileClient.ReadNextBuffer" />.
             </summary>
+      <remarks>
+        <see cref="P:Gemstone.Communication.FileClient.ReceiveInterval" /> will be set to -1 when <see cref="P:Gemstone.Communication.FileClient.ReceiveOnDemand" /> is enabled.
+            </remarks>
     </member>
     <member name="M:Gemstone.Communication.FileClient.SendDataAsync(System.Byte[],System.Int32,System.Int32)">
       <summary>
@@ -647,6 +700,10 @@
       <param name="startIndex">0-based starting index into destination <paramref name="buffer" /> to begin writing data.</param>
       <param name="length">The number of bytes to read from current received data buffer and write into <paramref name="buffer" />.</param>
       <returns>The number of bytes read.</returns>
+      <remarks>
+            This function should only be called from within the <see cref="E:Gemstone.Communication.IClient.ReceiveData" /> event handler. Calling this method outside this event
+            will have unexpected results.
+            </remarks>
     </member>
     <member name="P:Gemstone.Communication.IClient.ReceiveBufferSize">
       <summary>
@@ -657,16 +714,33 @@
       <summary>
             Occurs when unprocessed data has been received from the server.
             </summary>
+      <remarks>
+        <para>
+            This event can be used to receive a notification that server data has arrived. The <see cref="M:Gemstone.Communication.IClient.Read(System.Byte[],System.Int32,System.Int32)" /> method can then be used
+            to copy data to an existing buffer. In many cases it will be optimal to use an existing buffer instead of subscribing to the
+            <see cref="E:Gemstone.Communication.IClient.ReceiveDataComplete" /> event, however, the data that is available after calling the <see cref="M:Gemstone.Communication.IClient.Read(System.Byte[],System.Int32,System.Int32)" /> method
+            will be the original unprocessed data received by the client, i.e., not optionally decrypted or decompressed data.
+            </para>
+        <para>
+          <see cref="F:Gemstone.EventArgs`1.Argument" /> is the number of bytes received in the buffer from the server.
+            </para>
+      </remarks>
     </member>
     <member name="E:Gemstone.Communication.IClient.ReceiveDataComplete">
       <summary>
             Occurs when data received from the server has been processed and is ready for consumption.
             </summary>
+      <remarks>
+        <see cref="F:Gemstone.EventArgs`2.Argument1" /> is a new buffer containing post-processed data received from the server starting at index zero.<br /><see cref="F:Gemstone.EventArgs`2.Argument2" /> is the number of post-processed bytes received in the buffer from the server.
+            </remarks>
     </member>
     <member name="E:Gemstone.Communication.IClient.ReceiveDataException">
       <summary>
             Occurs when an <see cref="T:System.Exception" /> is encountered when receiving data from the server.
             </summary>
+      <remarks>
+        <see cref="F:Gemstone.EventArgs`1.Argument" /> is the <see cref="T:System.Exception" /> encountered when receiving data from the server.
+            </remarks>
     </member>
     <member name="M:Gemstone.Communication.IClient.Send(System.Byte[],System.Int32,System.Int32)">
       <summary>
@@ -700,6 +774,9 @@
       <summary>
             Occurs when an <see cref="T:System.Exception" /> is encountered when sending data to the server.
             </summary>
+      <remarks>
+        <see cref="F:Gemstone.EventArgs`1.Argument" /> is the <see cref="T:System.Exception" /> encountered when sending data to the server.
+            </remarks>
     </member>
     <member name="E:Gemstone.Communication.IClient.SendDataStart">
       <summary>
@@ -755,16 +832,25 @@
       <summary>
             Occurs when a client connects to the server.
             </summary>
+      <remarks>
+        <see cref="F:Gemstone.EventArgs`1.Argument" /> is the ID of the client that connected to the server.
+            </remarks>
     </member>
     <member name="E:Gemstone.Communication.IServer.ClientConnectingException">
       <summary>
             Occurs when an exception is encountered while a client is connecting.
             </summary>
+      <remarks>
+        <see cref="F:Gemstone.EventArgs`1.Argument" /> is the <see cref="T:System.Exception" /> encountered when connecting to the client.
+            </remarks>
     </member>
     <member name="E:Gemstone.Communication.IServer.ClientDisconnected">
       <summary>
             Occurs when a client disconnects from the server.
             </summary>
+      <remarks>
+        <see cref="F:Gemstone.EventArgs`1.Argument" /> is the ID of the client that disconnected from the server.
+            </remarks>
     </member>
     <member name="P:Gemstone.Communication.IServer.ClientIDs">
       <summary>
@@ -823,6 +909,10 @@
       <param name="startIndex">0-based starting index into destination <paramref name="buffer" /> to begin writing data.</param>
       <param name="length">The number of bytes to read from current received data buffer and write into <paramref name="buffer" />.</param>
       <returns>The number of bytes read.</returns>
+      <remarks>
+            This function should only be called from within the <see cref="E:Gemstone.Communication.IServer.ReceiveClientData" /> event handler. Calling this method outside this
+            event will have unexpected results.
+            </remarks>
     </member>
     <member name="P:Gemstone.Communication.IServer.ReceiveBufferSize">
       <summary>
@@ -833,16 +923,33 @@
       <summary>
             Occurs when unprocessed data has been received from a client.
             </summary>
+      <remarks>
+        <para>
+            This event can be used to receive a notification that client data has arrived. The <see cref="M:Gemstone.Communication.IServer.Read(System.Guid,System.Byte[],System.Int32,System.Int32)" /> method can then be used
+            to copy data to an existing buffer. In many cases it will be optimal to use an existing buffer instead of subscribing to the
+            <see cref="E:Gemstone.Communication.IServer.ReceiveClientDataComplete" /> event, however, the data that is available after calling the <see cref="M:Gemstone.Communication.IServer.Read(System.Guid,System.Byte[],System.Int32,System.Int32)" /> method
+            will be the original unprocessed data received by the client, i.e., not optionally decrypted or decompressed data.
+            </para>
+        <para>
+          <see cref="F:Gemstone.EventArgs`2.Argument1" /> is the ID of the client from which data is received.<br /><see cref="F:Gemstone.EventArgs`2.Argument2" /> is the number of bytes received in the buffer from the client.
+            </para>
+      </remarks>
     </member>
     <member name="E:Gemstone.Communication.IServer.ReceiveClientDataComplete">
       <summary>
             Occurs when data received from a client has been processed and is ready for consumption.
             </summary>
+      <remarks>
+        <see cref="F:Gemstone.EventArgs`3.Argument1" /> is the ID of the client from which data is received.<br /><see cref="F:Gemstone.EventArgs`3.Argument2" /> is a new buffer containing post-processed data received from the client starting at index zero.<br /><see cref="F:Gemstone.EventArgs`3.Argument3" /> is the number of post-processed bytes received in the buffer from the client.
+            </remarks>
     </member>
     <member name="E:Gemstone.Communication.IServer.ReceiveClientDataException">
       <summary>
             Occurs when an <see cref="T:System.Exception" /> is encountered when receiving data from a client.
             </summary>
+      <remarks>
+        <see cref="F:Gemstone.EventArgs`2.Argument1" /> is the ID of the client from which the data was being received.<br /><see cref="F:Gemstone.EventArgs`2.Argument2" /> is the <see cref="T:System.Exception" /> encountered when receiving data from a client.
+            </remarks>
     </member>
     <member name="P:Gemstone.Communication.IServer.RunTime">
       <summary>
@@ -858,16 +965,25 @@
       <summary>
             Occurs when data has been sent to a client.
             </summary>
+      <remarks>
+        <see cref="F:Gemstone.EventArgs`1.Argument" /> is the ID of the client to which the data has been sent.
+            </remarks>
     </member>
     <member name="E:Gemstone.Communication.IServer.SendClientDataException">
       <summary>
             Occurs when an <see cref="T:System.Exception" /> is encountered when sending data to a client.
             </summary>
+      <remarks>
+        <see cref="F:Gemstone.EventArgs`2.Argument1" /> is the ID of the client to which the data was being sent.<br /><see cref="F:Gemstone.EventArgs`2.Argument2" /> is the <see cref="T:System.Exception" /> encountered when sending data to a client.
+            </remarks>
     </member>
     <member name="E:Gemstone.Communication.IServer.SendClientDataStart">
       <summary>
             Occurs when data is being sent to a client.
             </summary>
+      <remarks>
+        <see cref="F:Gemstone.EventArgs`1.Argument" /> is the ID of the client to which the data is being sent.
+            </remarks>
     </member>
     <member name="M:Gemstone.Communication.IServer.SendTo(System.Guid,System.Byte[],System.Int32,System.Int32)">
       <summary>
@@ -1031,6 +1147,10 @@
       <param name="startIndex">0-based starting index into destination <paramref name="buffer" /> to begin writing data.</param>
       <param name="length">The number of bytes to read from current received data buffer and write into <paramref name="buffer" />.</param>
       <returns>The number of bytes read.</returns>
+      <remarks>
+            This function should only be called from within the <see cref="E:Gemstone.Communication.ClientBase.ReceiveData" /> event handler. Calling this method outside
+            this event will have unexpected results.
+            </remarks>
       <exception cref="T:System.InvalidOperationException">No received data buffer has been defined to read.</exception>
       <exception cref="T:System.ArgumentNullException">
         <paramref name="buffer" /> is null.</exception>
@@ -1043,6 +1163,9 @@
       <summary>
             Gets or sets the needed number of bytes in the internal input buffer before a <see cref="M:Gemstone.Communication.ClientBase.OnReceiveDataComplete(System.Byte[],System.Int32)" /> event occurs.
             </summary>
+      <remarks>
+            This option is ignored under Mono deployments.
+            </remarks>
     </member>
     <member name="M:Gemstone.Communication.SerialClient.SendDataAsync(System.Byte[],System.Int32,System.Int32)">
       <summary>
@@ -1131,16 +1254,25 @@
       <summary>
             Occurs when a client connects to the server.
             </summary>
+      <remarks>
+        <see cref="F:Gemstone.EventArgs`1.Argument" /> is the ID of the client that connected to the server.
+            </remarks>
     </member>
     <member name="E:Gemstone.Communication.ServerBase.ClientConnectingException">
       <summary>
             Occurs when an exception is encountered while a client is connecting.
             </summary>
+      <remarks>
+        <see cref="F:Gemstone.EventArgs`1.Argument" /> is the <see cref="T:System.Exception" /> encountered when connecting to the client.
+            </remarks>
     </member>
     <member name="E:Gemstone.Communication.ServerBase.ClientDisconnected">
       <summary>
             Occurs when a client disconnects from the server.
             </summary>
+      <remarks>
+        <see cref="F:Gemstone.EventArgs`1.Argument" /> is the ID of the client that disconnected from the server.
+            </remarks>
     </member>
     <member name="P:Gemstone.Communication.ServerBase.ClientIDs">
       <summary>
@@ -1158,6 +1290,9 @@
             </summary>
       <param name="configurationString">The configuration string for the server.</param>
       <returns>A communications server.</returns>
+      <remarks>
+            Note that typical configuration string should be prefixed with a "protocol=tcp" or a "protocol=udp"
+            </remarks>
     </member>
     <member name="P:Gemstone.Communication.ServerBase.CurrentState">
       <summary>
@@ -1210,11 +1345,18 @@
       <summary>
             Gets or sets a boolean value that indicates whether the server is currently enabled.
             </summary>
+      <remarks>
+            Setting <see cref="P:Gemstone.Communication.ServerBase.Enabled" /> to true will start the server if it is not running, setting
+            to false will stop the server if it is running.
+            </remarks>
     </member>
     <member name="M:Gemstone.Communication.ServerBase.Initialize">
       <summary>
             Initializes the server.
             </summary>
+      <remarks>
+        <see cref="M:Gemstone.Communication.ServerBase.Initialize" /> is to be called by user-code directly only if the server is not consumed through the designer surface of the IDE.
+            </remarks>
     </member>
     <member name="P:Gemstone.Communication.ServerBase.Initialized">
       <summary>
@@ -1238,6 +1380,9 @@
       <summary>
             Gets or sets the maximum number of clients that can connect to the server.
             </summary>
+      <remarks>
+            Set <see cref="P:Gemstone.Communication.ServerBase.MaxClientConnections" /> to -1 to allow infinite client connections.
+            </remarks>
     </member>
     <member name="M:Gemstone.Communication.ServerBase.Multicast(System.Byte[])">
       <summary>
@@ -1311,6 +1456,11 @@
             </summary>
       <param name="clientID">ID of the client from which data is received.</param>
       <param name="size">Number of bytes received from the client.</param>
+      <remarks>
+            This event is automatically raised by call to <see cref="M:Gemstone.Communication.ServerBase.OnReceiveClientDataComplete(System.Guid,System.Byte[],System.Int32)" /> so that inheritors
+            never need to worry about raising this event. This method is only included here in case any custom server
+            implementations need to explicitly raise this event.
+            </remarks>
     </member>
     <member name="M:Gemstone.Communication.ServerBase.OnReceiveClientDataComplete(System.Guid,System.Byte[],System.Int32)">
       <summary>
@@ -1365,6 +1515,10 @@
       <param name="startIndex">0-based starting index into destination <paramref name="buffer" /> to begin writing data.</param>
       <param name="length">The number of bytes to read from current received data buffer and write into <paramref name="buffer" />.</param>
       <returns>The number of bytes read.</returns>
+      <remarks>
+            This function should only be called from within the <see cref="E:Gemstone.Communication.ServerBase.ReceiveClientData" /> event handler. Calling this method outside this event
+            will have unexpected results.
+            </remarks>
     </member>
     <member name="P:Gemstone.Communication.ServerBase.ReadIndicies">
       <summary>
@@ -1381,16 +1535,33 @@
       <summary>
             Occurs when unprocessed data has been received from a client.
             </summary>
+      <remarks>
+        <para>
+            This event can be used to receive a notification that client data has arrived. The <see cref="M:Gemstone.Communication.ServerBase.Read(System.Guid,System.Byte[],System.Int32,System.Int32)" /> method can then be used
+            to copy data to an existing buffer. In many cases it will be optimal to use an existing buffer instead of subscribing to the
+            <see cref="E:Gemstone.Communication.ServerBase.ReceiveClientDataComplete" /> event, however, the data that is available after calling the <see cref="M:Gemstone.Communication.ServerBase.Read(System.Guid,System.Byte[],System.Int32,System.Int32)" /> method
+            will be the original unprocessed data received by the client, i.e., not optionally decrypted or decompressed data.
+            </para>
+        <para>
+          <see cref="F:Gemstone.EventArgs`2.Argument1" /> is the ID of the client from which data is received.<br /><see cref="F:Gemstone.EventArgs`2.Argument2" /> is the number of bytes received in the buffer from the client.
+            </para>
+      </remarks>
     </member>
     <member name="E:Gemstone.Communication.ServerBase.ReceiveClientDataComplete">
       <summary>
             Occurs when data received from a client has been processed and is ready for consumption.
             </summary>
+      <remarks>
+        <see cref="F:Gemstone.EventArgs`3.Argument1" /> is the ID of the client from which data is received.<br /><see cref="F:Gemstone.EventArgs`3.Argument2" /> is a new buffer containing post-processed data received from the client starting at index zero.<br /><see cref="F:Gemstone.EventArgs`3.Argument3" /> is the number of post-processed bytes received in the buffer from the client.
+            </remarks>
     </member>
     <member name="E:Gemstone.Communication.ServerBase.ReceiveClientDataException">
       <summary>
             Occurs when an <see cref="T:System.Exception" /> is encountered when receiving data from a client.
             </summary>
+      <remarks>
+        <see cref="F:Gemstone.EventArgs`2.Argument1" /> is the ID of the client from which the data was being received.<br /><see cref="F:Gemstone.EventArgs`2.Argument2" /> is the <see cref="T:System.Exception" /> encountered when receiving data from a client.
+            </remarks>
     </member>
     <member name="M:Gemstone.Communication.ServerBase.ReStart">
       <summary>
@@ -1412,16 +1583,25 @@
       <summary>
             Occurs when data has been sent to a client.
             </summary>
+      <remarks>
+        <see cref="F:Gemstone.EventArgs`1.Argument" /> is the ID of the client to which the data has been sent.
+            </remarks>
     </member>
     <member name="E:Gemstone.Communication.ServerBase.SendClientDataException">
       <summary>
             Occurs when an <see cref="T:System.Exception" /> is encountered when sending data to a client.
             </summary>
+      <remarks>
+        <see cref="F:Gemstone.EventArgs`2.Argument1" /> is the ID of the client to which the data was being sent.<br /><see cref="F:Gemstone.EventArgs`2.Argument2" /> is the <see cref="T:System.Exception" /> encountered when sending data to a client.
+            </remarks>
     </member>
     <member name="E:Gemstone.Communication.ServerBase.SendClientDataStart">
       <summary>
             Occurs when data is being sent to a client.
             </summary>
+      <remarks>
+        <see cref="F:Gemstone.EventArgs`1.Argument" /> is the ID of the client to which the data is being sent.
+            </remarks>
     </member>
     <member name="M:Gemstone.Communication.ServerBase.SendDataToAsync(System.Guid,System.Byte[],System.Int32,System.Int32)">
       <summary>
@@ -1551,6 +1731,11 @@
       <summary>
             Represents a TCP-based communication client.
             </summary>
+      <remarks>
+            The socket can be bound to a specified interface on a machine with multiple interfaces by 
+            specifying the IP of the interface in the <see cref="P:Gemstone.Communication.ClientBase.ConnectionString" />
+            (Example: "Server=localhost:8888; Interface=192.168.1.15")
+            </remarks>
     </member>
     <member name="M:Gemstone.Communication.TcpClient.#ctor">
       <summary>
@@ -1632,11 +1817,18 @@
             Gets or sets a boolean value that indicates whether the server
             should ignore errors when the client's credentials are invalid.
             </summary>
+      <remarks>
+            This property should only be set to true if there is an alternative by which
+            to authenticate the client when integrated security fails.
+            </remarks>
     </member>
     <member name="P:Gemstone.Communication.TcpClient.IntegratedSecurity">
       <summary>
             Gets or sets a boolean value that indicates whether the current Windows account credentials are used for authentication.
             </summary>
+      <remarks>   
+            This option is ignored under Mono deployments.
+            </remarks>
     </member>
     <member name="P:Gemstone.Communication.TcpClient.MaxSendQueueSize">
       <summary>
@@ -1687,11 +1879,17 @@
       <summary>
             Gets or sets the endian order to apply for encoding and decoding payload size in a <see cref="P:Gemstone.Communication.TcpClient.PayloadAware" /> transmission.
             </summary>
+      <remarks>
+            Setting property to <c>null</c> will force use of little-endian encoding.
+            </remarks>
     </member>
     <member name="P:Gemstone.Communication.TcpClient.PayloadMarker">
       <summary>
             Gets or sets the byte sequence used to mark the beginning of a payload in a <see cref="P:Gemstone.Communication.TcpClient.PayloadAware" /> transmission.
             </summary>
+      <remarks>
+            Setting property to <c>null</c> will create a zero-length payload marker.
+            </remarks>
     </member>
     <member name="M:Gemstone.Communication.TcpClient.Read(System.Byte[],System.Int32,System.Int32)">
       <summary>
@@ -1701,6 +1899,10 @@
       <param name="startIndex">0-based starting index into destination <paramref name="buffer" /> to begin writing data.</param>
       <param name="length">The number of bytes to read from current received data buffer and write into <paramref name="buffer" />.</param>
       <returns>The number of bytes read.</returns>
+      <remarks>
+            This function should only be called from within the <see cref="E:Gemstone.Communication.ClientBase.ReceiveData" /> event handler. Calling this method outside
+            this event will have unexpected results.
+            </remarks>
       <exception cref="T:System.InvalidOperationException">No received data buffer has been defined to read.</exception>
       <exception cref="T:System.ArgumentNullException">
         <paramref name="buffer" /> is null.</exception>
@@ -1747,6 +1949,10 @@
       <summary>
             Represents a TCP-based communication server.
             </summary>
+      <remarks>
+            The <see cref="P:Gemstone.Communication.TcpServer.Server" /> socket can be bound to a specified interface on a machine with multiple interfaces by 
+            specifying the interface in the <see cref="P:Gemstone.Communication.ServerBase.ConfigurationString" /> (Example: "Port=8888; Interface=127.0.0.1")
+            </remarks>
     </member>
     <member name="M:Gemstone.Communication.TcpServer.#ctor">
       <summary>
@@ -1811,11 +2017,20 @@
             Gets or sets a boolean value that indicates whether the server
             should ignore errors when the client's credentials are invalid.
             </summary>
+      <remarks>
+            This property should only be set to true if there is an alternative by which
+            to authenticate the client when integrated security fails. When this is set
+            to true, if the client's credentials are invalid, the <see cref="M:Gemstone.Communication.TcpServer.TryGetClientPrincipal(System.Guid,System.Security.Principal.WindowsPrincipal@)" />
+            method will return true for that client, but the principal will still be null.
+            </remarks>
     </member>
     <member name="P:Gemstone.Communication.TcpServer.IntegratedSecurity">
       <summary>
             Gets or sets a boolean value that indicates whether the client Windows account credentials are used for authentication.
             </summary>
+      <remarks>   
+            This option is ignored under Mono deployments.
+            </remarks>
     </member>
     <member name="P:Gemstone.Communication.TcpServer.MaxSendQueueSize">
       <summary>
@@ -1857,11 +2072,17 @@
       <summary>
             Gets or sets the endian order to apply for encoding and decoding payload size in a <see cref="P:Gemstone.Communication.TcpServer.PayloadAware" /> transmission.
             </summary>
+      <remarks>
+            Setting property to <c>null</c> will force use of little-endian encoding.
+            </remarks>
     </member>
     <member name="P:Gemstone.Communication.TcpServer.PayloadMarker">
       <summary>
             Gets or sets the byte sequence used to mark the beginning of a payload in a <see cref="P:Gemstone.Communication.TcpServer.PayloadAware" /> transmission.
             </summary>
+      <remarks>
+            Setting property to <c>null</c> will create a zero-length payload marker.
+            </remarks>
     </member>
     <member name="M:Gemstone.Communication.TcpServer.Read(System.Guid,System.Byte[],System.Int32,System.Int32)">
       <summary>
@@ -1872,6 +2093,10 @@
       <param name="startIndex">0-based starting index into destination <paramref name="buffer" /> to begin writing data.</param>
       <param name="length">The number of bytes to read from current received data buffer and write into <paramref name="buffer" />.</param>
       <returns>The number of bytes read.</returns>
+      <remarks>
+            This function should only be called from within the <see cref="E:Gemstone.Communication.ServerBase.ReceiveClientData" /> event handler. Calling this method
+            outside this event will have unexpected results.
+            </remarks>
       <exception cref="T:System.InvalidOperationException">
             No received data buffer has been defined to read -or-
             Specified <paramref name="clientID" /> does not exist, cannot read buffer.
@@ -1969,6 +2194,10 @@
       <summary>
             Gets or sets the certificate checker used to validate remote certificates.
             </summary>
+      <remarks>
+            The certificate checker will only be used to validate certificates if
+            the <see cref="P:Gemstone.Communication.TlsClient.RemoteCertificateValidationCallback" /> is set to null.
+            </remarks>
     </member>
     <member name="P:Gemstone.Communication.TlsClient.CertificateFile">
       <summary>
@@ -2060,6 +2289,10 @@
             Gets or sets a boolean value that indicates whether the server
             should ignore errors when the client's credentials are invalid.
             </summary>
+      <remarks>
+            This property should only be set to true if there is an alternative by which
+            to authenticate the client when integrated security fails.
+            </remarks>
     </member>
     <member name="P:Gemstone.Communication.TlsClient.IntegratedSecurity">
       <summary>
@@ -2120,11 +2353,17 @@
       <summary>
             Gets or sets the endian order to apply for encoding and decoding payload size in a <see cref="P:Gemstone.Communication.TlsClient.PayloadAware" /> transmission.
             </summary>
+      <remarks>
+            Setting property to <c>null</c> will force use of little-endian encoding.
+            </remarks>
     </member>
     <member name="P:Gemstone.Communication.TlsClient.PayloadMarker">
       <summary>
             Gets or sets the byte sequence used to mark the beginning of a payload in a <see cref="P:Gemstone.Communication.TlsClient.PayloadAware" /> transmission.
             </summary>
+      <remarks>
+            Setting property to <c>null</c> will create a zero-length payload marker.
+            </remarks>
     </member>
     <member name="M:Gemstone.Communication.TlsClient.Read(System.Byte[],System.Int32,System.Int32)">
       <summary>
@@ -2134,11 +2373,19 @@
       <param name="startIndex">0-based starting index into destination <paramref name="buffer" /> to begin writing data.</param>
       <param name="length">The number of bytes to read from current received data buffer and write into <paramref name="buffer" />.</param>
       <returns>The number of bytes read.</returns>
+      <remarks>
+            This function should only be called from within the <see cref="E:Gemstone.Communication.ClientBase.ReceiveData" /> event handler. Calling this method outside this event
+            will have unexpected results.
+            </remarks>
     </member>
     <member name="P:Gemstone.Communication.TlsClient.RemoteCertificateValidationCallback">
       <summary>
             Gets or sets the callback used to verify remote certificates.
             </summary>
+      <remarks>
+            Setting this property overrides the validation
+            callback in the <see cref="P:Gemstone.Communication.TlsClient.CertificateChecker" />.
+            </remarks>
     </member>
     <member name="M:Gemstone.Communication.TlsClient.SendDataAsync(System.Byte[],System.Int32,System.Int32)">
       <summary>
@@ -2221,6 +2468,10 @@
       <summary>
             Gets or sets the certificate checker used to validate remote certificates.
             </summary>
+      <remarks>
+            The certificate checker will only be used to validate certificates if
+            the <see cref="P:Gemstone.Communication.TlsServer.RemoteCertificateValidationCallback" /> is set to null.
+            </remarks>
     </member>
     <member name="P:Gemstone.Communication.TlsServer.CertificateFile">
       <summary>
@@ -2290,6 +2541,12 @@
             Gets or sets a boolean value that indicates whether the server
             should ignore errors when the client's credentials are invalid.
             </summary>
+      <remarks>
+            This property should only be set to true if there is an alternative by which
+            to authenticate the client when integrated security fails. When this is set
+            to true, if the client's credentials are invalid, the <see cref="M:Gemstone.Communication.TlsServer.TryGetClientPrincipal(System.Guid,System.Security.Principal.WindowsPrincipal@)" />
+            method will return true for that client, but the principal will still be null.
+            </remarks>
     </member>
     <member name="P:Gemstone.Communication.TlsServer.IntegratedSecurity">
       <summary>
@@ -2320,11 +2577,17 @@
       <summary>
             Gets or sets the endian order to apply for encoding and decoding payload size in a <see cref="P:Gemstone.Communication.TlsServer.PayloadAware" /> transmission.
             </summary>
+      <remarks>
+            Setting property to <c>null</c> will force use of little-endian encoding.
+            </remarks>
     </member>
     <member name="P:Gemstone.Communication.TlsServer.PayloadMarker">
       <summary>
             Gets or sets the byte sequence used to mark the beginning of a payload in a <see cref="P:Gemstone.Communication.TlsServer.PayloadAware" /> transmission.
             </summary>
+      <remarks>
+            Setting property to <c>null</c> will create a zero-length payload marker.
+            </remarks>
     </member>
     <member name="M:Gemstone.Communication.TlsServer.Read(System.Guid,System.Byte[],System.Int32,System.Int32)">
       <summary>
@@ -2335,6 +2598,10 @@
       <param name="startIndex">0-based starting index into destination <paramref name="buffer" /> to begin writing data.</param>
       <param name="length">The number of bytes to read from current received data buffer and write into <paramref name="buffer" />.</param>
       <returns>The number of bytes read.</returns>
+      <remarks>
+            This function should only be called from within the <see cref="E:Gemstone.Communication.ServerBase.ReceiveClientData" /> event handler. Calling this method
+            outside this event will have unexpected results.
+            </remarks>
       <exception cref="T:System.InvalidOperationException">
             No received data buffer has been defined to read -or-
             Specified <paramref name="clientID" /> does not exist, cannot read buffer.
@@ -2494,6 +2761,15 @@
       <summary>
             Regular expression used to validate the format for an endpoint.
             </summary>
+      <remarks>
+        <para>
+            Matches the following valid input:<br />
+            - localhost:80<br />
+            - 127.0.0.1:80<br />
+            - [::1]:80<br />
+            - [FEDC:BA98:7654:3210:FEDC:BA98:7654:3210]:80
+            </para>
+      </remarks>
     </member>
     <member name="M:Gemstone.Communication.Transport.GetDefaultIPStack">
       <summary>
@@ -2510,6 +2786,11 @@
             </summary>
       <param name="connectionStringEntries">Connection string key/value pairs.</param>
       <returns>Desired <see cref="T:Gemstone.Communication.IPStack" /> based on "interface" setting.</returns>
+      <remarks>
+            The "interface" setting will be added to the <paramref name="connectionStringEntries" /> if it
+            doesn't exist. in this case the return value will be based off of the "server" value. If the server parameter 
+            doesn't exist, the return value will be <see cref="F:Gemstone.Communication.IPStack.Default" />.
+            </remarks>
     </member>
     <member name="M:Gemstone.Communication.Transport.IsDestinationReachable(System.Net.IPEndPoint)">
       <summary>
@@ -2624,6 +2905,9 @@
       <summary>
             Gets buffer used for receiving data.
             </summary>
+      <remarks>
+            Use <see cref="M:Gemstone.Communication.TransportProvider`1.SetReceiveBuffer(System.Int32)" /> to reset and/or establish receive buffer size.
+            </remarks>
     </member>
     <member name="P:Gemstone.Communication.TransportProvider`1.ReceiveBufferSize">
       <summary>
@@ -2639,6 +2923,9 @@
       <summary>
             Gets buffer used for sending data.
             </summary>
+      <remarks>
+            Use <see cref="M:Gemstone.Communication.TransportProvider`1.SetSendBuffer(System.Int32)" /> to reset and/or establish send buffer size.
+            </remarks>
     </member>
     <member name="P:Gemstone.Communication.TransportProvider`1.SendBufferSize">
       <summary>
@@ -2729,6 +3016,19 @@
       <summary>
             Represents a UDP-based communication server.
             </summary>
+      <remarks>
+        <para>
+            Use <see cref="T:Gemstone.Communication.UdpClient" /> when the primary purpose is to receive data.
+            </para>
+        <para>
+            The <see cref="P:Gemstone.Communication.UdpClient.Client" /> socket can be bound to a specified interface on a machine with multiple interfaces by 
+            specifying the interface in the <see cref="P:Gemstone.Communication.ClientBase.ConnectionString" /> (Example: "Server=localhost:8888; Port=8989; Interface=127.0.0.1")
+            </para>
+        <para>
+            The <see cref="P:Gemstone.Communication.UdpClient.Client" /> socket can be used just for transmitting data without being bound to a local interface 
+            by specifying -1 for the port number in the <see cref="P:Gemstone.Communication.ClientBase.ConnectionString" /> (Example: "Server=localhost:8888; Port=-1")
+            </para>
+      </remarks>
     </member>
     <member name="M:Gemstone.Communication.UdpClient.#ctor">
       <summary>
@@ -2851,6 +3151,10 @@
       <param name="startIndex">0-based starting index into destination <paramref name="buffer" /> to begin writing data.</param>
       <param name="length">The number of bytes to read from current received data buffer and write into <paramref name="buffer" />.</param>
       <returns>The number of bytes read.</returns>
+      <remarks>
+            This function should only be called from within the <see cref="E:Gemstone.Communication.ClientBase.ReceiveData" /> event handler. Calling this method outside
+            this event will have unexpected results.
+            </remarks>
       <exception cref="T:System.InvalidOperationException">No received data buffer has been defined to read.</exception>
       <exception cref="T:System.ArgumentNullException">
         <paramref name="buffer" /> is null.</exception>
@@ -2869,11 +3173,24 @@
       <summary>
             Occurs when unprocessed data has been received from the server.
             </summary>
+      <remarks>
+        <para>
+            This event can be used to receive a notification that server data has arrived. The <see cref="M:Gemstone.Communication.UdpClient.Read(System.Byte[],System.Int32,System.Int32)" /> method can then be used
+            to copy data to an existing buffer. In many cases it will be optimal to use an existing buffer instead of subscribing to the
+            <see cref="E:Gemstone.Communication.UdpClient.ReceiveDataFromComplete" /> event.
+            </para>
+        <para>
+          <see cref="F:Gemstone.EventArgs`2.Argument1" /> is the end-point that data has been received from.<br /><see cref="F:Gemstone.EventArgs`2.Argument2" /> is the number of bytes received in the buffer from the server.
+            </para>
+      </remarks>
     </member>
     <member name="E:Gemstone.Communication.UdpClient.ReceiveDataFromComplete">
       <summary>
             Occurs when data received from the server has been processed and is ready for consumption.
             </summary>
+      <remarks>
+        <see cref="F:Gemstone.EventArgs`3.Argument1" /> is the end-point that data has been received from.<br /><see cref="F:Gemstone.EventArgs`3.Argument2" /> is a new buffer containing post-processed data received from the server starting at index zero.<br /><see cref="F:Gemstone.EventArgs`3.Argument3" /> is the number of post-processed bytes received in the buffer from the server.
+            </remarks>
     </member>
     <member name="P:Gemstone.Communication.UdpClient.ReceivePacketInfo">
       <summary>
@@ -2930,6 +3247,19 @@
       <summary>
             Represents a UDP-based communication server.
             </summary>
+      <remarks>
+        <para>
+            Use <see cref="T:Gemstone.Communication.UdpServer" /> when the primary purpose is to transmit data.
+            </para>
+        <para>
+            The <see cref="P:Gemstone.Communication.UdpServer.Server" /> socket can be bound to a specified interface on a machine with multiple interfaces by 
+            specifying the interface in the <see cref="P:Gemstone.Communication.ServerBase.ConfigurationString" /> (Example: "Port=8888; Clients=localhost:8989; Interface=127.0.0.1")
+            </para>
+        <para>
+            The <see cref="P:Gemstone.Communication.UdpServer.Server" /> socket can be used just for transmitting data without being bound to a local interface 
+            by specifying -1 for the port number in the <see cref="P:Gemstone.Communication.ServerBase.ConfigurationString" /> (Example: "Port=-1; Clients=localhost:8989")
+            </para>
+      </remarks>
     </member>
     <member name="M:Gemstone.Communication.UdpServer.#ctor">
       <summary>
@@ -3018,6 +3348,10 @@
       <param name="startIndex">0-based starting index into destination <paramref name="buffer" /> to begin writing data.</param>
       <param name="length">The number of bytes to read from current received data buffer and write into <paramref name="buffer" />.</param>
       <returns>The number of bytes read.</returns>
+      <remarks>
+            This function should only be called from within the <see cref="E:Gemstone.Communication.ServerBase.ReceiveClientData" /> event handler. Calling this method
+            outside this event will have unexpected results.
+            </remarks>
       <exception cref="T:System.InvalidOperationException">
             No received data buffer has been defined to read -or-
             Specified <paramref name="clientID" /> does not exist, cannot read buffer.
@@ -3372,6 +3706,7 @@
       <param name="serverName">Name or address of the RADIUS server.</param>
       <param name="serverPort">Port number of the RADIUS server.</param>
       <param name="sharedSecret">Shared secret used for encryption and authentication.</param>
+      <remarks></remarks>
     </member>
     <member name="M:Gemstone.Communication.Radius.RadiusClient.#ctor(System.String,System.String)">
       <summary>
@@ -3387,6 +3722,18 @@
       <param name="username">Username to be authenticated.</param>
       <param name="password">Password to be authenticated.</param>
       <returns>Response packet received from the server for the authentication request.</returns>
+      <remarks>
+        <para>
+            The type of response packet (if any) will be one of the following:
+            <list><item>AccessAccept: If the authentication is successful.</item><item>AccessReject: If the authentication is not successful.</item><item>AccessChallenge: If the server need more information from the user.</item></list></para>
+        <para>
+            When an AccessChallenge response packet is received from the server, it contains a State attribute
+            that must be included in the AccessRequest packet that is being sent in response to the AccessChallenge
+            response. So if this method returns an AccessChallenge packet, then this method is to be called again
+            with the requested information (from ReplyMessage attribute) in the password field and the value State
+            attribute.
+            </para>
+      </remarks>
     </member>
     <member name="M:Gemstone.Communication.Radius.RadiusClient.Authenticate(System.String,System.String,System.Byte[])">
       <summary>
@@ -3396,11 +3743,24 @@
       <param name="password">Password to be authenticated.</param>
       <param name="state">State value from a previous challenge response.</param>
       <returns>Response packet received from the server for the authentication request.</returns>
+      <remarks>
+        <para>
+            The type of response packet (if any) will be one of the following:
+            <list><item>AccessAccept: If the authentication is successful.</item><item>AccessReject: If the authentication is not successful.</item><item>AccessChallenge: If the server need more information from the user.</item></list></para>
+        <para>
+            When an AccessChallenge response packet is received from the server, it contains a State attribute
+            that must be included in the AccessRequest packet that is being sent in response to the AccessChallenge
+            response. So if this method returns an AccessChallenge packet, then this method is to be called again
+            with the requested information (from ReplyMessage attribute) in the password field and the value State
+            attribute.
+            </para>
+      </remarks>
     </member>
     <member name="M:Gemstone.Communication.Radius.RadiusClient.CheckDisposed">
       <summary>
             Helper method to check whether or not the object instance has been disposed.
             </summary>
+      <remarks>This method is to be called before performing any operation.</remarks>
     </member>
     <member name="M:Gemstone.Communication.Radius.RadiusClient.CreateNewPin(System.String,System.String,System.String)">
       <summary>
@@ -3410,6 +3770,7 @@
       <param name="token">Current token of the user.</param>
       <param name="pin">New pin of the user.</param>
       <returns>True if a new pin is created for the user successfully; otherwise False.</returns>
+      <remarks>NOTE: This method is specific to RSA RADIUS implementation.</remarks>
     </member>
     <member name="F:Gemstone.Communication.Radius.RadiusClient.DefaultNewPinModeMessage1">
       <summary>
@@ -3466,6 +3827,10 @@
             </summary>
       <param name="response">Response packet sent by the server.</param>
       <returns>True if the user account is in "New Pin" mode; otherwise False.</returns>
+      <remarks>
+        <para>A user's account can be in the "New Pin" mode when set on the server.</para>
+        <para>NOTE: This method is specific to RSA RADIUS implementation.</para>
+      </remarks>
     </member>
     <member name="M:Gemstone.Communication.Radius.RadiusClient.IsUserInNextTokenMode(Gemstone.Communication.Radius.RadiusPacket)">
       <summary>
@@ -3473,6 +3838,14 @@
             </summary>
       <param name="response">Response packet sent by the server.</param>
       <returns>True if the user account is in "Next Token" mode; otherwise False.</returns>
+      <remarks>
+        <para>
+            A user's account can enter the "Next Token" mode after the user enters incorrect passwords for a few
+            times (3 times by default) and then enters the correct password. Note that repeatedly entering
+            incorrect passwords will disable the user account.
+            </para>
+        <para>NOTE: This method is specific to RSA RADIUS implementation.</para>
+      </remarks>
     </member>
     <member name="P:Gemstone.Communication.Radius.RadiusClient.NewPinModeMessage1">
       <summary>
@@ -3481,6 +3854,7 @@
             "New Pin" mode) of creating a new pin was successful.
             </summary>
       <returns>Text for "New Pin" mode's first message.</returns>
+      <value></value>
     </member>
     <member name="P:Gemstone.Communication.Radius.RadiusClient.NewPinModeMessage2">
       <summary>
@@ -3489,6 +3863,7 @@
             a new pin was successful.
             </summary>
       <returns>Text for "New Pin" mode's second message.</returns>
+      <value></value>
     </member>
     <member name="P:Gemstone.Communication.Radius.RadiusClient.NewPinModeMessage3">
       <summary>
@@ -3497,6 +3872,7 @@
             a new pin was successful.
             </summary>
       <returns>Text for "New Pin" mode's third message.</returns>
+      <value></value>
     </member>
     <member name="P:Gemstone.Communication.Radius.RadiusClient.NextTokenModeMessage">
       <summary>
@@ -3504,6 +3880,7 @@
             server response to determine whether or not a user account is in the "Next Token" mode.
             </summary>
       <returns>Text for "Next Token" mode.</returns>
+      <value></value>
     </member>
     <member name="M:Gemstone.Communication.Radius.RadiusClient.ProcessRequest(Gemstone.Communication.Radius.RadiusPacket)">
       <summary>
@@ -3517,30 +3894,35 @@
             Gets or sets the time (in milliseconds) to wait for a response from server after sending a request.
             </summary>
       <returns>Time (in milliseconds) to wait for a response from server after sending a request.</returns>
+      <value></value>
     </member>
     <member name="P:Gemstone.Communication.Radius.RadiusClient.RequestAttempts">
       <summary>
             Gets or sets the number of time a request is to sent to the server until a valid response is received.
             </summary>
       <returns>Number of time a request is to sent to the server until a valid response is received.</returns>
+      <value></value>
     </member>
     <member name="P:Gemstone.Communication.Radius.RadiusClient.ServerName">
       <summary>
             Gets or sets the name or address of the RADIUS server.
             </summary>
       <returns>Name or address of RADIUS server.</returns>
+      <value></value>
     </member>
     <member name="P:Gemstone.Communication.Radius.RadiusClient.ServerPort">
       <summary>
             Gets or sets the port number of the RADIUS server.
             </summary>
       <returns>Port number of the RADIUS server.</returns>
+      <value></value>
     </member>
     <member name="P:Gemstone.Communication.Radius.RadiusClient.SharedSecret">
       <summary>
             Gets or sets the shared secret used between the client and server for encryption and authentication.
             </summary>
       <returns>Shared secret used between the client and server for encryption and authentication.</returns>
+      <value></value>
     </member>
     <member name="T:Gemstone.Communication.Radius.RadiusPacket">
       <summary>
