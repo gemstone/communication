@@ -495,7 +495,7 @@ namespace Gemstone.Communication
                 connectState.ConnectArgs.RemoteEndPoint = Transport.CreateEndPoint(endpoint.Groups["host"].Value, int.Parse(endpoint.Groups["port"].Value), m_ipStack);
                 connectState.ConnectArgs.SocketFlags = SocketFlags.None;
                 connectState.ConnectArgs.UserToken = connectState;
-                connectState.ConnectArgs.Completed += (sender, args) => ProcessConnect((ConnectState)args.UserToken);
+                connectState.ConnectArgs.Completed += (_, args) => ProcessConnect((ConnectState)args.UserToken);
 
                 // Create client socket
                 connectState.Socket = Transport.CreateSocket(m_connectData["interface"], 0, ProtocolType.Tcp, m_ipStack, AllowDualStackSocket);
@@ -539,7 +539,7 @@ namespace Gemstone.Communication
                 return;
 
             if (!(connectState.Socket?.ConnectAsync(connectState.ConnectArgs) ?? false))
-                ThreadPool.QueueUserWorkItem(state => ProcessConnect(connectState));
+                ThreadPool.QueueUserWorkItem(_ => ProcessConnect(connectState));
         }
 
         /// <summary>
@@ -627,14 +627,14 @@ namespace Gemstone.Communication
                     connectState.ReceiveArgs.SetBuffer(new byte[ReceiveBufferSize], 0, ReceiveBufferSize);
 
                     if (PayloadAware)
-                        connectState.ReceiveArgs.Completed += (sender, args) => ProcessReceivePayloadAware((ReceiveState)args.UserToken);
+                        connectState.ReceiveArgs.Completed += (_, args) => ProcessReceivePayloadAware((ReceiveState)args.UserToken);
                     else
-                        connectState.ReceiveArgs.Completed += (sender, args) => ProcessReceivePayloadUnaware((ReceiveState)args.UserToken);
+                        connectState.ReceiveArgs.Completed += (_, args) => ProcessReceivePayloadUnaware((ReceiveState)args.UserToken);
 
                     // Initialize the SocketAsyncEventArgs for send operations
                     connectState.SendArgs = new SocketAsyncEventArgs();
                     connectState.SendArgs.SetBuffer(new byte[SendBufferSize], 0, SendBufferSize);
-                    connectState.SendArgs.Completed += (sender, args) => ProcessSend((SendState)args.UserToken);
+                    connectState.SendArgs.Completed += (_, args) => ProcessSend((SendState)args.UserToken);
 
                     // Initialize state object for the asynchronous send loop
                     sendState = new SendState
@@ -779,14 +779,14 @@ namespace Gemstone.Communication
                 connectState.ReceiveArgs.SetBuffer(new byte[ReceiveBufferSize], 0, ReceiveBufferSize);
 
                 if (PayloadAware)
-                    connectState.ReceiveArgs.Completed += (sender, args) => ProcessReceivePayloadAware((ReceiveState)args.UserToken);
+                    connectState.ReceiveArgs.Completed += (_, args) => ProcessReceivePayloadAware((ReceiveState)args.UserToken);
                 else
-                    connectState.ReceiveArgs.Completed += (sender, args) => ProcessReceivePayloadUnaware((ReceiveState)args.UserToken);
+                    connectState.ReceiveArgs.Completed += (_, args) => ProcessReceivePayloadUnaware((ReceiveState)args.UserToken);
 
                 // Initialize the SocketAsyncEventArgs for send operations
                 connectState.SendArgs = new SocketAsyncEventArgs();
                 connectState.SendArgs.SetBuffer(new byte[SendBufferSize], 0, SendBufferSize);
-                connectState.SendArgs.Completed += (sender, args) => ProcessSend((SendState)args.UserToken);
+                connectState.SendArgs.Completed += (_, args) => ProcessSend((SendState)args.UserToken);
 
                 // Initialize state object for the asynchronous send loop
                 sendState = new SendState
@@ -932,7 +932,7 @@ namespace Gemstone.Communication
                 receiveState.ReceiveArgs.SetBuffer(receiveState.Offset, length - receiveState.Offset);
 
             if (!(receiveState.Socket?.ReceiveAsync(receiveState.ReceiveArgs) ?? false))
-                ThreadPool.QueueUserWorkItem(state => ProcessReceivePayloadAware(receiveState));
+                ThreadPool.QueueUserWorkItem(_ => ProcessReceivePayloadAware(receiveState));
         }
 
         /// <summary>
@@ -1030,7 +1030,7 @@ namespace Gemstone.Communication
             receiveState.ReceiveArgs.SetBuffer(0, ReceiveBufferSize);
 
             if (!(receiveState.Socket?.ReceiveAsync(receiveState.ReceiveArgs) ?? false))
-                ThreadPool.QueueUserWorkItem(state => ProcessReceivePayloadUnaware(receiveState));
+                ThreadPool.QueueUserWorkItem(_ => ProcessReceivePayloadUnaware(receiveState));
         }
 
         /// <summary>

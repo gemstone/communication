@@ -272,8 +272,8 @@ namespace Gemstone.Communication
             MaxSendQueueSize = DefaultMaxSendQueueSize;
             m_clientInfoLookup = new ConcurrentDictionary<Guid, UdpClientInfo>();
 
-            m_sendHandler = (sender, args) => ProcessSend(args);
-            m_receiveHandler = (sender, args) => ProcessReceive(args);
+            m_sendHandler = (_, args) => ProcessSend(args);
+            m_receiveHandler = (_, args) => ProcessReceive(args);
         }
 
         #endregion

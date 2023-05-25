@@ -284,8 +284,8 @@ namespace Gemstone.Communication
             m_sendLock = new object();
             m_sendQueue = new ConcurrentQueue<UdpClientPayload>();
             m_dumpPayloadsOperation = new ShortSynchronizedOperation(DumpPayloads, OnSendDataException);
-            m_sendHandler += (sender, args) => ProcessSend();
-            m_receiveHandler += (sender, args) => ProcessReceive();
+            m_sendHandler += (_, _) => ProcessSend();
+            m_receiveHandler += (_, _) => ProcessReceive();
         }
 
         #endregion
@@ -915,12 +915,12 @@ namespace Gemstone.Communication
             if (!m_receivePacketInfo)
             {
                 if (!m_udpClient.Provider.ReceiveFromAsync(m_receiveArgs))
-                    ThreadPool.QueueUserWorkItem(state => ProcessReceive());
+                    ThreadPool.QueueUserWorkItem(_ => ProcessReceive());
             }
             else
             {
                 if (!m_udpClient.Provider.ReceiveMessageFromAsync(m_receiveArgs))
-                    ThreadPool.QueueUserWorkItem(state => ProcessReceive());
+                    ThreadPool.QueueUserWorkItem(_ => ProcessReceive());
             }
         }
 

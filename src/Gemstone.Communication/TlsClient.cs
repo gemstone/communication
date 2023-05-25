@@ -508,7 +508,7 @@ namespace Gemstone.Communication
                 connectState.ConnectArgs.RemoteEndPoint = Transport.CreateEndPoint(endpoint.Groups["host"].Value, int.Parse(endpoint.Groups["port"].Value), m_ipStack);
                 connectState.ConnectArgs.SocketFlags = SocketFlags.None;
                 connectState.ConnectArgs.UserToken = connectState;
-                connectState.ConnectArgs.Completed += (sender, args) => ProcessConnect((ConnectState)args.UserToken);
+                connectState.ConnectArgs.Completed += (_, args) => ProcessConnect((ConnectState)args.UserToken);
 
                 // Create client socket
                 connectState.Socket = Transport.CreateSocket(m_connectData["interface"], 0, ProtocolType.Tcp, m_ipStack, AllowDualStackSocket);
@@ -552,7 +552,7 @@ namespace Gemstone.Communication
                 return;
 
             if (!(connectState.Socket?.ConnectAsync(connectState.ConnectArgs) ?? false))
-                ThreadPool.QueueUserWorkItem(state => ProcessConnect(connectState));
+                ThreadPool.QueueUserWorkItem(_ => ProcessConnect(connectState));
         }
 
         /// <summary>

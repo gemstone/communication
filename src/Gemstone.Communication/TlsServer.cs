@@ -202,7 +202,7 @@ namespace Gemstone.Communication
             NoDelay = DefaultNoDelay;
             m_clientInfoLookup = new ConcurrentDictionary<Guid, TlsClientInfo>();
 
-            m_acceptHandler = (sender, args) => ProcessAccept(args);
+            m_acceptHandler = (_, args) => ProcessAccept(args);
         }
 
         #endregion
@@ -666,7 +666,7 @@ namespace Gemstone.Communication
                     // Error is unrecoverable.
                     // We need to make sure to restart the
                     // server before we throw the error.
-                    ThreadPool.QueueUserWorkItem(state => ReStart());
+                    ThreadPool.QueueUserWorkItem(_ => ReStart());
                     throw new SocketException((int)error);
                 }
 
@@ -730,7 +730,7 @@ namespace Gemstone.Communication
                     acceptArgs.AcceptSocket = null;
 
                     if (!(Server?.AcceptAsync(acceptArgs) ?? false))
-                        ThreadPool.QueueUserWorkItem(state => ProcessAccept(acceptArgs));
+                        ThreadPool.QueueUserWorkItem(_ => ProcessAccept(acceptArgs));
                 }
             }
             catch (ObjectDisposedException)

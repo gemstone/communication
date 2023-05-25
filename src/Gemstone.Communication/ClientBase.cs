@@ -204,8 +204,8 @@ namespace Gemstone.Communication
             m_sendBufferSize = DefaultSendBufferSize;
             m_receiveBufferSize = DefaultReceiveBufferSize;
             Statistics = new TransportStatistics();
-            m_updateBytesSent = TrackStatistics ? UpdateBytesSent : new Action<int>(bytes => { });
-            m_updateBytesReceived = TrackStatistics ? UpdateBytesReceived : new Action<int>(bytes => { });
+            m_updateBytesSent = TrackStatistics ? UpdateBytesSent : new Action<int>(_ => { });
+            m_updateBytesReceived = TrackStatistics ? UpdateBytesReceived : new Action<int>(_ => { });
             Name = GetType().Name;
         }
 

@@ -34,8 +34,6 @@ using Gemstone.ArrayExtensions;
 using Gemstone.IO.Parsing;
 using Random = Gemstone.Security.Cryptography.Random;
 
-#pragma warning disable SCS0006 // Weak hashing function
-
 namespace Gemstone.Communication.Radius
 {
     #region [ Enumerations ]

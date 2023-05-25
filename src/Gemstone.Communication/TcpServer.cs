@@ -50,7 +50,6 @@
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Net;
 using System.Net.Security;
@@ -249,10 +248,10 @@ namespace Gemstone.Communication
             NoDelay = DefaultNoDelay;
             m_clientInfoLookup = new ConcurrentDictionary<Guid, TcpClientInfo>();
 
-            m_acceptHandler = (sender, args) => ProcessAccept(args);
-            m_sendHandler = (sender, args) => ProcessSend(args);
-            m_receivePayloadAwareHandler = (sender, args) => ProcessReceivePayloadAware(args);
-            m_receivePayloadUnawareHandler = (sender, args) => ProcessReceivePayloadUnaware(args);
+            m_acceptHandler = (_, args) => ProcessAccept(args);
+            m_sendHandler = (_, args) => ProcessSend(args);
+            m_receivePayloadAwareHandler = (_, args) => ProcessReceivePayloadAware(args);
+            m_receivePayloadUnawareHandler = (_, args) => ProcessReceivePayloadUnaware(args);
         }
 
         #endregion
@@ -640,7 +639,6 @@ namespace Gemstone.Communication
         /// <summary>
         /// Callback method for asynchronous accept operation.
         /// </summary>
-        [SuppressMessage("Microsoft.Usage", "CA2202:Do not dispose objects multiple times")]
         private void ProcessAccept(SocketAsyncEventArgs acceptArgs)
         {
             TransportProvider<Socket> client = new();
@@ -669,14 +667,14 @@ namespace Gemstone.Communication
                     acceptArgs.AcceptSocket = null;
 
                     if (!(Server?.AcceptAsync(acceptArgs) ?? false))
-                        ThreadPool.QueueUserWorkItem(state => ProcessAccept(acceptArgs));
+                        ThreadPool.QueueUserWorkItem(_ => ProcessAccept(acceptArgs));
                 }
                 else
                 {
                     // For unrecoverable errors, we need to ensure the server
                     // will be restarted before we can throw the error.
                     if (error != SocketError.ConnectionReset)
-                        ThreadPool.QueueUserWorkItem(state => ReStart());
+                        ThreadPool.QueueUserWorkItem(_ => ReStart());
                 }
 
                 if (error != SocketError.Success)
