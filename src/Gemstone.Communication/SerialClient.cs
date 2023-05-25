@@ -399,7 +399,7 @@ namespace Gemstone.Communication
             catch (Exception ex)
             {
                 // Send operation failed to complete - don't raised exceptions for a closed port
-                if (!m_disposed && m_serialClient.Provider != null && m_serialClient.Provider.IsOpen)
+                if (!m_disposed && m_serialClient.Provider is { IsOpen: true })
                     OnSendDataException(ex);
             }
         }
@@ -457,7 +457,7 @@ namespace Gemstone.Communication
             catch (Exception ex)
             {
                 // Don't raised exceptions for a closed port
-                if (!m_disposed && m_serialClient.Provider != null && m_serialClient.Provider.IsOpen)
+                if (!m_disposed && m_serialClient.Provider is { IsOpen: true })
                     OnReceiveDataException(ex);
             }
         }

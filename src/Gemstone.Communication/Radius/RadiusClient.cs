@@ -170,7 +170,7 @@ namespace Gemstone.Communication.Radius
             {
                 CheckDisposed();
 
-                if (value >= 0 && value <= 65535)
+                if (value is >= 0 and <= 65535)
                 {
                     Dictionary<string, string> parts = m_udpClient.ConnectionString.ParseKeyValuePairs();
                     parts["remotePort"] = value.ToString();
@@ -195,7 +195,7 @@ namespace Gemstone.Communication.Radius
             {
                 CheckDisposed();
 
-                if (value >= 1 && value <= 10)
+                if (value is >= 1 and <= 10)
                     m_requestAttempts = value;
                 else
                     throw new ArgumentOutOfRangeException(nameof(value), "Value must be between 1 and 10.");
@@ -214,7 +214,7 @@ namespace Gemstone.Communication.Radius
             {
                 CheckDisposed();
 
-                if (value >= 1000 && value <= 60000)
+                if (value is >= 1000 and <= 60000)
                     m_reponseTimeout = value;
                 else
                     throw new ArgumentOutOfRangeException(nameof(value), "Value must be between 1000 and 60000.");

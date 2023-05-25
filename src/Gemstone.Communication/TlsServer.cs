@@ -522,7 +522,7 @@ namespace Gemstone.Communication
 
             try
             {
-                if (tlsClient.Provider?.Socket != null && tlsClient.Provider.Socket.Connected)
+                if (tlsClient.Provider?.Socket is { Connected: true })
                     tlsClient.Provider.Socket.Disconnect(false);
 
                 OnClientDisconnected(clientID);

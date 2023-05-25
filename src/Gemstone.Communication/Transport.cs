@@ -343,10 +343,11 @@ namespace Gemstone.Communication
                 return ipAddress.IsIPv6Multicast;
 
             // IP is IPv4, check octet for multicast range
+            // TODO: Change to use ipAddress.GetAddressBytes() Method
             int firstOctet = int.Parse(ipAddress.ToString().Split('.')[0]);
 
             // Check first octet to see if IP is a Class D multicast IP
-            return firstOctet >= 224 && firstOctet <= 247;
+            return firstOctet is >= 224 and <= 247;
         }
 
         /// <summary>
@@ -361,7 +362,7 @@ namespace Gemstone.Communication
                 throw new ArgumentException("Specified port is not a valid number");
 
             // Check to see if the port number is within the valid range
-            return portNumber >= PortRangeLow && portNumber <= PortRangeHigh;
+            return portNumber is >= PortRangeLow and <= PortRangeHigh;
         }
 
         /// <summary>

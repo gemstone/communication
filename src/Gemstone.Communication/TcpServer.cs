@@ -487,7 +487,7 @@ namespace Gemstone.Communication
 
             try
             {
-                if (client.Provider != null && client.Provider.Connected)
+                if (client.Provider is { Connected: true })
                     client.Provider.Disconnect(false);
 
                 OnClientDisconnected(clientID);

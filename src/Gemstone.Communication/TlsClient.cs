@@ -535,7 +535,7 @@ namespace Gemstone.Communication
             {
                 // If the operation was canceled during execution,
                 // make sure to dispose of erroneously allocated resources
-                if (connectState != null && connectState.Token.Cancelled)
+                if (connectState is { Token.Cancelled: true })
                     connectState.Dispose();
             }
 
@@ -832,13 +832,13 @@ namespace Gemstone.Communication
             {
                 // If the operation was canceled during execution,
                 // make sure to dispose of erroneously allocated resources
-                if (connectState != null && connectState.Token.Cancelled)
+                if (connectState is { Token.Cancelled: true })
                     connectState.Dispose();
 
-                if (receiveState?.Token != null && receiveState.Token.Cancelled)
+                if (receiveState?.Token is { Cancelled: true })
                     receiveState.Dispose();
 
-                if (sendState?.Token != null && sendState.Token.Cancelled)
+                if (sendState?.Token is { Cancelled: true })
                     sendState.Dispose();
             }
         }
@@ -972,10 +972,10 @@ namespace Gemstone.Communication
                         connectState.NegotiateStream?.Dispose();
                 }
 
-                if (receiveState?.Token != null && receiveState.Token.Cancelled)
+                if (receiveState?.Token is { Cancelled: true })
                     receiveState.Dispose();
 
-                if (sendState?.Token != null && sendState.Token.Cancelled)
+                if (sendState?.Token is { Cancelled: true })
                     sendState.Dispose();
             }
         }
@@ -1026,7 +1026,7 @@ namespace Gemstone.Communication
                 if (bytesReceived == 0)
                     throw new SocketException((int)SocketError.Disconnecting);
 
-                if (receiveState.PayloadLength < 0 && receiveState.Buffer != null)
+                if (receiveState is { PayloadLength: < 0, Buffer: not null })
                 {
                     // If we haven't parsed the length of the payload yet, attempt to parse it
                     receiveState.PayloadLength = Payload.ExtractLength(receiveState.Buffer, receiveState.Offset, m_payloadMarker, m_payloadEndianOrder);
@@ -1273,7 +1273,7 @@ namespace Gemstone.Communication
             {
                 // If the operation was canceled during execution,
                 // make sure to dispose of allocated resources
-                if (sendState?.Token != null && sendState.Token.Cancelled)
+                if (sendState?.Token is { Cancelled: true })
                     sendState.Dispose();
             }
 
@@ -1326,7 +1326,7 @@ namespace Gemstone.Communication
             {
                 // If the operation was canceled during execution,
                 // make sure to dispose of allocated resources
-                if (sendState.Token != null && sendState.Token.Cancelled)
+                if (sendState.Token is { Cancelled: true })
                     sendState.Dispose();
             }
         }
@@ -1400,7 +1400,7 @@ namespace Gemstone.Communication
             {
                 // If the operation was canceled during execution,
                 // make sure to dispose of allocated resources
-                if (sendState.Token != null && sendState.Token.Cancelled)
+                if (sendState.Token is { Cancelled: true })
                     sendState.Dispose();
 
                 try
