@@ -419,7 +419,7 @@ namespace Gemstone.Communication
 
             TransportProvider<TlsSocket> tlsClient = clientInfo.Client;
 
-            if (tlsClient.ReceiveBuffer == null)
+            if (tlsClient.ReceiveBuffer is null)
                 throw new InvalidOperationException("No received data buffer has been defined to read.");
 
             int readIndex = ReadIndicies[clientID];
@@ -517,7 +517,7 @@ namespace Gemstone.Communication
         /// <exception cref="InvalidOperationException">Client does not exist for the specified <paramref name="clientID"/>.</exception>
         public override void DisconnectOne(Guid clientID)
         {
-            if (!TryGetClient(clientID, out TransportProvider<TlsSocket>? tlsClient) || tlsClient == null)
+            if (!TryGetClient(clientID, out TransportProvider<TlsSocket>? tlsClient) || tlsClient is null)
                 return;
 
             try
@@ -765,7 +765,7 @@ namespace Gemstone.Communication
                 if (!clientInfo.CancelTimeout())
                     throw new SocketException((int)SocketError.TimedOut);
 
-                if (stream == null)
+                if (stream is null)
                     throw new InvalidOperationException("No stream available for authentication.");
 
                 stream.EndAuthenticateAsServer(asyncResult);
@@ -815,7 +815,7 @@ namespace Gemstone.Communication
             NegotiateStream? negotiateStream = clientInfo.NegotiateStream;
             IPEndPoint? remoteEndPoint = client.Provider.RemoteEndPoint;
 
-            if (negotiateStream == null)
+            if (negotiateStream is null)
                 throw new InvalidOperationException("No stream available for authentication.");
 
             try
@@ -869,12 +869,12 @@ namespace Gemstone.Communication
 
             try
             {
-                if (payload == null)
+                if (payload is null)
                     throw new NullReferenceException($"{nameof(TlsServerPayload)} was null in {nameof(TlsServer)}.{nameof(SendPayload)}");
 
                 clientInfo = payload.ClientInfo;
 
-                if (clientInfo == null)
+                if (clientInfo is null)
                     throw new NullReferenceException($"{nameof(TlsServerPayload)}.{nameof(TlsServerPayload.ClientInfo)} was null in {nameof(TlsServer)}.{nameof(SendPayload)}");
 
                 client = clientInfo.Client;
@@ -888,10 +888,10 @@ namespace Gemstone.Communication
             }
             catch (Exception ex)
             {
-                if (client != null)
+                if (client is not null)
                     OnSendClientDataException(client.ID, ex);
 
-                if (clientInfo != null)
+                if (clientInfo is not null)
                 {
                     // Assume process send was not able
                     // to continue the asynchronous loop.
@@ -914,12 +914,12 @@ namespace Gemstone.Communication
             {
                 payload = (TlsServerPayload)asyncResult.AsyncState;
 
-                if (payload == null)
+                if (payload is null)
                     throw new NullReferenceException($"{nameof(TlsServerPayload)} was null in {nameof(TlsServer)}.{nameof(ProcessSend)}");
 
                 clientInfo = payload.ClientInfo;
 
-                if (clientInfo == null)
+                if (clientInfo is null)
                     throw new NullReferenceException($"{nameof(TlsServerPayload)}.{nameof(TlsServerPayload.ClientInfo)} was null in {nameof(TlsServer)}.{nameof(ProcessSend)}");
 
                 client = clientInfo.Client;
@@ -938,12 +938,12 @@ namespace Gemstone.Communication
             catch (Exception ex)
             {
                 // Send operation failed to complete.
-                if (client != null)
+                if (client is not null)
                     OnSendClientDataException(client.ID, ex);
             }
             finally
             {
-                if (payload != null && sendQueue != null)
+                if (payload is not null && sendQueue is not null)
                 {
                     try
                     {
@@ -954,7 +954,7 @@ namespace Gemstone.Communication
                         {
                             ThreadPool.QueueUserWorkItem(state => SendPayload((TlsServerPayload)state), payload);
                         }
-                        else if (clientInfo != null)
+                        else if (clientInfo is not null)
                         {
                             lock (clientInfo.SendLock)
                             {
@@ -969,10 +969,10 @@ namespace Gemstone.Communication
                     {
                         string errorMessage = $"Exception encountered while attempting to send next payload: {ex.Message}";
 
-                        if (client != null)
+                        if (client is not null)
                             OnSendClientDataException(client.ID, new Exception(errorMessage, ex));
 
-                        if (clientInfo != null)
+                        if (clientInfo is not null)
                             Interlocked.Exchange(ref clientInfo.Sending, 0);
                     }
                 }
@@ -1022,12 +1022,12 @@ namespace Gemstone.Communication
             Tuple<Guid, bool> asyncState = (Tuple<Guid, bool>)asyncResult.AsyncState;
             bool waitingForHeader = asyncState.Item2;
 
-            if (!TryGetClient(asyncState.Item1, out TransportProvider<TlsSocket>? client) || client == null)
+            if (!TryGetClient(asyncState.Item1, out TransportProvider<TlsSocket>? client) || client is null)
                 return;
 
             try
             {
-                if (client.ReceiveBuffer == null)
+                if (client.ReceiveBuffer is null)
                     throw new InvalidOperationException("No received data buffer has been defined to read.");
 
                 // Update statistics and pointers.
@@ -1125,7 +1125,7 @@ namespace Gemstone.Communication
 
             try
             {
-                if (client.ReceiveBuffer == null)
+                if (client.ReceiveBuffer is null)
                     throw new InvalidOperationException("No received data buffer has been defined to read.");
 
                 // Update statistics and pointers.
@@ -1195,7 +1195,7 @@ namespace Gemstone.Communication
         /// </summary>
         private void LoadTrustedCertificates()
         {
-            if (RemoteCertificateValidationCallback != null || m_certificateChecker != null)
+            if (RemoteCertificateValidationCallback is not null || m_certificateChecker is not null)
                 return;
 
             m_defaultCertificateChecker.TrustedCertificates.Clear();

@@ -358,11 +358,11 @@ namespace Gemstone.Communication.Radius
                     // Stay in the loop until:
                     // 1) We receive a response OR
                     // 2) We exceed the response timeout duration
-                    if (m_responseBytes != null || DateTime.UtcNow > stopTime)
+                    if (m_responseBytes is not null || DateTime.UtcNow > stopTime)
                         break;
                 }
 
-                if (m_responseBytes != null)
+                if (m_responseBytes is not null)
                 {
                     // The server sent a response.
                     response = new RadiusPacket(m_responseBytes, 0, m_responseBytes.Length);
@@ -402,7 +402,7 @@ namespace Gemstone.Communication.Radius
 
             RadiusPacket? response = Authenticate(username, token);
 
-            if (response == null)
+            if (response is null)
                 return false;
 
             if (!IsUserInNewPinMode(response))
@@ -411,12 +411,12 @@ namespace Gemstone.Communication.Radius
             // User account is really in "New Pin" mode.
             response = Authenticate(username, pin, response.GetAttributeValue(AttributeType.State));
 
-            if (response == null)
+            if (response is null)
                 throw new ArgumentException($"{nameof(AttributeType.State)} attribute is not present", nameof(response));
 
             byte[]? reply = response.GetAttributeValue(AttributeType.ReplyMessage);
 
-            if (reply == null)
+            if (reply is null)
                 throw new ArgumentException($"{nameof(AttributeType.ReplyMessage)} attribute is not present", nameof(response));
 
             if (!RadiusPacket.Encoding.GetString(reply, 0, reply.Length).ToLower().Contains(m_newPinModeMessage2.ToLower()))
@@ -424,12 +424,12 @@ namespace Gemstone.Communication.Radius
 
             response = Authenticate(username, pin, response.GetAttributeValue(AttributeType.State));
 
-            if (response == null)
+            if (response is null)
                 throw new ArgumentException($"{nameof(AttributeType.State)} attribute is not present", nameof(response));
 
             reply = response.GetAttributeValue(AttributeType.ReplyMessage);
 
-            if (reply == null)
+            if (reply is null)
                 throw new ArgumentException($"{nameof(AttributeType.ReplyMessage)} attribute is not present", nameof(response));
 
             return RadiusPacket.Encoding.GetString(reply, 0, reply.Length).ToLower().Contains(m_newPinModeMessage3.ToLower());
@@ -499,7 +499,7 @@ namespace Gemstone.Communication.Radius
             request.Attributes.Add(new RadiusPacketAttribute(AttributeType.UserPassword, RadiusPacket.EncryptPassword(password, m_sharedSecret, authenticator)));
 
             // State attribute is used when responding to a AccessChallenge response.
-            if (state != null)
+            if (state is not null)
                 request.Attributes.Add(new RadiusPacketAttribute(AttributeType.State, state));
 
             return ProcessRequest(request);
@@ -518,12 +518,12 @@ namespace Gemstone.Communication.Radius
         {
             CheckDisposed();
 
-            if (response == null)
+            if (response is null)
                 throw new ArgumentNullException(nameof(response));
 
             byte[]? messageBytes = response.GetAttributeValue(AttributeType.ReplyMessage);
 
-            if (messageBytes == null)
+            if (messageBytes is null)
                 throw new ArgumentException("ReplyMessage attribute is not present", nameof(response));
 
             // Unfortunately, the only way of determining whether or not a user account is in the
@@ -550,12 +550,12 @@ namespace Gemstone.Communication.Radius
         {
             CheckDisposed();
 
-            if (response == null)
+            if (response is null)
                 throw new ArgumentNullException(nameof(response));
 
             byte[]? messageBytes = response.GetAttributeValue(AttributeType.ReplyMessage);
 
-            if (messageBytes == null)
+            if (messageBytes is null)
                 throw new ArgumentException($"{nameof(AttributeType.ReplyMessage)} attribute is not present", nameof(response));
 
             // Unfortunately, the only way of determining whether or not a user account is in the
@@ -594,7 +594,7 @@ namespace Gemstone.Communication.Radius
 
             if (disposing)
             {
-                if (m_udpClient != null)
+                if (m_udpClient is not null)
                 {
                     m_udpClient.ReceiveDataComplete -= m_udpClient_ReceivedData;
                     m_udpClient.Dispose();

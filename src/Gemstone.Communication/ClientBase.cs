@@ -696,7 +696,7 @@ namespace Gemstone.Communication
         /// <param name="size">Number of bytes received from the client.</param>
         protected virtual void OnReceiveDataComplete(byte[]? data, int size)
         {
-            if (data == null)
+            if (data is null)
                 return;
 
             // Update transport statistics

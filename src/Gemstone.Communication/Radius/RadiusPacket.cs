@@ -178,7 +178,7 @@ namespace Gemstone.Communication.Radius
             get => m_authenticator;
             set
             {
-                if (value == null)
+                if (value is null)
                     throw new ArgumentNullException(nameof(value));
 
                 if (value.Length != 16)
@@ -197,7 +197,7 @@ namespace Gemstone.Communication.Radius
         /// Gets the length of the <see cref="RadiusPacket"/>.
         /// </summary>
         // 20 bytes are fixed + length of all attributes combined
-        public int BinaryLength => 20 + Attributes.Where(attribute => attribute != null).Sum(attribute => attribute.BinaryLength);
+        public int BinaryLength => 20 + Attributes.Where(attribute => attribute is not null).Sum(attribute => attribute.BinaryLength);
 
         #endregion
 
@@ -213,7 +213,7 @@ namespace Gemstone.Communication.Radius
         /// <exception cref="ArgumentNullException"><paramref name="buffer"/> is null.</exception>
         public int ParseBinaryImage(byte[] buffer, int startIndex, int length)
         {
-            if (buffer == null)
+            if (buffer is null)
                 throw new ArgumentNullException(nameof(buffer));
 
             int imageLength = BinaryLength;
@@ -267,7 +267,7 @@ namespace Gemstone.Communication.Radius
 
             foreach (RadiusPacketAttribute attribute in Attributes)
             {
-                if (attribute != null)
+                if (attribute is not null)
                     startIndex += attribute.GenerateBinaryImage(buffer, startIndex);
             }
 
@@ -364,7 +364,7 @@ namespace Gemstone.Communication.Radius
             if (string.IsNullOrEmpty(password))
                 throw new ArgumentException("Password cannot be null or empty.");
 
-            if (requestAuthenticator == null)
+            if (requestAuthenticator is null)
                 throw new ArgumentException("Request authenticator cannot be null.");
 
             // Max length of the password can be 130 according to RFC 2865. Since 128 is the closest multiple
@@ -395,7 +395,7 @@ namespace Gemstone.Communication.Radius
             for (int i = 0; i <= result.Length - 1; i += 16)
             {
                 // Perform XOR-based encryption of the password in 16-byte segments.
-                if (i > 0 && xorBytes != null)
+                if (i > 0 && xorBytes is not null)
                 {
                     // For passwords that are more than 16 characters in length, each consecutive 16-byte
                     // segment of the password is XORed with MD5 hash value that's computed as follows:

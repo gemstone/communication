@@ -384,7 +384,7 @@ namespace Gemstone.Communication
 
             TransportProvider<Socket> tcpClient = clientInfo.Client;
 
-            if (tcpClient.ReceiveBuffer == null)
+            if (tcpClient.ReceiveBuffer is null)
                 throw new InvalidOperationException("No received data buffer has been defined to read.");
 
             int readIndex = ReadIndicies[clientID];
@@ -482,7 +482,7 @@ namespace Gemstone.Communication
         /// <exception cref="InvalidOperationException">Client does not exist for the specified <paramref name="clientID"/>.</exception>
         public override void DisconnectOne(Guid clientID)
         {
-            if (!TryGetClient(clientID, out TransportProvider<Socket>? client) || client == null)
+            if (!TryGetClient(clientID, out TransportProvider<Socket>? client) || client is null)
                 return;
 
             try
@@ -790,7 +790,7 @@ namespace Gemstone.Communication
                 string errorMessage = $"Unable to accept connection to client [{clientAddress}]: {ex.Message}";
                 OnClientConnectingException(new Exception(errorMessage, ex));
 
-                if (receiveArgs != null)
+                if (receiveArgs is not null)
                     TerminateConnection(client, receiveArgs, false);
             }
         }
@@ -805,12 +805,12 @@ namespace Gemstone.Communication
 
             try
             {
-                if (payload == null)
+                if (payload is null)
                     throw new NullReferenceException($"{nameof(TcpServerPayload)} was null in {nameof(TcpServer)}.{nameof(SendPayload)}");
 
                 clientInfo = payload.ClientInfo;
 
-                if (clientInfo == null)
+                if (clientInfo is null)
                     throw new NullReferenceException($"{nameof(TcpServerPayload)}.{nameof(TcpServerPayload.ClientInfo)} was null in {nameof(TcpServer)}.{nameof(SendPayload)}");
 
                 client = clientInfo.Client;
@@ -834,10 +834,10 @@ namespace Gemstone.Communication
             }
             catch (Exception ex)
             {
-                if (client != null)
+                if (client is not null)
                     OnSendClientDataException(client.ID, ex);
 
-                if (clientInfo != null)
+                if (clientInfo is not null)
                 {
                     // Assume process send was not able
                     // to continue the asynchronous loop.
@@ -860,12 +860,12 @@ namespace Gemstone.Communication
             {
                 payload = (TcpServerPayload)args.UserToken;
 
-                if (payload == null)
+                if (payload is null)
                     throw new NullReferenceException($"{nameof(TcpServerPayload)} was null in {nameof(TcpServer)}.{nameof(ProcessSend)}");
 
                 clientInfo = payload.ClientInfo;
 
-                if (clientInfo == null)
+                if (clientInfo is null)
                     throw new NullReferenceException($"{nameof(TcpServerPayload)}.{nameof(TcpServerPayload.ClientInfo)} was null in {nameof(TcpServer)}.{nameof(ProcessSend)}");
 
                 client = clientInfo.Client;
@@ -891,12 +891,12 @@ namespace Gemstone.Communication
             catch (Exception ex)
             {
                 // Send operation failed to complete.
-                if (client != null)
+                if (client is not null)
                     OnSendClientDataException(client.ID, ex);
             }
             finally
             {
-                if (payload != null)
+                if (payload is not null)
                 {
                     try
                     {
@@ -905,7 +905,7 @@ namespace Gemstone.Communication
                             // Still more to send for this payload.
                             ThreadPool.QueueUserWorkItem(state => SendPayload((TcpServerPayload)state), payload);
                         }
-                        else if (sendQueue != null)
+                        else if (sendQueue is not null)
                         {
                             payload.ClientInfo = null;
 
@@ -914,7 +914,7 @@ namespace Gemstone.Communication
                             {
                                 ThreadPool.QueueUserWorkItem(state => SendPayload((TcpServerPayload)state), payload);
                             }
-                            else if (clientInfo != null)
+                            else if (clientInfo is not null)
                             {
                                 lock (clientInfo.SendLock)
                                 {
@@ -930,10 +930,10 @@ namespace Gemstone.Communication
                     {
                         string errorMessage = $"Exception encountered while attempting to send next payload: {ex.Message}";
 
-                        if (client != null)
+                        if (client is not null)
                             OnSendClientDataException(client.ID, new Exception(errorMessage, ex));
 
-                        if (clientInfo != null)
+                        if (clientInfo is not null)
                             Interlocked.Exchange(ref clientInfo.Sending, 0);
                     }
                 }
@@ -972,7 +972,7 @@ namespace Gemstone.Communication
         /// </summary>
         private void ReceivePayloadAwareAsync(TransportProvider<Socket> client, SocketAsyncEventArgs args)
         {
-            if (client.ReceiveBuffer == null)
+            if (client.ReceiveBuffer is null)
                 throw new InvalidOperationException("No received data buffer has been defined to read.");
 
             byte[] buffer = client.ReceiveBuffer;
@@ -995,7 +995,7 @@ namespace Gemstone.Communication
 
             try
             {
-                if (client.ReceiveBuffer == null)
+                if (client.ReceiveBuffer is null)
                     throw new InvalidOperationException("No received data buffer has been defined to read.");
 
                 if (args.SocketError != SocketError.Success)
@@ -1077,7 +1077,7 @@ namespace Gemstone.Communication
         /// </summary>
         private void ReceivePayloadUnawareAsync(TransportProvider<Socket> client, SocketAsyncEventArgs args)
         {
-            if (client.ReceiveBuffer == null)
+            if (client.ReceiveBuffer is null)
                 throw new InvalidOperationException("No received data buffer has been defined to read.");
 
             byte[] buffer = client.ReceiveBuffer;
@@ -1098,7 +1098,7 @@ namespace Gemstone.Communication
 
             try
             {
-                if (client.ReceiveBuffer == null)
+                if (client.ReceiveBuffer is null)
                     throw new InvalidOperationException("No received data buffer has been defined to read.");
 
                 if (args.SocketError != SocketError.Success)

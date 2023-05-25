@@ -54,7 +54,7 @@ namespace Gemstone.Communication
         /// <exception cref="ArgumentNullException"> <paramref name="info"/> is <see langword="null"/>.</exception>
         protected SerialException(SerializationInfo info, StreamingContext context) : base(info, context)
         {
-            if (info == null)
+            if (info is null)
                 throw new ArgumentNullException(nameof(info));
             
             SerialError = (SerialError)info.GetValue(nameof(SerialError), typeof(SerialError));

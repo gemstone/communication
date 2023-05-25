@@ -369,7 +369,7 @@ namespace Gemstone.Communication
 
             TransportProvider<EndPoint> udpClient = clientInfo.Client;
 
-            if (udpClient.ReceiveBuffer == null)
+            if (udpClient.ReceiveBuffer is null)
                 throw new InvalidOperationException("No received data buffer has been defined to read.");
 
             int readIndex = ReadIndicies[clientID];
@@ -405,7 +405,7 @@ namespace Gemstone.Communication
             }
             finally
             {
-                if (m_receiveArgs != null)
+                if (m_receiveArgs is not null)
                 {
                     m_receiveArgs.Dispose();
                     m_receiveArgs = null;
@@ -457,7 +457,7 @@ namespace Gemstone.Communication
             // Notify that the server has been started successfully
             OnServerStarted();
 
-            if (m_udpServer.Provider.LocalEndPoint != null)
+            if (m_udpServer.Provider.LocalEndPoint is not null)
             {
                 m_receiveArgs = new SocketAsyncEventArgs { SocketFlags = SocketFlags.None };
                 m_receiveArgs.Completed += m_receiveHandler;
@@ -514,14 +514,14 @@ namespace Gemstone.Communication
 
                 client = clientInfo.Client;
 
-                if (client.Provider != null)
+                if (client.Provider is not null)
                 {
                     // If the IP specified for the client is a multicast IP, unsubscribe from the specified multicast group.
                     IPEndPoint clientEndpoint = (IPEndPoint)client.Provider;
 
-                    if (Transport.IsMulticastIP(clientEndpoint.Address) && m_udpServer != null)
+                    if (Transport.IsMulticastIP(clientEndpoint.Address) && m_udpServer is not null)
                     {
-                        if (client.MulticastMembershipAddresses != null)
+                        if (client.MulticastMembershipAddresses is not null)
                         {
                             // Execute multicast unsubscribe for specific source
                             m_udpServer.Provider.SetSocketOption(clientEndpoint.AddressFamily == AddressFamily.InterNetworkV6 ? SocketOptionLevel.IPv6 : SocketOptionLevel.IP, SocketOptionName.DropSourceMembership, client.MulticastMembershipAddresses);
@@ -536,7 +536,7 @@ namespace Gemstone.Communication
             }
             catch (Exception ex)
             {
-                if (client != null)
+                if (client is not null)
                     OnSendClientDataException(client.ID, new InvalidOperationException($"Failed to drop multicast membership: {ex.Message}", ex));
                 else
                     LibraryEvents.OnSuppressedException(this, ex);
@@ -684,7 +684,7 @@ namespace Gemstone.Communication
             udpClient.Provider = udpClientIPEndPoint!;
 
             // If the IP specified for the client is a multicast IP, subscribe to the specified multicast group.
-            if (udpClientIPEndPoint != null && Transport.IsMulticastIP(udpClientIPEndPoint.Address) && m_udpServer != null)
+            if (udpClientIPEndPoint is not null && Transport.IsMulticastIP(udpClientIPEndPoint.Address) && m_udpServer is not null)
             {
                 SocketOptionLevel level = udpClientIPEndPoint.AddressFamily == AddressFamily.InterNetworkV6 ? SocketOptionLevel.IPv6 : SocketOptionLevel.IP;
 
@@ -767,12 +767,12 @@ namespace Gemstone.Communication
 
             try
             {
-                if (payload == null)
+                if (payload is null)
                     throw new NullReferenceException($"{nameof(UdpServerPayload)} was null in {nameof(UdpServer)}.{nameof(SendPayload)}");
 
                 clientInfo = payload.ClientInfo;
 
-                if (clientInfo == null)
+                if (clientInfo is null)
                     throw new NullReferenceException($"{nameof(UdpServerPayload)}.{nameof(UdpServerPayload.ClientInfo)} was null in {nameof(UdpServer)}.{nameof(SendPayload)}");
 
                 client = clientInfo.Client;
@@ -796,12 +796,12 @@ namespace Gemstone.Communication
             }
             catch (Exception ex)
             {
-                if (client != null)
+                if (client is not null)
                     OnSendClientDataException(client.ID, ex);
                 else
                     LibraryEvents.OnSuppressedException(this, ex);
 
-                if (clientInfo != null)
+                if (clientInfo is not null)
                 {
                     // Assume process send was not able
                     // to continue the asynchronous loop.
@@ -824,12 +824,12 @@ namespace Gemstone.Communication
             {
                 payload = (UdpServerPayload)args.UserToken;
 
-                if (payload == null)
+                if (payload is null)
                     throw new NullReferenceException($"{nameof(UdpServerPayload)} was null in {nameof(UdpServer)}.{nameof(ProcessSend)}");
 
                 clientInfo = payload.ClientInfo;
 
-                if (clientInfo == null)
+                if (clientInfo is null)
                     throw new NullReferenceException($"{nameof(UdpServerPayload)}.{nameof(UdpServerPayload.ClientInfo)} was null in {nameof(UdpServer)}.{nameof(ProcessSend)}");
 
                 client = clientInfo.Client;
@@ -855,14 +855,14 @@ namespace Gemstone.Communication
             catch (Exception ex)
             {
                 // Send operation failed to complete.
-                if (client != null)
+                if (client is not null)
                     OnSendClientDataException(client.ID, ex);
                 else
                     LibraryEvents.OnSuppressedException(this, ex);
             }
             finally
             {
-                if (payload != null)
+                if (payload is not null)
                 {
                     try
                     {
@@ -871,7 +871,7 @@ namespace Gemstone.Communication
                             // Still more to send for this payload.
                             ThreadPool.QueueUserWorkItem(state => SendPayload((UdpServerPayload)state), payload);
                         }
-                        else if (sendQueue != null)
+                        else if (sendQueue is not null)
                         {
                             payload.ClientInfo = null;
 
@@ -880,7 +880,7 @@ namespace Gemstone.Communication
                             {
                                 ThreadPool.QueueUserWorkItem(state => SendPayload((UdpServerPayload)state), payload);
                             }
-                            else if (clientInfo != null)
+                            else if (clientInfo is not null)
                             {
                                 lock (clientInfo.SendLock)
                                 {
@@ -896,12 +896,12 @@ namespace Gemstone.Communication
                     {
                         string errorMessage = $"Exception encountered while attempting to send next payload: {ex.Message}";
 
-                        if (client != null)
+                        if (client is not null)
                             OnSendClientDataException(client.ID, new Exception(errorMessage, ex));
                         else
                             LibraryEvents.OnSuppressedException(this, ex);
 
-                        if (clientInfo != null)
+                        if (clientInfo is not null)
                             Interlocked.Exchange(ref clientInfo.Sending, 0);
                     }
                 }
@@ -913,7 +913,7 @@ namespace Gemstone.Communication
         /// </summary>
         private void ReceivePayloadAsync(SocketAsyncEventArgs args)
         {
-            if (m_udpServer?.ReceiveBuffer == null)
+            if (m_udpServer?.ReceiveBuffer is null)
                 return;
 
             // Attempt to receive data on the socket.
@@ -932,7 +932,7 @@ namespace Gemstone.Communication
         /// </summary>
         private void ProcessReceive(SocketAsyncEventArgs args)
         {
-            if (m_udpServer?.ReceiveBuffer == null)
+            if (m_udpServer?.ReceiveBuffer is null)
                 return;
 
             Guid clientID = default;
@@ -950,7 +950,7 @@ namespace Gemstone.Communication
                 TransportProvider<EndPoint>? client = IdentifyClient(args.RemoteEndPoint);
 
                 // If the client's endpoint has changed, update the lookup list
-                if (m_dynamicClientEndPoints && client != null && !client.Provider.Equals(args.RemoteEndPoint))
+                if (m_dynamicClientEndPoints && client is not null && !client.Provider.Equals(args.RemoteEndPoint))
                 {
                     client.Provider = args.RemoteEndPoint;
 
@@ -960,10 +960,10 @@ namespace Gemstone.Communication
 
                 // If we do not have a static clients list, and if the client could not be found
                 // or if the client's endpoint has changed, update the clients list dynamically.
-                if (m_dynamicClientList && client == null)
+                if (m_dynamicClientList && client is null)
                     client = AddUdpClient(args.RemoteEndPoint);
 
-                if (client != null)
+                if (client is not null)
                 {
                     // Notify client of data.
                     clientID = client.ID;
@@ -991,7 +991,7 @@ namespace Gemstone.Communication
                 switch (ClientIdentificationMode)
                 {
                     case ClientIdentificationMode.IP:
-                        if (remoteIPEndPoint != null && clientIPEndPoint != null)
+                        if (remoteIPEndPoint is not null && clientIPEndPoint is not null)
                         {
                             if (remoteIPEndPoint.Address.Equals(clientIPEndPoint.Address))
                                 return client;
@@ -1000,7 +1000,7 @@ namespace Gemstone.Communication
                         break;
 
                     case ClientIdentificationMode.Port:
-                        if (remoteIPEndPoint != null && clientIPEndPoint != null)
+                        if (remoteIPEndPoint is not null && clientIPEndPoint is not null)
                         {
                             if (remoteIPEndPoint.Port == clientIPEndPoint.Port)
                                 return client;

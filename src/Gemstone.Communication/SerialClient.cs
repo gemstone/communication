@@ -181,7 +181,7 @@ namespace Gemstone.Communication
         {
             get
             {
-                if (m_connectData == null)
+                if (m_connectData is null)
                     return base.Status;
 
                 StringBuilder status = new();
@@ -235,7 +235,7 @@ namespace Gemstone.Communication
         {
             buffer.ValidateParameters(startIndex, length);
 
-            if (m_serialClient.ReceiveBuffer == null)
+            if (m_serialClient.ReceiveBuffer is null)
                 throw new InvalidOperationException("No received data buffer has been defined to read.");
 
             int sourceLength = m_serialClient.BytesReceived - ReadIndex;
@@ -259,7 +259,7 @@ namespace Gemstone.Communication
             if (CurrentState == ClientState.Disconnected)
                 return;
 
-            if (m_serialClient.Provider != null)
+            if (m_serialClient.Provider is not null)
             {
                 m_serialClient.Provider.DataReceived -= SerialPort_DataReceived;
                 m_serialClient.Provider.ErrorReceived -= SerialPort_ErrorReceived;

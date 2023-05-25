@@ -335,7 +335,7 @@ namespace Gemstone.Communication
         /// <returns>true if the <paramref name="ipAddress"/> is multicast IP; otherwise false.</returns>
         public static bool IsMulticastIP(IPAddress ipAddress)
         {
-            if (ipAddress == null)
+            if (ipAddress is null)
                 throw new ArgumentNullException(nameof(ipAddress));
 
             // Check for IPv6
