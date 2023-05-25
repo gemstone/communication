@@ -462,8 +462,7 @@ namespace Gemstone.Communication
             {
                 // If we do not already have a wait handle to use
                 // for connections, get one from the base class
-                if (m_connectWaitHandle == null)
-                    m_connectWaitHandle = (ManualResetEvent?)base.ConnectAsync();
+                m_connectWaitHandle ??= (ManualResetEvent?)base.ConnectAsync();
 
                 // Create state object for the asynchronous connection loop
                 connectState = new ConnectState();
