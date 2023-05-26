@@ -431,8 +431,8 @@ namespace Gemstone.Communication
                 ClientIdentificationMode = clientIdentificationMode;
 
             // Overwrite config file if client end points are dynamic
-            if (m_configData.ContainsKey("dynamicClientEndPoints"))
-                m_dynamicClientEndPoints = m_configData["dynamicClientEndPoints"].ParseBoolean();
+            if (m_configData.TryGetValue("dynamicClientEndPoints", out string? value))
+                m_dynamicClientEndPoints = value.ParseBoolean();
 
             // Overwrite config file if max send queue size exists in connection string.
             if (m_configData.ContainsKey("maxSendQueueSize") && int.TryParse(m_configData["maxSendQueueSize"], out int maxSendQueueSize))
@@ -441,7 +441,7 @@ namespace Gemstone.Communication
             // Bind server socket to local end-point
             m_udpServer = new TransportProvider<Socket>();
             m_udpServer.SetReceiveBuffer(ReceiveBufferSize);
-            m_udpServer.Provider.ReceiveBufferSize = ReceiveBufferSize;
+            m_udpServer.Provider!.ReceiveBufferSize = ReceiveBufferSize;
 
             // Disable SocketError.ConnectionReset exception from being thrown when the endpoint is not listening
             // Fixes MONO issue with SIO_UDP_CONNRESET
@@ -524,12 +524,12 @@ namespace Gemstone.Communication
                         if (client.MulticastMembershipAddresses is not null)
                         {
                             // Execute multicast unsubscribe for specific source
-                            m_udpServer.Provider.SetSocketOption(clientEndpoint.AddressFamily == AddressFamily.InterNetworkV6 ? SocketOptionLevel.IPv6 : SocketOptionLevel.IP, SocketOptionName.DropSourceMembership, client.MulticastMembershipAddresses);
+                            m_udpServer.Provider!.SetSocketOption(clientEndpoint.AddressFamily == AddressFamily.InterNetworkV6 ? SocketOptionLevel.IPv6 : SocketOptionLevel.IP, SocketOptionName.DropSourceMembership, client.MulticastMembershipAddresses);
                         }
                         else
                         {
                             // Execute multicast unsubscribe for any source
-                            m_udpServer.Provider.SetSocketOption(clientEndpoint.AddressFamily == AddressFamily.InterNetworkV6 ? SocketOptionLevel.IPv6 : SocketOptionLevel.IP, SocketOptionName.DropMembership, new MulticastOption(clientEndpoint.Address));
+                            m_udpServer.Provider!.SetSocketOption(clientEndpoint.AddressFamily == AddressFamily.InterNetworkV6 ? SocketOptionLevel.IPv6 : SocketOptionLevel.IP, SocketOptionName.DropMembership, new MulticastOption(clientEndpoint.Address));
                         }
                     }
                 }
@@ -543,7 +543,7 @@ namespace Gemstone.Communication
             }
             finally
             {
-                clientInfo?.SendArgs?.Dispose();
+                clientInfo?.SendArgs.Dispose();
             }
 
             client?.Reset();
@@ -562,7 +562,7 @@ namespace Gemstone.Communication
         {
             bool clientExists = m_clientInfoLookup.TryGetValue(clientID, out UdpClientInfo clientInfo);
 
-            udpClient = clientExists ? clientInfo.Client : null;
+            udpClient = clientExists ? clientInfo!.Client : null;
 
             return clientExists;
         }
@@ -586,8 +586,7 @@ namespace Gemstone.Communication
             if (!Transport.IsPortNumberValid(m_configData["port"]) && int.Parse(m_configData["port"]) != -1)
                 throw new ArgumentOutOfRangeException(nameof(configurationString), $"Port number must be {-1} or between {Transport.PortRangeLow} and {Transport.PortRangeHigh}");
 
-            if (!m_configData.ContainsKey("multicastTimeToLive"))
-                m_configData.Add("multicastTimeToLive", "10");
+            m_configData.TryAdd("multicastTimeToLive", "10");
 
             // Make sure a valid multi-cast time-to-live value is defined in the configuration data
             if (!(m_configData.TryGetValue("multicastTimeToLive", out string setting) && int.TryParse(setting, out int _)))
@@ -713,14 +712,14 @@ namespace Gemstone.Communication
                     }
 
                     // Execute multicast subscribe for specific source
-                    m_udpServer.Provider.SetSocketOption(level, SocketOptionName.AddSourceMembership, udpClient.MulticastMembershipAddresses);
-                    m_udpServer.Provider.SetSocketOption(level, SocketOptionName.MulticastTimeToLive, int.Parse(m_configData["multicastTimeToLive"]));
+                    m_udpServer.Provider!.SetSocketOption(level, SocketOptionName.AddSourceMembership, udpClient.MulticastMembershipAddresses);
+                    m_udpServer.Provider!.SetSocketOption(level, SocketOptionName.MulticastTimeToLive, int.Parse(m_configData["multicastTimeToLive"]));
                 }
                 else
                 {
                     // Execute multicast subscribe for any source
-                    m_udpServer.Provider.SetSocketOption(level, SocketOptionName.AddMembership, new MulticastOption(udpClientIPEndPoint.Address));
-                    m_udpServer.Provider.SetSocketOption(level, SocketOptionName.MulticastTimeToLive, int.Parse(m_configData["multicastTimeToLive"]));
+                    m_udpServer.Provider!.SetSocketOption(level, SocketOptionName.AddMembership, new MulticastOption(udpClientIPEndPoint.Address));
+                    m_udpServer.Provider!.SetSocketOption(level, SocketOptionName.MulticastTimeToLive, int.Parse(m_configData["multicastTimeToLive"]));
                 }
             }
 
@@ -781,7 +780,7 @@ namespace Gemstone.Communication
 
                 // Copy payload into send buffer.
                 int copyLength = Math.Min(payload.Length, client.SendBufferSize);
-                Buffer.BlockCopy(payload.Data, payload.Offset, client.SendBuffer, 0, copyLength);
+                Buffer.BlockCopy(payload.Data!, payload.Offset, client.SendBuffer!, 0, copyLength);
 
                 // Set buffer and user token of send args.
                 args.SetBuffer(0, copyLength);
@@ -791,7 +790,7 @@ namespace Gemstone.Communication
                 payload.Length -= copyLength;
 
                 // Send data over socket.
-                if (!(m_udpServer?.Provider.SendToAsync(args) ?? false))
+                if (!(m_udpServer?.Provider!.SendToAsync(args) ?? false))
                     ProcessSend(args);
             }
             catch (Exception ex)
@@ -921,7 +920,7 @@ namespace Gemstone.Communication
             int length = m_udpServer.ReceiveBufferSize;
 
             args.SetBuffer(buffer, 0, length);
-            args.RemoteEndPoint = m_udpServer.Provider.LocalEndPoint;
+            args.RemoteEndPoint = m_udpServer.Provider!.LocalEndPoint;
 
             if (!m_udpServer.Provider.ReceiveFromAsync(args))
                 ThreadPool.QueueUserWorkItem(state => ProcessReceive((SocketAsyncEventArgs)state), args);
@@ -950,7 +949,7 @@ namespace Gemstone.Communication
                 TransportProvider<EndPoint>? client = IdentifyClient(args.RemoteEndPoint);
 
                 // If the client's endpoint has changed, update the lookup list
-                if (m_dynamicClientEndPoints && client is not null && !client.Provider.Equals(args.RemoteEndPoint))
+                if (m_dynamicClientEndPoints && client is not null && !client.Provider!.Equals(args.RemoteEndPoint))
                 {
                     client.Provider = args.RemoteEndPoint;
 

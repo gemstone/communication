@@ -238,7 +238,7 @@ namespace Gemstone.Communication
         public event EventHandler<EventArgs<EndPoint, IPPacketInformation, byte[], int>>? ReceiveDataFromComplete;
 
         // Fields
-        private IPEndPoint m_udpServer = default!;
+        private IPEndPoint? m_udpServer;
         private TransportProvider<Socket>? m_udpClient;
         private IPStack m_ipStack;
         private int m_maxPacketSize;
@@ -310,7 +310,25 @@ namespace Gemstone.Communication
         /// <summary>
         /// Gets the server URI of the <see cref="UdpClient"/>.
         /// </summary>
-        public override string ServerUri => $"{TransportProtocol}://{m_connectData["server"]}".ToLower();
+        public override string ServerUri
+        {
+            get
+            {
+                if (m_connectData.TryGetValue("server", out string? value))
+                    return $"{TransportProtocol}://{value}".ToLower();
+                
+                if (!m_connectData.TryGetValue("interface", out string targetInterface) || string.IsNullOrWhiteSpace(targetInterface))
+                {
+                    IPStack ipStack = m_ipStack == IPStack.Default ? Transport.GetDefaultIPStack() : m_ipStack;
+                    targetInterface = ipStack == IPStack.IPv6 ? "[::0]" : "0.0.0.0";
+                }
+
+                if (!m_connectData.TryGetValue("port", out string targetPort) || !ushort.TryParse(targetPort, out ushort port))
+                    port = 0;
+
+                return $"{TransportProtocol}://{targetInterface}:{port}".ToLower();
+            }
+        }
 
         /// <summary>
         /// Gets or sets the size of the buffer used by the client for receiving data from the server.
@@ -349,10 +367,7 @@ namespace Gemstone.Communication
         /// </summary>
         public bool ReceivePacketInfo
         {
-            get
-            {
-                return m_receivePacketInfo;
-            }
+            get => m_receivePacketInfo;
             set
             {
                 m_receivePacketInfo = value;
@@ -374,11 +389,8 @@ namespace Gemstone.Communication
             {
                 StringBuilder statusBuilder = new(base.Status);
 
-                if (m_sendQueue is not null)
-                {
-                    statusBuilder.AppendFormat("           Queued payloads: {0}", m_sendQueue.Count);
-                    statusBuilder.AppendLine();
-                }
+                statusBuilder.AppendFormat("           Queued payloads: {0}", m_sendQueue.Count);
+                statusBuilder.AppendLine();
 
                 return statusBuilder.ToString();
             }
@@ -473,10 +485,10 @@ namespace Gemstone.Communication
             m_udpClient.SetReceiveBuffer(m_maxPacketSize);
 
             // Create a server endpoint.
-            if (m_connectData.ContainsKey("server"))
+            if (m_connectData.TryGetValue("server", out string? value))
             {
                 // Client has a server endpoint specified.
-                Match endpoint = Regex.Match(m_connectData["server"], Transport.EndpointFormatRegex);
+                Match endpoint = Regex.Match(value, Transport.EndpointFormatRegex);
 
                 if (endpoint != Match.Empty)
                     m_udpServer = Transport.CreateEndPoint(endpoint.Groups["host"].Value, int.Parse(endpoint.Groups["port"].Value), m_ipStack);
@@ -564,8 +576,8 @@ namespace Gemstone.Communication
             // Backwards compatibility adjustments.
             // New Format: Server=localhost:8888; Port=8989
             // Old Format: Server=localhost; RemotePort=8888; LocalPort=8888
-            if (m_connectData.ContainsKey("localPort") && !m_connectData.ContainsKey("port"))
-                m_connectData.Add("port", m_connectData["localPort"]);
+            if (m_connectData.TryGetValue("localPort", out string? value))
+                m_connectData.TryAdd("port", value);
 
             if (m_connectData.ContainsKey("server") && m_connectData.ContainsKey("remotePort"))
                 m_connectData["server"] = $"{m_connectData["server"]}:{m_connectData["remotePort"]}";
@@ -578,8 +590,7 @@ namespace Gemstone.Communication
             if (!Transport.IsPortNumberValid(m_connectData["port"]) && int.Parse(m_connectData["port"]) != -1)
                 throw new ArgumentOutOfRangeException(nameof(connectionString), $"Port number must be {-1} or between {Transport.PortRangeLow} and {Transport.PortRangeHigh}");
 
-            if (!m_connectData.ContainsKey("multicastTimeToLive"))
-                m_connectData.Add("multicastTimeToLive", "10");
+            m_connectData.TryAdd("multicastTimeToLive", "10");
 
             // Make sure a valid multi-cast time-to-live value is defined in the connection string
             if (!(m_connectData.TryGetValue("multicastTimeToLive", out string setting) && int.TryParse(setting, out _)))
@@ -618,7 +629,7 @@ namespace Gemstone.Communication
                     m_udpClient.Provider.ReceiveBufferSize = ReceiveBufferSize;
 
                     // If the IP specified for the server is a multicast IP, subscribe to the specified multicast group.
-                    IPEndPoint? serverEndpoint = m_udpServer;
+                    IPEndPoint serverEndpoint = m_udpServer ?? throw new InvalidOperationException("Server endpoint is not defined.");
 
                     if (Transport.IsMulticastIP(serverEndpoint.Address))
                     {
@@ -783,7 +794,7 @@ namespace Gemstone.Communication
         /// <summary>
         /// Sends a payload on the socket.
         /// </summary>
-        private void SendPayload(UdpClientPayload payload)
+        private void SendPayload(UdpClientPayload? payload)
         {
             if (payload is null || m_udpClient?.SendBuffer is null || m_sendArgs is null)
                 return;
@@ -795,7 +806,7 @@ namespace Gemstone.Communication
 
                 // Copy payload into send buffer.
                 int copyLength = Math.Min(payload.Length, m_udpClient.SendBufferSize);
-                Buffer.BlockCopy(payload.Data, payload.Offset, m_udpClient.SendBuffer, 0, copyLength);
+                Buffer.BlockCopy(payload.Data!, payload.Offset, m_udpClient.SendBuffer, 0, copyLength);
 
                 // Set buffer and end point of send args.
                 m_sendArgs.SetBuffer(0, copyLength);
@@ -806,7 +817,7 @@ namespace Gemstone.Communication
                 payload.Length -= copyLength;
 
                 // Send data over socket.
-                if (!m_udpClient.Provider.SendToAsync(m_sendArgs))
+                if (!m_udpClient.Provider!.SendToAsync(m_sendArgs))
                     ProcessSend();
             }
             catch (Exception ex)
@@ -858,40 +869,37 @@ namespace Gemstone.Communication
             }
             finally
             {
-                if (payload is not null)
+                try
                 {
-                    try
+                    if (payload.Length > 0)
                     {
-                        if (payload.Length > 0)
+                        // Still more to send for this payload.
+                        ThreadPool.QueueUserWorkItem(state => SendPayload((UdpClientPayload)state), payload);
+                    }
+                    else
+                    {
+                        // Begin sending next client payload.
+                        if (m_sendQueue.TryDequeue(out payload))
                         {
-                            // Still more to send for this payload.
                             ThreadPool.QueueUserWorkItem(state => SendPayload((UdpClientPayload)state), payload);
                         }
                         else
                         {
-                            // Begin sending next client payload.
-                            if (m_sendQueue.TryDequeue(out payload))
+                            lock (m_sendLock)
                             {
-                                ThreadPool.QueueUserWorkItem(state => SendPayload((UdpClientPayload)state), payload);
-                            }
-                            else
-                            {
-                                lock (m_sendLock)
-                                {
-                                    if (m_sendQueue.TryDequeue(out payload))
-                                        ThreadPool.QueueUserWorkItem(state => SendPayload((UdpClientPayload)state), payload);
-                                    else
-                                        Interlocked.Exchange(ref m_sending, 0);
-                                }
+                                if (m_sendQueue.TryDequeue(out payload))
+                                    ThreadPool.QueueUserWorkItem(state => SendPayload((UdpClientPayload)state), payload);
+                                else
+                                    Interlocked.Exchange(ref m_sending, 0);
                             }
                         }
                     }
-                    catch (Exception ex)
-                    {
-                        string errorMessage = $"Exception encountered while attempting to send next payload: {ex.Message}";
-                        OnSendDataException(new Exception(errorMessage, ex));
-                        Interlocked.Exchange(ref m_sending, 0);
-                    }
+                }
+                catch (Exception ex)
+                {
+                    string errorMessage = $"Exception encountered while attempting to send next payload: {ex.Message}";
+                    OnSendDataException(new Exception(errorMessage, ex));
+                    Interlocked.Exchange(ref m_sending, 0);
                 }
             }
         }
@@ -914,12 +922,12 @@ namespace Gemstone.Communication
 
             if (!m_receivePacketInfo)
             {
-                if (!m_udpClient.Provider.ReceiveFromAsync(m_receiveArgs))
+                if (!m_udpClient.Provider!.ReceiveFromAsync(m_receiveArgs))
                     ThreadPool.QueueUserWorkItem(_ => ProcessReceive());
             }
             else
             {
-                if (!m_udpClient.Provider.ReceiveMessageFromAsync(m_receiveArgs))
+                if (!m_udpClient.Provider!.ReceiveMessageFromAsync(m_receiveArgs))
                     ThreadPool.QueueUserWorkItem(_ => ProcessReceive());
             }
         }

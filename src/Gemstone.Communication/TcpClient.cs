@@ -283,11 +283,10 @@ namespace Gemstone.Communication
 
         // Fields
         private byte[] m_payloadMarker;
-        private EndianOrder m_payloadEndianOrder;
+        private EndianOrder m_payloadEndianOrder; 
         private IPStack m_ipStack;
         private readonly ShortSynchronizedOperation m_dumpPayloadsOperation;
         private string[]? m_serverList;
-        private int m_serverIndex;
         private Dictionary<string, string> m_connectData = DefaultConnectionString.ParseKeyValuePairs();
         private ManualResetEvent? m_connectWaitHandle;
         private ConnectState? m_connectState;
@@ -338,7 +337,7 @@ namespace Gemstone.Communication
         /// <remarks>
         /// Setting property to <c>null</c> will create a zero-length payload marker.
         /// </remarks>
-        public byte[] PayloadMarker
+        public byte[]? PayloadMarker
         {
             get => m_payloadMarker;
             set => m_payloadMarker = value ?? Array.Empty<byte>();
@@ -350,7 +349,7 @@ namespace Gemstone.Communication
         /// <remarks>
         /// Setting property to <c>null</c> will force use of little-endian encoding.
         /// </remarks>
-        public EndianOrder PayloadEndianOrder
+        public EndianOrder? PayloadEndianOrder
         {
             get => m_payloadEndianOrder;
             set => m_payloadEndianOrder = value ?? EndianOrder.LittleEndian;
@@ -397,7 +396,7 @@ namespace Gemstone.Communication
         /// <summary>
         /// Gets the server URI of the <see cref="TcpClient"/>.
         /// </summary>
-        public override string ServerUri => $"{TransportProtocol}://{ServerList[m_serverIndex]}".ToLower();
+        public override string ServerUri => $"{TransportProtocol}://{ServerList[ServerIndex]}".ToLower();
 
         /// <summary>
         /// Gets or sets network credential that is used when
@@ -418,10 +417,10 @@ namespace Gemstone.Communication
                 if (m_serverList is not null)
                     return m_serverList;
 
-                if (m_connectData is not null && m_connectData.ContainsKey("server"))
-                    m_serverList = m_connectData["server"].Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries).Select(server => server.Trim()).ToArray();
+                if (!m_connectData.TryGetValue("server", out string serverList) || string.IsNullOrWhiteSpace(serverList))
+                    return Array.Empty<string>();
 
-                return m_serverList ?? Array.Empty<string>();
+                return m_serverList = serverList.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries).Select(server => server.Trim()).ToArray();
             }
         }
 
@@ -481,8 +480,6 @@ namespace Gemstone.Communication
                 if (m_connectData.TryGetValue("integratedSecurity", out string integratedSecuritySetting))
                     IntegratedSecurity = integratedSecuritySetting.ParseBoolean();
 
-                // TODO: Check if this works on Linux
-                //// Force integrated security to be False under Mono since it's not supported
                 //IntegratedSecurity = false;
 
                 // Overwrite config file if no delay exists in connection string.
@@ -490,7 +487,7 @@ namespace Gemstone.Communication
                     NoDelay = noDelaySetting.ParseBoolean();
 
                 // Initialize state object for the asynchronous connection loop
-                Match endpoint = Regex.Match(ServerList[m_serverIndex], Transport.EndpointFormatRegex);
+                Match endpoint = Regex.Match(ServerList[ServerIndex], Transport.EndpointFormatRegex);
 
                 connectState.ConnectArgs.RemoteEndPoint = Transport.CreateEndPoint(endpoint.Groups["host"].Value, int.Parse(endpoint.Groups["port"].Value), m_ipStack);
                 connectState.ConnectArgs.SocketFlags = SocketFlags.None;
@@ -540,26 +537,6 @@ namespace Gemstone.Communication
 
             if (!(connectState.Socket?.ConnectAsync(connectState.ConnectArgs) ?? false))
                 ThreadPool.QueueUserWorkItem(_ => ProcessConnect(connectState));
-        }
-
-        /// <summary>
-        /// Raises the <see cref="ClientBase.ConnectionException"/> event.
-        /// </summary>
-        /// <param name="ex">Exception to send to <see cref="ClientBase.ConnectionException"/> event.</param>
-        protected override void OnConnectionException(Exception ex)
-        {
-            int serverListLength = ServerList.Length;
-
-            if (serverListLength > 1)
-            {
-                // When multiple servers are available, move to next server connection
-                m_serverIndex++;
-
-                if (m_serverIndex >= serverListLength)
-                    m_serverIndex = 0;
-            }
-
-            base.OnConnectionException(ex);
         }
 
         /// <summary>
@@ -1014,7 +991,7 @@ namespace Gemstone.Communication
             {
                 // If the operation was canceled during execution,
                 // make sure to dispose of allocated resources
-                if (receiveState is not null && receiveState.Token.Cancelled)
+                if (receiveState.Token.Cancelled)
                     receiveState.Dispose();
             }
         }
@@ -1038,6 +1015,7 @@ namespace Gemstone.Communication
         /// </summary>
         private void ProcessReceivePayloadUnaware(ReceiveState receiveState)
         {
+ 		    // Quit if this receive loop has been cancelled
             if (receiveState.Token is null || receiveState.Token.Cancelled || receiveState.ReceiveArgs is null)
                 return;
 
@@ -1126,6 +1104,29 @@ namespace Gemstone.Communication
                 ReadIndex = 0;
 
             return readBytes;
+        }
+
+        /// <summary>
+        /// Requests that the client attempt to move to the next <see cref="ClientBase.ServerIndex"/>.
+        /// </summary>
+        /// <returns><c>true</c> if request succeeded; otherwise, <c>false</c>.</returns>
+        /// <remarks>
+        /// Return value will only be <c>true</c> if <see cref="ClientBase.ServerIndex"/> changed.
+        /// </remarks>
+        public override bool RequestNextServerIndex()
+        {
+            int serverListLength = ServerList.Length;
+
+            if (serverListLength < 2)
+                return false;
+
+            // When multiple servers are available, move to next server connection
+            ServerIndex++;
+
+            if (ServerIndex >= serverListLength)
+                ServerIndex = 0;
+
+            return true;
         }
 
         /// <summary>
@@ -1223,7 +1224,7 @@ namespace Gemstone.Communication
                         sendState.SendArgs.SetBuffer(0, payload.Length);
 
                     // Copy payload into send buffer
-                    Buffer.BlockCopy(payload.Data, payload.Offset, sendState.SendArgs.Buffer, 0, payload.Length);
+                    Buffer.BlockCopy(payload.Data!, payload.Offset, sendState.SendArgs.Buffer, 0, payload.Length);
 
                     // Send payload to the client asynchronously
                     if (!(sendState.Socket?.SendAsync(sendState.SendArgs) ?? false))
@@ -1263,7 +1264,7 @@ namespace Gemstone.Communication
         {
             ManualResetEventSlim? handle = null;
 
-            if (sendState?.Token is null || sendState.Payload is null || sendState.SendArgs is null)
+            if (sendState.Token is null || sendState.Payload is null || sendState.SendArgs is null)
                 return;
 
             try
@@ -1323,7 +1324,7 @@ namespace Gemstone.Communication
             {
                 // If the operation was canceled during execution,
                 // make sure to dispose of allocated resources
-                if (sendState is not null && sendState.Token.Cancelled)
+                if (sendState.Token.Cancelled)
                     sendState.Dispose();
 
                 try

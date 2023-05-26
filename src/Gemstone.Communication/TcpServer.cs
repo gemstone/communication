@@ -269,7 +269,7 @@ namespace Gemstone.Communication
         /// <remarks>
         /// Setting property to <c>null</c> will create a zero-length payload marker.
         /// </remarks>
-        public byte[] PayloadMarker
+        public byte[]? PayloadMarker
         {
             get => m_payloadMarker;
             set => m_payloadMarker = value ?? Array.Empty<byte>();
@@ -281,7 +281,7 @@ namespace Gemstone.Communication
         /// <remarks>
         /// Setting property to <c>null</c> will force use of little-endian encoding.
         /// </remarks>
-        public EndianOrder PayloadEndianOrder
+        public EndianOrder? PayloadEndianOrder
         {
             get => m_payloadEndianOrder;
             set => m_payloadEndianOrder = value ?? EndianOrder.LittleEndian;
@@ -440,8 +440,6 @@ namespace Gemstone.Communication
             if (m_configData.TryGetValue("integratedSecurity", out string integratedSecuritySetting))
                 IntegratedSecurity = integratedSecuritySetting.ParseBoolean();
 
-            // TODO: Check if this works on Linux
-            //// Force integrated security to be False under Mono since it's not supported
             //m_integratedSecurity = false;
 
             // Overwrite config file if max client connections exists in connection string.
@@ -508,7 +506,7 @@ namespace Gemstone.Communication
         {
             bool clientExists = m_clientInfoLookup.TryGetValue(clientID, out TcpClientInfo clientInfo);
 
-            tcpClient = clientExists ? clientInfo.Client : null;
+            tcpClient = clientExists ? clientInfo!.Client : null;
 
             return clientExists;
         }
@@ -523,7 +521,7 @@ namespace Gemstone.Communication
         {
             bool clientExists = m_clientInfoLookup.TryGetValue(clientID, out TcpClientInfo clientInfo);
 
-            clientPrincipal = clientExists ? clientInfo.ClientPrincipal : null;
+            clientPrincipal = clientExists ? clientInfo!.ClientPrincipal : null;
 
             return clientExists;
         }
@@ -661,7 +659,7 @@ namespace Gemstone.Communication
                 SocketError error = acceptArgs.SocketError;
                 client.Provider = acceptArgs.AcceptSocket;
 
-                if (error == SocketError.Success || error == SocketError.ConnectionReset)
+                if (error is SocketError.Success or SocketError.ConnectionReset)
                 {
                     // Return to accepting new connections.
                     acceptArgs.AcceptSocket = null;
@@ -673,8 +671,7 @@ namespace Gemstone.Communication
                 {
                     // For unrecoverable errors, we need to ensure the server
                     // will be restarted before we can throw the error.
-                    if (error != SocketError.ConnectionReset)
-                        ThreadPool.QueueUserWorkItem(_ => ReStart());
+                    ThreadPool.QueueUserWorkItem(_ => ReStart());
                 }
 
                 if (error != SocketError.Success)
@@ -817,7 +814,7 @@ namespace Gemstone.Communication
 
                 // Copy payload into send buffer.
                 int copyLength = Math.Min(payload.Length, client.SendBufferSize);
-                Buffer.BlockCopy(payload.Data, payload.Offset, client.SendBuffer, 0, copyLength);
+                Buffer.BlockCopy(payload.Data!, payload.Offset, client.SendBuffer!, 0, copyLength);
 
                 // Set buffer and user token of send args.
                 args.SetBuffer(0, copyLength);
@@ -827,7 +824,7 @@ namespace Gemstone.Communication
                 payload.Length -= copyLength;
 
                 // Send data over socket.
-                if (!client.Provider.SendAsync(args))
+                if (!client.Provider!.SendAsync(args))
                     ProcessSend(args);
             }
             catch (Exception ex)
@@ -979,7 +976,7 @@ namespace Gemstone.Communication
 
             args.SetBuffer(buffer, offset, length);
 
-            if (!client.Provider.ReceiveAsync(args))
+            if (!client.Provider!.ReceiveAsync(args))
                 ThreadPool.QueueUserWorkItem(state => ProcessReceivePayloadAware((SocketAsyncEventArgs)state), args);
         }
 
@@ -1083,7 +1080,7 @@ namespace Gemstone.Communication
 
             args.SetBuffer(buffer, 0, length);
 
-            if (!client.Provider.ReceiveAsync(args))
+            if (!client.Provider!.ReceiveAsync(args))
                 ThreadPool.QueueUserWorkItem(state => ProcessReceivePayloadUnaware((SocketAsyncEventArgs)state), args);
         }
 

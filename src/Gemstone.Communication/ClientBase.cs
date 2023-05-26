@@ -230,6 +230,12 @@ namespace Gemstone.Communication
         public abstract string ServerUri { get; }
 
         /// <summary>
+        /// Gets the current server index, when multiple server end points are defined.
+        /// </summary>
+        [Browsable(false)]
+        public int ServerIndex { get; internal set; } = 0;
+
+        /// <summary>
         /// Gets or sets the data required by the client to connect to the server.
         /// </summary>
         public virtual string ConnectionString
@@ -452,6 +458,15 @@ namespace Gemstone.Communication
         public abstract int Read(byte[] buffer, int startIndex, int length);
 
         /// <summary>
+        /// Requests that the client attempt to move to the next <see cref="ServerIndex"/>.
+        /// </summary>
+        /// <returns><c>true</c> if request succeeded; otherwise, <c>false</c>.</returns>
+        /// <remarks>
+        /// Return value will only be <c>true</c> if <see cref="ServerIndex"/> changed.
+        /// </remarks>
+        public virtual bool RequestNextServerIndex() => false;
+
+        /// <summary>
         /// When overridden in a derived class, validates the specified <paramref name="connectionString"/>.
         /// </summary>
         /// <param name="connectionString">The connection string to be validated.</param>
@@ -645,6 +660,9 @@ namespace Gemstone.Communication
         /// <param name="ex">Exception to send to <see cref="ConnectionException"/> event.</param>
         protected virtual void OnConnectionException(Exception ex)
         {
+            // Move to next server connection, when multiple server end points are defined
+            RequestNextServerIndex();
+			
             if (ex is not ObjectDisposedException)
                 ConnectionException?.SafeInvoke(this, new EventArgs<Exception>(ex));
         }
@@ -787,7 +805,7 @@ namespace Gemstone.Communication
                 // Apply client settings from the connection string to the client.
                 foreach (KeyValuePair<string, string> setting in settings)
                 {
-                    PropertyInfo property = client.GetType().GetProperty(setting.Key, BindingFlags.IgnoreCase | BindingFlags.Public | BindingFlags.Instance);
+                    PropertyInfo? property = client.GetType().GetProperty(setting.Key, BindingFlags.IgnoreCase | BindingFlags.Public | BindingFlags.Instance);
                     property?.SetValue(client, Convert.ChangeType(setting.Value, property.PropertyType), null);
                 }
             }

@@ -40,6 +40,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Threading;
 using Gemstone.ArrayExtensions;
+using Gemstone.EventHandlerExtensions;
 using Gemstone.IO;
 using Gemstone.StringExtensions;
 using Gemstone.Threading;
@@ -207,6 +208,13 @@ namespace Gemstone.Communication
         /// </summary>
         public const string DefaultConnectionString = "File=DataFile.txt";
 
+        // Events
+
+        /// <summary>
+        /// Occurs when the end of a file has been reached.
+        /// </summary>
+        public event EventHandler? EndOfFile;
+
         // Fields
         private bool m_autoRepeat;
         private bool m_receiveOnDemand;
@@ -347,12 +355,16 @@ namespace Gemstone.Communication
         /// Gets or sets flag that determines if client should disconnect when end of file has been reached.
         /// </summary>
         public bool DisconnectAtEOF { get; set; } = DefaultDisconnectAtEOF;
-        
+
+        /// <summary>
+        /// Gets flags that determines if <see cref="FileClient"/> is positioned at the end of file.
+        /// </summary>
+        public bool AtEOF => m_fileClient.Provider is null || m_fileClient.Provider.Position == m_fileClient.Provider.Length;
 
         /// <summary>
         /// Gets the <see cref="FileStream"/> object for the <see cref="FileClient"/>.
         /// </summary>
-        public FileStream Client => m_fileClient.Provider;
+        public FileStream? Client => m_fileClient.Provider;
 
         /// <summary>
         /// Gets the server URI of the <see cref="FileClient"/>.
@@ -471,11 +483,8 @@ namespace Gemstone.Communication
                 // This will be done only when the object is disposed by calling Dispose().
                 m_connectionHandle?.Dispose();
 
-                if (m_receiveDataTimer is not null)
-                {
-                    m_receiveDataTimer.Elapsed -= m_receiveDataTimer_Elapsed;
-                    m_receiveDataTimer.Dispose();
-                }
+                m_receiveDataTimer.Elapsed -= m_receiveDataTimer_Elapsed;
+                m_receiveDataTimer.Dispose();
             }
             finally
             {
@@ -507,7 +516,7 @@ namespace Gemstone.Communication
         protected override WaitHandle SendDataAsync(byte[] data, int offset, int length)
         {
             // Send data to the file asynchronously.
-            WaitHandle handle = m_fileClient.Provider.BeginWrite(data, offset, length, SendDataAsyncCallback, null).AsyncWaitHandle;
+            WaitHandle handle = m_fileClient.Provider!.BeginWrite(data, offset, length, SendDataAsyncCallback, null).AsyncWaitHandle;
 
             // Notify that the send operation has started.
             m_fileClient.Statistics.UpdateBytesSent(length);
@@ -525,7 +534,7 @@ namespace Gemstone.Communication
             try
             {
                 // Send operation is complete.
-                m_fileClient.Provider.EndWrite(asyncResult);
+                m_fileClient.Provider!.EndWrite(asyncResult);
                 OnSendDataComplete();
             }
             catch (Exception ex)
@@ -595,26 +604,31 @@ namespace Gemstone.Communication
         {
             try
             {
+                if (m_autoRepeat && AtEOF)
+                    m_fileClient.Provider!.Seek(m_startingOffset, SeekOrigin.Begin);
+
                 // Process the entire file content
-                while (m_fileClient.Provider.Position < m_fileClient.Provider.Length)
+                while (m_fileClient.Provider!.Position < m_fileClient.Provider.Length)
                 {
                     // Retrieve data from the file.
-                    m_fileClient.BytesReceived = m_fileClient.Provider.Read(m_fileClient.ReceiveBuffer, 0, m_fileClient.ReceiveBufferSize);
+                    m_fileClient.BytesReceived = m_fileClient.Provider.Read(m_fileClient.ReceiveBuffer!, 0, m_fileClient.ReceiveBufferSize);
                     m_fileClient.Statistics.UpdateBytesReceived(m_fileClient.BytesReceived);
 
                     // Notify of the retrieved data.
                     OnReceiveDataComplete(m_fileClient.ReceiveBuffer, m_fileClient.BytesReceived);
 
-                    // Re-read the file if the user wants to repeat when done reading the file.
-                     if (m_fileClient.Provider.Position == m_fileClient.Provider.Length)
+                    // Handle end of file operations
+                    if (AtEOF)
                     {
+                        // Re-read the file if the user wants to repeat when done reading the file.
                         if (m_autoRepeat)
                             m_fileClient.Provider.Seek(m_startingOffset, SeekOrigin.Begin);
                         else if (DisconnectAtEOF)
                             Disconnect();
+
+                        OnEndOfFile();
                     }
 
-                    //TODO: Check Disconnect to break loop as well
                     // Stop processing the file if user has either opted to receive data on demand or receive data at a predefined interval.
                     if (m_receiveOnDemand || m_receiveInterval > 0)
                         break;
@@ -638,6 +652,14 @@ namespace Gemstone.Communication
         {
             base.Disconnect();
             base.OnConnectionException(ex);
+        }
+
+        /// <summary>
+        /// Raises the <see cref="EndOfFile"/> event.
+        /// </summary>
+        protected virtual void OnEndOfFile()
+        {
+            EndOfFile?.SafeInvoke(this, EventArgs.Empty);
         }
 
         #endregion

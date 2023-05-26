@@ -191,7 +191,7 @@ namespace Gemstone.Communication
 
         // Fields
         private readonly SimpleCertificateChecker m_defaultCertificateChecker;
-        private ICertificateChecker m_certificateChecker = default!;
+        private ICertificateChecker? m_certificateChecker;
         private readonly X509Certificate2Collection m_clientCertificates;
         private string? m_certificateFile;
         private byte[] m_payloadMarker;
@@ -199,7 +199,6 @@ namespace Gemstone.Communication
         private IPStack m_ipStack;
         private readonly ShortSynchronizedOperation m_dumpPayloadsOperation;
         private string[]? m_serverList;
-        private int m_serverIndex;
         private Dictionary<string, string> m_connectData = DefaultConnectionString.ParseKeyValuePairs();
         private ManualResetEvent? m_connectWaitHandle;
         private ConnectState? m_connectState;
@@ -257,7 +256,7 @@ namespace Gemstone.Communication
         /// <remarks>
         /// Setting property to <c>null</c> will create a zero-length payload marker.
         /// </remarks>
-        public byte[] PayloadMarker
+        public byte[]? PayloadMarker
         {
             get => m_payloadMarker;
             set => m_payloadMarker = value ?? Array.Empty<byte>();
@@ -269,7 +268,7 @@ namespace Gemstone.Communication
         /// <remarks>
         /// Setting property to <c>null</c> will force use of little-endian encoding.
         /// </remarks>
-        public EndianOrder PayloadEndianOrder
+        public EndianOrder? PayloadEndianOrder
         {
             get => m_payloadEndianOrder;
             set => m_payloadEndianOrder = value ?? EndianOrder.LittleEndian;
@@ -318,7 +317,7 @@ namespace Gemstone.Communication
         /// <summary>
         /// Gets the server URI of the <see cref="TlsClient"/>.
         /// </summary>
-        public override string ServerUri => $"{TransportProtocol}://{ServerList[m_serverIndex]}".ToLower();
+        public override string ServerUri => $"{TransportProtocol}://{ServerList[ServerIndex]}".ToLower();
 
         /// <summary>
         /// Gets or sets network credential that is used when
@@ -384,7 +383,7 @@ namespace Gemstone.Communication
                 }
                 else
                 {
-                    m_certificateFile = FilePath.GetAbsolutePath(value!);
+                    m_certificateFile = FilePath.GetAbsolutePath(value);
 
                     if (File.Exists(m_certificateFile))
                         Certificate = new X509Certificate2(m_certificateFile);
@@ -433,10 +432,10 @@ namespace Gemstone.Communication
                 if (m_serverList is not null)
                     return m_serverList;
 
-                if (m_connectData is not null && m_connectData.ContainsKey("server"))
-                    m_serverList = m_connectData["server"].Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries).Select(server => server.Trim()).ToArray();
+                if (!m_connectData.TryGetValue("server", out string serverList) || string.IsNullOrWhiteSpace(serverList))
+                    return Array.Empty<string>();
 
-                return m_serverList ?? Array.Empty<string>();
+                return m_serverList = serverList.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries).Select(server => server.Trim()).ToArray();
             }
         }
 
@@ -495,8 +494,6 @@ namespace Gemstone.Communication
                 if (m_connectData.TryGetValue("integratedSecurity", out string integratedSecuritySetting))
                     IntegratedSecurity = integratedSecuritySetting.ParseBoolean();
 
-                // TODO: Check if this works on Linux
-                //// Force integrated security to be False under Mono since it's not supported
                 //IntegratedSecurity = false;
 
                 // Overwrite config file if no delay exists in connection string.
@@ -504,7 +501,7 @@ namespace Gemstone.Communication
                     NoDelay = noDelaySetting.ParseBoolean();
 
                 // Initialize state object for the asynchronous connection loop
-                Match endpoint = Regex.Match(ServerList[m_serverIndex], Transport.EndpointFormatRegex);
+                Match endpoint = Regex.Match(ServerList[ServerIndex], Transport.EndpointFormatRegex);
                 connectState.ConnectArgs.RemoteEndPoint = Transport.CreateEndPoint(endpoint.Groups["host"].Value, int.Parse(endpoint.Groups["port"].Value), m_ipStack);
                 connectState.ConnectArgs.SocketFlags = SocketFlags.None;
                 connectState.ConnectArgs.UserToken = connectState;
@@ -555,26 +552,6 @@ namespace Gemstone.Communication
                 ThreadPool.QueueUserWorkItem(_ => ProcessConnect(connectState));
         }
 
-        /// <summary>
-        /// Raises the <see cref="ClientBase.ConnectionException"/> event.
-        /// </summary>
-        /// <param name="ex">Exception to send to <see cref="ClientBase.ConnectionException"/> event.</param>
-        protected override void OnConnectionException(Exception ex)
-        {
-            int serverListLength = ServerList.Length;
-
-            if (serverListLength > 1)
-            {
-                // When multiple servers are available, move to next server connection
-                m_serverIndex++;
-
-                if (m_serverIndex >= serverListLength)
-                    m_serverIndex = 0;
-            }
-
-            base.OnConnectionException(ex);
-        }
-
         private void ProcessConnect(ConnectState connectState)
         {
             try
@@ -607,7 +584,7 @@ namespace Gemstone.Communication
                 LoadTrustedCertificates();
 
                 // Begin authentication with the TlsServer
-                Match endpoint = Regex.Match(ServerList[m_serverIndex], Transport.EndpointFormatRegex);
+                Match endpoint = Regex.Match(ServerList[ServerIndex], Transport.EndpointFormatRegex);
 
                 if (!connectState.Token.Cancelled)
                 {
@@ -718,7 +695,7 @@ namespace Gemstone.Communication
                         return;
 
                     // Create the NegotiateStream to begin authentication of the user's Windows credentials
-                    connectState.NegotiateStream = new NegotiateStream(connectState.SslStream, true);
+                    connectState.NegotiateStream = new NegotiateStream(connectState.SslStream!, true);
 
                     connectState.CancelTimeout = new Action(() =>
                     {
@@ -990,7 +967,7 @@ namespace Gemstone.Communication
 
             int length = receiveState.PayloadLength < 0 ? m_payloadMarker.Length + Payload.LengthSegment : receiveState.PayloadLength;
 
-            receiveState.SslStream.BeginRead(receiveState.Buffer,
+            receiveState.SslStream.BeginRead(receiveState.Buffer!,
                 receiveState.Offset,
                 length - receiveState.Offset,
                 ProcessReceivePayloadAware,
@@ -1054,8 +1031,7 @@ namespace Gemstone.Communication
             catch (ObjectDisposedException)
             {
                 // Make sure connection is terminated when client is disposed
-                if (receiveState is not null)
-                    TerminateConnection(receiveState.Token);
+                TerminateConnection(receiveState.Token);
             }
             catch (SocketException ex)
             {
@@ -1063,8 +1039,7 @@ namespace Gemstone.Communication
                 OnReceiveDataException(ex);
 
                 // Terminate connection when socket exception is encountered
-                if (receiveState is not null)
-                    TerminateConnection(receiveState.Token);
+                TerminateConnection(receiveState.Token);
             }
             catch (Exception ex)
             {
@@ -1077,15 +1052,14 @@ namespace Gemstone.Communication
                 catch
                 {
                     // Terminate connection if resume fails
-                    if (receiveState is not null)
-                        TerminateConnection(receiveState.Token);
+                    TerminateConnection(receiveState.Token);
                 }
             }
             finally
             {
                 // If the operation was canceled during execution,
                 // make sure to dispose of allocated resources
-                if (receiveState is not null && receiveState.Token.Cancelled)
+                if (receiveState.Token.Cancelled)
                     receiveState.Dispose();
             }
         }
@@ -1099,7 +1073,7 @@ namespace Gemstone.Communication
             if (receiveState.Token is null || receiveState.Token.Cancelled || receiveState.SslStream is null)
                 return;
 
-            receiveState.SslStream.BeginRead(receiveState.Buffer,
+            receiveState.SslStream.BeginRead(receiveState.Buffer!,
                                             0,
                                             receiveState.Buffer?.Length ?? 0,
                                             ProcessReceivePayloadUnaware,
@@ -1139,8 +1113,7 @@ namespace Gemstone.Communication
             catch (ObjectDisposedException)
             {
                 // Make sure connection is terminated when client is disposed
-                if (receiveState is not null)
-                    TerminateConnection(receiveState.Token);
+                TerminateConnection(receiveState.Token);
             }
             catch (SocketException ex)
             {
@@ -1148,8 +1121,7 @@ namespace Gemstone.Communication
                 OnReceiveDataException(ex);
 
                 // Terminate connection when socket exception is encountered
-                if (receiveState is not null)
-                    TerminateConnection(receiveState.Token);
+                TerminateConnection(receiveState.Token);
             }
             catch (Exception ex)
             {
@@ -1162,15 +1134,14 @@ namespace Gemstone.Communication
                 catch
                 {
                     // Terminate connection if resume fails
-                    if (receiveState is not null)
-                        TerminateConnection(receiveState.Token);
+                    TerminateConnection(receiveState.Token);
                 }
             }
             finally
             {
                 // If the operation was canceled during execution,
                 // make sure to dispose of allocated resources
-                if (receiveState is not null && receiveState.Token.Cancelled)
+                if (receiveState.Token.Cancelled)
                     receiveState.Dispose();
             }
         }
@@ -1209,6 +1180,29 @@ namespace Gemstone.Communication
                 ReadIndex = 0;
 
             return readBytes;
+        }
+
+        /// <summary>
+        /// Requests that the client attempt to move to the next <see cref="ClientBase.ServerIndex"/>.
+        /// </summary>
+        /// <returns><c>true</c> if request succeeded; otherwise, <c>false</c>.</returns>
+        /// <remarks>
+        /// Return value will only be <c>true</c> if <see cref="ClientBase.ServerIndex"/> changed.
+        /// </remarks>
+        public override bool RequestNextServerIndex()
+        {
+            int serverListLength = ServerList.Length;
+
+            if (serverListLength < 2)
+                return false;
+
+            // When multiple servers are available, move to next server connection
+            ServerIndex++;
+
+            if (ServerIndex >= serverListLength)
+                ServerIndex = 0;
+
+            return true;
         }
 
         /// <summary>
@@ -1296,7 +1290,7 @@ namespace Gemstone.Communication
                     // being sent to the send state
                     sendState.Payload = payload;
 
-                    byte[]? data = payload.Data;
+                    byte[] data = payload.Data!;
                     int offset = payload.Offset;
                     int length = payload.Length;
 

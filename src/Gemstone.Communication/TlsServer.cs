@@ -158,7 +158,7 @@ namespace Gemstone.Communication
 
         // Fields
         private readonly SimpleCertificateChecker m_defaultCertificateChecker;
-        private ICertificateChecker m_certificateChecker = default!;
+        private ICertificateChecker? m_certificateChecker;
         private string? m_certificateFile;
         private byte[] m_payloadMarker;
         private EndianOrder m_payloadEndianOrder;
@@ -220,7 +220,7 @@ namespace Gemstone.Communication
         /// <remarks>
         /// Setting property to <c>null</c> will create a zero-length payload marker.
         /// </remarks>
-        public byte[] PayloadMarker
+        public byte[]? PayloadMarker
         {
             get => m_payloadMarker;
             set => m_payloadMarker = value ?? Array.Empty<byte>();
@@ -232,7 +232,7 @@ namespace Gemstone.Communication
         /// <remarks>
         /// Setting property to <c>null</c> will force use of little-endian encoding.
         /// </remarks>
-        public EndianOrder PayloadEndianOrder
+        public EndianOrder? PayloadEndianOrder
         {
             get => m_payloadEndianOrder;
             set => m_payloadEndianOrder = value ?? EndianOrder.LittleEndian;
@@ -313,7 +313,7 @@ namespace Gemstone.Communication
                 }
                 else
                 {
-                    m_certificateFile = FilePath.GetAbsolutePath(value!);
+                    m_certificateFile = FilePath.GetAbsolutePath(value);
 
                     if (File.Exists(m_certificateFile))
                         Certificate = new X509Certificate2(m_certificateFile);
@@ -476,8 +476,6 @@ namespace Gemstone.Communication
             if (m_configData.TryGetValue("integratedSecurity", out string integratedSecuritySetting))
                 IntegratedSecurity = integratedSecuritySetting.ParseBoolean();
 
-            // TODO: Check if this works on Linux
-            //// Force integrated security to be False under Mono since it's not supported
             //m_integratedSecurity = false;
 
             // Overwrite config file if max client connections exists in connection string.
@@ -545,7 +543,7 @@ namespace Gemstone.Communication
         {
             bool clientExists = m_clientInfoLookup.TryGetValue(clientID, out TlsClientInfo clientInfo);
 
-            tlsClient = clientExists ? clientInfo.Client : null;
+            tlsClient = clientExists ? clientInfo!.Client : null;
 
             return clientExists;
         }
@@ -560,7 +558,7 @@ namespace Gemstone.Communication
         {
             bool clientExists = m_clientInfoLookup.TryGetValue(clientID, out TlsClientInfo clientInfo);
 
-            clientPrincipal = clientExists ? clientInfo.ClientPrincipal : null;
+            clientPrincipal = clientExists ? clientInfo!.ClientPrincipal : null;
 
             return clientExists;
         }
@@ -740,7 +738,7 @@ namespace Gemstone.Communication
             catch (Exception ex)
             {
                 // Exception occurred so make sure we cancel the timeout
-                clientInfo?.CancelTimeout?.Invoke();
+                clientInfo?.CancelTimeout.Invoke();
 
                 // Notify of the exception.
                 IPEndPoint? remoteEndPoint = client.Provider?.RemoteEndPoint;
@@ -758,7 +756,7 @@ namespace Gemstone.Communication
         {
             TlsClientInfo clientInfo = (TlsClientInfo)asyncResult.AsyncState;
             TransportProvider<TlsSocket> client = clientInfo.Client;
-            SslStream? stream = client.Provider.SslStream;
+            SslStream? stream = client.Provider!.SslStream;
 
             try
             {
@@ -813,7 +811,7 @@ namespace Gemstone.Communication
             TlsClientInfo clientInfo = (TlsClientInfo)asyncResult.AsyncState;
             TransportProvider<TlsSocket> client = clientInfo.Client;
             NegotiateStream? negotiateStream = clientInfo.NegotiateStream;
-            IPEndPoint? remoteEndPoint = client.Provider.RemoteEndPoint;
+            IPEndPoint? remoteEndPoint = client.Provider!.RemoteEndPoint;
 
             if (negotiateStream is null)
                 throw new InvalidOperationException("No stream available for authentication.");
@@ -879,12 +877,12 @@ namespace Gemstone.Communication
 
                 client = clientInfo.Client;
 
-                byte[]? data = payload.Data;
+                byte[] data = payload.Data!;
                 int offset = payload.Offset;
                 int length = payload.Length;
 
                 // Send payload to the client asynchronously.
-                client.Provider.SslStream?.BeginWrite(data, offset, length, ProcessSend, payload);
+                client.Provider!.SslStream?.BeginWrite(data, offset, length, ProcessSend, payload);
             }
             catch (Exception ex)
             {
@@ -931,7 +929,7 @@ namespace Gemstone.Communication
                 handle.Set();
 
                 // Update statistics and notify.
-                client.Provider.SslStream?.EndWrite(asyncResult);
+                client.Provider!.SslStream?.EndWrite(asyncResult);
                 client.Statistics.UpdateBytesSent(payload.Length);
                 OnSendClientDataComplete(client.ID);
             }
@@ -1007,7 +1005,7 @@ namespace Gemstone.Communication
         /// </summary>
         private void ReceivePayloadAwareAsync(TransportProvider<TlsSocket> client, bool waitingForHeader)
         {
-            client?.Provider?.SslStream?.BeginRead(client.ReceiveBuffer,
+            client.Provider?.SslStream?.BeginRead(client.ReceiveBuffer!,
                                                     client.BytesReceived,
                                                     client.ReceiveBufferSize - client.BytesReceived,
                                                     ProcessReceivePayloadAware,
@@ -1031,7 +1029,7 @@ namespace Gemstone.Communication
                     throw new InvalidOperationException("No received data buffer has been defined to read.");
 
                 // Update statistics and pointers.
-                client.Statistics.UpdateBytesReceived(client.Provider.SslStream?.EndRead(asyncResult) ?? 0);
+                client.Statistics.UpdateBytesReceived(client.Provider!.SslStream?.EndRead(asyncResult) ?? 0);
                 client.BytesReceived += client.Statistics.LastBytesReceived;
 
                 if (!(client.Provider.Socket?.Connected ?? false))
@@ -1109,7 +1107,7 @@ namespace Gemstone.Communication
         /// </summary>
         private void ReceivePayloadUnawareAsync(TransportProvider<TlsSocket> client)
         {
-            client?.Provider?.SslStream?.BeginRead(client.ReceiveBuffer,
+            client.Provider?.SslStream?.BeginRead(client.ReceiveBuffer!,
                                                 0,
                                                 client.ReceiveBufferSize,
                                                 ProcessReceivePayloadUnaware,
@@ -1129,7 +1127,7 @@ namespace Gemstone.Communication
                     throw new InvalidOperationException("No received data buffer has been defined to read.");
 
                 // Update statistics and pointers.
-                client.Statistics.UpdateBytesReceived(client.Provider.SslStream?.EndRead(asyncResult) ?? 0);
+                client.Statistics.UpdateBytesReceived(client.Provider!.SslStream?.EndRead(asyncResult) ?? 0);
                 client.BytesReceived = client.Statistics.LastBytesReceived;
 
                 if (!(client.Provider.Socket?.Connected ?? false))

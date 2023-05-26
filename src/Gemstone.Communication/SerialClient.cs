@@ -159,7 +159,7 @@ namespace Gemstone.Communication
         /// <summary>
         /// Gets the <see cref="SerialPort"/> object for the <see cref="SerialClient"/>.
         /// </summary>
-        public SerialPort Client => m_serialClient.Provider;
+        public SerialPort? Client => m_serialClient.Provider;
 
         /// <summary>
         /// Gets the server URI of the <see cref="SerialClient"/>.
@@ -169,9 +169,6 @@ namespace Gemstone.Communication
         /// <summary>
         /// Gets or sets the needed number of bytes in the internal input buffer before a <see cref="ClientBase.OnReceiveDataComplete"/> event occurs.
         /// </summary>
-        /// <remarks>
-        /// This option is ignored under Mono deployments.
-        /// </remarks>
         public int ReceivedBytesThreshold { get; set; } = DefaultReceivedBytesThreshold;
 
         /// <summary>
@@ -181,9 +178,6 @@ namespace Gemstone.Communication
         {
             get
             {
-                if (m_connectData is null)
-                    return base.Status;
-
                 StringBuilder status = new();
 
                 status.Append(base.Status);
@@ -296,11 +290,11 @@ namespace Gemstone.Communication
             m_serialClient.Provider.DataReceived += SerialPort_DataReceived;
             m_serialClient.Provider.ErrorReceived += SerialPort_ErrorReceived;
 
-            if (m_connectData.ContainsKey("dtrEnable"))
-                m_serialClient.Provider.DtrEnable = m_connectData["dtrEnable"].ParseBoolean();
+            if (m_connectData.TryGetValue("dtrEnable", out string? value))
+                m_serialClient.Provider.DtrEnable = value.ParseBoolean();
 
-            if (m_connectData.ContainsKey("rtsEnable"))
-                m_serialClient.Provider.RtsEnable = m_connectData["rtsEnable"].ParseBoolean();
+            if (m_connectData.TryGetValue("rtsEnable", out value))
+                m_serialClient.Provider.RtsEnable = value.ParseBoolean();
 
             m_connectionThread = new Thread(OpenPort) { IsBackground = true };
             m_connectionThread.Start();
@@ -322,6 +316,8 @@ namespace Gemstone.Communication
                 // This will be done regardless of whether the object is finalized or disposed.
                 if (!disposing)
                     return;
+
+                Disconnect();
 
                 // This will be done only when the object is disposed by calling Dispose().
                 m_connectionHandle?.Dispose();
@@ -375,7 +371,7 @@ namespace Gemstone.Communication
         protected override WaitHandle SendDataAsync(byte[] data, int offset, int length)
         {
             // Send data to the file asynchronously.
-            WaitHandle handle = m_serialClient.Provider.BaseStream.BeginWrite(data, offset, length, SendDataAsyncCallback, null).AsyncWaitHandle;
+            WaitHandle handle = m_serialClient.Provider!.BaseStream.BeginWrite(data, offset, length, SendDataAsyncCallback, null).AsyncWaitHandle;
 
             // Notify that the send operation has started.
             m_serialClient.Statistics.UpdateBytesSent(length);
@@ -393,7 +389,7 @@ namespace Gemstone.Communication
             try
             {
                 // Send operation is complete.
-                m_serialClient.Provider.BaseStream.EndWrite(asyncResult);
+                m_serialClient.Provider!.BaseStream.EndWrite(asyncResult);
                 OnSendDataComplete();
             }
             catch (Exception ex)
@@ -416,7 +412,7 @@ namespace Gemstone.Communication
                 try
                 {
                     OnConnectionAttempt();
-                    m_serialClient.Provider.Open();
+                    m_serialClient.Provider!.Open();
                     m_connectionHandle?.Set();
                     OnConnectionEstablished();
 
@@ -445,7 +441,7 @@ namespace Gemstone.Communication
                 int bytesRead = 0;
 
                 // Retrieve data from the port.
-                while (bytesRead < m_serialClient.Provider.BytesToRead)
+                while (bytesRead < m_serialClient.Provider!.BytesToRead)
                     bytesRead += m_serialClient.Provider.Read(m_serialClient.ReceiveBuffer, bytesRead, (m_serialClient.ReceiveBuffer?.Length ?? 0) - bytesRead);
 
                 m_serialClient.BytesReceived = bytesRead;

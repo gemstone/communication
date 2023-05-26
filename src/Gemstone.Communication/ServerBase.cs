@@ -384,8 +384,7 @@ namespace Gemstone.Communication
         /// <summary>
         /// Gets current read indices for received data buffers incremented at each <see cref="Read"/> call.
         /// </summary>
-        protected ConcurrentDictionary<Guid, int> ReadIndicies { get;
-        }
+        protected ConcurrentDictionary<Guid, int> ReadIndicies { get; }
 
         /// <summary>
         /// Gets or sets the unique identifier of the server.
@@ -832,7 +831,7 @@ namespace Gemstone.Communication
                 // Apply server settings from the connection string to the client.
                 foreach (KeyValuePair<string, string> setting in settings)
                 {
-                    PropertyInfo property = server.GetType().GetProperty(setting.Key, BindingFlags.IgnoreCase | BindingFlags.Public | BindingFlags.Instance);
+                    PropertyInfo? property = server.GetType().GetProperty(setting.Key, BindingFlags.IgnoreCase | BindingFlags.Public | BindingFlags.Instance);
                     property?.SetValue(server, Convert.ChangeType(setting.Value, property.PropertyType), null);
                 }
             }

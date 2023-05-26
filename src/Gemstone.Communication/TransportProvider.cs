@@ -51,7 +51,7 @@ namespace Gemstone.Communication
         /// <summary>
         /// Provider for the transportation of data.
         /// </summary>
-        public T Provider = default!;
+        public T? Provider;
 
         /// <summary>
         /// Number of bytes received in <see cref="ReceiveBuffer"/>.

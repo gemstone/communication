@@ -184,6 +184,11 @@ namespace Gemstone.Communication
         string ServerUri { get; }
 
         /// <summary>
+        /// Gets the current server index, when multiple server end points are defined.
+        /// </summary>
+        int ServerIndex { get; }
+
+        /// <summary>
         /// Gets the current <see cref="ClientState"/>.
         /// </summary>
         ClientState CurrentState { get; }
@@ -252,6 +257,15 @@ namespace Gemstone.Communication
         /// will have unexpected results.
         /// </remarks>
         int Read(byte[] buffer, int startIndex, int length);
+
+        /// <summary>
+        /// Requests that the client attempt to move to the next <see cref="ServerIndex"/>.
+        /// </summary>
+        /// <returns><c>true</c> if request succeeded; otherwise, <c>false</c>.</returns>
+        /// <remarks>
+        /// Return value will only be <c>true</c> if <see cref="ServerIndex"/> changed.
+        /// </remarks>
+        bool RequestNextServerIndex();
 
         #endregion
     }

@@ -42,6 +42,8 @@
 //
 //******************************************************************************************************
 
+// ReSharper disable InconsistentNaming
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -260,7 +262,7 @@ namespace Gemstone.Communication
             IEnumerable<IPAddress> localIPs = Dns.GetHostAddresses("localhost").Concat(Dns.GetHostAddresses(Dns.GetHostName()));
 
             // Check to see if entered host name corresponds to a local IP address
-            return hostIPs.Any(localIPs.Contains!);
+            return hostIPs.Any(localIPs.Contains);
         }
 
         /// <summary>

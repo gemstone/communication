@@ -207,7 +207,7 @@ namespace Gemstone.Communication.Radius
         /// </summary>
         /// <value></value>
         /// <returns>Time (in milliseconds) to wait for a response from server after sending a request.</returns>
-        public int ReponseTimeout
+        public int ResponseTimeout
         {
             get => m_reponseTimeout;
             set
@@ -414,10 +414,7 @@ namespace Gemstone.Communication.Radius
             if (response is null)
                 throw new ArgumentException($"{nameof(AttributeType.State)} attribute is not present", nameof(response));
 
-            byte[]? reply = response.GetAttributeValue(AttributeType.ReplyMessage);
-
-            if (reply is null)
-                throw new ArgumentException($"{nameof(AttributeType.ReplyMessage)} attribute is not present", nameof(response));
+            byte[]? reply = response.GetAttributeValue(AttributeType.ReplyMessage) ?? throw new ArgumentException($"{nameof(AttributeType.ReplyMessage)} attribute is not present", nameof(response));
 
             if (!RadiusPacket.Encoding.GetString(reply, 0, reply.Length).ToLower().Contains(m_newPinModeMessage2.ToLower()))
                 return false; // New pin not accepted in attempt #1.
@@ -438,7 +435,7 @@ namespace Gemstone.Communication.Radius
         /// <summary>
         /// Authenticates the username and password against the RADIUS server.
         /// </summary>
-        /// <param name="username">Username to be authenticated.</param>
+        /// <param name="username">UserName to be authenticated.</param>
         /// <param name="password">Password to be authenticated.</param>
         /// <returns>Response packet received from the server for the authentication request.</returns>
         /// <remarks>
@@ -463,7 +460,7 @@ namespace Gemstone.Communication.Radius
         /// <summary>
         /// Authenticates the username and password against the RADIUS server.
         /// </summary>
-        /// <param name="username">Username to be authenticated.</param>
+        /// <param name="username">UserName to be authenticated.</param>
         /// <param name="password">Password to be authenticated.</param>
         /// <param name="state">State value from a previous challenge response.</param>
         /// <returns>Response packet received from the server for the authentication request.</returns>
@@ -489,7 +486,7 @@ namespace Gemstone.Communication.Radius
             CheckDisposed();
 
             if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(password))
-                throw new ArgumentException("Username and Password cannot be null.");
+                throw new ArgumentException("UserName and Password cannot be null.");
 
             RadiusPacket request = new(PacketType.AccessRequest);
             byte[] authenticator = RadiusPacket.CreateRequestAuthenticator(m_sharedSecret);
@@ -521,10 +518,7 @@ namespace Gemstone.Communication.Radius
             if (response is null)
                 throw new ArgumentNullException(nameof(response));
 
-            byte[]? messageBytes = response.GetAttributeValue(AttributeType.ReplyMessage);
-
-            if (messageBytes is null)
-                throw new ArgumentException("ReplyMessage attribute is not present", nameof(response));
+            byte[] messageBytes = response.GetAttributeValue(AttributeType.ReplyMessage) ?? throw new ArgumentException("ReplyMessage attribute is not present", nameof(response));
 
             // Unfortunately, the only way of determining whether or not a user account is in the
             // "New Pin" mode is from the text present in the ReplyMessage attribute of the
@@ -553,10 +547,7 @@ namespace Gemstone.Communication.Radius
             if (response is null)
                 throw new ArgumentNullException(nameof(response));
 
-            byte[]? messageBytes = response.GetAttributeValue(AttributeType.ReplyMessage);
-
-            if (messageBytes is null)
-                throw new ArgumentException($"{nameof(AttributeType.ReplyMessage)} attribute is not present", nameof(response));
+            byte[] messageBytes = response.GetAttributeValue(AttributeType.ReplyMessage) ?? throw new ArgumentException($"{nameof(AttributeType.ReplyMessage)} attribute is not present", nameof(response));
 
             // Unfortunately, the only way of determining whether or not a user account is in the
             // "Next Token" mode is from the text present in the ReplyMessage attribute of the
@@ -594,11 +585,8 @@ namespace Gemstone.Communication.Radius
 
             if (disposing)
             {
-                if (m_udpClient is not null)
-                {
-                    m_udpClient.ReceiveDataComplete -= m_udpClient_ReceivedData;
-                    m_udpClient.Dispose();
-                }
+                m_udpClient.ReceiveDataComplete -= m_udpClient_ReceivedData;
+                m_udpClient.Dispose();
             }
 
             m_disposed = true;
