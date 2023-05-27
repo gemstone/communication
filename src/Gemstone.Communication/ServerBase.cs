@@ -806,7 +806,7 @@ namespace Gemstone.Communication
             Dictionary<string, string> settings = configurationString.ParseKeyValuePairs();
             IServer server;
 
-            if (settings.TryGetValue("protocol", out string protocol))
+            if (settings.TryGetValue("protocol", out string? protocol))
             {
                 settings.Remove("protocol");
                 StringBuilder protocolSettings = new();

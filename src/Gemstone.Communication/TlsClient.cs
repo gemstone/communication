@@ -120,7 +120,7 @@ namespace Gemstone.Communication
                 Dispose(NetworkStream);
                 Dispose(SslStream);
 
-                while (SendQueue.TryDequeue(out TlsClientPayload payload))
+                while (SendQueue.TryDequeue(out TlsClientPayload? payload))
                 {
                     payload.WaitHandle.Set();
                     payload.WaitHandle.Dispose();
@@ -224,7 +224,7 @@ namespace Gemstone.Communication
         public TlsClient(string connectString) : base(TransportProtocol.Tcp, connectString)
         {
             m_defaultCertificateChecker = new SimpleCertificateChecker();
-            LocalCertificateSelectionCallback = DefaultLocalCertificateSelectionCallback;
+            LocalCertificateSelectionCallback = DefaultLocalCertificateSelectionCallback!;
             m_clientCertificates = new X509Certificate2Collection();
             EnabledSslProtocols = SslProtocols.Tls12;
             CheckCertificateRevocation = true;
@@ -432,7 +432,7 @@ namespace Gemstone.Communication
                 if (m_serverList is not null)
                     return m_serverList;
 
-                if (!m_connectData.TryGetValue("server", out string serverList) || string.IsNullOrWhiteSpace(serverList))
+                if (!m_connectData.TryGetValue("server", out string? serverList) || string.IsNullOrWhiteSpace(serverList))
                     return Array.Empty<string>();
 
                 return m_serverList = serverList.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries).Select(server => server.Trim()).ToArray();
@@ -491,13 +491,13 @@ namespace Gemstone.Communication
                 m_connectWaitHandle?.Reset();
 
                 // Overwrite setting from the config file if integrated security exists in connection string
-                if (m_connectData.TryGetValue("integratedSecurity", out string integratedSecuritySetting))
+                if (m_connectData.TryGetValue("integratedSecurity", out string? integratedSecuritySetting))
                     IntegratedSecurity = integratedSecuritySetting.ParseBoolean();
 
                 //IntegratedSecurity = false;
 
                 // Overwrite config file if no delay exists in connection string.
-                if (m_connectData.TryGetValue("noDelay", out string noDelaySetting))
+                if (m_connectData.TryGetValue("noDelay", out string? noDelaySetting))
                     NoDelay = noDelaySetting.ParseBoolean();
 
                 // Initialize state object for the asynchronous connection loop
@@ -505,7 +505,7 @@ namespace Gemstone.Communication
                 connectState.ConnectArgs.RemoteEndPoint = Transport.CreateEndPoint(endpoint.Groups["host"].Value, int.Parse(endpoint.Groups["port"].Value), m_ipStack);
                 connectState.ConnectArgs.SocketFlags = SocketFlags.None;
                 connectState.ConnectArgs.UserToken = connectState;
-                connectState.ConnectArgs.Completed += (_, args) => ProcessConnect((ConnectState)args.UserToken);
+                connectState.ConnectArgs.Completed += (_, args) => ProcessConnect((ConnectState)args.UserToken!);
 
                 // Create client socket
                 connectState.Socket = Transport.CreateSocket(m_connectData["interface"], 0, ProtocolType.Tcp, m_ipStack, AllowDualStackSocket);
@@ -577,7 +577,7 @@ namespace Gemstone.Communication
                 // Create the SslStream object used to perform
                 // send and receive operations on the socket
                 connectState.NetworkStream = new NetworkStream(connectState.Socket, true);
-                connectState.SslStream = new SslStream(connectState.NetworkStream, false, RemoteCertificateValidationCallback ?? CertificateChecker.ValidateRemoteCertificate, LocalCertificateSelectionCallback);
+                connectState.SslStream = new SslStream(connectState.NetworkStream, false, RemoteCertificateValidationCallback ?? CertificateChecker.ValidateRemoteCertificate!, LocalCertificateSelectionCallback);
 
                 // Load trusted certificates from
                 // the trusted certificates directory
@@ -661,7 +661,7 @@ namespace Gemstone.Communication
             try
             {
                 // Get the connect state from the async result
-                connectState = (ConnectState)asyncResult.AsyncState;
+                connectState = (ConnectState)asyncResult.AsyncState!;
 
                 if (connectState is null)
                     throw new InvalidOperationException("Connect state null while attempting to process integrated security authentication.");
@@ -828,7 +828,7 @@ namespace Gemstone.Communication
             try
             {
                 // Get the connect state from the async result
-                connectState = (ConnectState)asyncResult.AsyncState;
+                connectState = (ConnectState)asyncResult.AsyncState!;
 
                 // Attempt to cancel the timeout operation
                 if (!connectState.CancelTimeout())
@@ -980,7 +980,7 @@ namespace Gemstone.Communication
         private void ProcessReceivePayloadAware(IAsyncResult asyncResult)
         {
             // Get the receive state from the async result
-            ReceiveState receiveState = (ReceiveState)asyncResult.AsyncState;
+            ReceiveState receiveState = (ReceiveState)asyncResult.AsyncState!;
 
             // Quit if this receive loop has been canceled
             if (receiveState.Token is null || receiveState.Token.Cancelled || receiveState.SslStream is null)
@@ -1086,7 +1086,7 @@ namespace Gemstone.Communication
         private void ProcessReceivePayloadUnaware(IAsyncResult asyncResult)
         {
             // Get the receive state from the async result
-            ReceiveState receiveState = (ReceiveState)asyncResult.AsyncState;
+            ReceiveState receiveState = (ReceiveState)asyncResult.AsyncState!;
 
             if (receiveState.Token is null || receiveState.Token.Cancelled || receiveState.SslStream is null)
                 return;
@@ -1284,7 +1284,7 @@ namespace Gemstone.Communication
                 if (sendState.Token is null || sendState.Token.Cancelled)
                     return;
 
-                if (sendState.SendQueue.TryDequeue(out TlsClientPayload payload))
+                if (sendState.SendQueue.TryDequeue(out TlsClientPayload? payload))
                 {
                     // Save the payload currently
                     // being sent to the send state
@@ -1304,7 +1304,7 @@ namespace Gemstone.Communication
 
                     // Double-check to ensure that a new payload didn't appear before exiting the send loop
                     if (!sendState.SendQueue.IsEmpty && Interlocked.CompareExchange(ref sendState.Sending, 1, 0) == 0)
-                        ThreadPool.QueueUserWorkItem(state => SendPayloadAsync((SendState)state), sendState);
+                        ThreadPool.QueueUserWorkItem(state => SendPayloadAsync((SendState)state!), sendState);
                 }
             }
             catch (Exception ex)
@@ -1313,7 +1313,7 @@ namespace Gemstone.Communication
                 OnSendDataException(ex);
 
                 // Continue asynchronous send loop
-                ThreadPool.QueueUserWorkItem(state => SendPayloadAsync((SendState)state), sendState);
+                ThreadPool.QueueUserWorkItem(state => SendPayloadAsync((SendState)state!), sendState);
             }
             finally
             {
@@ -1330,7 +1330,7 @@ namespace Gemstone.Communication
         private void ProcessSend(IAsyncResult asyncResult)
         {
             // Get the send state from the async result
-            SendState? sendState = (SendState)asyncResult.AsyncState;
+            SendState? sendState = (SendState)asyncResult.AsyncState!;
             ManualResetEventSlim? handle = null;
 
             if (sendState?.Token is null || sendState.Payload is null)
@@ -1587,7 +1587,7 @@ namespace Gemstone.Communication
                 if (sendState.Token.Cancelled)
                     return;
 
-                if (sendState.SendQueue.TryDequeue(out TlsClientPayload payload))
+                if (sendState.SendQueue.TryDequeue(out TlsClientPayload? payload))
                 {
                     payload.WaitHandle.Set();
                     payload.WaitHandle.Dispose();

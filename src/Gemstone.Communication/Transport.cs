@@ -141,7 +141,7 @@ namespace Gemstone.Communication
             bool ipStackMismatch = false;
 
             // Attempt to parse provided address name as a literal IP address
-            if (IPAddress.TryParse(hostNameOrAddress, out IPAddress address))
+            if (IPAddress.TryParse(hostNameOrAddress, out IPAddress? address))
             {
                 // As long as desired IP stack matches format of specified IP address, return end point for address
                 if (stack == IPStack.IPv6 && address.AddressFamily == AddressFamily.InterNetworkV6 ||
@@ -303,7 +303,7 @@ namespace Gemstone.Communication
         /// </remarks>
         public static IPStack GetInterfaceIPStack(Dictionary<string, string> connectionStringEntries)
         {
-            if (connectionStringEntries.TryGetValue("interface", out string ipAddress))
+            if (connectionStringEntries.TryGetValue("interface", out string? ipAddress))
                 return IsIPv6IP(ipAddress) ? IPStack.IPv6 : IPStack.IPv4;
 
             connectionStringEntries.Add("interface", string.Empty);
@@ -324,7 +324,7 @@ namespace Gemstone.Communication
             if (string.IsNullOrWhiteSpace(ipAddress))
                 throw new ArgumentNullException(nameof(ipAddress));
 
-            if (IPAddress.TryParse(ipAddress, out IPAddress address))
+            if (IPAddress.TryParse(ipAddress, out IPAddress? address))
                 return address.AddressFamily == AddressFamily.InterNetworkV6;
 
             return false;

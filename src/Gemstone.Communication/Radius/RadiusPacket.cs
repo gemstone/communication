@@ -279,7 +279,7 @@ namespace Gemstone.Communication.Radius
         /// <returns><see cref="RadiusPacketAttribute"/>.<see cref="RadiusPacketAttribute.Value"/> if <see cref="RadiusPacketAttribute"/> is present; otherwise null.</returns>
         public byte[]? GetAttributeValue(AttributeType attributeType)
         {
-            RadiusPacketAttribute match = Attributes.Find(attribute => attribute.Type == attributeType);
+            RadiusPacketAttribute? match = Attributes.Find(attribute => attribute.Type == attributeType);
             return match?.Value;
         }
 
@@ -315,7 +315,7 @@ namespace Gemstone.Communication.Radius
             byte[] secretBuffer = Encoding.GetBytes(sharedSecret);
             Random.GetBytes(randomBuffer);
 
-            using MD5CryptoServiceProvider md5Provider = new();
+            using MD5 md5Provider = MD5.Create();
             return md5Provider.ComputeHash(randomBuffer.Combine(secretBuffer));
         }
 
@@ -342,7 +342,7 @@ namespace Gemstone.Communication.Radius
             Buffer.BlockCopy(requestPacket.BinaryImage(), 4, buffer, 4, 16);
             Buffer.BlockCopy(sharedSecretBytes, 0, buffer, length, sharedSecretBytes.Length);
 
-            using MD5CryptoServiceProvider md5Provider = new();
+            using MD5 md5Provider = MD5.Create();
             return md5Provider.ComputeHash(buffer);
         }
 
@@ -375,7 +375,7 @@ namespace Gemstone.Communication.Radius
             byte[] sharedSecretBytes = Encoding.GetBytes(sharedSecret);
             byte[] md5HashInputBytes = new byte[sharedSecretBytes.Length + 16];
 
-            using MD5CryptoServiceProvider md5Provider = new();
+            using MD5 md5Provider = MD5.Create();
 
             // If length of password is not a multiple of 16, take the multiple of 16 that's next
             // closest to the password's length and leave the empty space at the end as padding.

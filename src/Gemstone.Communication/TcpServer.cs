@@ -378,7 +378,7 @@ namespace Gemstone.Communication
         {
             buffer.ValidateParameters(startIndex, length);
 
-            if (!m_clientInfoLookup.TryGetValue(clientID, out TcpClientInfo clientInfo))
+            if (!m_clientInfoLookup.TryGetValue(clientID, out TcpClientInfo? clientInfo))
                 throw new InvalidOperationException("Specified client ID does not exist, cannot read buffer.");
 
             TransportProvider<Socket> tcpClient = clientInfo.Client;
@@ -437,7 +437,7 @@ namespace Gemstone.Communication
                 Initialize();
 
             // Overwrite config file if integrated security exists in connection string.
-            if (m_configData.TryGetValue("integratedSecurity", out string integratedSecuritySetting))
+            if (m_configData.TryGetValue("integratedSecurity", out string? integratedSecuritySetting))
                 IntegratedSecurity = integratedSecuritySetting.ParseBoolean();
 
             //m_integratedSecurity = false;
@@ -451,7 +451,7 @@ namespace Gemstone.Communication
                 MaxSendQueueSize = maxSendQueueSize;
 
             // Overwrite config file if no delay exists in connection string.
-            if (m_configData.TryGetValue("noDelay", out string noDelaySetting))
+            if (m_configData.TryGetValue("noDelay", out string? noDelaySetting))
                 NoDelay = noDelaySetting.ParseBoolean();
 
             // Bind server socket to local end-point and listen.
@@ -466,7 +466,7 @@ namespace Gemstone.Communication
             m_acceptArgs.Completed += m_acceptHandler;
 
             if (!Server.AcceptAsync(m_acceptArgs))
-                ThreadPool.QueueUserWorkItem(state => ProcessAccept((SocketAsyncEventArgs)state), m_acceptArgs);
+                ThreadPool.QueueUserWorkItem(state => ProcessAccept((SocketAsyncEventArgs)state!), m_acceptArgs);
 
             // Notify that the server has been started successfully.
             OnServerStarted();
@@ -504,7 +504,7 @@ namespace Gemstone.Communication
         /// <returns>A <see cref="TransportProvider{Socket}"/> object.</returns>
         public bool TryGetClient(Guid clientID, out TransportProvider<Socket>? tcpClient)
         {
-            bool clientExists = m_clientInfoLookup.TryGetValue(clientID, out TcpClientInfo clientInfo);
+            bool clientExists = m_clientInfoLookup.TryGetValue(clientID, out TcpClientInfo? clientInfo);
 
             tcpClient = clientExists ? clientInfo!.Client : null;
 
@@ -519,7 +519,7 @@ namespace Gemstone.Communication
         /// <returns>A <see cref="WindowsPrincipal"/> object.</returns>
         public bool TryGetClientPrincipal(Guid clientID, out WindowsPrincipal? clientPrincipal)
         {
-            bool clientExists = m_clientInfoLookup.TryGetValue(clientID, out TcpClientInfo clientInfo);
+            bool clientExists = m_clientInfoLookup.TryGetValue(clientID, out TcpClientInfo? clientInfo);
 
             clientPrincipal = clientExists ? clientInfo!.ClientPrincipal : null;
 
@@ -556,7 +556,7 @@ namespace Gemstone.Communication
         /// <returns><see cref="WaitHandle"/> for the asynchronous operation.</returns>
         protected override WaitHandle SendDataToAsync(Guid clientID, byte[] data, int offset, int length)
         {
-            if (!m_clientInfoLookup.TryGetValue(clientID, out TcpClientInfo clientInfo))
+            if (!m_clientInfoLookup.TryGetValue(clientID, out TcpClientInfo? clientInfo))
                 throw new InvalidOperationException($"No client found for ID {clientID}.");
 
             ConcurrentQueue<TcpServerPayload> sendQueue = clientInfo.SendQueue;
@@ -587,8 +587,8 @@ namespace Gemstone.Communication
                 // Send next queued payload.
                 if (Interlocked.CompareExchange(ref clientInfo.Sending, 1, 0) == 0)
                 {
-                    if (sendQueue.TryDequeue(out TcpServerPayload dequeuedPayload))
-                        ThreadPool.QueueUserWorkItem(state => SendPayload((TcpServerPayload)state), dequeuedPayload);
+                    if (sendQueue.TryDequeue(out TcpServerPayload? dequeuedPayload))
+                        ThreadPool.QueueUserWorkItem(state => SendPayload((TcpServerPayload)state!), dequeuedPayload);
                     else
                         Interlocked.Exchange(ref clientInfo.Sending, 0);
                 }
@@ -678,7 +678,7 @@ namespace Gemstone.Communication
                     throw new SocketException((int)error);
 
                 // Process the newly connected client.
-                client.Provider.ReceiveBufferSize = ReceiveBufferSize;
+                client.Provider!.ReceiveBufferSize = ReceiveBufferSize;
                 remoteEndPoint = client.Provider.RemoteEndPoint as IPEndPoint;
 
                 // Set up SocketAsyncEventArgs for receive operations.
@@ -703,8 +703,11 @@ namespace Gemstone.Communication
                         if (!cancelTimeout())
                             throw new SocketException((int)SocketError.TimedOut);
 
+                    #if WINDOWS
                         if (authenticationStream.RemoteIdentity is WindowsIdentity identity)
                             clientPrincipal = new WindowsPrincipal(identity);
+                        
+                    #endif
                     }
                     catch (InvalidCredentialException)
                     {
@@ -742,7 +745,7 @@ namespace Gemstone.Communication
 
                         for (int i = 0; i < MaxSendQueueSize; i++)
                         {
-                            if (clientInfo.SendQueue.TryDequeue(out TcpServerPayload payload))
+                            if (clientInfo.SendQueue.TryDequeue(out TcpServerPayload? payload))
                             {
                                 payload.WaitHandle.Set();
                                 payload.WaitHandle.Dispose();
@@ -853,7 +856,7 @@ namespace Gemstone.Communication
 
             try
             {
-                payload = (TcpServerPayload)args.UserToken;
+                payload = (TcpServerPayload)args.UserToken!;
 
                 if (payload is null)
                     throw new NullReferenceException($"{nameof(TcpServerPayload)} was null in {nameof(TcpServer)}.{nameof(ProcessSend)}");
@@ -898,7 +901,7 @@ namespace Gemstone.Communication
                         if (payload.Length > 0)
                         {
                             // Still more to send for this payload.
-                            ThreadPool.QueueUserWorkItem(state => SendPayload((TcpServerPayload)state), payload);
+                            ThreadPool.QueueUserWorkItem(state => SendPayload((TcpServerPayload)state!), payload);
                         }
                         else if (sendQueue is not null)
                         {
@@ -907,14 +910,14 @@ namespace Gemstone.Communication
                             // Begin sending next client payload.
                             if (sendQueue.TryDequeue(out payload))
                             {
-                                ThreadPool.QueueUserWorkItem(state => SendPayload((TcpServerPayload)state), payload);
+                                ThreadPool.QueueUserWorkItem(state => SendPayload((TcpServerPayload)state!), payload);
                             }
                             else if (clientInfo is not null)
                             {
                                 lock (clientInfo.SendLock)
                                 {
                                     if (sendQueue.TryDequeue(out payload))
-                                        ThreadPool.QueueUserWorkItem(state => SendPayload((TcpServerPayload)state), payload);
+                                        ThreadPool.QueueUserWorkItem(state => SendPayload((TcpServerPayload)state!), payload);
                                     else
                                         Interlocked.Exchange(ref clientInfo.Sending, 0);
                                 }
@@ -947,7 +950,7 @@ namespace Gemstone.Communication
             if (PayloadAware)
             {
                 // Set user token to indicate we are waiting for payload header.
-                EventArgs<TransportProvider<Socket>, bool> userToken = (EventArgs<TransportProvider<Socket>, bool>)args.UserToken;
+                EventArgs<TransportProvider<Socket>, bool> userToken = (EventArgs<TransportProvider<Socket>, bool>)args.UserToken!;
                 userToken.Argument2 = true;
 
                 // Payload boundaries are to be preserved.
@@ -977,7 +980,7 @@ namespace Gemstone.Communication
             args.SetBuffer(buffer, offset, length);
 
             if (!client.Provider!.ReceiveAsync(args))
-                ThreadPool.QueueUserWorkItem(state => ProcessReceivePayloadAware((SocketAsyncEventArgs)state), args);
+                ThreadPool.QueueUserWorkItem(state => ProcessReceivePayloadAware((SocketAsyncEventArgs)state!), args);
         }
 
         /// <summary>
@@ -985,7 +988,7 @@ namespace Gemstone.Communication
         /// </summary>
         private void ProcessReceivePayloadAware(SocketAsyncEventArgs args)
         {
-            EventArgs<TransportProvider<Socket>, bool> userToken = (EventArgs<TransportProvider<Socket>, bool>)args.UserToken;
+            EventArgs<TransportProvider<Socket>, bool> userToken = (EventArgs<TransportProvider<Socket>, bool>)args.UserToken!;
             TransportProvider<Socket> client = userToken.Argument1;
 
             try
@@ -1081,7 +1084,7 @@ namespace Gemstone.Communication
             args.SetBuffer(buffer, 0, length);
 
             if (!client.Provider!.ReceiveAsync(args))
-                ThreadPool.QueueUserWorkItem(state => ProcessReceivePayloadUnaware((SocketAsyncEventArgs)state), args);
+                ThreadPool.QueueUserWorkItem(state => ProcessReceivePayloadUnaware((SocketAsyncEventArgs)state!), args);
         }
 
         /// <summary>
@@ -1089,7 +1092,7 @@ namespace Gemstone.Communication
         /// </summary>
         private void ProcessReceivePayloadUnaware(SocketAsyncEventArgs args)
         {
-            TransportProvider<Socket> client = (TransportProvider<Socket>)args.UserToken;
+            TransportProvider<Socket> client = (TransportProvider<Socket>)args.UserToken!;
 
             try
             {
@@ -1144,7 +1147,7 @@ namespace Gemstone.Communication
         {
             try
             {
-                if (m_clientInfoLookup.TryRemove(client.ID, out TcpClientInfo clientInfo))
+                if (m_clientInfoLookup.TryRemove(client.ID, out TcpClientInfo? clientInfo))
                 {
                     client.Reset();
                     clientInfo.SendArgs.Dispose();

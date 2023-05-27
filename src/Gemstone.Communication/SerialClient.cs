@@ -182,7 +182,7 @@ namespace Gemstone.Communication
 
                 status.Append(base.Status);
 
-                if (m_connectData.TryGetValue("port", out string value))
+                if (m_connectData.TryGetValue("port", out string? value))
                     status.AppendLine($"                  COM port: {value}");
 
                 if (m_connectData.TryGetValue("baudRate", out value))
@@ -261,7 +261,7 @@ namespace Gemstone.Communication
 
             m_serialClient.Reset();
 
-            m_connectionThread?.Abort();
+            //m_connectionThread?.Abort();
 
             OnConnectionTerminated();
         }

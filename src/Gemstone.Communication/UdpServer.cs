@@ -364,7 +364,7 @@ namespace Gemstone.Communication
         {
             buffer.ValidateParameters(startIndex, length);
 
-            if (!m_clientInfoLookup.TryGetValue(clientID, out UdpClientInfo clientInfo))
+            if (!m_clientInfoLookup.TryGetValue(clientID, out UdpClientInfo? clientInfo))
                 throw new InvalidOperationException("Specified client ID does not exist, cannot read buffer.");
 
             TransportProvider<EndPoint> udpClient = clientInfo.Client;
@@ -560,7 +560,7 @@ namespace Gemstone.Communication
         /// <exception cref="InvalidOperationException">Client does not exist for the specified <paramref name="clientID"/>.</exception>
         public bool TryGetClient(Guid clientID, out TransportProvider<EndPoint>? udpClient)
         {
-            bool clientExists = m_clientInfoLookup.TryGetValue(clientID, out UdpClientInfo clientInfo);
+            bool clientExists = m_clientInfoLookup.TryGetValue(clientID, out UdpClientInfo? clientInfo);
 
             udpClient = clientExists ? clientInfo!.Client : null;
 
@@ -589,7 +589,7 @@ namespace Gemstone.Communication
             m_configData.TryAdd("multicastTimeToLive", "10");
 
             // Make sure a valid multi-cast time-to-live value is defined in the configuration data
-            if (!(m_configData.TryGetValue("multicastTimeToLive", out string setting) && int.TryParse(setting, out int _)))
+            if (!(m_configData.TryGetValue("multicastTimeToLive", out string? setting) && int.TryParse(setting, out int _)))
                 m_configData["multicastTimeToLive"] = "10";
         }
 
@@ -603,7 +603,7 @@ namespace Gemstone.Communication
         /// <returns><see cref="WaitHandle"/> for the asynchronous operation.</returns>
         protected override WaitHandle SendDataToAsync(Guid clientID, byte[] data, int offset, int length)
         {
-            if (!m_clientInfoLookup.TryGetValue(clientID, out UdpClientInfo clientInfo))
+            if (!m_clientInfoLookup.TryGetValue(clientID, out UdpClientInfo? clientInfo))
                 throw new InvalidOperationException($"No client found for ID {clientID}.");
 
             ConcurrentQueue<UdpServerPayload> sendQueue = clientInfo.SendQueue;
@@ -630,8 +630,8 @@ namespace Gemstone.Communication
                 // Send next queued payload.
                 if (Interlocked.CompareExchange(ref clientInfo.Sending, 1, 0) == 0)
                 {
-                    if (sendQueue.TryDequeue(out UdpServerPayload dequeuedPayload))
-                        ThreadPool.QueueUserWorkItem(state => SendPayload((UdpServerPayload)state), dequeuedPayload);
+                    if (sendQueue.TryDequeue(out UdpServerPayload? dequeuedPayload))
+                        ThreadPool.QueueUserWorkItem(state => SendPayload((UdpServerPayload)state!), dequeuedPayload);
                     else
                         Interlocked.Exchange(ref clientInfo.Sending, 0);
                 }
@@ -687,7 +687,7 @@ namespace Gemstone.Communication
             {
                 SocketOptionLevel level = udpClientIPEndPoint.AddressFamily == AddressFamily.InterNetworkV6 ? SocketOptionLevel.IPv6 : SocketOptionLevel.IP;
 
-                if (m_configData.TryGetValue("multicastSource", out string multicastSource))
+                if (m_configData.TryGetValue("multicastSource", out string? multicastSource))
                 {
                     IPAddress sourceAddress = IPAddress.Parse(multicastSource);
                     IPAddress localAddress = udpClientIPEndPoint.AddressFamily == AddressFamily.InterNetworkV6 ? IPAddress.IPv6Any : IPAddress.Any;
@@ -733,7 +733,7 @@ namespace Gemstone.Communication
                 {
                     for (int i = 0; i < MaxSendQueueSize; i++)
                     {
-                        if (udpClientInfo.SendQueue.TryDequeue(out UdpServerPayload payload))
+                        if (udpClientInfo.SendQueue.TryDequeue(out UdpServerPayload? payload))
                         {
                             payload.WaitHandle.Set();
                             payload.WaitHandle.Dispose();
@@ -821,7 +821,7 @@ namespace Gemstone.Communication
 
             try
             {
-                payload = (UdpServerPayload)args.UserToken;
+                payload = (UdpServerPayload)args.UserToken!;
 
                 if (payload is null)
                     throw new NullReferenceException($"{nameof(UdpServerPayload)} was null in {nameof(UdpServer)}.{nameof(ProcessSend)}");
@@ -868,7 +868,7 @@ namespace Gemstone.Communication
                         if (payload.Length > 0)
                         {
                             // Still more to send for this payload.
-                            ThreadPool.QueueUserWorkItem(state => SendPayload((UdpServerPayload)state), payload);
+                            ThreadPool.QueueUserWorkItem(state => SendPayload((UdpServerPayload)state!), payload);
                         }
                         else if (sendQueue is not null)
                         {
@@ -877,14 +877,14 @@ namespace Gemstone.Communication
                             // Begin sending next client payload.
                             if (sendQueue.TryDequeue(out payload))
                             {
-                                ThreadPool.QueueUserWorkItem(state => SendPayload((UdpServerPayload)state), payload);
+                                ThreadPool.QueueUserWorkItem(state => SendPayload((UdpServerPayload)state!), payload);
                             }
                             else if (clientInfo is not null)
                             {
                                 lock (clientInfo.SendLock)
                                 {
                                     if (sendQueue.TryDequeue(out payload))
-                                        ThreadPool.QueueUserWorkItem(state => SendPayload((UdpServerPayload)state), payload);
+                                        ThreadPool.QueueUserWorkItem(state => SendPayload((UdpServerPayload)state!), payload);
                                     else
                                         Interlocked.Exchange(ref clientInfo.Sending, 0);
                                 }
@@ -923,7 +923,7 @@ namespace Gemstone.Communication
             args.RemoteEndPoint = m_udpServer.Provider!.LocalEndPoint;
 
             if (!m_udpServer.Provider.ReceiveFromAsync(args))
-                ThreadPool.QueueUserWorkItem(state => ProcessReceive((SocketAsyncEventArgs)state), args);
+                ThreadPool.QueueUserWorkItem(state => ProcessReceive((SocketAsyncEventArgs)state!), args);
         }
 
         /// <summary>
@@ -946,21 +946,21 @@ namespace Gemstone.Communication
                 m_udpServer.BytesReceived = args.BytesTransferred;
 
                 // Search connected clients for a client connected to the end-point from where this data is received.
-                TransportProvider<EndPoint>? client = IdentifyClient(args.RemoteEndPoint);
+                TransportProvider<EndPoint>? client = IdentifyClient(args.RemoteEndPoint!);
 
                 // If the client's endpoint has changed, update the lookup list
                 if (m_dynamicClientEndPoints && client is not null && !client.Provider!.Equals(args.RemoteEndPoint))
                 {
                     client.Provider = args.RemoteEndPoint;
 
-                    if (m_clientInfoLookup.TryGetValue(client.ID, out UdpClientInfo clientInfo))
+                    if (m_clientInfoLookup.TryGetValue(client.ID, out UdpClientInfo? clientInfo))
                         clientInfo.SendArgs.RemoteEndPoint = client.Provider;
                 }
 
                 // If we do not have a static clients list, and if the client could not be found
                 // or if the client's endpoint has changed, update the clients list dynamically.
                 if (m_dynamicClientList && client is null)
-                    client = AddUdpClient(args.RemoteEndPoint);
+                    client = AddUdpClient(args.RemoteEndPoint!);
 
                 if (client is not null)
                 {

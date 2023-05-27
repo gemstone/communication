@@ -232,7 +232,6 @@ namespace Gemstone.Communication
         /// <summary>
         /// Gets the current server index, when multiple server end points are defined.
         /// </summary>
-        [Browsable(false)]
         public int ServerIndex { get; internal set; } = 0;
 
         /// <summary>
@@ -778,7 +777,7 @@ namespace Gemstone.Communication
             Dictionary<string, string> settings = connectionString.ParseKeyValuePairs();
             IClient client;
 
-            if (settings.TryGetValue("protocol", out string protocol))
+            if (settings.TryGetValue("protocol", out string? protocol))
             {
                 settings.Remove("protocol");
                 StringBuilder protocolSettings = new();

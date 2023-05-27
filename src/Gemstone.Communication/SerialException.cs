@@ -57,7 +57,7 @@ namespace Gemstone.Communication
             if (info is null)
                 throw new ArgumentNullException(nameof(info));
             
-            SerialError = (SerialError)info.GetValue(nameof(SerialError), typeof(SerialError));
+            SerialError = (SerialError)info.GetValue(nameof(SerialError), typeof(SerialError))!;
         }
 
         #endregion

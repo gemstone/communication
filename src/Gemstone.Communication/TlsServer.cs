@@ -187,7 +187,7 @@ namespace Gemstone.Communication
         public TlsServer(string configString) : base(TransportProtocol.Tcp, configString)
         {
             m_defaultCertificateChecker = new SimpleCertificateChecker();
-            LocalCertificateSelectionCallback = DefaultLocalCertificateSelectionCallback;
+            LocalCertificateSelectionCallback = DefaultLocalCertificateSelectionCallback!;
             EnabledSslProtocols = SslProtocols.Tls12;
             CheckCertificateRevocation = true;
 
@@ -414,7 +414,7 @@ namespace Gemstone.Communication
         {
             buffer.ValidateParameters(startIndex, length);
 
-            if (!m_clientInfoLookup.TryGetValue(clientID, out TlsClientInfo clientInfo))
+            if (!m_clientInfoLookup.TryGetValue(clientID, out TlsClientInfo? clientInfo))
                 throw new InvalidOperationException("Specified client ID does not exist, cannot read buffer.");
 
             TransportProvider<TlsSocket> tlsClient = clientInfo.Client;
@@ -473,7 +473,7 @@ namespace Gemstone.Communication
                 Initialize();
 
             // Overwrite config file if integrated security exists in connection string.
-            if (m_configData.TryGetValue("integratedSecurity", out string integratedSecuritySetting))
+            if (m_configData.TryGetValue("integratedSecurity", out string? integratedSecuritySetting))
                 IntegratedSecurity = integratedSecuritySetting.ParseBoolean();
 
             //m_integratedSecurity = false;
@@ -487,7 +487,7 @@ namespace Gemstone.Communication
                 MaxSendQueueSize = maxSendQueueSize;
 
             // Overwrite config file if no delay exists in connection string.
-            if (m_configData.TryGetValue("noDelay", out string noDelaySetting))
+            if (m_configData.TryGetValue("noDelay", out string? noDelaySetting))
                 NoDelay = noDelaySetting.ParseBoolean();
 
             // Bind server socket to local end-point and listen.
@@ -502,7 +502,7 @@ namespace Gemstone.Communication
             m_acceptArgs.Completed += m_acceptHandler;
 
             if (!Server.AcceptAsync(m_acceptArgs))
-                ThreadPool.QueueUserWorkItem(state => ProcessAccept((SocketAsyncEventArgs)state), m_acceptArgs);
+                ThreadPool.QueueUserWorkItem(state => ProcessAccept((SocketAsyncEventArgs)state!), m_acceptArgs);
 
             // Notify that the server has been started successfully.
             OnServerStarted();
@@ -541,7 +541,7 @@ namespace Gemstone.Communication
         /// <exception cref="InvalidOperationException">Client does not exist for the specified <paramref name="clientID"/>.</exception>
         public bool TryGetClient(Guid clientID, out TransportProvider<TlsSocket>? tlsClient)
         {
-            bool clientExists = m_clientInfoLookup.TryGetValue(clientID, out TlsClientInfo clientInfo);
+            bool clientExists = m_clientInfoLookup.TryGetValue(clientID, out TlsClientInfo? clientInfo);
 
             tlsClient = clientExists ? clientInfo!.Client : null;
 
@@ -556,7 +556,7 @@ namespace Gemstone.Communication
         /// <returns>A <see cref="WindowsPrincipal"/> object.</returns>
         public bool TryGetClientPrincipal(Guid clientID, out WindowsPrincipal? clientPrincipal)
         {
-            bool clientExists = m_clientInfoLookup.TryGetValue(clientID, out TlsClientInfo clientInfo);
+            bool clientExists = m_clientInfoLookup.TryGetValue(clientID, out TlsClientInfo? clientInfo);
 
             clientPrincipal = clientExists ? clientInfo!.ClientPrincipal : null;
 
@@ -593,7 +593,7 @@ namespace Gemstone.Communication
         /// <returns><see cref="WaitHandle"/> for the asynchronous operation.</returns>
         protected override WaitHandle SendDataToAsync(Guid clientID, byte[] data, int offset, int length)
         {
-            if (!m_clientInfoLookup.TryGetValue(clientID, out TlsClientInfo clientInfo))
+            if (!m_clientInfoLookup.TryGetValue(clientID, out TlsClientInfo? clientInfo))
                 throw new InvalidOperationException($"No client found for ID {clientID}.");
 
             ConcurrentQueue<TlsServerPayload> sendQueue = clientInfo.SendQueue;
@@ -624,8 +624,8 @@ namespace Gemstone.Communication
                 // Send next queued payload.
                 if (Interlocked.CompareExchange(ref clientInfo.Sending, 1, 0) == 0)
                 {
-                    if (sendQueue.TryDequeue(out TlsServerPayload dequeuedPayload))
-                        ThreadPool.QueueUserWorkItem(state => SendPayload((TlsServerPayload)state), dequeuedPayload);
+                    if (sendQueue.TryDequeue(out TlsServerPayload? dequeuedPayload))
+                        ThreadPool.QueueUserWorkItem(state => SendPayload((TlsServerPayload)state!), dequeuedPayload);
                     else
                         Interlocked.Exchange(ref clientInfo.Sending, 0);
                 }
@@ -686,16 +686,16 @@ namespace Gemstone.Communication
                     {
                         // Process the newly connected client.
                         LoadTrustedCertificates();
-                        NetworkStream netStream = new(acceptArgs.AcceptSocket, true);
+                        NetworkStream netStream = new(acceptArgs.AcceptSocket!, true);
 
                         client.Provider = new TlsSocket
                         {
                             Socket = acceptArgs.AcceptSocket,
-                            SslStream = new SslStream(netStream, false, RemoteCertificateValidationCallback ?? CertificateChecker.ValidateRemoteCertificate, LocalCertificateSelectionCallback),
-                            RemoteEndPoint = acceptArgs.AcceptSocket.RemoteEndPoint as IPEndPoint
+                            SslStream = new SslStream(netStream, false, RemoteCertificateValidationCallback ?? CertificateChecker.ValidateRemoteCertificate!, LocalCertificateSelectionCallback),
+                            RemoteEndPoint = acceptArgs.AcceptSocket!.RemoteEndPoint as IPEndPoint
                         };
 
-                        client.Provider.Socket.ReceiveBufferSize = ReceiveBufferSize;
+                        client.Provider.Socket!.ReceiveBufferSize = ReceiveBufferSize;
 
                         clientInfo = new TlsClientInfo { Client = client };
 
@@ -707,7 +707,7 @@ namespace Gemstone.Communication
                             {
                                 for (int i = 0; i < MaxSendQueueSize; i++)
                                 {
-                                    if (clientInfo.SendQueue.TryDequeue(out TlsServerPayload payload))
+                                    if (clientInfo.SendQueue.TryDequeue(out TlsServerPayload? payload))
                                     {
                                         payload.WaitHandle.Set();
                                         payload.WaitHandle.Dispose();
@@ -719,7 +719,7 @@ namespace Gemstone.Communication
                         }, ex => OnSendClientDataException(clientInfo.Client.ID, ex));
 
                         clientInfo.CancelTimeout = new Action(() => client.Provider?.Socket.Dispose()).DelayAndExecute(15000);
-                        client.Provider.SslStream.BeginAuthenticateAsServer(Certificate, RequireClientCertificate, EnabledSslProtocols, CheckCertificateRevocation, ProcessTlsAuthentication, clientInfo);
+                        client.Provider.SslStream.BeginAuthenticateAsServer(Certificate!, RequireClientCertificate, EnabledSslProtocols, CheckCertificateRevocation, ProcessTlsAuthentication, clientInfo);
                     }
                 }
                 finally
@@ -754,7 +754,7 @@ namespace Gemstone.Communication
         /// </summary>
         private void ProcessTlsAuthentication(IAsyncResult asyncResult)
         {
-            TlsClientInfo clientInfo = (TlsClientInfo)asyncResult.AsyncState;
+            TlsClientInfo clientInfo = (TlsClientInfo)asyncResult.AsyncState!;
             TransportProvider<TlsSocket> client = clientInfo.Client;
             SslStream? stream = client.Provider!.SslStream;
 
@@ -808,7 +808,7 @@ namespace Gemstone.Communication
 
         private void ProcessIntegratedSecurityAuthentication(IAsyncResult asyncResult)
         {
-            TlsClientInfo clientInfo = (TlsClientInfo)asyncResult.AsyncState;
+            TlsClientInfo clientInfo = (TlsClientInfo)asyncResult.AsyncState!;
             TransportProvider<TlsSocket> client = clientInfo.Client;
             NegotiateStream? negotiateStream = clientInfo.NegotiateStream;
             IPEndPoint? remoteEndPoint = client.Provider!.RemoteEndPoint;
@@ -820,15 +820,20 @@ namespace Gemstone.Communication
             {
                 if (!clientInfo.CancelTimeout())
                     throw new SocketException((int)SocketError.TimedOut);
-
+                
                 try
                 {
                     negotiateStream.EndAuthenticateAsServer(asyncResult);
 
-                    if (negotiateStream.RemoteIdentity is WindowsIdentity identity)
+                    if (!Common.IsPosixEnvironment)
                     {
-                        WindowsPrincipal clientPrincipal = new(identity);
-                        clientInfo.ClientPrincipal = clientPrincipal;
+                        if (negotiateStream.RemoteIdentity is WindowsIdentity identity)
+                        {
+                            #pragma warning disable CA1416
+                            WindowsPrincipal clientPrincipal = new(identity);
+                            #pragma warning restore CA1416
+                            clientInfo.ClientPrincipal = clientPrincipal;
+                        }
                     }
                 }
                 catch (InvalidCredentialException)
@@ -910,7 +915,7 @@ namespace Gemstone.Communication
 
             try
             {
-                payload = (TlsServerPayload)asyncResult.AsyncState;
+                payload = (TlsServerPayload)asyncResult.AsyncState!;
 
                 if (payload is null)
                     throw new NullReferenceException($"{nameof(TlsServerPayload)} was null in {nameof(TlsServer)}.{nameof(ProcessSend)}");
@@ -950,14 +955,14 @@ namespace Gemstone.Communication
                         // Begin sending next client payload.
                         if (sendQueue.TryDequeue(out payload))
                         {
-                            ThreadPool.QueueUserWorkItem(state => SendPayload((TlsServerPayload)state), payload);
+                            ThreadPool.QueueUserWorkItem(state => SendPayload((TlsServerPayload)state!), payload);
                         }
                         else if (clientInfo is not null)
                         {
                             lock (clientInfo.SendLock)
                             {
                                 if (sendQueue.TryDequeue(out payload))
-                                    ThreadPool.QueueUserWorkItem(state => SendPayload((TlsServerPayload)state), payload);
+                                    ThreadPool.QueueUserWorkItem(state => SendPayload((TlsServerPayload)state!), payload);
                                 else
                                     Interlocked.Exchange(ref clientInfo.Sending, 0);
                             }
@@ -1017,7 +1022,7 @@ namespace Gemstone.Communication
         /// </summary>
         private void ProcessReceivePayloadAware(IAsyncResult asyncResult)
         {
-            Tuple<Guid, bool> asyncState = (Tuple<Guid, bool>)asyncResult.AsyncState;
+            Tuple<Guid, bool> asyncState = (Tuple<Guid, bool>)asyncResult.AsyncState!;
             bool waitingForHeader = asyncState.Item2;
 
             if (!TryGetClient(asyncState.Item1, out TransportProvider<TlsSocket>? client) || client is null)
@@ -1119,7 +1124,7 @@ namespace Gemstone.Communication
         /// </summary>
         private void ProcessReceivePayloadUnaware(IAsyncResult asyncResult)
         {
-            TransportProvider<TlsSocket> client = (TransportProvider<TlsSocket>)asyncResult.AsyncState;
+            TransportProvider<TlsSocket> client = (TransportProvider<TlsSocket>)asyncResult.AsyncState!;
 
             try
             {

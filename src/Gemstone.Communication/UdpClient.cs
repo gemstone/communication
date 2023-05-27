@@ -317,13 +317,13 @@ namespace Gemstone.Communication
                 if (m_connectData.TryGetValue("server", out string? value))
                     return $"{TransportProtocol}://{value}".ToLower();
                 
-                if (!m_connectData.TryGetValue("interface", out string targetInterface) || string.IsNullOrWhiteSpace(targetInterface))
+                if (!m_connectData.TryGetValue("interface", out string? targetInterface) || string.IsNullOrWhiteSpace(targetInterface))
                 {
                     IPStack ipStack = m_ipStack == IPStack.Default ? Transport.GetDefaultIPStack() : m_ipStack;
                     targetInterface = ipStack == IPStack.IPv6 ? "[::0]" : "0.0.0.0";
                 }
 
-                if (!m_connectData.TryGetValue("port", out string targetPort) || !ushort.TryParse(targetPort, out ushort port))
+                if (!m_connectData.TryGetValue("port", out string? targetPort) || !ushort.TryParse(targetPort, out ushort port))
                     port = 0;
 
                 return $"{TransportProtocol}://{targetInterface}:{port}".ToLower();
@@ -464,7 +464,7 @@ namespace Gemstone.Communication
             }
 
             m_udpClient?.Reset();
-            m_connectionThread?.Abort();
+            //m_connectionThread?.Abort();
         }
 
         /// <summary>
@@ -593,7 +593,7 @@ namespace Gemstone.Communication
             m_connectData.TryAdd("multicastTimeToLive", "10");
 
             // Make sure a valid multi-cast time-to-live value is defined in the connection string
-            if (!(m_connectData.TryGetValue("multicastTimeToLive", out string setting) && int.TryParse(setting, out _)))
+            if (!(m_connectData.TryGetValue("multicastTimeToLive", out string? setting) && int.TryParse(setting, out _)))
                 m_connectData["multicastTimeToLive"] = "10";
         }
 
@@ -635,7 +635,7 @@ namespace Gemstone.Communication
                     {
                         IPAddress? sourceAddress = null;
 
-                        if (m_connectData.TryGetValue("multicastSource", out string multicastSource))
+                        if (m_connectData.TryGetValue("multicastSource", out string? multicastSource))
                             sourceAddress = IPAddress.Parse(multicastSource);
 
                         AddMulticastMembership(serverEndpoint.Address, sourceAddress, out byte[]? multicastMembershipAddresses);
@@ -734,8 +734,8 @@ namespace Gemstone.Communication
                 // Send the next queued payload.
                 if (Interlocked.CompareExchange(ref m_sending, 1, 0) == 0)
                 {
-                    if (m_sendQueue.TryDequeue(out UdpClientPayload dequeuedPayload))
-                        ThreadPool.QueueUserWorkItem(state => SendPayload((UdpClientPayload)state), dequeuedPayload);
+                    if (m_sendQueue.TryDequeue(out UdpClientPayload? dequeuedPayload))
+                        ThreadPool.QueueUserWorkItem(state => SendPayload((UdpClientPayload)state!), dequeuedPayload);
                     else
                         Interlocked.Exchange(ref m_sending, 0);
                 }
@@ -874,21 +874,21 @@ namespace Gemstone.Communication
                     if (payload.Length > 0)
                     {
                         // Still more to send for this payload.
-                        ThreadPool.QueueUserWorkItem(state => SendPayload((UdpClientPayload)state), payload);
+                        ThreadPool.QueueUserWorkItem(state => SendPayload((UdpClientPayload)state!), payload);
                     }
                     else
                     {
                         // Begin sending next client payload.
                         if (m_sendQueue.TryDequeue(out payload))
                         {
-                            ThreadPool.QueueUserWorkItem(state => SendPayload((UdpClientPayload)state), payload);
+                            ThreadPool.QueueUserWorkItem(state => SendPayload((UdpClientPayload)state!), payload);
                         }
                         else
                         {
                             lock (m_sendLock)
                             {
                                 if (m_sendQueue.TryDequeue(out payload))
-                                    ThreadPool.QueueUserWorkItem(state => SendPayload((UdpClientPayload)state), payload);
+                                    ThreadPool.QueueUserWorkItem(state => SendPayload((UdpClientPayload)state!), payload);
                                 else
                                     Interlocked.Exchange(ref m_sending, 0);
                             }
@@ -954,7 +954,7 @@ namespace Gemstone.Communication
                 m_udpClient.BytesReceived = m_udpClient.Statistics.LastBytesReceived;
 
                 // Notify of received data and resume receive operation.
-                OnReceive(m_receiveArgs.RemoteEndPoint, m_receiveArgs.ReceiveMessageFromPacketInfo, m_udpClient.ReceiveBuffer, m_udpClient.BytesReceived);
+                OnReceive(m_receiveArgs.RemoteEndPoint!, m_receiveArgs.ReceiveMessageFromPacketInfo, m_udpClient.ReceiveBuffer, m_udpClient.BytesReceived);
                 ReceivePayloadAsync();
             }
             catch (ObjectDisposedException)
@@ -1014,7 +1014,7 @@ namespace Gemstone.Communication
                 }
                 else
                 {
-                    IPAddress localAddress = ((IPEndPoint)m_udpClient.Provider.LocalEndPoint).Address;
+                    IPAddress localAddress = ((IPEndPoint)m_udpClient.Provider.LocalEndPoint!).Address;
 
                     if (sourceAddress.AddressFamily != serverAddress.AddressFamily)
                         throw new InvalidOperationException($"Source address \"{sourceAddress}\" is not in the same IP format as server address \"{serverAddress}\"");
@@ -1067,7 +1067,7 @@ namespace Gemstone.Communication
                 {
                     if (multicastMembershipAddresses is null)
                     {
-                        IPAddress localAddress = ((IPEndPoint)m_udpClient.Provider.LocalEndPoint).Address;
+                        IPAddress localAddress = ((IPEndPoint)m_udpClient.Provider.LocalEndPoint!).Address;
 
                         if (sourceAddress!.AddressFamily != serverAddress.AddressFamily)
                             throw new InvalidOperationException($"Source address \"{sourceAddress}\" is not in the same IP format as server address \"{serverAddress}\"");
@@ -1110,7 +1110,7 @@ namespace Gemstone.Communication
 
             for (int i = 0; i < MaxSendQueueSize; i++)
             {
-                if (m_sendQueue.TryDequeue(out UdpClientPayload payload))
+                if (m_sendQueue.TryDequeue(out UdpClientPayload? payload))
                 {
                     payload.WaitHandle.Set();
                     payload.WaitHandle.Dispose();
