@@ -269,6 +269,16 @@
         <see cref="F:Gemstone.EventArgs`1.Argument" /> is the <see cref="T:System.Exception" /> encountered when receiving data from the server.
             </remarks>
     </member>
+    <member name="M:Gemstone.Communication.ClientBase.RequestNextServerIndex">
+      <summary>
+            Requests that the client attempt to move to the next <see cref="P:Gemstone.Communication.ClientBase.ServerIndex" />.
+            </summary>
+      <returns>
+        <c>true</c> if request succeeded; otherwise, <c>false</c>.</returns>
+      <remarks>
+            Return value will only be <c>true</c> if <see cref="P:Gemstone.Communication.ClientBase.ServerIndex" /> changed.
+            </remarks>
+    </member>
     <member name="M:Gemstone.Communication.ClientBase.Send(System.Byte[])">
       <summary>
             Sends data to the server synchronously.
@@ -347,6 +357,11 @@
     <member name="E:Gemstone.Communication.ClientBase.SendDataStart">
       <summary>
             Occurs when the client begins sending data to the server.
+            </summary>
+    </member>
+    <member name="P:Gemstone.Communication.ClientBase.ServerIndex">
+      <summary>
+            Gets the current server index, when multiple server end points are defined.
             </summary>
     </member>
     <member name="P:Gemstone.Communication.ClientBase.ServerUri">
@@ -453,6 +468,11 @@
             </summary>
       <param name="connectString">Connect string of the <see cref="T:Gemstone.Communication.FileClient" />. See <see cref="F:Gemstone.Communication.FileClient.DefaultConnectionString" /> for format.</param>
     </member>
+    <member name="P:Gemstone.Communication.FileClient.AtEOF">
+      <summary>
+            Gets flags that determines if <see cref="T:Gemstone.Communication.FileClient" /> is positioned at the end of file.
+            </summary>
+    </member>
     <member name="P:Gemstone.Communication.FileClient.AutoRepeat">
       <summary>
             Gets or sets a boolean value that indicates whether receiving (reading) of data is to be repeated endlessly.
@@ -534,6 +554,11 @@
             </summary>
       <param name="disposing">true to release both managed and unmanaged resources; false to release only unmanaged resources.</param>
     </member>
+    <member name="E:Gemstone.Communication.FileClient.EndOfFile">
+      <summary>
+            Occurs when the end of a file has been reached.
+            </summary>
+    </member>
     <member name="P:Gemstone.Communication.FileClient.FileAccessMode">
       <summary>
             Gets or sets the <see cref="T:System.IO.FileAccess" /> value to be used when opening the file.
@@ -556,6 +581,11 @@
             Raises the <see cref="E:Gemstone.Communication.ClientBase.ConnectionException" /> event.
             </summary>
       <param name="ex">Exception to send to <see cref="E:Gemstone.Communication.ClientBase.ConnectionException" /> event.</param>
+    </member>
+    <member name="M:Gemstone.Communication.FileClient.OnEndOfFile">
+      <summary>
+            Raises the <see cref="E:Gemstone.Communication.FileClient.EndOfFile" /> event.
+            </summary>
     </member>
     <member name="M:Gemstone.Communication.FileClient.Read(System.Byte[],System.Int32,System.Int32)">
       <summary>
@@ -742,6 +772,16 @@
         <see cref="F:Gemstone.EventArgs`1.Argument" /> is the <see cref="T:System.Exception" /> encountered when receiving data from the server.
             </remarks>
     </member>
+    <member name="M:Gemstone.Communication.IClient.RequestNextServerIndex">
+      <summary>
+            Requests that the client attempt to move to the next <see cref="P:Gemstone.Communication.IClient.ServerIndex" />.
+            </summary>
+      <returns>
+        <c>true</c> if request succeeded; otherwise, <c>false</c>.</returns>
+      <remarks>
+            Return value will only be <c>true</c> if <see cref="P:Gemstone.Communication.IClient.ServerIndex" /> changed.
+            </remarks>
+    </member>
     <member name="M:Gemstone.Communication.IClient.Send(System.Byte[],System.Int32,System.Int32)">
       <summary>
             Sends data to the server synchronously.
@@ -781,6 +821,11 @@
     <member name="E:Gemstone.Communication.IClient.SendDataStart">
       <summary>
             Occurs when the client begins sending data to the server.
+            </summary>
+    </member>
+    <member name="P:Gemstone.Communication.IClient.ServerIndex">
+      <summary>
+            Gets the current server index, when multiple server end points are defined.
             </summary>
     </member>
     <member name="P:Gemstone.Communication.IClient.ServerUri">
@@ -1163,9 +1208,6 @@
       <summary>
             Gets or sets the needed number of bytes in the internal input buffer before a <see cref="M:Gemstone.Communication.ClientBase.OnReceiveDataComplete(System.Byte[],System.Int32)" /> event occurs.
             </summary>
-      <remarks>
-            This option is ignored under Mono deployments.
-            </remarks>
     </member>
     <member name="M:Gemstone.Communication.SerialClient.SendDataAsync(System.Byte[],System.Int32,System.Int32)">
       <summary>
@@ -1846,12 +1888,6 @@
             Gets or sets a boolean value that determines if small packets are delivered to the remote host without delay.
             </summary>
     </member>
-    <member name="M:Gemstone.Communication.TcpClient.OnConnectionException(System.Exception)">
-      <summary>
-            Raises the <see cref="E:Gemstone.Communication.ClientBase.ConnectionException" /> event.
-            </summary>
-      <param name="ex">Exception to send to <see cref="E:Gemstone.Communication.ClientBase.ConnectionException" /> event.</param>
-    </member>
     <member name="M:Gemstone.Communication.TcpClient.OnReceiveDataException(System.Exception)">
       <summary>
             Raises the <see cref="E:Gemstone.Communication.ClientBase.ReceiveDataException" /> event.
@@ -1910,6 +1946,16 @@
         <paramref name="startIndex" /> or <paramref name="length" /> is less than 0 -or- 
             <paramref name="startIndex" /> and <paramref name="length" /> will exceed <paramref name="buffer" /> length.
             </exception>
+    </member>
+    <member name="M:Gemstone.Communication.TcpClient.RequestNextServerIndex">
+      <summary>
+            Requests that the client attempt to move to the next <see cref="P:Gemstone.Communication.ClientBase.ServerIndex" />.
+            </summary>
+      <returns>
+        <c>true</c> if request succeeded; otherwise, <c>false</c>.</returns>
+      <remarks>
+            Return value will only be <c>true</c> if <see cref="P:Gemstone.Communication.ClientBase.ServerIndex" /> changed.
+            </remarks>
     </member>
     <member name="M:Gemstone.Communication.TcpClient.SendDataAsync(System.Byte[],System.Int32,System.Int32)">
       <summary>
@@ -2320,12 +2366,6 @@
             Gets or sets a boolean value that determines if small packets are delivered to the remote host without delay.
             </summary>
     </member>
-    <member name="M:Gemstone.Communication.TlsClient.OnConnectionException(System.Exception)">
-      <summary>
-            Raises the <see cref="E:Gemstone.Communication.ClientBase.ConnectionException" /> event.
-            </summary>
-      <param name="ex">Exception to send to <see cref="E:Gemstone.Communication.ClientBase.ConnectionException" /> event.</param>
-    </member>
     <member name="M:Gemstone.Communication.TlsClient.OnReceiveDataException(System.Exception)">
       <summary>
             Raises the <see cref="E:Gemstone.Communication.ClientBase.ReceiveDataException" /> event.
@@ -2385,6 +2425,16 @@
       <remarks>
             Setting this property overrides the validation
             callback in the <see cref="P:Gemstone.Communication.TlsClient.CertificateChecker" />.
+            </remarks>
+    </member>
+    <member name="M:Gemstone.Communication.TlsClient.RequestNextServerIndex">
+      <summary>
+            Requests that the client attempt to move to the next <see cref="P:Gemstone.Communication.ClientBase.ServerIndex" />.
+            </summary>
+      <returns>
+        <c>true</c> if request succeeded; otherwise, <c>false</c>.</returns>
+      <remarks>
+            Return value will only be <c>true</c> if <see cref="P:Gemstone.Communication.ClientBase.ServerIndex" /> changed.
             </remarks>
     </member>
     <member name="M:Gemstone.Communication.TlsClient.SendDataAsync(System.Byte[],System.Int32,System.Int32)">
@@ -3719,7 +3769,7 @@
       <summary>
             Authenticates the username and password against the RADIUS server.
             </summary>
-      <param name="username">Username to be authenticated.</param>
+      <param name="username">UserName to be authenticated.</param>
       <param name="password">Password to be authenticated.</param>
       <returns>Response packet received from the server for the authentication request.</returns>
       <remarks>
@@ -3739,7 +3789,7 @@
       <summary>
             Authenticates the username and password against the RADIUS server.
             </summary>
-      <param name="username">Username to be authenticated.</param>
+      <param name="username">UserName to be authenticated.</param>
       <param name="password">Password to be authenticated.</param>
       <param name="state">State value from a previous challenge response.</param>
       <returns>Response packet received from the server for the authentication request.</returns>
@@ -3889,18 +3939,18 @@
       <param name="request">Request to be sent to the server.</param>
       <returns>Response packet if a valid response is received from the server; otherwise Nothing.</returns>
     </member>
-    <member name="P:Gemstone.Communication.Radius.RadiusClient.ReponseTimeout">
-      <summary>
-            Gets or sets the time (in milliseconds) to wait for a response from server after sending a request.
-            </summary>
-      <returns>Time (in milliseconds) to wait for a response from server after sending a request.</returns>
-      <value></value>
-    </member>
     <member name="P:Gemstone.Communication.Radius.RadiusClient.RequestAttempts">
       <summary>
             Gets or sets the number of time a request is to sent to the server until a valid response is received.
             </summary>
       <returns>Number of time a request is to sent to the server until a valid response is received.</returns>
+      <value></value>
+    </member>
+    <member name="P:Gemstone.Communication.Radius.RadiusClient.ResponseTimeout">
+      <summary>
+            Gets or sets the time (in milliseconds) to wait for a response from server after sending a request.
+            </summary>
+      <returns>Time (in milliseconds) to wait for a response from server after sending a request.</returns>
       <value></value>
     </member>
     <member name="P:Gemstone.Communication.Radius.RadiusClient.ServerName">
