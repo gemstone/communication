@@ -62,12 +62,15 @@
 using System;
 using System.Collections.Generic;
 using System.Reflection;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading;
 using Gemstone.ArrayExtensions;
 using Gemstone.EventHandlerExtensions;
 using Gemstone.StringExtensions;
 using Gemstone.Units;
+
+[assembly: InternalsVisibleTo("Gemstone.PhasorProtocols")]
 
 // ReSharper disable VirtualMemberCallInConstructor
 namespace Gemstone.Communication
