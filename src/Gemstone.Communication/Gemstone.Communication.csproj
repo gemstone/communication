@@ -11,6 +11,7 @@
     <Product>Gemstone</Product>
     <PackageDescription>GPA Gemstone Communication Library</PackageDescription>
     <PackageIcon>gemstone-square-128.png</PackageIcon>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
     <Description>GPA Gemstone Communication Library</Description>
     <Copyright>Copyright © 2022</Copyright>
     <PackageProjectUrl>https://github.com/gemstone</PackageProjectUrl>
@@ -42,6 +43,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Include="..\..\docs\README.md" Link="README.md" Visible="false">
+      <Pack>True</Pack>
+      <PackagePath />
+    </None>
     <None Include="..\..\docs\img\gemstone-square-128.png" Link="gemstone-square-128.png" Visible="false">
       <Pack>True</Pack>
       <PackagePath />
