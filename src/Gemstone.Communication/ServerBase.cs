@@ -58,6 +58,7 @@ using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Sockets;
 using System.Reflection;
 using System.Text;
 using System.Threading;
@@ -806,9 +807,8 @@ namespace Gemstone.Communication
             Dictionary<string, string> settings = configurationString.ParseKeyValuePairs();
             IServer server;
 
-            if (settings.TryGetValue("protocol", out string? protocol))
+            if (settings.Remove("protocol", out string? protocol))
             {
-                settings.Remove("protocol");
                 StringBuilder protocolSettings = new();
 
                 foreach (string key in settings.Keys)
@@ -832,7 +832,10 @@ namespace Gemstone.Communication
                 foreach (KeyValuePair<string, string> setting in settings)
                 {
                     PropertyInfo? property = server.GetType().GetProperty(setting.Key, BindingFlags.IgnoreCase | BindingFlags.Public | BindingFlags.Instance);
-                    property?.SetValue(server, Convert.ChangeType(setting.Value, property.PropertyType), null);
+
+                    // Connection string property "server" will match "Server" property of type Socket in the server, this should be ignored:
+                    if (property is not null && property.CanWrite && property.PropertyType != typeof(Socket))
+                        property?.SetValue(server, Convert.ChangeType(setting.Value, property.PropertyType), null);
                 }
             }
             else
