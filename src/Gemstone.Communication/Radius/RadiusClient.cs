@@ -571,8 +571,7 @@ namespace Gemstone.Communication.Radius
         /// <remarks>This method is to be called before performing any operation.</remarks>
         protected void CheckDisposed()
         {
-            if (m_disposed)
-                throw new ObjectDisposedException(GetType().Name);
+            ObjectDisposedException.ThrowIf(m_disposed, this);
         }
 
         /// <summary>
