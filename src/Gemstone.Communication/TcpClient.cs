@@ -340,7 +340,7 @@ namespace Gemstone.Communication
         public byte[]? PayloadMarker
         {
             get => m_payloadMarker;
-            set => m_payloadMarker = value ?? Array.Empty<byte>();
+            set => m_payloadMarker = value ?? [];
         }
 
         /// <summary>
@@ -418,9 +418,9 @@ namespace Gemstone.Communication
                     return m_serverList;
 
                 if (!m_connectData.TryGetValue("server", out string? serverList) || string.IsNullOrWhiteSpace(serverList))
-                    return Array.Empty<string>();
+                    return [];
 
-                return m_serverList = serverList.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries).Select(server => server.Trim()).ToArray();
+                return m_serverList = serverList.Split([','], StringSplitOptions.RemoveEmptyEntries).Select(server => server.Trim()).ToArray();
             }
         }
 

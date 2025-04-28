@@ -53,7 +53,7 @@ namespace Gemstone.Communication
         /// <summary>
         /// Default byte sequence used to mark the beginning of the payload in a "Payload-Aware" transmissions.
         /// </summary>
-        public static byte[] DefaultMarker = { 0xAA, 0xBB, 0xCC, 0xDD };
+        public static byte[] DefaultMarker = [0xAA, 0xBB, 0xCC, 0xDD];
 
         /// <summary>
         /// Adds header containing the <paramref name="marker"/> to the payload in the <paramref name="buffer"/> for "Payload-Aware" transmission.

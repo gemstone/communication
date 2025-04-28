@@ -225,7 +225,7 @@ namespace Gemstone.Communication.Radius
         #region [ Members ]
 
         // Fields
-        private byte[] m_value = Array.Empty<byte>();
+        private byte[] m_value = [];
 
         #endregion
 

@@ -135,7 +135,7 @@ namespace Gemstone.Communication.Radius
         {
             Identifier = (byte)Random.Between(0, 255);
             m_authenticator = new byte[16];
-            Attributes = new List<RadiusPacketAttribute>();
+            Attributes = [];
         }
 
         /// <summary>

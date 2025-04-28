@@ -187,7 +187,7 @@ namespace Gemstone.Communication
         {
             public TransportProvider<EndPoint> Client = new();
             public readonly SocketAsyncEventArgs SendArgs = new();
-            public readonly object SendLock = new();
+            public readonly Lock SendLock = new();
             public readonly ConcurrentQueue<UdpServerPayload> SendQueue = new();
             public ShortSynchronizedOperation DumpPayloadsOperation = default!;
             public int Sending;
@@ -447,7 +447,7 @@ namespace Gemstone.Communication
             // Fixes MONO issue with SIO_UDP_CONNRESET
             try
             {
-                m_udpServer.Provider.IOControl(SIO_UDP_CONNRESET, new[] { Convert.ToByte(false) }, null);
+                m_udpServer.Provider.IOControl(SIO_UDP_CONNRESET, [Convert.ToByte(false)], null);
             }
             catch (Exception ex)
             {

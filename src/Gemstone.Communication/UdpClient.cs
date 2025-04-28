@@ -248,7 +248,7 @@ namespace Gemstone.Communication
 
         private int m_sending;
         private int m_receiving;
-        private readonly object m_sendLock;
+        private readonly Lock m_sendLock;
         private readonly ConcurrentQueue<UdpClientPayload> m_sendQueue;
         private readonly ShortSynchronizedOperation m_dumpPayloadsOperation;
         private SocketAsyncEventArgs? m_sendArgs;
@@ -281,7 +281,7 @@ namespace Gemstone.Communication
             AllowDualStackSocket = DefaultAllowDualStackSocket;
             MaxSendQueueSize = DefaultMaxSendQueueSize;
 
-            m_sendLock = new object();
+            m_sendLock = new Lock();
             m_sendQueue = new ConcurrentQueue<UdpClientPayload>();
             m_dumpPayloadsOperation = new ShortSynchronizedOperation(DumpPayloads, OnSendDataException);
             m_sendHandler += (_, _) => ProcessSend();
@@ -619,7 +619,7 @@ namespace Gemstone.Communication
                     // Fixes MONO issue with SIO_UDP_CONNRESET
                     try
                     {
-                        m_udpClient.Provider.IOControl(SIO_UDP_CONNRESET, new[] { Convert.ToByte(false) }, null);
+                        m_udpClient.Provider.IOControl(SIO_UDP_CONNRESET, [Convert.ToByte(false)], null);
                     }
                     catch (Exception ex)
                     {

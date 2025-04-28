@@ -94,7 +94,7 @@ namespace Gemstone.Communication
             public Func<bool> CancelTimeout = () => false;
 
             public int Sending;
-            public readonly object SendLock = new();
+            public readonly Lock SendLock = new();
             public readonly ConcurrentQueue<TlsServerPayload> SendQueue = new();
             public ShortSynchronizedOperation DumpPayloadsOperation = default!;
 
@@ -223,7 +223,7 @@ namespace Gemstone.Communication
         public byte[]? PayloadMarker
         {
             get => m_payloadMarker;
-            set => m_payloadMarker = value ?? Array.Empty<byte>();
+            set => m_payloadMarker = value ?? [];
         }
 
         /// <summary>

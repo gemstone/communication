@@ -152,7 +152,7 @@ namespace Gemstone.Communication
         {
             public TransportProvider<Socket> Client = new();
             public readonly SocketAsyncEventArgs SendArgs = new();
-            public readonly object SendLock = new();
+            public readonly Lock SendLock = new();
             public readonly ConcurrentQueue<TcpServerPayload> SendQueue = new();
             public ShortSynchronizedOperation DumpPayloadsOperation = default!;
             public int Sending;
@@ -272,7 +272,7 @@ namespace Gemstone.Communication
         public byte[]? PayloadMarker
         {
             get => m_payloadMarker;
-            set => m_payloadMarker = value ?? Array.Empty<byte>();
+            set => m_payloadMarker = value ?? [];
         }
 
         /// <summary>
@@ -539,10 +539,10 @@ namespace Gemstone.Communication
             // Derive desired IP stack based on specified "interface" setting, adding setting if it's not defined
             m_ipStack = Transport.GetInterfaceIPStack(m_configData);
 
-            if (!m_configData.ContainsKey("port"))
+            if (!m_configData.TryGetValue("port", out string? port))
                 throw new ArgumentException($"Port property is missing (Example: {DefaultConfigurationString})");
 
-            if (!Transport.IsPortNumberValid(m_configData["port"]))
+            if (!Transport.IsPortNumberValid(port))
                 throw new ArgumentOutOfRangeException(nameof(configurationString), $"Port number must be between {Transport.PortRangeLow} and {Transport.PortRangeHigh}");
         }
 
