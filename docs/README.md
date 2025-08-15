@@ -9,7 +9,7 @@ The Gemstone Communication Library organizes all Gemstone functionality related 
 [![GitHub license](https://img.shields.io/github/license/gemstone/communication?color=4CC61E)](https://github.com/gemstone/communication/blob/master/LICENSE)
 [![Build status](https://ci.appveyor.com/api/projects/status/xj849729cx34ehki?svg=true)](https://ci.appveyor.com/project/ritchiecarroll/communication)
 ![CodeQL](https://github.com/gemstone/communication/workflows/CodeQL/badge.svg)
-[![NuGet](https://buildstats.info/nuget/Gemstone.Communication)](https://www.nuget.org/packages/Gemstone.Communication#readme-body-tab)
+[![NuGet](https://img.shields.io/nuget/vpre/Gemstone.Communication)](https://www.nuget.org/packages/Gemstone.Communication#readme-body-tab)
 
 This library includes helpful communication classes like the following:
 
