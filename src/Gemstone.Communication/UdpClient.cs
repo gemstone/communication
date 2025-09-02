@@ -579,7 +579,7 @@ namespace Gemstone.Communication
             if (m_connectData.TryGetValue("localPort", out string? value))
                 m_connectData.TryAdd("port", value);
 
-            if (m_connectData.ContainsKey("server") && m_connectData.ContainsKey("remotePort"))
+            if (m_connectData.ContainsKey("server") && m_connectData.ContainsKey("remotePort") && !string.IsNullOrWhiteSpace(m_connectData["remotePort"]))
                 m_connectData["server"] = $"{m_connectData["server"]}:{m_connectData["remotePort"]}";
 
             // Check if 'port' property is missing.

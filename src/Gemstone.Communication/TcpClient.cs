@@ -1436,7 +1436,7 @@ namespace Gemstone.Communication
             // Backwards compatibility adjustments.
             // New Format: Server=localhost:8888
             // Old Format: Server=localhost; Port=8888
-            if (m_connectData.ContainsKey("port") && !m_connectData["server"].Contains(','))
+            if (m_connectData.ContainsKey("port") && !string.IsNullOrWhiteSpace(m_connectData["port"]) && !m_connectData["server"].Contains(','))
                 m_connectData["server"] = $"{m_connectData["server"]}:{m_connectData["port"]}";
 
             m_serverList = null;
