@@ -441,6 +441,7 @@ namespace Gemstone.Communication
             // Bind server socket to local end-point
             m_udpServer = new TransportProvider<Socket>();
             m_udpServer.SetReceiveBuffer(ReceiveBufferSize);
+            m_udpServer.Provider = Transport.CreateSocket(m_configData["interface"], int.Parse(m_configData["port"]), ProtocolType.Udp, m_ipStack, AllowDualStackSocket);
             m_udpServer.Provider!.ReceiveBufferSize = ReceiveBufferSize;
 
             // Disable SocketError.ConnectionReset exception from being thrown when the endpoint is not listening
